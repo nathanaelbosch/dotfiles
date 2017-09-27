@@ -41,3 +41,6 @@ set tabstop=4
 
 " Minimal number of screen lines to keep above and below the cursor
 set scrolloff=5
+
+" Helps to copy paste without the line numbers
+" set mouse=a
