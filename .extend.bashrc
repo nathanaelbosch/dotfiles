@@ -125,3 +125,5 @@ alias mirrors='sudo pacman-mirrors -g'
 alias printer='system-config-printer'
 alias update='yaourt -Syua'
 alias xopen="xdg-open"
+
+exec fish
