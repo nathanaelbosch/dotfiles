@@ -32,6 +32,8 @@ colors() {
 }
 
 [[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
+[[ -f ~/.profile ]] && . ~/.profile
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
+exec fish

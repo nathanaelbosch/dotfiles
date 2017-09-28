@@ -18,7 +18,7 @@ ZSH_THEME="agnoster"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -90,4 +90,5 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 [[ -f ~/.aliases ]] && . ~/.aliases
+source $HOME/.zsh_completions
 source $ZSH/oh-my-zsh.sh

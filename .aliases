@@ -1,18 +1,22 @@
 alias cp="cp -i"                          # confirm before overwriting something                 
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
+alias df="df -h"                          # human-readable sizes
+alias free="free -m"                      # show sizes in MB
+alias np="$EDITOR -w PKGBUILD"
 alias more=less
 
-alias con='vim $HOME/.i3/config'
-alias comp='vim $HOME/.config/compton.conf'
-alias fixit='sudo rm -f /var/lib/pacman/db.lck'
-alias inst='sudo pacman -S'
+alias con="$EDITOR $HOME/.i3/config"
+alias comp="$EDITOR $HOME/.config/compton.conf"
+alias fixit="sudo rm -f /var/lib/pacman/db.lck"
+alias inst="sudo pacman -S"
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias l='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias mirrors='sudo pacman-mirrors -g'
-alias printer='system-config-printer'
-alias update='yaourt -Syua'
+alias mirrors="sudo pacman-mirrors -g"
+alias printer="system-config-printer"
+alias update="yaourt -Syua"
 alias xopen="xdg-open"
 alias nfetch="neofetch --w3m"
+
+alias bashrc="$EDITOR $HOME/.bashrc"
+alias zshrc="$EDITOR $HOME/.zshrc"
+alias fishrc="$EDITOR $HOME/.config/fish/config.fish"
