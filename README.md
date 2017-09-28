@@ -1,13 +1,19 @@
 # My dotfiles
 
 - Terminal: Tomorrow night colors
-- Fish: functions + added paths to $PATH on startup
-- Bash: aliases + fish autostart
+- Fish:
+  - Aliases are not in functions! Config file now sources .aliases
+- Bash:
+  - Aliases in .aliases
+  - Loads .profile now
 - Yaourt: No prompts
 - Vim: Just a simple vimrc so far
+- .Xresources & .extend.Xresources: Terminal colors
 - i3:
-  - Terminal colors as defined in .extend.Xresources (but not yet for i3status, they are defined in the script)
+  - Imports the colors defined for X
   - Multiscreen layout at startup, script in .screenlayout/standard_layout.sh
   - CapsLock as Super and Escape, script in bin/keyboard_setup.sh
   - Sublime+Terminal workspace hotkey using Mod+Ctrl+c
 - Themes+Icons: Created with oomox
+- Other files:
+  - .aliases: Used throughout fish, bash, and zsh
