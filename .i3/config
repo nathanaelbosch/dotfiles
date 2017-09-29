@@ -442,8 +442,8 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id i3-msg 'workspace $ws1; exec google-chrome-stable'
 
 # Spotify
-#for_window [class="Spotify"] move workspace $w10
-#exec spotify
+for_window [class="Spotify"] move workspace $w10
+exec spotify
 
 # Coding Workspace
 #exec --no-startup-id /home/nath/bin/load_coding_workspace.sh

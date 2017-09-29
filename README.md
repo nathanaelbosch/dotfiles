@@ -17,3 +17,19 @@
 - Themes+Icons: Created with oomox
 - Other files:
   - .aliases: Used throughout fish, bash, and zsh
+
+## Programs to install
+
+Not all of those are necessary, but this also represents a list of programs that I use personally and which I'd want to install early when setting up a new PC.
+
+- redshift
+- dropbox (AUR)
+- google-chrome (AUR)
+- fish
+  - oh-my-fish (github)
+- arandr
+- powerline-fonts-git (AUR)
+- xcape (To use Super as Escape)
+- sublime-text-dev (AUR)
+- spotify (AUR)
+
