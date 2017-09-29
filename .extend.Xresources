@@ -44,21 +44,23 @@ Xcursor.size:                     0
 XTerm*background:                 #1d1f21
 XTerm*foreground:                 #c5c8c6
 XTerm*reverseVideo:               on
-XTerm*faceName:                  Terminus:size=11:antialias=true
+!XTerm*faceName:                  Terminus:size=11:antialias=true
 !XTerm*faceName:                   Hack:size=11:antialias=true
 XTerm*selectToClipboard:          true
 
 /* fonts */
-!URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=25:mono:medium:size=10
-!URxvt.font:                       xft:Hack-Regular:pixelsize=14,xft:Symbola
-!URxvt.boldFont:                   xft:Hack-Bold:pixelsize=14:weight=bold,xft:Symbola
-!URxvt.italicFont:                 xft:Hack-RegularOblique:pixelsize=14:slant=italic,xft:Symbola
+URxvt*font: xft:Source\ Code\ Pro\ for\ Powerline:size=11
+!URxvt*font: "xft:Inconsolata for Powerline:size=13"
+!URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=14
+!URxvt.font:                       xft:Hack:pixelsize=13,xft:Symbola
+!URxvt.boldFont:                   xft:Hack-Bold:pixelsize=13:weight=bold,xft:Symbola
+!URxvt.italicFont:                 xft:Hack-RegularOblique:pixelsize=13:slant=italic,xft:Symbola
 !URxvt.font:                      9x15
 !URxvt.letterSpace:                -3
 
 ! alternative font settings with 'terminus':
-URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
-URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
+!URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
+!URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 
 URxvt.depth:                      32

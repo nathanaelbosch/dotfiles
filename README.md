@@ -27,6 +27,7 @@ Not all of those are necessary, but this also represents a list of programs that
 - google-chrome (AUR)
 - fish
   - oh-my-fish (github)
+    - omf install agnoster
 - arandr
 - powerline-fonts-git (AUR)
 - xcape (To use Super as Escape)
