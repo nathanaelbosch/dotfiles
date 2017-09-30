@@ -5,4 +5,4 @@ i3-msg "workspace --no-auto-back-and-forth number 3:; append_layout ~/.i3/cod
 
 # re-populate layout with programs
 subl3
-terminal -cd /home/nath/Projekte/bitpython2.0 -title "bitpython2.0"
+terminal -cd ~/Projekte/bitpython2.0 -title "bitpython2.0"
