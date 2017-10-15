@@ -435,7 +435,7 @@ mode "$mode_gaps_outer" {
 # Personal bindings and startup
 ############################################################################
 # Some startup programs and scripts
-exec --no-startup-id ~/bin/keyboard_setup.sh
+exec --no-startup-id ~/scripts/keyboard_setup.sh
 exec --no-startup-id dropbox start
 exec --no-startup-id redshift-gtk
 #exec --no-startup-id i3-msg 'workspace 9; exec terminal -name ssh -e ssh ovh'
@@ -447,9 +447,9 @@ for_window [class="Spotify"] move workspace $ws10
 exec spotify
 
 # Coding Workspace
-#exec --no-startup-id /home/nath/bin/load_coding_workspace.sh
-#bindsym $mod+ctrl+c exec --no-startup-id "i3-msg 'workspace $ws4'"; exec ~/bin/load_coding_workspace.sh
-bindsym $mod+ctrl+c exec ~/bin/load_coding_workspace.sh
+#exec --no-startup-id /home/nath/scripts/load_coding_workspace.sh
+#bindsym $mod+ctrl+c exec --no-startup-id "i3-msg 'workspace $ws4'"; exec ~/scripts/load_coding_workspace.sh
+bindsym $mod+ctrl+c exec ~/scripts/load_coding_workspace.sh
 #append_layout ~/.i3/coding.json; exec subl3; exec terminal -cd ~/Projekte/bitpython2.0 -title bitpython2.0'"
 
 # Open htop with standard windows process manager keys; float
@@ -476,3 +476,7 @@ bindsym $mod+period move workspace to output right
 # Mouse
 focus_follows_mouse no
 mouse_warping none
+
+# SSHFS
+exec sshfs wg:/home/nath sshfs_folders/wg_home
+exec sshfs wg:/mnt/data/sahre sshfs_folders/wg_share

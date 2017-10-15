@@ -1,3 +1,0 @@
-#!/bin/bash
-#open new terminal window with ssh login to machine_name
-terminal -e ssh ovh
