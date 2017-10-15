@@ -1,5 +1,5 @@
 #!/bin/bash
-rsync -aAXv --progress --fake-super \
+rsync -aAXv --progress -M--fake-super \
     --exclude="/dev/*" \
     --exclude="/proc/*" \
     --exclude="/sys/*" \
@@ -21,7 +21,7 @@ rsync -aAXv --progress --fake-super \
     --exclude="/home/*/Dropbox" \
     --exclude="/home/*/.local/share/Trash" \
     --exclude="/home/*/Downloads" \
-/ wg:~/backups/pc
+/ wg:~/backups/pc2
 
 
 #    --exclude="/home/*/Documents/Uni" \

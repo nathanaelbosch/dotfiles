@@ -453,7 +453,7 @@ bindsym $mod+ctrl+c exec ~/bin/load_coding_workspace.sh
 #append_layout ~/.i3/coding.json; exec subl3; exec terminal -cd ~/Projekte/bitpython2.0 -title bitpython2.0'"
 
 # Open htop with standard windows process manager keys; float
-bindsym $mod+shift+Escape exec --no-startup-id urxvt -name htop_win -e htop
+bindsym Ctrl+shift+Escape exec --no-startup-id urxvt -name htop_win -e htop
 for_window [instance="htop_win"] floating enable sticky enable border none
 
 # Quick terminal; Access with F12; Basically a guake replacement; When closed reopen one with $mod+F12

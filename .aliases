@@ -21,3 +21,6 @@ alias nfetch="neofetch --w3m"
 alias bashrc="$EDITOR $HOME/.bashrc"
 alias zshrc="$EDITOR $HOME/.zshrc"
 alias fishrc="$EDITOR $HOME/.config/fish/config.fish"
+
+alias ausgaben="$EDITOR $HOME/Documents/ausgaben.csv"
+alias einnahmen="$EDITOR $HOME/Documents/einnahmen.csv"
