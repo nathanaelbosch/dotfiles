@@ -1,5 +1,7 @@
 #!/bin/bash
-rsync -aAXv --progress -M--fake-super \
+rsync -aAXvh \
+    -e "ssh -i /home/nath/.ssh/id_rsa -F /home/nath/.ssh/config" \
+    --progress -M--fake-super \
     --exclude="/dev/*" \
     --exclude="/proc/*" \
     --exclude="/sys/*" \
@@ -13,7 +15,6 @@ rsync -aAXv --progress -M--fake-super \
     --exclude="/var/run/*" \
     --exclude="/var/lock/*" \
     --exclude="/lib/modules/*/volatile/.mounted" \
-    --exclude="/var/cache/apt/archives/*" \
     --exclude="/home/*/.gvfs" \
     --exclude="/home/*/.thumbnails" \
     --exclude="/home/*/.cache/google-chrome" \
@@ -21,9 +22,6 @@ rsync -aAXv --progress -M--fake-super \
     --exclude="/home/*/Dropbox" \
     --exclude="/home/*/.local/share/Trash" \
     --exclude="/home/*/Downloads" \
-/ wg:~/backups/pc2
-
-
-#    --exclude="/home/*/Documents/Uni" \
-#    --exclude="/home/*/storage" \
-#    --exclude="/home/*/Projekte/bitpython2.0/data" \
+    --exclude="/home/*/sshfs_folders" \
+    --exclude="/home/*/Storage" \
+/ wg:~/backups/pc
