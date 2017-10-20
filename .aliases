@@ -22,5 +22,5 @@ alias bashrc="$EDITOR $HOME/.bashrc"
 alias zshrc="$EDITOR $HOME/.zshrc"
 alias fishrc="$EDITOR $HOME/.config/fish/config.fish"
 
-alias ausgaben="$EDITOR $HOME/Documents/ausgaben.csv"
-alias einnahmen="$EDITOR $HOME/Documents/einnahmen.csv"
+alias ausgaben="vim '+normal Go' +startinsert scp://ovh//home/nath/Documents/ausgaben.csv"
+alias einnahmen="vim '+normal Go' +startinsert scp://ovh//home/nath/Documents/einnahmen.csv"
