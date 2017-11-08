@@ -283,6 +283,7 @@ mode "resize" {
 # Lock screen
 #bindsym $mod+l exec --no-startup-id blurlock
 bindsym $mod+Shift+x exec --no-startup-id blurlock
+#bindsym $mod+Shift+x exec --no-startup-id i3lock-color
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -296,7 +297,8 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_mycolors
-exec --no-startup-id xautolock -time 10 -locker blurlock
+# exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id xautolock -time 10 -locker i3-lock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
@@ -478,5 +480,5 @@ focus_follows_mouse no
 mouse_warping none
 
 # SSHFS
-exec sshfs wg:/home/nath sshfs_folders/wg_home
-exec sshfs wg:/mnt/data/sahre sshfs_folders/wg_share
+exec --no-startup-id sshfs wg:/home/nath sshfs_folders/wg_home
+exec --no-startup-id sshfs wg:/mnt/data/sahre sshfs_folders/wg_share
