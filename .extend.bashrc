@@ -116,3 +116,7 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 export BROWSER=/usr/bin/google-chrome-stable
 
 [[ -f ~/.aliases ]] && . ~/.aliases
+
+# SSH-ADD
+eval $(ssh-agent) >/dev/null 2>/dev/null
+ssh-add ~/.ssh/dl4cv_ws2017 >/dev/null 2>/dev/null
