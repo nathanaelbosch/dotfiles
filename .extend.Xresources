@@ -49,7 +49,7 @@ XTerm*reverseVideo:               on
 XTerm*selectToClipboard:          true
 
 /* fonts */
-URxvt*font: xft:Source\ Code\ Pro\ for\ Powerline:size=11
+!URxvt*font: xft:Source\ Code\ Pro\ for\ Powerline:size=11
 !URxvt*font: "xft:Inconsolata for Powerline:size=13"
 !URxvt.font: xft:DejaVu Sans Mono for Powerline:pixelsize=14
 !URxvt.font:                       xft:Hack:pixelsize=13,xft:Symbola
@@ -59,7 +59,7 @@ URxvt*font: xft:Source\ Code\ Pro\ for\ Powerline:size=11
 !URxvt.letterSpace:                -3
 
 ! alternative font settings with 'terminus':
-!URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
+URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
 !URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 
