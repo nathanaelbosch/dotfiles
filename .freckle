@@ -1,14 +1,15 @@
-dotfiles:
+- dotfiles:
+    pkg_mgr: auto
     packages:
         - htop
         - tree
         - curl
 
-dotfiles:
+- dotfiles:
     pkg_mgr: git
     packages:
-      - oh-my-zsh:
+      - oh-my-fish:
           dest: ~/.local/share/omf-installer
           repo: https://github.com/oh-my-fish/oh-my-fish        
 
-ansible-tasks
+- ansible-tasks
