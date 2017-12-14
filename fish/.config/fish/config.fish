@@ -1,2 +1,4 @@
 abbr -a -- - 'cd -'
-source ~/.aliases
+if test -e ~/.aliases
+    source ~/.aliases
+end
