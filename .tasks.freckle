@@ -3,4 +3,4 @@
   args:
     creates: "~/.local/share/omf"
 - name: 'omf install agnoster'
-  shell: "fish && omf install agnoster"
+  command: "fish && omf install agnoster"
