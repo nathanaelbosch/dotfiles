@@ -1,0 +1,4 @@
+- name: 'installing oh-my-fish'
+  shell: "~/.local/share/omf-installer/bin/install --noninteractive --offline"
+  args:
+    creates: "~/.local/share/omf"
