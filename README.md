@@ -1,5 +1,11 @@
 # My dotfiles
 
+## Now using [freckles](https://github.com/makkus/freckles)!
+Single-line install:
+     curl https://freckles.io | sudo bash -s -- freckelize -f gh:nathbo/dotfiles dotfiles ansible-tasks
+
+## Notes on some programs:
+
 - Terminal: Tomorrow night colors
 - Fish:
   - Aliases are not in functions! Config file now sources .aliases
