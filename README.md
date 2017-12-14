@@ -5,6 +5,10 @@ Single-line install:
 ```bash
 curl https://freckles.io | sudo bash -s -- freckelize -f gh:nathbo/dotfiles dotfiles ansible-tasks
 ```
+Or clone with ssh when I'm on a machine with a confirmed key:
+```bash
+curl https://freckles.io | sudo bash -s -- freckelize -f git@github.com:nathbo/dotfiles.git dotfiles ansible-tasks
+```
 
 ## Notes on some programs:
 
