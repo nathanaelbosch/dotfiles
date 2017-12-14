@@ -2,7 +2,9 @@
 
 ## Now using [freckles](https://github.com/makkus/freckles)!
 Single-line install:
-     curl https://freckles.io | sudo bash -s -- freckelize -f gh:nathbo/dotfiles dotfiles ansible-tasks
+```bash
+curl https://freckles.io | sudo bash -s -- freckelize -f gh:nathbo/dotfiles dotfiles ansible-tasks
+```
 
 ## Notes on some programs:
 
