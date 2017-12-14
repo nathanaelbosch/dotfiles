@@ -2,3 +2,5 @@
   shell: "~/.local/share/omf-installer/bin/install --noninteractive --offline"
   args:
     creates: "~/.local/share/omf"
+- name: 'omf install agnoster'
+  shell: "fish && omf install agnoster"
