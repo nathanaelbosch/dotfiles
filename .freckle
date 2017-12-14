@@ -1,6 +1,5 @@
 dotfiles:
     packages:
         - htop
-        - vim
         - tree
         
