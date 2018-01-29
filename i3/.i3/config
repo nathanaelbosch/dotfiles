@@ -341,7 +341,7 @@ bar {
 	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
+ 	tray_output primary
 #	tray_output eDP1
 
     bindsym button4 nop
@@ -440,6 +440,7 @@ mode "$mode_gaps_outer" {
 # Some startup programs and scripts
 exec --no-startup-id ~/scripts/keyboard_setup.sh
 exec --no-startup-id dropbox start
+exec --no-startup-id megasync
 exec --no-startup-id redshift-gtk
 #exec --no-startup-id i3-msg 'workspace 9; exec terminal -name ssh -e ssh ovh'
 #for_window [inst=ssh] move workspace $ws9
@@ -472,7 +473,7 @@ bindsym $mod+e exec terminal -e "ranger"
 bindsym $mod+Shift+y fullscreen disable, floating enable, resize set 400 300, sticky enable, move window to position 1515 20
 
 # Screens
-exec_always ~/.screenlayout/standard_layout.sh
+exec_always ~/.screenlayout/3_monitor_layout.sh
 # move worspaces
 bindsym $mod+comma move workspace to output left
 bindsym $mod+period move workspace to output right
