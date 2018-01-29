@@ -42,6 +42,7 @@ Not all of those are necessary, but this also represents a list of programs that
     - omf install agnoster
 - arandr
 - powerline-fonts-git (AUR)
+- ttf-font-awesome (AUR)
 - xcape (To use Super as Escape)
 - sublime-text-dev (AUR)
 - spotify (AUR)
