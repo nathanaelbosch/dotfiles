@@ -1,6 +1,8 @@
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+exec_always ~/.screenlayout/3_monitor_layout.sh
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
@@ -43,11 +45,11 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-#exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-exec --no-startup-id pulseaudio
-exec --no-startup-id pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
+exec --no-startup-id volumeicon
+bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#exec --no-startup-id pulseaudio
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -440,7 +442,7 @@ mode "$mode_gaps_outer" {
 # Some startup programs and scripts
 exec --no-startup-id ~/scripts/keyboard_setup.sh
 exec --no-startup-id dropbox start
-exec --no-startup-id megasync
+#exec --no-startup-id megasync
 exec --no-startup-id redshift-gtk
 #exec --no-startup-id i3-msg 'workspace 9; exec terminal -name ssh -e ssh ovh'
 #for_window [inst=ssh] move workspace $ws9
@@ -483,4 +485,4 @@ mouse_warping none
 
 # SSHFS
 exec --no-startup-id sshfs wg:/home/nath sshfs_folders/wg_home
-exec --no-startup-id sshfs wg:/mnt/data/sahre sshfs_folders/wg_share
+exec --no-startup-id sshfs wg:/mnt/data/share sshfs_folders/wg_share
