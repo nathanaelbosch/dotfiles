@@ -4,6 +4,7 @@
         - htop
         - tree
         - curl
+        - tmux
 
 - dotfiles:
     pkg_mgr: git
@@ -13,3 +14,8 @@
           repo: https://github.com/oh-my-fish/oh-my-fish        
 
 - ansible-tasks
+
+- desktop:
+    pkg_mgr: auto
+    packages:
+        - xcape
