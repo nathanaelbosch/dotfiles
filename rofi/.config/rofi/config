@@ -1,0 +1,19 @@
+! background #CC1D1F21
+! foreground #ccc5c8c6
+! blue dark #cc5f819d
+! blue light #cc81a2be
+! gray #cc373b41
+! red #cca54242
+! orange #ccde935f
+
+rofi.color-enabled: true
+rofi.color-window: #CC1d1f21, #cc5f819d, #cc81a2be
+rofi.color-normal: #CC1d1f21, #ccc5c8c6, #cc373b41, #cc5f819d, #ccc5c8c6
+rofi.color-active: #CC1d1f21, #cca54242, #cc373b41, #cca54242, #ccc5c8c6
+rofi.color-urgent: #CC1d1f21, #ccde935f, #cc373b41, #ccde935f, #ccc5c8c6
+rofi.width: 800
+!rofi.padding: 50
+rofi.font: PragmataPro Nerd Font 18
+rofi.bw: 3
+rofi.separator-style: solid
+rofi.hide-scrollbar: true
