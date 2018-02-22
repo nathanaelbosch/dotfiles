@@ -1,7 +1,7 @@
 #!/bin/bash
 alias cp="cp -i"                          # confirm before overwriting something                 
 alias df="df -h"                          # human-readable sizes
-alias free="free -m"                      # show sizes in MB
+alias free="free -h"                      # human-readable sizes
 alias np="$EDITOR -w PKGBUILD"
 alias more=less
 
