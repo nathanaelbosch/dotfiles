@@ -1,17 +1,25 @@
 # My dotfiles
 
 ## Now using [freckles](https://github.com/makkus/freckles)!
-Single-line install:
+Single-line install on a fresh [Manjaro i3 community edition](https://manjaro.org/community-editions/):
 ```bash
-curl https://freckles.io | sudo bash -s -- freckelize -f gh:nathbo/dotfiles dotfiles ansible-tasks
+curl https://freckles.io | bash -s -- freckelize -f gh:nathbo/dotfiles dotfiles ansible-tasks
 ```
 Or clone with ssh when I'm on a machine with a confirmed key:
 ```bash
-curl https://freckles.io | sudo bash -s -- freckelize -f git@github.com:nathbo/dotfiles.git dotfiles ansible-tasks
+curl https://freckles.io | bash -s -- freckelize -f git@github.com:nathbo/dotfiles.git dotfiles ansible-tasks
 ```
 
-## Notes on some programs:
+## For a more modular approach:
+Clone directory, `cd` into, and stow the necessary files, eg. just the console stuff, fish, and vim:
+```bash
+git clone https://github.com/nathbo/dotfiles.git
+cd dotfiles
+stow -t "/home/nath/" console_environment fish vim
+```
 
+
+## Notes on some programs:
 - Terminal: Tomorrow night colors
 - Fish:
   - Aliases are not in functions! Config file now sources .aliases
@@ -31,12 +39,11 @@ curl https://freckles.io | sudo bash -s -- freckelize -f git@github.com:nathbo/d
   - .aliases: Used throughout fish, bash, and zsh
 
 ## Programs to install
-
 Not all of those are necessary, but this also represents a list of programs that I use personally and which I'd want to install early when setting up a new PC.
 
 - redshift
 - dropbox (AUR)
-- google-chrome (AUR)
+- firefox
 - fish
   - oh-my-fish (github)
     - omf install agnoster
@@ -46,4 +53,6 @@ Not all of those are necessary, but this also represents a list of programs that
 - xcape (To use Super as Escape)
 - sublime-text-dev (AUR)
 - spotify (AUR)
-
+- pia VPN (as on website)
+- megasync (from website)
+- libreoffice
