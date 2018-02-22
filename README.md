@@ -15,7 +15,7 @@ Clone directory, `cd` into, and stow the necessary files, eg. just the console s
 ```bash
 git clone https://github.com/nathbo/dotfiles.git
 cd dotfiles
-stow -t "/home/nath/" console_environment fish vim
+stow -t "$HOME" console_environment fish vim
 ```
 
 
