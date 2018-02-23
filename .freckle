@@ -5,6 +5,7 @@
         - tree
         - curl
         - tmux
+        - sshfs
 
 - dotfiles:
     pkg_mgr: git
