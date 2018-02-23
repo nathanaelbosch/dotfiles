@@ -50,9 +50,11 @@ Not all of those are necessary, but this also represents a list of programs that
 - arandr
 - powerline-fonts-git (AUR)
 - ttf-font-awesome (AUR)
+- ttf-material-icons (AUR)
 - xcape (To use Super as Escape)
 - sublime-text-dev (AUR)
 - spotify (AUR)
 - pia VPN (as on website)
 - megasync (from website)
 - libreoffice
+- xclip
