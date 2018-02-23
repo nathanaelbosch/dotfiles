@@ -340,32 +340,32 @@ set_from_resource $color15    color15
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	status_command i3status
-	position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
- 	tray_output primary
-#	tray_output eDP1
-
-    bindsym button4 nop
-    bindsym button5 nop
-	font xft:Hack 10.5
-#   strip_workspace_numbers yes
-
-	colors {
-#       background $transparent
-        background $background
-        statusline $foreground
-        separator  $color8
-
-#                                  border  backgr. text
-        focused_workspace   $foreground  $color4  $foreground
-        active_workspace    $background  $color4  $foreground
-        inactive_workspace  $background  $background  $color7
-        urgent_workspace    $color4  $color1  $foreground
-    }
-}
+#bar {
+#	status_command i3status
+#	position bottom
+#
+### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+# 	tray_output primary
+##	tray_output eDP1
+#
+#    bindsym button4 nop
+#    bindsym button5 nop
+#	font xft:Hack 10.5
+##   strip_workspace_numbers yes
+#
+#	colors {
+##       background $transparent
+#        background $background
+#        statusline $foreground
+#        separator  $color8
+#
+##                                  border  backgr. text
+#        focused_workspace   $foreground  $color4  $foreground
+#        active_workspace    $background  $color4  $foreground
+#        inactive_workspace  $background  $background  $color7
+#        urgent_workspace    $color4  $color1  $foreground
+#    }
+#}
 
 
 # hide/unhide i3status bar
@@ -395,7 +395,7 @@ gaps outer -4
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
@@ -488,6 +488,9 @@ mouse_warping none
 
 # Background
 exec_always --no-startup-id ~/.fehbg
+
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # SSHFS
 exec --no-startup-id sshfs wg:/home/nath sshfs_folders/wg_home
