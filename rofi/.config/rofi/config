@@ -1,20 +1,22 @@
-! background #CC1D1F21
-! foreground #CCc5c8c6
-! blue dark #CC5f819d
-! blue light #CC81a2be
-! gray #CC373b41
-! red #CCa54242
-! orange #CCde935f
+! background    #1D1F21
+! foreground    #c5c8c6
+! blue dark     #5f819d
+! blue light    #81a2be
+! gray          #373b41
+! red           #a54242
+! orange        #de935f
 
-rofi.color-enabled: true
-rofi.color-window: #CC1d1f21, #CC5f819d, #CC81a2be
-rofi.color-normal: #001d1f21, #CCc5c8c6, #CC373b41, #CC5f819d, #CCc5c8c6
-rofi.color-active: #CC1d1f21, #CCa54242, #CC373b41, #CCa54242, #CCc5c8c6
-rofi.color-urgent: #CC1d1f21, #CCde935f, #CC373b41, #CCde935f, #CCc5c8c6
-rofi.width: 800
-rofi.lines: 5
-rofi.padding: 10
-rofi.font: PragmataPro Nerd Font 13
-rofi.bw: 3
-rofi.separator-style: solid
-rofi.hide-scrollbar: truejdd
+rofi.color-enabled:     true
+!                       'background',   'border',   'separator'
+rofi.color-window:      #CC1d1f21,      #CC5f819d,  #CC81a2be
+! State:                'bg',       'fg',       'bgalt',    'hlbg',     'hlfg'
+rofi.color-normal:      #001d1f21,  #c5c8c6,    #CC373b41,  #CC5f819d,  #c5c8c6
+rofi.color-active:      #CC1d1f21,  #CCa54242,  #CC373b41,  #CCa54242,  #CCc5c8c6
+rofi.color-urgent:      #CC1d1f21,  #CCde935f,  #CC373b41,  #CCde935f,  #CCc5c8c6
+rofi.width:             800
+rofi.lines:             5
+rofi.padding:           10
+rofi.font:              PragmataPro Nerd Font 13
+rofi.bw:                1
+rofi.separator-style:   solid
+rofi.hide-scrollbar:    true
