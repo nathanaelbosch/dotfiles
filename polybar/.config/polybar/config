@@ -96,6 +96,11 @@ monitor = DVI-1
 inherit = bar/bottom_base
 monitor = DVI-0
 
+[bar/bottom_laptop]
+inherit = bar/bottom_base
+tray-position = right
+modules-right = wireless-network cpu memory volume backlight battery date
+
 
 [module/backlight]
 type = internal/xbacklight
@@ -170,27 +175,27 @@ format = <label-state> <label-mode>
 pin-workspaces = true
 ; strip-wsnumbers = true
  
-label-dimmed-underline = ${BAR.background}
+label-dimmed-underline = ${root.background}
 label-mode = %mode%
 label-mode-padding = 5
 
 ; label-focused = %icon%
 label-focused-foreground = #fff
-label-focused-background = ${BAR.background}
+label-focused-background = ${root.background}
 label-focused-underline = ${colors.blue_light}
 label-focused-font = 3
 label-focused-padding = 5
 
 ; label-unfocused = %icon%
 label-unfocused-foreground = #fff
-label-unfocused-background = ${BAR.background}
+label-unfocused-background = ${root.background}
 ; label-unfocused-underline = ${colors.blue_light}
 label-unfocused-font = 3
 label-unfocused-padding = 5
 
 ; label-visible = %icon%
 label-visible-foreground = #fff
-label-visible-background = ${BAR.background}
+label-visible-background = ${root.background}
 label-visible-underline = ${colors.blue_dark}
 label-visible-font = 3
 label-visible-padding = 5
