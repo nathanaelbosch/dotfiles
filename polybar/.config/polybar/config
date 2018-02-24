@@ -1,4 +1,4 @@
-Trick for icons! bash -c 'echo -ne "\uf026" | xclip -selection clipboard'
+; Trick for icons! bash -c 'echo -ne "\uf026" | xclip -selection clipboard'
 
 [colors]
 bg = #1d1f21
