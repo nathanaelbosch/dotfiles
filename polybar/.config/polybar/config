@@ -1,8 +1,8 @@
 ; Trick for icons! bash -c 'echo -ne "\uf026" | xclip -selection clipboard'
-
 [colors]
 bg = #1d1f21
 bg50 = #801d1f21
+bg80 = #CC1d1f21
 fg = #c5c8c6
 white80 = #ccffffff
 black_dark = #282a2e
@@ -27,7 +27,7 @@ white_ligth = #c5c8c6
 ; Some definitions that both top and bottom bars need anyways
 height = 27
 width = 100%
-background = ${colors.bg50}
+background = ${colors.bg80}
 foreground = ${colors.white80}
 line-color = ${bar/base.background}
  
@@ -39,7 +39,7 @@ font-3 = "NotoSans-Regular:size=8;0"
 font-4 = "unifont:size=6;-3"
 
 font-5 = "NotoSans-Regular:size=8;-1"
-font-6 = "MaterialIcons:style=Regular:size=10;-1"
+font-6 = "MaterialIcons:style=Regular:size=10;1"
 font-7 = "Termsynu:size=8:antialias=false;0"
 
 
@@ -66,9 +66,12 @@ modules-right = volume backlight wireless-network wired-network battery date
 inherit = bar/base
 bottom = true
 width = 100%
-height = 27
+height = 25
  
 line-size = 2
+
+border-top-size = 3
+border-top-color = ${root.background}
  
 spacing = 3
 padding-right = 4
@@ -173,21 +176,21 @@ label-mode-padding = 5
 
 ; label-focused = %icon%
 label-focused-foreground = #fff
-label-focused-background = ${colors.bg50}
+label-focused-background = ${BAR.background}
 label-focused-underline = ${colors.blue_light}
 label-focused-font = 3
 label-focused-padding = 5
 
 ; label-unfocused = %icon%
 label-unfocused-foreground = #fff
-label-unfocused-background = ${colors.bg50}
+label-unfocused-background = ${BAR.background}
 ; label-unfocused-underline = ${colors.blue_light}
 label-unfocused-font = 3
 label-unfocused-padding = 5
 
 ; label-visible = %icon%
 label-visible-foreground = #fff
-label-visible-background = ${colors.bg50}
+label-visible-background = ${BAR.background}
 label-visible-underline = ${colors.blue_dark}
 label-visible-font = 3
 label-visible-padding = 5
