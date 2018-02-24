@@ -7,6 +7,8 @@
         - tmux
         - sshfs
         - x11-ssh-askpass
+        - xclip
+        - xcape
 
 - dotfiles:
     pkg_mgr: git
