@@ -58,21 +58,21 @@ XTerm*background:                 BG
 XTerm*foreground:                 FG
 XTerm*reverseVideo:               on
 !XTerm*faceName:                  Terminus:size=11:antialias=true
-!XTerm*faceName:                  Hack:size=11:antialias=true
+XTerm*faceName:                  Hack:size=11:antialias=true
 XTerm*selectToClipboard:          true
 
 !! fonts
 !URxvt*font:                      xft:Source\ Code\ Pro\ for\ Powerline:size=11
 !URxvt*font:                      "xft:Inconsolata for Powerline:size=13"
 !URxvt.font:                      xft:DejaVu Sans Mono for Powerline:pixelsize=14
-!URxvt.font:                      xft:Hack:pixelsize=13,xft:Symbola
-!URxvt.boldFont:                  xft:Hack-Bold:pixelsize=13:weight=bold,xft:Symbola
-!URxvt.italicFont:                xft:Hack-RegularOblique:pixelsize=13:slant=italic,xft:Symbola
+URxvt.font:                       xft:Hack:style=Regular:size=10
+URxvt.boldFont:                   xft:Hack:style=Bold:size=10:weight=bold
+URxvt.italicFont:                 xft:Hack:style=Italic:size=10:slant=italic
 !URxvt.font:                      9x15
 !URxvt.letterSpace:               -3
 
 ! alternative font settings with 'terminus':
-URxvt.font:                       -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
+!URxvt.font:                       -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
 !URxvt.bold.font:                 -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 
