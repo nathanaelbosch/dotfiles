@@ -9,7 +9,7 @@ function project -d "Go to project and activate venv"
     # echo "Going to $PROJECT_NAME"
     cd ~/Projekte/$PROJECT_NAME
     if test $status = 0; and test -d .venv
-        echo "Activating venv"
+        # echo "Activating venv"
         . .venv/bin/activate.fish
     end
 end
