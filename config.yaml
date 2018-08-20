@@ -16,6 +16,9 @@ dotfiles:
   d_polybar:
     dst: ~/.config/polybar
     src: config/polybar
+  d_rofi:
+    dst: ~/.config/rofi
+    src: config/rofi
   d_screenlayout:
     dst: ~/.screenlayout
     src: screenlayout
@@ -82,3 +85,4 @@ profiles:
     - d_i3
     - d_polybar
     - f_config.py
+    - d_rofi
