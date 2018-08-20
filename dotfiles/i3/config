@@ -402,8 +402,13 @@ client.background       $background
 #############################
 
 # Set inner/outer gaps
+{%@@ if profile == "nath-pc" @@%}
 gaps inner 20
 gaps outer -4
+{%@@ elif profile == "nath-laptop" @@%}
+gaps inner 0
+gaps outer 0
+{%@@ endif @@%}
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -470,7 +475,9 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec qutebrowser'
 
 # Spotify
 for_window [class="Spotify"] move workspace $ws10
+{%@@ if profile == "nath-pc" @@%}
 exec spotify
+{%@@ endif @@%}
 
 # Coding Workspace
 #exec --no-startup-id /home/nath/scripts/load_coding_workspace.sh
@@ -507,5 +514,13 @@ mouse_warping none
 exec --no-startup-id sshfs wg:/home/nath sshfs_folders/wg_home
 exec --no-startup-id sshfs wg:/mnt/data/share sshfs_folders/wg_share
 
-
 bindsym $mod+ctrl+f fullscreen toggle global
+
+# Open empty container
+bindsym $mod+o exec i3-msg open
+
+# Mons to manage monitors
+{%@@ if profile == "nath-laptop" @@%}
+bindsym $mod+Shift+m exec mons -n right
+exec --no-startup-id mons -a
+{%@@ endif @@%}
