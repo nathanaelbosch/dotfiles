@@ -10,6 +10,12 @@ dotfiles:
   d_fish:
     dst: ~/.config/fish
     src: config/fish
+  d_i3:
+    dst: ~/.i3
+    src: i3
+  d_screenlayout:
+    dst: ~/.screenlayout
+    src: screenlayout
   f_aliases:
     dst: ~/.aliases
     src: aliases
@@ -19,6 +25,9 @@ dotfiles:
   f_bashrc:
     dst: ~/.bashrc
     src: bashrc
+  f_compton.conf:
+    dst: ~/.compton.conf
+    src: compton.conf
   f_extend.bashrc:
     dst: ~/.extend.bashrc
     src: extend.bashrc
@@ -34,6 +43,9 @@ dotfiles:
   f_gitconfig:
     dst: ~/.gitconfig
     src: gitconfig
+  f_i3status.conf:
+    dst: ~/.i3status.conf
+    src: i3status.conf
   f_profile:
     dst: ~/.profile
     src: profile
@@ -58,3 +70,7 @@ profiles:
     - f_yaourtrc
     - d_fish
     - f_gitconfig
+    - d_screenlayout
+    - f_compton.conf
+    - f_i3status.conf
+    - d_i3
