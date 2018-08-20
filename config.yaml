@@ -7,6 +7,9 @@ config:
   link_by_default: false
   longkey: false
 dotfiles:
+  d_fish:
+    dst: ~/.config/fish
+    src: config/fish
   f_aliases:
     dst: ~/.aliases
     src: aliases
@@ -50,3 +53,4 @@ profiles:
     - f_profile
     - f_xresources
     - f_yaourtrc
+    - d_fish
