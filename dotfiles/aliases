@@ -26,5 +26,3 @@ alias fishrc="$EDITOR $HOME/.config/fish/config.fish"
 alias ausgaben="vim '+normal Go' +startinsert scp://ovh//home/nath/Documents/ausgaben.csv"
 alias einnahmen="vim '+normal Go' +startinsert scp://ovh//home/nath/Documents/einnahmen.csv"
 
-#alias t="/home/nath/MEGA/todotxt/todo.sh -d /home/nath/MEGA/todotxt/"
-alias t="/home/nath/MEGA/todotxt/todo.sh"
