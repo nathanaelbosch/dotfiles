@@ -31,6 +31,9 @@ dotfiles:
   f_extend.xresources.sun:
     dst: ~/.extend.Xresources.sun
     src: extend.Xresources.sun
+  f_gitconfig:
+    dst: ~/.gitconfig
+    src: gitconfig
   f_profile:
     dst: ~/.profile
     src: profile
@@ -54,3 +57,4 @@ profiles:
     - f_xresources
     - f_yaourtrc
     - d_fish
+    - f_gitconfig
