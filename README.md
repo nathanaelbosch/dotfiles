@@ -1,15 +1,33 @@
 # My dotfiles
-
-## Now using [dotdrop](https://github.com/deadc0de6/dotdrop)!
+I use [dotdrop](https://github.com/deadc0de6/dotdrop) to manage my dotfiles.
 
 ## Usage
+### Dotdrop Installation
+Dotdrop requires python as well as some packages to work, so make sure to have a working **python** and **pip** installed.
 ```bash
-cd ~
-git clone https://github.com/nathbo/dotfiles.git
+git clone --recursive https://github.com/nathbo/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+pip install --user -r dotfiles/requirements.txt
 ```
-Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) on how to use the tool.
+After this the `./dotdrop.sh` should be functional. Test it with `./dotdrop.sh help`.
 
-## Setup
+### Installing dotfiles
+If the hostname matches one of the profiles, just use
+```bash
+./dotdrop.sh install
+```
+You can also specify a profile that differs from the hostname to install it. If you want to customize your installation, the best way is to edit the `config.yaml` file directly.
+
+### More useful commands:
+```bash
+./dotdrop.sh compare
+./dotdrop.sh import
+./dotdrop.sh update
+```
+Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) for more detailed explanations.
+
+
+## My Setup
 
 ![laptop neofetch](screenshots/neofetch.png?raw=true "Laptop Neofetch")
 
