@@ -1,0 +1,52 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_by_default: false
+  longkey: false
+dotfiles:
+  f_aliases:
+    dst: ~/.aliases
+    src: aliases
+  f_bash_profile:
+    dst: ~/.bash_profile
+    src: bash_profile
+  f_bashrc:
+    dst: ~/.bashrc
+    src: bashrc
+  f_extend.bashrc:
+    dst: ~/.extend.bashrc
+    src: extend.bashrc
+  f_extend.xresources:
+    dst: ~/.extend.Xresources
+    src: extend.Xresources
+  f_extend.xresources.mycolors:
+    dst: ~/.extend.Xresources.mycolors
+    src: extend.Xresources.mycolors
+  f_extend.xresources.sun:
+    dst: ~/.extend.Xresources.sun
+    src: extend.Xresources.sun
+  f_profile:
+    dst: ~/.profile
+    src: profile
+  f_xresources:
+    dst: ~/.Xresources
+    src: Xresources
+  f_yaourtrc:
+    dst: ~/.yaourtrc
+    src: yaourtrc
+profiles:
+  nath-laptop:
+    dotfiles:
+    - f_bashrc
+    - f_aliases
+    - f_bash_profile
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_extend.xresources.mycolors
+    - f_extend.xresources.sun
+    - f_profile
+    - f_xresources
+    - f_yaourtrc
