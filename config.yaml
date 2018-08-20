@@ -102,3 +102,14 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_mpw
+actions:
+  pre:
+    vim-install: pacman -S --needed vim
+    fish-install: pacman -S --needed fish
+    git-install: pacman -S --needed git
+    compton-install: pacman -S --needed compton
+    polybar-install: pacman -S --needed polybar
+    rofi-install: pacman -S --needed rofi
+  post:
+    omf-install: curl -L https://get.oh-my.fish | fish
+    agnoster-install: fish -c 'omf install agnoster'
