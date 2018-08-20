@@ -64,6 +64,9 @@ dotfiles:
   f_tmux.conf:
     dst: ~/.tmux.conf
     src: tmux.conf
+  f_vimrc:
+    dst: ~/.vimrc
+    src: vimrc
   f_xresources:
     dst: ~/.Xresources
     src: Xresources
@@ -94,3 +97,4 @@ profiles:
     - d_rofi
     - d_scripts
     - f_tmux.conf
+    - f_vimrc
