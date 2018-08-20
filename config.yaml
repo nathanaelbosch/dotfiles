@@ -31,6 +31,9 @@ dotfiles:
   f_compton.conf:
     dst: ~/.compton.conf
     src: compton.conf
+  f_config.py:
+    dst: ~/.config/qutebrowser/config.py
+    src: config/qutebrowser/config.py
   f_extend.bashrc:
     dst: ~/.extend.bashrc
     src: extend.bashrc
@@ -78,3 +81,4 @@ profiles:
     - f_i3status.conf
     - d_i3
     - d_polybar
+    - f_config.py
