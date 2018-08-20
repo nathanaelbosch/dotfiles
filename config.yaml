@@ -61,6 +61,9 @@ dotfiles:
   f_profile:
     dst: ~/.profile
     src: profile
+  f_tmux.conf:
+    dst: ~/.tmux.conf
+    src: tmux.conf
   f_xresources:
     dst: ~/.Xresources
     src: Xresources
@@ -90,3 +93,4 @@ profiles:
     - f_config.py
     - d_rofi
     - d_scripts
+    - f_tmux.conf
