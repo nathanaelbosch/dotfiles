@@ -58,6 +58,9 @@ dotfiles:
   f_i3status.conf:
     dst: ~/.i3status.conf
     src: i3status.conf
+  f_mpw:
+    dst: ~/.mpw
+    src: mpw
   f_profile:
     dst: ~/.profile
     src: profile
@@ -98,3 +101,4 @@ profiles:
     - d_scripts
     - f_tmux.conf
     - f_vimrc
+    - f_mpw
