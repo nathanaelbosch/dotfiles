@@ -22,6 +22,9 @@ dotfiles:
   d_screenlayout:
     dst: ~/.screenlayout
     src: screenlayout
+  d_scripts:
+    dst: ~/scripts
+    src: scripts
   f_aliases:
     dst: ~/.aliases
     src: aliases
@@ -86,3 +89,4 @@ profiles:
     - d_polybar
     - f_config.py
     - d_rofi
+    - d_scripts
