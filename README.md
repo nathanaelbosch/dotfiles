@@ -18,6 +18,10 @@ cd dotfiles
 stow -t "$HOME" console_environment fish vim
 ```
 
+## TODO
+Use [qualia](https://github.com/darkfeline/mir.qualia)
+Do I really need freckles? Think about how to write my own script to handle that functionality.
+
 
 ## Notes on some programs:
 - Terminal: Tomorrow night colors
