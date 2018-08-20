@@ -10,6 +10,9 @@ git clone https://github.com/nathbo/dotfiles.git
 Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) on how to use the tool.
 
 ## Setup
+
+![laptop neofetch](screenshots/neofetch.png?raw=true "Laptop Neofetch")
+
 Both my computers currently use the same setup
 - OS: Manjaro
 - WM: i3-gaps
