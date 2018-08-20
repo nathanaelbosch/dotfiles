@@ -6,7 +6,7 @@ bg80 = #CC1d1f21
 fg = #c5c8c6
 white80 = #ccffffff
 black_dark = #282a2e
-black_ligth = #373b41
+black_light = #373b41
 red_dark = #a54242
 red_light = #cc6666
 green_dark = #8c9440
@@ -100,8 +100,8 @@ monitor = DVI-0
 [bar/bottom_laptop]
 inherit = bar/bottom_base
 tray-position = right
+monitor = LVDS1
 modules-right = wireless-network cpu memory volume backlight battery date
-
 
 [module/backlight]
 type = internal/xbacklight
@@ -125,8 +125,8 @@ bar-empty-foreground = #44
 
 [module/battery]
 type = internal/battery
-battery = BAT1
-adapter = ACAD
+battery = BAT0
+adapter = AC0
 full-at = 98
  
 format-charging = <animation-charging> <label-charging>
