@@ -494,9 +494,8 @@ for_window [instance="htop_win"] floating enable sticky enable border none
 
 # Quick terminal; Access with F12; Basically a guake replacement; When closed reopen one with $mod+F12
 exec --no-startup-id terminal -name "my_guake"
-for_window [instance="^my_guake$"] move scratchpad
-for_window [instance="^my_guake$"] border none
-#for_window [instance="^my_guake$"] resize shrink height 50
+for_window [instance="^my_guake$"] floating enable sticky enable border none
+for_window [instance="^my_guake$"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
 bindsym F12 [instance="^my_guake$"] scratchpad show
 bindsym $mod+F12 exec --no-startup-id terminal -name my_guake
 
@@ -522,8 +521,8 @@ bindsym $mod+ctrl+f fullscreen toggle global
 # Open empty container
 bindsym $mod+o exec i3-msg open
 
-# Mons to manage monitors
 {%@@ if profile == "nath-laptop" @@%}
+# Mons to manage monitors
 bindsym $mod+Shift+m exec mons -n right
 exec --no-startup-id mons -a
 {%@@ endif @@%}
