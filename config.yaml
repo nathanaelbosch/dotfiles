@@ -113,3 +113,28 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_mpw
+  nath-pc:
+    dotfiles:
+    - f_bashrc
+    - f_aliases
+    - f_bash_profile
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_extend.xresources.mycolors
+    - f_extend.xresources.sun
+    - f_profile
+    - f_xresources
+    - f_yaourtrc
+    - d_fish
+    - f_gitconfig
+    - d_screenlayout
+    - f_compton.conf
+    - f_i3status.conf
+    - d_i3
+    - d_polybar
+    - f_config.py
+    - d_rofi
+    - d_scripts
+    - f_tmux.conf
+    - f_vimrc
+    - f_mpw
