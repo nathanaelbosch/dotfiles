@@ -53,6 +53,8 @@ Both my computers currently use the same setup
     - chromium
 - Documents:
     - libreoffice
+    - evince (pdf viewer)
+    - LaTeX (texlive-most; biber)
 - Media:
     - vlc
     - spotify (AUR)
