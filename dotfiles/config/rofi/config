@@ -19,6 +19,7 @@ rofi.lines:             18
 rofi.padding:           5
 !rofi.font:              PragmataPro Nerd Font 13
 rofi.font:              Hack 10
+!rofi.font:              Fira Code 11
 rofi.bw:                0
 rofi.separator-style:   none
 rofi.hide-scrollbar:    true
