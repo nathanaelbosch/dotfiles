@@ -61,8 +61,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-# bindsym $mod+F2 exec palemoon
-bindsym $mod+F2 exec firefox
+bindsym $mod+F2 exec qutebrowser
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
@@ -474,9 +473,9 @@ exec --no-startup-id redshift-gtk
 #exec --no-startup-id i3-msg 'workspace $ws1; exec firefox'
 exec --no-startup-id i3-msg 'workspace $ws1; exec qutebrowser'
 
+{%@@ if profile == "nath-pc" @@%}
 # Spotify
 for_window [class="Spotify"] move workspace $ws10
-{%@@ if profile == "nath-pc" @@%}
 exec spotify
 {%@@ endif @@%}
 
@@ -487,16 +486,16 @@ bindsym $mod+ctrl+c exec ~/scripts/load_coding_workspace.sh
 #append_layout ~/.i3/coding.json; exec subl3; exec terminal -cd ~/Projekte/bitpython2.0 -title bitpython2.0'"
 
 # Open htop with standard windows process manager keys; float
-bindsym Ctrl+shift+Escape exec --no-startup-id urxvt -name htop_win -e htop
+bindsym Ctrl+shift+Escape exec --no-startup-id terminal -name htop_win -e htop
 for_window [instance="htop_win"] floating enable sticky enable border none
 
 # Quick terminal; Access with F12; Basically a guake replacement; When closed reopen one with $mod+F12
-exec --no-startup-id urxvt -name "my_guake"
-for_window [instance="^my_guake$"] floating enable sticky enable border none
-#for_window [instance="my_guake"] move scratchpad; [instance="my_guake"] scratchpad show; move position 0px 0px; resize shrink height 0px; resize grow width 683px; move scratchpad
-for_window [instance="^my_guake$"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
+exec --no-startup-id terminal -name "my_guake"
+for_window [instance="^my_guake$"] move scratchpad
+for_window [instance="^my_guake$"] border none
+#for_window [instance="^my_guake$"] resize shrink height 50
 bindsym F12 [instance="^my_guake$"] scratchpad show
-bindsym $mod+F12 exec --no-startup-id urxvt -name my_guake
+bindsym $mod+F12 exec --no-startup-id terminal -name my_guake
 
 # Win+E explorer keybind
 bindsym $mod+e exec terminal -e "ranger"
