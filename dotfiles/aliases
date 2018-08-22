@@ -26,3 +26,6 @@ alias fishrc="$EDITOR $HOME/.config/fish/config.fish"
 alias ausgaben="vim '+normal Go' +startinsert scp://ovh//home/nath/Documents/ausgaben.csv"
 alias einnahmen="vim '+normal Go' +startinsert scp://ovh//home/nath/Documents/einnahmen.csv"
 
+alias dotdrop="$DOTREPO/dotdrop.sh"
+alias dotgit="git -C $DOTREPO"
+#alias dotsync="dotgit pull && dotgit add -A && dotgit commit && dotgit push; dotdrop install"

@@ -115,5 +115,8 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 # fix "xdg-open fork-bomb" export your preferred browser from here
 export BROWSER=/usr/bin/qutebrowser
 
+# Dotdrop - aliases in "~/.aliases"
+export DOTREPO="~/dotfiles"
+
 [[ -f ~/.aliases ]] && . ~/.aliases
 
