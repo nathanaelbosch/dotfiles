@@ -58,7 +58,7 @@ XTerm*background:                 BG
 XTerm*foreground:                 FG
 XTerm*reverseVideo:               on
 !XTerm*faceName:                  Terminus:size=11:antialias=true
-XTerm*faceName:                  Hack:size=11:antialias=true
+XTerm*faceName:                  Hack:size=10:antialias=true
 XTerm*selectToClipboard:          true
 
 !! fonts

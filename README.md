@@ -36,6 +36,7 @@ Both my computers currently use the same setup
 - **WM**: [i3-gaps](https://github.com/Airblader/i3) with [polybar](https://github.com/jaagr/polybar)
 - **Terminal**: [urxvt](https://wiki.archlinux.org/index.php/Rxvt-unicode)
 - **Shell**: [fish](https://fishshell.com/) with [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
+- **AUR Package Manager**: yay
 
 ## Applications
 - Terminal and System:
@@ -45,6 +46,7 @@ Both my computers currently use the same setup
     - xcape
     - xclip
     - tmux
+    - mons (on laptop)
 - Text Editors:
     - sublime-text-dev (AUR)
     - vim
