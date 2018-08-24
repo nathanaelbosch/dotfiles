@@ -21,6 +21,7 @@ dotfiles:
   d_fish:
     dst: ~/.config/fish
     src: config/fish
+    link: true
   d_i3:
     dst: ~/.i3
     src: i3
@@ -33,60 +34,78 @@ dotfiles:
   d_screenlayout:
     dst: ~/.screenlayout
     src: screenlayout
+    link: true
   d_scripts:
     dst: ~/scripts
     src: scripts
+    link: true
   f_aliases:
     dst: ~/.aliases
     src: aliases
+    link: true
   f_bash_profile:
     dst: ~/.bash_profile
     src: bash_profile
+    link: true
   f_bashrc:
     dst: ~/.bashrc
     src: bashrc
+    link: true
   f_compton.conf:
     dst: ~/.compton.conf
     src: compton.conf
+    link: true
   f_config.py:
     dst: ~/.config/qutebrowser/config.py
     src: config/qutebrowser/config.py
+    link: true
   f_extend.bashrc:
     dst: ~/.extend.bashrc
     src: extend.bashrc
+    link: true
   f_extend.xresources:
     dst: ~/.extend.Xresources
     src: extend.Xresources
+    link: true
   f_extend.xresources.mycolors:
     dst: ~/.extend.Xresources.mycolors
     src: extend.Xresources.mycolors
+    link: true
   f_extend.xresources.sun:
     dst: ~/.extend.Xresources.sun
     src: extend.Xresources.sun
+    link: true
   f_gitconfig:
     dst: ~/.gitconfig
     src: gitconfig
+    link: true
   f_i3status.conf:
     dst: ~/.i3status.conf
     src: i3status.conf
   f_mpw:
     dst: ~/.mpw
     src: mpw
+    link: true
   f_profile:
     dst: ~/.profile
     src: profile
+    link: true
   f_tmux.conf:
     dst: ~/.tmux.conf
     src: tmux.conf
+    link: true
   f_vimrc:
     dst: ~/.vimrc
     src: vimrc
+    link: true
   f_xresources:
     dst: ~/.Xresources
     src: Xresources
+    link: true
   f_yaourtrc:
     dst: ~/.yaourtrc
     src: yaourtrc
+    link: true
 profiles:
   nath-laptop:
     dotfiles:
