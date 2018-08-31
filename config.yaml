@@ -20,8 +20,8 @@ config:
 dotfiles:
   d_fish:
     dst: ~/.config/fish
-    src: config/fish
     link: true
+    src: config/fish
   d_i3:
     dst: ~/.i3
     src: i3
@@ -33,79 +33,83 @@ dotfiles:
     src: config/rofi
   d_screenlayout:
     dst: ~/.screenlayout
-    src: screenlayout
     link: true
+    src: screenlayout
   d_scripts:
     dst: ~/scripts
-    src: scripts
     link: true
+    src: scripts
   f_aliases:
     dst: ~/.aliases
-    src: aliases
     link: true
+    src: aliases
   f_bash_profile:
     dst: ~/.bash_profile
-    src: bash_profile
     link: true
+    src: bash_profile
   f_bashrc:
     dst: ~/.bashrc
-    src: bashrc
     link: true
+    src: bashrc
   f_compton.conf:
     dst: ~/.compton.conf
-    src: compton.conf
     link: true
+    src: compton.conf
   f_config.py:
     dst: ~/.config/qutebrowser/config.py
-    src: config/qutebrowser/config.py
     link: true
+    src: config/qutebrowser/config.py
   f_extend.bashrc:
     dst: ~/.extend.bashrc
-    src: extend.bashrc
     link: true
+    src: extend.bashrc
   f_extend.xresources:
     dst: ~/.extend.Xresources
-    src: extend.Xresources
     link: true
+    src: extend.Xresources
   f_extend.xresources.mycolors:
     dst: ~/.extend.Xresources.mycolors
-    src: extend.Xresources.mycolors
     link: true
+    src: extend.Xresources.mycolors
   f_extend.xresources.sun:
     dst: ~/.extend.Xresources.sun
-    src: extend.Xresources.sun
     link: true
+    src: extend.Xresources.sun
   f_gitconfig:
     dst: ~/.gitconfig
-    src: gitconfig
     link: true
+    src: gitconfig
   f_i3status.conf:
     dst: ~/.i3status.conf
     src: i3status.conf
+  f_latexmkrc:
+    dst: ~/.latexmkrc
+    src: latexmkrc
+    link: true
   f_mpw:
     dst: ~/.mpw
-    src: mpw
     link: true
+    src: mpw
   f_profile:
     dst: ~/.profile
-    src: profile
     link: true
+    src: profile
   f_tmux.conf:
     dst: ~/.tmux.conf
-    src: tmux.conf
     link: true
+    src: tmux.conf
   f_vimrc:
     dst: ~/.vimrc
-    src: vimrc
     link: true
+    src: vimrc
   f_xresources:
     dst: ~/.Xresources
-    src: Xresources
     link: true
+    src: Xresources
   f_yaourtrc:
     dst: ~/.yaourtrc
-    src: yaourtrc
     link: true
+    src: yaourtrc
 profiles:
   nath-laptop:
     dotfiles:
@@ -132,6 +136,7 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_mpw
+    - f_latexmkrc
   nath-pc:
     dotfiles:
     - f_bashrc
