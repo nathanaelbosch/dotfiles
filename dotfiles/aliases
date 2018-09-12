@@ -4,6 +4,8 @@ alias df="df -h"                          # human-readable sizes
 alias free="free -h"                      # human-readable sizes
 alias np="$EDITOR -w PKGBUILD"
 alias more=less
+alias evil="emacsclient -nc"
+alias vil="emacsclient -t"
 
 alias con="$EDITOR $HOME/.i3/config"
 alias comp="$EDITOR $HOME/.config/compton.conf"
