@@ -118,5 +118,6 @@ export BROWSER=/usr/bin/qutebrowser
 # Dotdrop - aliases in "~/.aliases"
 export DOTREPO="~/dotfiles"
 
+export PAPERDIR="~/MEGA/papers"
 [[ -f ~/.aliases ]] && . ~/.aliases
 
