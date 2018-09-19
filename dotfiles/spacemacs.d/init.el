@@ -316,6 +316,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default dotspacemacs-configuration-layers
                 '((org :variables org-projectile-file "TODOs.org")))
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)
+  (add-hook 'org-mode-hook 'org-indent-mode)
   )
 
 (defun dotspacemacs/user-config ()
@@ -332,6 +333,7 @@ you should place your code here."
         org-ref-pdf-directory "~/MEGA/papers/lib/")
   (setq org-todo-keywords
         '((sequence "TODO" "IN PROGRESS" "|" "DONE" )))
+  (setq-default evil-escape-key-sequence "jk")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
