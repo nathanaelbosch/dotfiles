@@ -43,8 +43,9 @@ values."
      evil-commentary
      finance
      git
-     ;; google-calendar
+     google-calendar
      html
+     ;; neotree
      markdown
      mu4e
      org
@@ -330,7 +331,23 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'org-mode-hook 'org-indent-mode)
   ;; Email in Emacs
   ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
-  )
+
+  ;; No more warnings in the init, but might actually lead to problems
+  (setq explicit-shell-file-name "/bin/fish")
+  (setq shell-file-name "fish")
+
+  ;; Function to read lines of a file and output a list
+  (defun read-lines (filePath)
+    "Return a list of lines of a file at filePath."
+    (with-temp-buffer
+      (insert-file-contents filePath)
+      (split-string (buffer-string) "\n" t)))
+  ;; Read lines from gcal.auth and store them in the variable
+  (setq auth-lines (read-lines "~/gcal.auth"))
+  ;; Google Calendar
+  (setq org-gcal-client-id (car auth-lines)
+        org-gcal-client-secret (car (cdr auth-lines)))
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -340,7 +357,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; Default folder for agenda files?
-  (setq org-agenda-files '("~/MEGA/org/"))
+  (setq org-agenda-files '("~/MEGA/org/"
+                           "~/MEGA/org/gcal/"))
   (with-eval-after-load 'org (setq org-default-notes-file '"~/MEGA/org/todo.org"))
   ;; Setting up org-ref to use a central location?
   ;; Followed https://codearsonist.com/reading-for-programmers
@@ -348,11 +366,24 @@ you should place your code here."
         org-ref-bibliography-notes "~/MEGA/papers/index.org"
         org-ref-default-bibliography '("~/MEGA/papers/index.bib")
         org-ref-pdf-directory "~/MEGA/papers/lib/")
+  ;;
+  (setq org-capture-templates
+        '(
+          ("t" "Todo" entry (file+headline "~/MEGA/org/todo.org" "Inbox")
+           "* TODO %?\n  %i\n  %a")
+          ("g" "Google Calendar Entry" entry (file "~/MEGA/org/gcal/gcal.org")
+           "* TODO %?\n  %i\n  %a")
+          ("r" "To read/watch" entry (file+headline "~/MEGA/org/notes.org" "Inbox")
+           "* TODO %?\n  %i\n  %a")
+          ("j" "Journal" entry (file+olp+datetree "~/MEGA/org/journal.org")
+           "* %?\nEntered on %U\n  %i\n  %a")))
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
-        '((sequence "TODO" "NEXT" "IN PROGRESS" "WAITING" "INACTIVE" "|" "CANCELLED" "DONE" )))
+        '((sequence "TODO(t)" "IN PROGRESS" "NEXT" "WAITING" "INACTIVE" "|" "CANCELLED" "DONE(d)" )))
   ;; Hitting "kj" fast makes me escape insert mode
   (setq-default evil-escape-key-sequence "kj")
+
+  ;; Email in emacs with mu4e
   (setq mu4e-sent-folder "/Gmail/[Google Mail].All Mail"
         mu4e-drafts-folder "/Gmail/[Google Mail].Drafts"
         mu4e-trash-folder "/Gmail/[Google Mail].Bin"
@@ -372,6 +403,22 @@ you should place your code here."
   ;;          (user-mail-address "bb15@college.edu")
   ;;          (user-full-name "Billy Bob 15"))))
   ;; (mu4e/mail-account-reset)
+
+  ;; Google Calendar
+  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/MEGA/org/gcal/gcal.org")
+                              ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/MEGA/org/gcal/gcal_vacances.org")
+                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/MEGA/org/gcal/gcal_uni.org")
+                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/MEGA/org/gcal/gcal_urlaube.org")
+                              ))
+  (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
+
+  ;; org-refile
+  (setq org-refile-targets (quote (("todo.org" :maxlevel . 2)
+                                   ("notes.org" :maxlevel . 2)
+                                   )))
+
+  ;; Start magit commit in insert mode
+  (add-hook 'with-editor-mode-hook 'evil-insert-state)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
