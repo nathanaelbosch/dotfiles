@@ -47,6 +47,7 @@ values."
      html
      ;; neotree
      markdown
+     mu4e
      org
      pandoc
      bibtex
@@ -329,6 +330,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)
   ;; Use org-indent-mode by default
   (add-hook 'org-mode-hook 'org-indent-mode)
+  ;; Email in Emacs
+  ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+
   ;; No more warnings in the init, but might actually lead to problems
   (setq explicit-shell-file-name "/bin/fish")
   (setq shell-file-name "fish")
@@ -344,8 +348,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Google Calendar
   (setq org-gcal-client-id (car auth-lines)
         org-gcal-client-secret (car (cdr auth-lines)))
-
-  )
+)
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -380,6 +383,27 @@ you should place your code here."
         '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )))
   ;; Hitting "kj" fast makes me escape insert mode
   (setq-default evil-escape-key-sequence "kj")
+
+  ;; Email in emacs with mu4e
+  (setq mu4e-sent-folder "/Gmail/[Google Mail].All Mail"
+        mu4e-drafts-folder "/Gmail/[Google Mail].Drafts"
+        mu4e-trash-folder "/Gmail/[Google Mail].Bin"
+        mu4e-refile-folder "/Gmail/[Google Mail].All Mail")
+  ;; (setq mu4e-account-alist
+  ;;       '(("gmail"
+  ;;          ;; Under each account, set the account-specific variables you want.
+  ;;          (mu4e-sent-messages-behavior delete)
+  ;;          (mu4e-sent-folder "/Gmail/[Gmail]/.Sent Mail")
+  ;;          (mu4e-drafts-folder "/gmail/[Gmail]/.Drafts")
+  ;;          (user-mail-address "billy@gmail.com")
+  ;;          (user-full-name "Billy"))
+  ;;         ("college"
+  ;;          (mu4e-sent-messages-behavior sent)
+  ;;          (mu4e-sent-folder "/college/Sent Items")
+  ;;          (mu4e-drafts-folder "/college/Drafts")
+  ;;          (user-mail-address "bb15@college.edu")
+  ;;          (user-full-name "Billy Bob 15"))))
+  ;; (mu4e/mail-account-reset)
 
   ;; Google Calendar
   (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/MEGA/org/gcal/gcal.org")
