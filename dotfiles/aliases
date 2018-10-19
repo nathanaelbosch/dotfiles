@@ -4,6 +4,7 @@ alias df="df -h"                          # human-readable sizes
 alias free="free -h"                      # human-readable sizes
 alias np="$EDITOR -w PKGBUILD"
 alias more=less
+alias cat=bat
 alias evil="emacsclient -nc"
 alias vil="emacsclient -t"
 
