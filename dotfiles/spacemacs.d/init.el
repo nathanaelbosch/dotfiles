@@ -368,26 +368,28 @@ you should place your code here."
   (setq org-capture-templates
         '(
           ("t" "Todo" entry (file+headline "~/MEGA/org/todo.org" "Inbox")
-           "* TODO %?\n  %i\n  %a")
+           "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/MEGA/org/gcal/gcal.org")
-           "* TODO %?\n  %i\n  %a")
+           "* TODO %?")
           ("r" "To read/watch" entry (file+headline "~/MEGA/org/notes.org" "Inbox")
-           "* TODO %?\n  %i\n  %a")
+           "* TODO %?")
           ("j" "Journal" entry (file+olp+datetree "~/MEGA/org/journal.org")
            "* %?\nEntered on %U\n  %i\n  %a")))
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN PROGRESS" "NEXT" "WAITING" "INACTIVE" "|" "CANCELLED" "DONE(d)" )))
+        '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )))
   ;; Hitting "kj" fast makes me escape insert mode
   (setq-default evil-escape-key-sequence "kj")
 
   ;; Google Calendar
   (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/MEGA/org/gcal/gcal.org")
-                              ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/MEGA/org/gcal/gcal_vacances.org")
-                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/MEGA/org/gcal/gcal_uni.org")
-                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/MEGA/org/gcal/gcal_urlaube.org")
+                              ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/MEGA/org/gcal/vacances.org")
+                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/MEGA/org/gcal/uni.org")
+                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/MEGA/org/gcal/urlaube.org")
+                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/MEGA/org/gcal/tumonline.org")
                               ))
   (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
+  (setq alert-default-style 'libnotify)
 
   ;; org-refile
   (setq org-refile-targets (quote (("todo.org" :maxlevel . 2)
@@ -396,7 +398,26 @@ you should place your code here."
 
   ;; Start magit commit in insert mode
   (add-hook 'with-editor-mode-hook 'evil-insert-state)
+
+  ;; Hide tag someday in agenda
+  (setq org-agenda-filter-preset '("-someday"))
+
+  (setq org-agenda-custom-commands
+        ;; (append org-agenda-custom-commands
+                '(("g" . "GTD-Workflow")
+                  ("gn" "Next Actions" tags-todo "NEXT" ((org-use-tag-inheritance nil)))
+                  ("gd" "DONE" tags-todo "DONE" ((org-use-tag-inheritance nil)))
+                  ("gs" "SOMEDAY" tags "someday" ((org-agenda-filter-preset
+                                                   '("+someday"))(org-agenda-todo-ignore-with-date nil)))
+                  ;; ("gs" "SOMEDAY" tags "someday" ((org-use-tag-inheritance nil)))
+                  ("gw" "Waiting" todo "WAITING")))
+  ;; Tasks mit Datum in der Agenda ausblenden, wenn sie bereits erledigt sind:
+  (setq org-agenda-skip-deadline-if-done t)
+  (setq org-agenda-skip-scheduled-if-done t)
+  ;; (setq org-agenda-window-setup 'current-window)
+  (setq org-agenda-window-setup 'only-window)
 )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
