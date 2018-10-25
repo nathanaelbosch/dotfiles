@@ -1,64 +1,72 @@
 # My dotfiles
+I use [dotdrop](https://github.com/deadc0de6/dotdrop) to manage my dotfiles.
 
-## Now using [freckles](https://github.com/makkus/freckles)!
-Single-line install on a fresh [Manjaro i3 community edition](https://manjaro.org/community-editions/):
+## Usage
+### Dotdrop Installation
+Dotdrop requires python as well as some packages to work, so make sure to have a working **python** and **pip** installed.
 ```bash
-curl https://freckles.io | bash -s -- freckelize -f gh:nathbo/dotfiles dotfiles ansible-tasks
+git clone --recursive https://github.com/nathbo/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+pip install --user -r dotfiles/requirements.txt
 ```
-Or clone with ssh when I'm on a machine with a confirmed key:
+After this the `./dotdrop.sh` should be functional. Test it with `./dotdrop.sh help`.
+
+### Installing dotfiles
+If the hostname matches one of the profiles, just use
 ```bash
-curl https://freckles.io | bash -s -- freckelize -f git@github.com:nathbo/dotfiles.git dotfiles ansible-tasks
+./dotdrop.sh install
 ```
+You can also specify a profile that differs from the hostname to install it. If you want to customize your installation, the best way is to edit the `config.yaml` file directly.
 
-## For a more modular approach:
-Clone directory, `cd` into, and stow the necessary files, eg. just the console stuff, fish, and vim:
+### More useful commands:
 ```bash
-git clone https://github.com/nathbo/dotfiles.git
-cd dotfiles
-stow -t "$HOME" console_environment fish vim
+./dotdrop.sh compare
+./dotdrop.sh import
+./dotdrop.sh update
 ```
-
-## TODO
-Use [qualia](https://github.com/darkfeline/mir.qualia)
-Do I really need freckles? Think about how to write my own script to handle that functionality.
+Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) for more detailed explanations.
 
 
-## Notes on some programs:
-- Terminal: Tomorrow night colors
-- Fish:
-  - Aliases are not in functions! Config file now sources .aliases
-- Bash:
-  - Aliases in .aliases
-  - Loads .profile now
-- Yaourt: No prompts
-- Vim: Just a simple vimrc so far
-- .Xresources & .extend.Xresources: Terminal colors
-- i3:
-  - Imports the colors defined for X
-  - Multiscreen layout at startup, script in .screenlayout/standard_layout.sh
-  - CapsLock as Super and Escape, script in bin/keyboard_setup.sh
-  - Sublime+Terminal workspace hotkey using Mod+Ctrl+c
-- Themes+Icons: Created with oomox
-- Other files:
-  - .aliases: Used throughout fish, bash, and zsh
+## My Setup
 
-## Programs to install
-Not all of those are necessary, but this also represents a list of programs that I use personally and which I'd want to install early when setting up a new PC.
+![laptop neofetch](screenshots/neofetch.png?raw=true "Laptop Neofetch")
 
-- redshift
-- dropbox (AUR)
-- firefox
-- fish
-  - oh-my-fish (github)
-    - omf install agnoster
-- arandr
-- powerline-fonts-git (AUR)
-- ttf-font-awesome (AUR)
-- ttf-material-icons (AUR)
-- xcape (To use Super as Escape)
-- sublime-text-dev (AUR)
-- spotify (AUR)
-- pia VPN (as on website)
-- megasync (from website)
-- libreoffice
-- xclip
+Both my computers currently use the same setup
+- **OS**: [Manjaro](https://manjaro.org/community-editions/) (i3 community edition)
+- **WM**: [i3-gaps](https://github.com/Airblader/i3) with [polybar](https://github.com/jaagr/polybar)
+- **Terminal**: [urxvt](https://wiki.archlinux.org/index.php/Rxvt-unicode)
+- **Shell**: [fish](https://fishshell.com/) with [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
+- **AUR Package Manager**: yay
+
+## Applications
+- Terminal and System:
+    - git
+    - arandr
+    - compton
+    - xcape
+    - xclip
+    - tmux
+    - mons (on laptop)
+- Text Editors:
+    - sublime-text-dev (AUR)
+    - vim
+- Browser:
+    - qutebrowser
+    - chromium
+- Documents:
+    - libreoffice
+    - evince (pdf viewer)
+    - LaTeX (texlive-most; biber)
+- Media:
+    - vlc
+    - spotify (AUR)
+- Cloud Storage:
+    - dropbox (AUR)
+    - megasync (from website)
+- Fonts:
+    - powerline-fonts-git (AUR)
+    - ttf-font-awesome (AUR)
+    - ttf-material-icons (AUR)
+- Other stuff:
+    - redshift
+    - pia VPN (as on website)

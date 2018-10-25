@@ -1,1 +1,0 @@
-/home/nath/.local/share/omf/themes/agnoster/fish_prompt.fish

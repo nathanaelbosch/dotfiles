@@ -1,0 +1,18 @@
+#
+# ~/.bashrc
+#
+
+[[ $- != *i* ]] && return
+
+[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
+[[ -f ~/.profile ]] && . ~/.profile
+
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+
+
+## Master Password App
+[[ -f ~/.mpw ]] && . ~/.mpw
+
+
+## FISH DEFAULT SHELL
+[[ -d ~/.config/fish ]] && exec fish

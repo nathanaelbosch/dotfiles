@@ -1,0 +1,165 @@
+actions:
+  post:
+    agnoster-install: fish -c 'omf install agnoster'
+    omf-install: curl -L https://get.oh-my.fish | fish
+  pre:
+    compton-install: pacman -S --needed compton
+    fish-install: pacman -S --needed fish
+    git-install: pacman -S --needed git
+    polybar-install: pacman -S --needed polybar
+    rofi-install: pacman -S --needed rofi
+    vim-install: pacman -S --needed vim
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_by_default: false
+  longkey: false
+dotfiles:
+  d_fish:
+    dst: ~/.config/fish
+    link: true
+    src: config/fish
+  d_i3:
+    dst: ~/.i3
+    src: i3
+  d_polybar:
+    dst: ~/.config/polybar
+    src: config/polybar
+  d_rofi:
+    dst: ~/.config/rofi
+    src: config/rofi
+  d_screenlayout:
+    dst: ~/.screenlayout
+    link: true
+    src: screenlayout
+  d_scripts:
+    dst: ~/scripts
+    link: true
+    src: scripts
+  d_spacemacs.d:
+    dst: ~/.spacemacs.d
+    link: true
+    src: spacemacs.d
+  f_aliases:
+    dst: ~/.aliases
+    link: true
+    src: aliases
+  f_bash_profile:
+    dst: ~/.bash_profile
+    link: true
+    src: bash_profile
+  f_bashrc:
+    dst: ~/.bashrc
+    link: true
+    src: bashrc
+  f_compton.conf:
+    dst: ~/.compton.conf
+    link: true
+    src: compton.conf
+  f_config.py:
+    dst: ~/.config/qutebrowser/config.py
+    link: true
+    src: config/qutebrowser/config.py
+  f_extend.bashrc:
+    dst: ~/.extend.bashrc
+    link: true
+    src: extend.bashrc
+  f_extend.xresources:
+    dst: ~/.extend.Xresources
+    link: true
+    src: extend.Xresources
+  f_extend.xresources.mycolors:
+    dst: ~/.extend.Xresources.mycolors
+    link: true
+    src: extend.Xresources.mycolors
+  f_extend.xresources.sun:
+    dst: ~/.extend.Xresources.sun
+    link: true
+    src: extend.Xresources.sun
+  f_gitconfig:
+    dst: ~/.gitconfig
+    link: true
+    src: gitconfig
+  f_i3status.conf:
+    dst: ~/.i3status.conf
+    src: i3status.conf
+  f_mpw:
+    dst: ~/.mpw
+    link: true
+    src: mpw
+  f_profile:
+    dst: ~/.profile
+    link: true
+    src: profile
+  f_tmux.conf:
+    dst: ~/.tmux.conf
+    link: true
+    src: tmux.conf
+  f_vimrc:
+    dst: ~/.vimrc
+    link: true
+    src: vimrc
+  f_xresources:
+    dst: ~/.Xresources
+    link: true
+    src: Xresources
+  f_yaourtrc:
+    dst: ~/.yaourtrc
+    link: true
+    src: yaourtrc
+profiles:
+  nath-laptop:
+    dotfiles:
+    - f_bashrc
+    - f_aliases
+    - f_bash_profile
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_extend.xresources.mycolors
+    - f_extend.xresources.sun
+    - f_profile
+    - f_xresources
+    - f_yaourtrc
+    - d_fish
+    - f_gitconfig
+    - d_screenlayout
+    - f_compton.conf
+    - f_i3status.conf
+    - d_i3
+    - d_polybar
+    - f_config.py
+    - d_rofi
+    - d_scripts
+    - f_tmux.conf
+    - f_vimrc
+    - f_mpw
+    - d_spacemacs.d
+  nath-pc:
+    dotfiles:
+    - f_bashrc
+    - f_aliases
+    - f_bash_profile
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_extend.xresources.mycolors
+    - f_extend.xresources.sun
+    - f_profile
+    - f_xresources
+    - f_yaourtrc
+    - d_fish
+    - f_gitconfig
+    - d_screenlayout
+    - f_compton.conf
+    - f_i3status.conf
+    - d_i3
+    - d_polybar
+    - f_config.py
+    - d_rofi
+    - d_scripts
+    - f_tmux.conf
+    - f_vimrc
+    - f_mpw
+    - d_spacemacs.d
