@@ -413,7 +413,7 @@ you should place your code here."
                               ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/MEGA/org/gcal/tumonline.org")
                               ))
   (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
-  (setq alert-default-style 'libnotify)
+  ;; (setq alert-default-style 'libnotify)
 
   ;; org-refile
   (setq org-refile-targets (quote (("todo.org" :maxlevel . 2)
@@ -440,6 +440,17 @@ you should place your code here."
   (setq org-agenda-skip-scheduled-if-done t)
   ;; (setq org-agenda-window-setup 'current-window)
   (setq org-agenda-window-setup 'only-window)
+
+  ;; Auto-refresh buffers when files changed on disk
+  (global-auto-revert-mode t)
+
+  ;; Automatically save org buffers when agenda is open
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
+              (auto-save-mode)))
+  ;; Save even more stuff
+  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
 )
 
 
