@@ -452,6 +452,9 @@ you should place your code here."
   (setq org-agenda-span 1)
   ;; Start week on monday
   (setq org-agenda-start-on-weekday 1)
+
+  ;; Correct indentation in org-babel source blocks
+  (setq org-src-tab-acts-natively t)
 )
 
 
