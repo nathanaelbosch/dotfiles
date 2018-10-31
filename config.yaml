@@ -83,6 +83,9 @@ dotfiles:
     dst: ~/.gitconfig
     link: true
     src: gitconfig
+  f_i3-scrot.conf:
+    dst: ~/.config/i3-scrot.conf
+    src: config/i3-scrot.conf
   f_i3status.conf:
     dst: ~/.i3status.conf
     src: i3status.conf
@@ -163,3 +166,13 @@ profiles:
     - f_vimrc
     - f_mpw
     - d_spacemacs.d
+  arch-laptop:
+    dotfiles:
+    - f_aliases
+    - f_xresources
+    - f_extend.xresources
+    - f_gitconfig
+    - f_config.py
+    - d_spacemacs.d
+    - d_polybar
+    - f_i3-scrot.conf
