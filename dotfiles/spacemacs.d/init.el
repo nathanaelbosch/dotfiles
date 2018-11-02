@@ -36,24 +36,26 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
+     ;; neotree
      auto-completion
      better-defaults
+     bibtex
      emacs-lisp
      evil-commentary
      finance
      git
      google-calendar
+     helm
      html
-     ;; neotree
+     (latex :variables
+            latex-enable-auto-fill nil
+            latex-enable-folding t)
+     lua
      markdown
      mu4e
      org
      pandoc
-     bibtex
-     (latex :variables
-            latex-enable-auto-fill nil
-            latex-enable-folding t)
+     pdf-tools
      (python :variables
              python-test-runner 'pytest)
      ranger
@@ -64,6 +66,7 @@ values."
      syntax-checking
      themes-megapack
      version-control
+     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
