@@ -1,4 +1,6 @@
 #define BG      #1d1f21
+#define BG50    #801d1f21
+#define BG80    #cc1d1f21
 #define FG      #c5c8c6
 !! black dark/light
 #define C0      #282a2e
@@ -27,6 +29,8 @@
 
 
 *background:                      BG
+*background50:                    BG50
+*background80:                    BG80
 *foreground:                      FG
 *fading:                          15
 *fadeColor:                       black
@@ -91,8 +95,8 @@ URxvt*saveLines:                  5000
 ! URxvt*shading:                  138
 
 ! other possible settings:
-Rxvt.perl-ext-common:              ...,clipboard
-URxvt.perl-ext-common:             ...,clipboard
+Rxvt.perl-ext-common:              default,clipboard
+URxvt.perl-ext-common:             default,clipboard
 URxvt.iso14755 : false
 URxvt.keysym.Shift-Control-C:      perl:clipboard:copy
 URxvt.keysym.Shift-Control-V:      perl:clipboard:paste
