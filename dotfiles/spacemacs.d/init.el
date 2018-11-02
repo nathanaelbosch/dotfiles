@@ -278,7 +278,13 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   ;; dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers '(:relative
+                               nil
+                               :disabled-for-modes
+                               dired-mode
+                               doc-view-mode
+                               pdf-view-mode)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -454,6 +460,10 @@ you should place your code here."
               (auto-save-mode)))
   ;; Save even more stuff
   (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+  ;; Start agenda in day mode
+  (setq org-agenda-span 1)
+  ;; Start week on monday
+  (setq org-agenda-start-on-weekday 1)
 )
 
 
