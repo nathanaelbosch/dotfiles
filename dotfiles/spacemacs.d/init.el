@@ -66,6 +66,7 @@ values."
      syntax-checking
      themes-megapack
      version-control
+     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -325,6 +326,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  ;; I like C-v to paste!
+  ;; (cua-mode 1)
   ;; Visual line mode when working with text based content
   (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
   ;; Forgot what this was about
@@ -338,6 +341,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)
   ;; Use org-indent-mode by default
   (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook 'auto-fill-mode)
   ;; Email in Emacs
   ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
 
@@ -379,16 +383,24 @@ you should place your code here."
   (setq org-capture-templates
         '(
           ("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+
            "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
            "* TODO %?")
           ("r" "To read/watch" entry (file+headline "~/Dropbox/org/notes.org" "Inbox")
            "* TODO %?")
-          ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
-           "* %?\nEntered on %U\n  %i\n  %a")))
+          ;; ("w" "Weekly review" entry (file+olp+datetree "~/Dropbox/org/reviews.org")
+          ;;  (file "~/Dropbox/org/weeklyreview_template.org"))
+          ;; ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
+          ;;  "* %?\nEntered on %U\n  %i\n  %a")
+           ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
+           "* %?\n\nEntered on %U\n  %i")
+          ))
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )))
+        '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
+          (sequence "HABIT(h)" "|")
+          ))
   ;; Hitting "kj" fast makes me escape insert mode
   ;; (setq-default evil-escape-key-sequence "kj")
 
@@ -433,6 +445,7 @@ you should place your code here."
 
   ;; Hide tag someday in agenda
   (setq org-agenda-filter-preset '("-someday"))
+  (setq org-agenda-regexp-filter-preset '("-WAITING"))
 
   (setq org-agenda-custom-commands
         ;; (append org-agenda-custom-commands
@@ -442,12 +455,36 @@ you should place your code here."
                   ("gs" "SOMEDAY" tags "someday" ((org-agenda-filter-preset
                                                    '("+someday"))(org-agenda-todo-ignore-with-date nil)))
                   ;; ("gs" "SOMEDAY" tags "someday" ((org-use-tag-inheritance nil)))
-                  ("gw" "Waiting" todo "WAITING")))
+                  ("gw" "Waiting" todo "WAITING")
+                  ("r" . "Review")
+                  ("rd" "Today" agenda ""
+                   ((org-agenda-span 1)
+                    (org-agenda-view-columns-initially t)
+                    (org-agenda-skip-scheduled-if-done nil)
+                    ))
+                  ("rw" "Week" agenda ""
+                   ((org-agenda-span 'week)
+                    (org-agenda-view-columns-initially t)
+                    (org-agenda-skip-scheduled-if-done nil)
+                    ))
+                  )
+                )
   ;; Tasks mit Datum in der Agenda ausblenden, wenn sie bereits erledigt sind:
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-skip-scheduled-if-done t)
   ;; (setq org-agenda-window-setup 'current-window)
-  (setq org-agenda-window-setup 'only-window)
+  ;; (setq org-agenda-window-setup 'only-window)
+
+  ;; Auto-refresh buffers when files changed on disk
+  (global-auto-revert-mode t)
+
+  ;; Automatically save org buffers when agenda is open
+  (add-hook 'org-agenda-mode-hook
+            (lambda ()
+              (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
+              (auto-save-mode)))
+  ;; Save even more stuff
+  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
   ;; Start agenda in day mode
   (setq org-agenda-span 1)
   ;; Start week on monday
@@ -455,6 +492,13 @@ you should place your code here."
 
   ;; Correct indentation in org-babel source blocks
   (setq org-src-tab-acts-natively t)
+
+  ;; Column view
+  (setq org-agenda-overriding-columns-format "%38ITEM(Details) %TAGS(Context) %7TODO(To Do) %5Effort(Time){:} %6CLOCKSUM{:}")
+  ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
+
+  ;; Custom Org commands to follow the spacemacs mnemonics instead of C-c C-x ...
+  (evil-leader/set-key-for-mode 'org-mode "U" 'org-update-all-dblocks)
 )
 
 
