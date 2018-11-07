@@ -362,6 +362,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Google Calendar
   (setq org-gcal-client-id (car auth-lines)
         org-gcal-client-secret (car (cdr auth-lines)))
+
+  ;; Org babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (python . t)
+     (gnuplot . t)
+     ))
 )
 
 (defun dotspacemacs/user-config ()
@@ -371,6 +379,11 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Inline images
+  (setq org-startup-with-inline-images t)
+
+  ;; Visual line mode when working with text based content
+  (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"))
