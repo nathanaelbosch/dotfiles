@@ -33,3 +33,4 @@ alias nfetch="neofetch --w3m"
 # Dotdrop for dotfiles
 alias dotdrop="$DOTREPO/dotdrop.sh"
 alias dotgit="git -C $DOTREPO"
+alias zt="zathura --fork"
