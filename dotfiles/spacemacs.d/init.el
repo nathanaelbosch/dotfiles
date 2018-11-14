@@ -328,6 +328,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; I like C-v to paste!
   ;; (cua-mode 1)
+  (desktop-save-mode 1)
   ;; Visual line mode when working with text based content
   (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
   ;; Forgot what this was about
@@ -383,7 +384,6 @@ you should place your code here."
   (setq org-capture-templates
         '(
           ("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-
            "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
            "* TODO %?")
@@ -395,12 +395,27 @@ you should place your code here."
           ;;  "* %?\nEntered on %U\n  %i\n  %a")
            ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i")
+           ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
+            "* TODO Wäsche\nSCHEDULED: %t\n- [ ] Machen\n- [ ] Aufhängen\n- [ ] Abhängen")
+           ("m" "Masterpraktikum")
+           ("mg" "Masterpraktikum: General" entry (file+headline "~/Dropbox/org/masterpraktikum.org" "General")
+            "* TODO %?")
+           ("mc" "Masterpraktikum: Clustering" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Clustering" "Tasks")
+            "* TODO %?")
+           ("ma" "Masterpraktikum: Anomaly Detection 2" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Anomaly Detection 2" "Tasks")
+            "* TODO %?")
           ))
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
-          (sequence "HABIT(h)" "|")
+          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(w)" "|")
+          ;; (sequence "TOREAD(r)" "TOWATCH(w)" "|")
           ))
+  ;; (setq org-todo-keyword-faces
+  ;;       '(("TOREAD" . "#5e8d87")
+  ;;         ("TOWATCH" . "#5e8d87")
+  ;;         ("HABIT" . "#de935f")
+  ;;          ))
   ;; Hitting "kj" fast makes me escape insert mode
   ;; (setq-default evil-escape-key-sequence "kj")
 
@@ -479,10 +494,10 @@ you should place your code here."
   (global-auto-revert-mode t)
 
   ;; Automatically save org buffers when agenda is open
-  (add-hook 'org-agenda-mode-hook
-            (lambda ()
-              (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
-              (auto-save-mode)))
+  ;; (add-hook 'org-agenda-mode-hook
+  ;;           (lambda ()
+  ;;             (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
+  ;;             (auto-save-mode)))
   ;; Save even more stuff
   (add-hook 'auto-save-hook 'org-save-all-org-buffers)
   ;; Start agenda in day mode
