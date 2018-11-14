@@ -40,7 +40,8 @@ values."
      auto-completion
      better-defaults
      bibtex
-     c-c++
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode)
      emacs-lisp
      evil-commentary
      finance
@@ -63,6 +64,7 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     shell-scripts
      spell-checking
      syntax-checking
      themes-megapack
@@ -382,8 +384,11 @@ you should place your code here."
   ;; Inline images
   (setq org-startup-with-inline-images t)
 
+  ;; Scroll margin
+  (setq scroll-margin 1)
+
   ;; Visual line mode when working with text based content
-  (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"))
@@ -401,8 +406,6 @@ you should place your code here."
            "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
            "* TODO %?")
-          ("r" "To read/watch" entry (file+headline "~/Dropbox/org/notes.org" "Inbox")
-           "* TODO %?")
           ;; ("w" "Weekly review" entry (file+olp+datetree "~/Dropbox/org/reviews.org")
           ;;  (file "~/Dropbox/org/weeklyreview_template.org"))
           ;; ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
@@ -418,7 +421,9 @@ you should place your code here."
             "* TODO %?")
            ("ma" "Masterpraktikum: Anomaly Detection 2" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Anomaly Detection 2" "Tasks")
             "* TODO %?")
-          ))
+           ("r" "To read" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+            "* TOREAD %?")
+  ))
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
