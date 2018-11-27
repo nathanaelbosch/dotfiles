@@ -7,6 +7,7 @@ alias more=less
 alias cat=bat
 alias evil="emacsclient -nc"
 alias vil="emacsclient -t"
+alias zt="zathura --fork"
 
 alias con="$EDITOR $HOME/.i3/config"
 alias comp="$EDITOR $HOME/.config/compton.conf"
