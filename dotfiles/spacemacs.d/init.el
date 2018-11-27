@@ -75,7 +75,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(interleave)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -297,7 +297,7 @@ values."
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis t
+   dotspacemacs-smart-closing-parenthesis nil
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -343,6 +343,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;               '((org :variables org-projectile-file "TODOs.org")))
   ;; Ctrl-Shift-c to comment
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)
+  ;; Interleave mode
+  ;; (define-key interleave-pdf-mode-map (kbd "M-c")   #'interleave-sync-pdf-page-current)
   ;; Use org-indent-mode by default
   (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
@@ -372,7 +374,32 @@ before packages are loaded. If you are unsure, you should try in setting them in
      (python . t)
      (gnuplot . t)
      ))
-)
+  )
+
+(defun org-ref-config ()
+  (setq reftex-default-bibliography '("~/MEGA/papers/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/MEGA/papers/notes.org"
+        org-ref-default-bibliography '("~/MEGA/papers/references.bib")
+        org-ref-pdf-directory "~/MEGA/papers/bibtex-pdfs/")
+
+  ;; Further variables for helm-bibtex
+  (setq bibtex-completion-bibliography "~/MEGA/papers/references.bib"
+        bibtex-completion-library-path "~/MEGA/papers/bibtex-pdfs"
+        bibtex-completion-notes-path "~/MEGA/papers/helm-bibtex-notes")
+
+  ;; open pdf with system pdf viewer (works on mac)
+  (setq bibtex-completion-pdf-open-function
+        (lambda (fpath)
+          (start-process "open" "*open*" "open" fpath)))
+
+  ;; alternative
+  ;; (setq bibtex-completion-pdf-open-function 'org-open-file)
+
+  ;; Download directory
+  (setq biblio-download-directory "~/MEGA/papers/bibtex-pdfs")
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -387,18 +414,21 @@ you should place your code here."
   ;; Scroll margin
   (setq scroll-margin 1)
 
+  ;; open pdfs scaled to fit page
+  (setq-default pdf-view-display-size 'fit-page)
+
   ;; Visual line mode when working with text based content
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"))
   (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
-  ;; Setting up org-ref to use a central location?
-  ;; Followed https://codearsonist.com/reading-for-programmers
-  (setq org-ref-notes-directory "~/Dropbox/papers/"
-        org-ref-bibliography-notes "~/Dropbox/papers/index.org"
-        org-ref-default-bibliography '("~/Dropbox/papers/index.bib")
-        org-ref-pdf-directory "~/Dropbox/papers/lib/")
+
+  ;; org-ref
+  ;; Followed https://codearsonist.com/reading-for-programmers and https://github.com/jkitchin/org-ref
+  (org-ref-config)
+
   ;;
   (setq org-capture-templates
         '(
@@ -427,8 +457,7 @@ you should place your code here."
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
-          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(w)" "|")
-          ;; (sequence "TOREAD(r)" "TOWATCH(w)" "|")
+          (sequence "HABIT(h)" "TOREAD(r)" "|")
           ))
   ;; (setq org-todo-keyword-faces
   ;;       '(("TOREAD" . "#5e8d87")
