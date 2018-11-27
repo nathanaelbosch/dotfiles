@@ -407,15 +407,14 @@ you should place your code here."
           ))
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
-          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(w)" "|")
-          ;; (sequence "TOREAD(r)" "TOWATCH(w)" "|")
+        '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)")
+          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(s)" "|")
           ))
-  ;; (setq org-todo-keyword-faces
-  ;;       '(("TOREAD" . "#5e8d87")
-  ;;         ("TOWATCH" . "#5e8d87")
-  ;;         ("HABIT" . "#de935f")
-  ;;          ))
+  (setq org-todo-keyword-faces
+        '(("TOREAD" . "#5e8d87")
+          ("TOWATCH" . "#5e8d87")
+          ("HABIT" . "#de935f")
+           ))
   ;; Hitting "kj" fast makes me escape insert mode
   ;; (setq-default evil-escape-key-sequence "kj")
 
