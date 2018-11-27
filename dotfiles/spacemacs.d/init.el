@@ -40,6 +40,8 @@ values."
      auto-completion
      better-defaults
      bibtex
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode)
      emacs-lisp
      evil-commentary
      finance
@@ -62,6 +64,7 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     shell-scripts
      spell-checking
      syntax-checking
      themes-megapack
@@ -72,7 +75,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(interleave)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -294,7 +297,7 @@ values."
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis t
+   dotspacemacs-smart-closing-parenthesis nil
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -340,6 +343,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;               '((org :variables org-projectile-file "TODOs.org")))
   ;; Ctrl-Shift-c to comment
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)
+  ;; Interleave mode
+  ;; (define-key interleave-pdf-mode-map (kbd "M-c")   #'interleave-sync-pdf-page-current)
   ;; Use org-indent-mode by default
   (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
@@ -361,7 +366,40 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Google Calendar
   (setq org-gcal-client-id (car auth-lines)
         org-gcal-client-secret (car (cdr auth-lines)))
-)
+
+  ;; Org babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (python . t)
+     (gnuplot . t)
+     ))
+  )
+
+(defun org-ref-config ()
+  (setq reftex-default-bibliography '("~/MEGA/papers/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/MEGA/papers/notes.org"
+        org-ref-default-bibliography '("~/MEGA/papers/references.bib")
+        org-ref-pdf-directory "~/MEGA/papers/bibtex-pdfs/")
+
+  ;; Further variables for helm-bibtex
+  (setq bibtex-completion-bibliography "~/MEGA/papers/references.bib"
+        bibtex-completion-library-path "~/MEGA/papers/bibtex-pdfs"
+        bibtex-completion-notes-path "~/MEGA/papers/helm-bibtex-notes")
+
+  ;; open pdf with system pdf viewer (works on mac)
+  (setq bibtex-completion-pdf-open-function
+        (lambda (fpath)
+          (start-process "open" "*open*" "open" fpath)))
+
+  ;; alternative
+  ;; (setq bibtex-completion-pdf-open-function 'org-open-file)
+
+  ;; Download directory
+  (setq biblio-download-directory "~/MEGA/papers/bibtex-pdfs")
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -370,24 +408,33 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Inline images
+  (setq org-startup-with-inline-images t)
+
+  ;; Scroll margin
+  (setq scroll-margin 1)
+
+  ;; open pdfs scaled to fit page
+  (setq-default pdf-view-display-size 'fit-page)
+
+  ;; Visual line mode when working with text based content
+  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"))
   (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
-  ;; Setting up org-ref to use a central location?
-  ;; Followed https://codearsonist.com/reading-for-programmers
-  (setq org-ref-notes-directory "~/Dropbox/papers/"
-        org-ref-bibliography-notes "~/Dropbox/papers/index.org"
-        org-ref-default-bibliography '("~/Dropbox/papers/index.bib")
-        org-ref-pdf-directory "~/Dropbox/papers/lib/")
+
+  ;; org-ref
+  ;; Followed https://codearsonist.com/reading-for-programmers and https://github.com/jkitchin/org-ref
+  (org-ref-config)
+
   ;;
   (setq org-capture-templates
         '(
           ("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
            "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
-           "* TODO %?")
-          ("r" "To read/watch" entry (file+headline "~/Dropbox/org/notes.org" "Inbox")
            "* TODO %?")
           ;; ("w" "Weekly review" entry (file+olp+datetree "~/Dropbox/org/reviews.org")
           ;;  (file "~/Dropbox/org/weeklyreview_template.org"))
@@ -404,17 +451,19 @@ you should place your code here."
             "* TODO %?")
            ("ma" "Masterpraktikum: Anomaly Detection 2" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Anomaly Detection 2" "Tasks")
             "* TODO %?")
-          ))
+           ("r" "To read" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+            "* TOREAD %?")
+  ))
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)")
-          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(s)" "|")
+        '((sequence "TODO(t)" "IN PROGRESS(p)" "NEXT(n)" "WAITING(w)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
+          (sequence "HABIT(h)" "TOREAD(r)" "|")
           ))
-  (setq org-todo-keyword-faces
-        '(("TOREAD" . "#5e8d87")
-          ("TOWATCH" . "#5e8d87")
-          ("HABIT" . "#de935f")
-           ))
+  ;; (setq org-todo-keyword-faces
+  ;;       '(("TOREAD" . "#5e8d87")
+  ;;         ("TOWATCH" . "#5e8d87")
+  ;;         ("HABIT" . "#de935f")
+  ;;          ))
   ;; Hitting "kj" fast makes me escape insert mode
   ;; (setq-default evil-escape-key-sequence "kj")
 
