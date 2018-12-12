@@ -584,8 +584,7 @@ you should place your code here."
 
   ;;
   (setq org-capture-templates
-        '(
-          ("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+        '(("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
            "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
            "* TODO %?")
@@ -610,11 +609,12 @@ you should place your code here."
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN PROGRESS(p)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
-          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(w)" "|")
+          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(w)" "TOLISTEN(l)" "|")
           ))
   (setq org-todo-keyword-faces
         '(("TOREAD" . "#5e8d87")
           ("TOWATCH" . "#85678f")
+          ("TOLISTEN" . "#85678f")
           ("INACTIVE" . "#707880")
           ("HABIT" . "#de935f")
           ("CANCELLED" . "#c5c8c6")
@@ -669,12 +669,17 @@ you should place your code here."
   (setq org-agenda-custom-commands
         ;; (append org-agenda-custom-commands
                 '(("g" . "GTD-Workflow")
-                  ("gn" "Next Actions" tags-todo "NEXT" ((org-use-tag-inheritance nil)))
+                  ("gn" "Next Actions" tags-todo "TODO"
+                   ((org-agenda-filter-preset '("-someday"))
+                    ;; (org-agenda-todo-ignore-with-date t)
+                    ))
                   ("gd" "DONE" tags-todo "DONE" ((org-use-tag-inheritance nil)))
-                  ("gs" "SOMEDAY" tags "someday" ((org-agenda-filter-preset
-                                                   '("+someday"))(org-agenda-todo-ignore-with-date nil)))
+                  ("gs" "SOMEDAY" tags "someday"
+                   ((org-agenda-filter-preset '("+someday"))
+                    (org-agenda-todo-ignore-with-date nil)))
                   ;; ("gs" "SOMEDAY" tags "someday" ((org-use-tag-inheritance nil)))
                   ("gw" "Waiting" todo "WAITING")
+
                   ("r" . "Review")
                   ("rd" "Today" agenda ""
                    ((org-agenda-span 1)
@@ -686,6 +691,28 @@ you should place your code here."
                     (org-agenda-view-columns-initially t)
                     (org-agenda-skip-scheduled-if-done nil)
                     ))
+
+                  ("n" "Next Actions" todo "TODO"
+                   ((org-agenda-filter-preset '("-someday"))
+                    (org-agenda-todo-ignore-scheduled t)
+                    (org-deadline-warning-days 90)
+                    ))
+                  ("s" "Someday" tags "someday"
+                   ((org-agenda-filter-preset '("+someday"))
+                    (org-agenda-todo-ignore-with-date nil)))
+                  ("w" "To watch" todo "TOWATCH"
+                   ((org-agenda-filter-preset '("+someday"))))
+
+                  ("c" . "Contexts")
+                  ("ch" "@Home" tags-todo "@home")
+                  ("cu" "@Uni" tags-todo "@uni")
+
+                  ("d" "Upcoming deadlines" agenda ""
+                   ((org-agenda-entry-types '(:deadline))
+                    (org-agenda-span 1)
+                    (org-deadline-warning-days 60)
+                    (org-agenda-time-grid nil)))
+
                   )
                 )
   ;; Tasks mit Datum in der Agenda ausblenden, wenn sie bereits erledigt sind:
