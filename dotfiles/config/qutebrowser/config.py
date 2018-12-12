@@ -39,7 +39,7 @@ c.statusbar.padding["top"] = 0
 
 c.auto_save.session = True
 c.tabs.mode_on_change = 'restore'
-c.confirm_quit = 'multiple-tabs'
+c.confirm_quit = ['multiple-tabs']
 
 
 config.bind('<Ctrl-Tab>', 'tab-next')
