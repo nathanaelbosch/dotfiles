@@ -45,6 +45,7 @@ This function should only modify configuration layer settings."
      bibtex
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
+     csv
      emacs-lisp
      evil-commentary
      finance
@@ -518,6 +519,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   )
 
 (defun org-ref-config ()
+  ;; Followed https://codearsonist.com/reading-for-programmers and https://github.com/jkitchin/org-ref
   (setq reftex-default-bibliography '("~/MEGA/papers/references.bib"))
 
   ;; see org-ref for use of these variables
@@ -528,7 +530,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Further variables for helm-bibtex
   (setq bibtex-completion-bibliography "~/MEGA/papers/references.bib"
         bibtex-completion-library-path "~/MEGA/papers/lib"
-        bibtex-completion-notes-path "~/MEGA/papers/helm-bibtex-notes")
+        bibtex-completion-notes-path "~/MEGA/papers/notes.org")
 
   ;; open pdf with system pdf viewer (works on mac)
   (setq bibtex-completion-pdf-open-function
@@ -579,7 +581,6 @@ you should place your code here."
   (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
 
   ;; org-ref
-  ;; Followed https://codearsonist.com/reading-for-programmers and https://github.com/jkitchin/org-ref
   (org-ref-config)
 
   ;;
@@ -745,6 +746,7 @@ you should place your code here."
 
   ;; Custom Org commands to follow the spacemacs mnemonics instead of C-c C-x ...
   (evil-leader/set-key-for-mode 'org-mode "U" 'org-update-all-dblocks)
+  (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
 )
 
 
