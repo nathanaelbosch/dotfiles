@@ -542,46 +542,22 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   ;; Download directory
   (setq biblio-download-directory "~/MEGA/papers/lib")
+
+  (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
+  (evil-leader/set-key-for-mode 'org-mode "B" 'helm-bibtex)
+  (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
   )
 
-(defun dotspacemacs/user-load ()
-  "Library to load while dumping.
-This function is called only while dumping Spacemacs configuration. You can
-`require' or `load' the libraries of your choice that will be included in the
-dump."
-  )
+(defun my-org-config()
 
-(defun dotspacemacs/user-config ()
-  "Configuration for user code:
-This function is called at the very end of Spacemacs startup, after layer
-configuration.
-Put your configuration code here, except for variables that should be set
-before packages are loaded."
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
   ;; Inline images
   (setq org-startup-with-inline-images t)
 
-  ;; Scroll margin
-  (setq scroll-margin 1)
-
-  ;; open pdfs scaled to fit page
-  (setq-default pdf-view-display-size 'fit-page)
-
-  ;; Visual line mode when working with text based content
-  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
-
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
-                           "~/Dropbox/org/gcal/"))
+                           "~/Dropbox/org/gcal/"
+                           "~/MEGA/papers/notes.org"))
   (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
-
-  ;; org-ref
-  (org-ref-config)
 
   ;;
   (setq org-capture-templates
@@ -621,6 +597,135 @@ you should place your code here."
           ("CANCELLED" . "#c5c8c6")
           ))
   (setq org-archive-tag "inactive")
+
+  ;; Google Calendar
+  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
+                              ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/Dropbox/org/gcal/vacances.org")
+                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
+                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
+                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
+                              ))
+  (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
+
+  ;; Hide tag someday in agenda
+  (setq org-agenda-filter-preset '("-someday"))
+  (setq org-agenda-regexp-filter-preset '("-WAITING"))
+
+  (setq org-agenda-custom-commands
+        ;; (append org-agenda-custom-commands
+                '(("g" . "GTD-Workflow")
+                  ("gw" "Upcoming week" agenda ""
+                   ((org-agenda-span 'week)
+                    (org-agenda-filter-preset '("-habit"))
+                    (org-agenda-view-columns-initially t)
+                    ))
+                  ("gr" "Review past week" agenda
+                   ((org-agenda-span 'week)
+                    (org-agenda-skip-scheduled-if-done nil)
+                    (org-agenda-log-mode)
+                    ))
+                  ;; ("gn" "Next Actions" tags-todo "TODO"
+                  ;;  ((org-agenda-filter-preset '("-someday"))
+                  ;;   ;; (org-agenda-todo-ignore-with-date t)
+                  ;;   ))
+                  ;; ("gd" "DONE" tags-todo "DONE" ((org-use-tag-inheritance nil)))
+                  ;; ("gs" "SOMEDAY" tags "someday"
+                  ;;  ((org-agenda-filter-preset '("+someday"))
+                  ;;   (org-agenda-todo-ignore-with-date nil)))
+                  ;; ("gs" "SOMEDAY" tags "someday" ((org-use-tag-inheritance nil)))
+
+                  ("n" "Next Actions" todo "TODO"
+                   ((org-agenda-filter-preset '("-someday"))
+                    (org-agenda-todo-ignore-scheduled t)
+                    (org-deadline-warning-days 90)
+                    ))
+                  ("s" "Someday" tags "someday"
+                   ((org-agenda-filter-preset '("+someday"))
+                    (org-agenda-todo-ignore-with-date nil)))
+                  ("r" "To read" todo "TOREAD"
+                   ((org-agenda-filter-preset '("+someday"))))
+                  ("w" "To watch" todo "TOWATCH"
+                   ((org-agenda-filter-preset '("+someday"))))
+
+                  ("c" . "Contexts")
+                  ("ch" "@Home" tags-todo "@home")
+                  ("cu" "@Uni" tags-todo "@uni")
+
+                  ("d" "Upcoming deadlines" agenda ""
+                   ((org-agenda-entry-types '(:deadline))
+                    (org-agenda-span 1)
+                    (org-deadline-warning-days 60)
+                    (org-agenda-time-grid nil)))
+
+                  )
+                )
+  ;; Tasks mit Datum in der Agenda ausblenden, wenn sie bereits erledigt sind:
+  (setq org-agenda-skip-deadline-if-done t)
+  (setq org-agenda-skip-scheduled-if-done t)
+  ;; (setq org-agenda-window-setup 'current-window)
+  ;; (setq org-agenda-window-setup 'only-window)
+
+  ;; org-refile
+  (setq org-refile-targets (quote (("todo.org" :maxlevel . 2)
+                                   ("notes.org" :maxlevel . 2)
+                                   )))
+
+  ;; Automatically save org buffers when agenda is open
+  ;; (add-hook 'org-agenda-mode-hook
+  ;;           (lambda ()
+  ;;             (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
+  ;;             (auto-save-mode)))
+  ;; Save even more stuff
+  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+  ;; Start agenda in day mode
+  (setq org-agenda-span 1)
+  ;; Start week on monday
+  (setq org-agenda-start-on-weekday 1)
+
+  ;; Correct indentation in org-babel source blocks
+  (setq org-src-tab-acts-natively t)
+
+  ;; Column view
+  (setq org-agenda-overriding-columns-format "%38ITEM(Details) %TAGS(Context) %7TODO(To Do) %5Effort(Time){:} %6CLOCKSUM{:}")
+  ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
+
+  (setq org-clock-out-when-done t)
+  )
+
+(defun dotspacemacs/user-load ()
+  "Library to load while dumping.
+This function is called only while dumping Spacemacs configuration. You can
+`require' or `load' the libraries of your choice that will be included in the
+dump."
+  )
+
+(defun dotspacemacs/user-config ()
+  "Configuration for user code:
+This function is called at the very end of Spacemacs startup, after layer
+configuration.
+Put your configuration code here, except for variables that should be set
+before packages are loaded."
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
+
+  ;; Scroll margin
+  (setq scroll-margin 1)
+
+  ;; open pdfs scaled to fit page
+  (setq-default pdf-view-display-size 'fit-page)
+
+  ;; Visual line mode when working with text based content
+  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+
+  ;; org-mode
+  (my-org-config)
+  ;; org-ref
+  (org-ref-config)
+
   ;; Hitting "kj" fast makes me escape insert mode
   ;; (setq-default evil-escape-key-sequence "kj")
 
@@ -645,108 +750,22 @@ you should place your code here."
   ;;          (user-full-name "Billy Bob 15"))))
   ;; (mu4e/mail-account-reset)
 
-  ;; Google Calendar
-  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
-                              ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/Dropbox/org/gcal/vacances.org")
-                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
-                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
-                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
-                              ))
-  (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
   ;; (setq alert-default-style 'libnotify)
 
-  ;; org-refile
-  (setq org-refile-targets (quote (("todo.org" :maxlevel . 2)
-                                   ("notes.org" :maxlevel . 2)
-                                   )))
 
   ;; Start magit commit in insert mode
   (add-hook 'with-editor-mode-hook 'evil-insert-state)
 
-  ;; Hide tag someday in agenda
-  (setq org-agenda-filter-preset '("-someday"))
-  (setq org-agenda-regexp-filter-preset '("-WAITING"))
-
-  (setq org-agenda-custom-commands
-        ;; (append org-agenda-custom-commands
-                '(("g" . "GTD-Workflow")
-                  ("gn" "Next Actions" tags-todo "TODO"
-                   ((org-agenda-filter-preset '("-someday"))
-                    ;; (org-agenda-todo-ignore-with-date t)
-                    ))
-                  ("gd" "DONE" tags-todo "DONE" ((org-use-tag-inheritance nil)))
-                  ("gs" "SOMEDAY" tags "someday"
-                   ((org-agenda-filter-preset '("+someday"))
-                    (org-agenda-todo-ignore-with-date nil)))
-                  ;; ("gs" "SOMEDAY" tags "someday" ((org-use-tag-inheritance nil)))
-                  ("gw" "Waiting" todo "WAITING")
-
-                  ("r" . "Review")
-                  ("rd" "Today" agenda ""
-                   ((org-agenda-span 1)
-                    (org-agenda-view-columns-initially t)
-                    (org-agenda-skip-scheduled-if-done nil)
-                    ))
-                  ("rw" "Week" agenda ""
-                   ((org-agenda-span 'week)
-                    (org-agenda-view-columns-initially t)
-                    (org-agenda-skip-scheduled-if-done nil)
-                    ))
-
-                  ("n" "Next Actions" todo "TODO"
-                   ((org-agenda-filter-preset '("-someday"))
-                    (org-agenda-todo-ignore-scheduled t)
-                    (org-deadline-warning-days 90)
-                    ))
-                  ("s" "Someday" tags "someday"
-                   ((org-agenda-filter-preset '("+someday"))
-                    (org-agenda-todo-ignore-with-date nil)))
-                  ("w" "To watch" todo "TOWATCH"
-                   ((org-agenda-filter-preset '("+someday"))))
-
-                  ("c" . "Contexts")
-                  ("ch" "@Home" tags-todo "@home")
-                  ("cu" "@Uni" tags-todo "@uni")
-
-                  ("d" "Upcoming deadlines" agenda ""
-                   ((org-agenda-entry-types '(:deadline))
-                    (org-agenda-span 1)
-                    (org-deadline-warning-days 60)
-                    (org-agenda-time-grid nil)))
-
-                  )
-                )
-  ;; Tasks mit Datum in der Agenda ausblenden, wenn sie bereits erledigt sind:
-  (setq org-agenda-skip-deadline-if-done t)
-  (setq org-agenda-skip-scheduled-if-done t)
-  ;; (setq org-agenda-window-setup 'current-window)
-  ;; (setq org-agenda-window-setup 'only-window)
 
   ;; Auto-refresh buffers when files changed on disk
   (global-auto-revert-mode t)
 
-  ;; Automatically save org buffers when agenda is open
-  ;; (add-hook 'org-agenda-mode-hook
-  ;;           (lambda ()
-  ;;             (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
-  ;;             (auto-save-mode)))
-  ;; Save even more stuff
-  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
-  ;; Start agenda in day mode
-  (setq org-agenda-span 1)
-  ;; Start week on monday
-  (setq org-agenda-start-on-weekday 1)
-
-  ;; Correct indentation in org-babel source blocks
-  (setq org-src-tab-acts-natively t)
-
-  ;; Column view
-  (setq org-agenda-overriding-columns-format "%38ITEM(Details) %TAGS(Context) %7TODO(To Do) %5Effort(Time){:} %6CLOCKSUM{:}")
-  ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
 
   ;; Custom Org commands to follow the spacemacs mnemonics instead of C-c C-x ...
   (evil-leader/set-key-for-mode 'org-mode "U" 'org-update-all-dblocks)
-  (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
+
+  (find-file "~/Dropbox/org/todo.org")
+
 )
 
 
@@ -768,19 +787,19 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(org-agenda-files
+ '(custom-safe-themes
    (quote
-    ("~/Dropbox/org/notes.org" "~/Projekte/math_thesis/notes.org" "~/Dropbox/org/todo.org")))
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default)))
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (yasnippet-snippets web-beautify symon string-inflection spaceline-all-the-icons prettier-js pippel pipenv password-generator overseer org-brain magit-svn kaolin-themes importmagic epc ctable concurrent deferred impatient-mode simple-httpd helm-xref helm-purpose window-purpose imenu-list helm-git-grep gitignore-templates eziam-theme evil-org evil-lion evil-ledger evil-goggles evil-cleverparens paredit anzu highlight editorconfig doom-themes doom-modeline eldoc-eval shrink-path all-the-icons memoize counsel-projectile counsel swiper color-theme-sanityinc-tomorrow centered-cursor-mode browse-at-remote packed helm helm-core async popup evil goto-chg dotenv-mode flycheck-ledger ledger-mode hacker-typer nyan-mode treepy graphql visual-fill-column ranger ag web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data org-projectile-helm zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme exotica-theme evil-commentary espresso-theme dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme xterm-color unfill shell-pop mwim multi-term helm-company helm-c-yasnippet git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company-auctex company-anaconda company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete auctex-latexmk auctex pandoc-mode ox-pandoc ht org-ref pdf-tools key-chord ivy tablist helm-bibtex parsebib biblio biblio-core smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md evil-magit magit magit-popup git-commit ghub with-editor yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode anaconda-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (csv-mode pandoc-mode org-ref pdf-tools ivy htmlize gruvbox-theme flyspell-correct-helm flyspell-correct evil-mc evil-matchit autothemer iedit smartparens evil yasnippet company avy projectile magit ghub org-plus-contrib hydra pythonic zenburn-theme zen-and-art-theme yapfify xterm-color ws-butler winum white-sand-theme which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package unfill undo-tree underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treepy toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit tablist sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme restart-emacs rebecca-theme ranger rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el paradox ox-pandoc orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum live-py-mode linum-relative link-hint light-soap-theme ledger-mode key-chord jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide hy-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-bibtex helm-ag hc-zenburn-theme gruber-darker-theme graphql grandshell-theme goto-chg gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme fuzzy flycheck-pos-tip flycheck-ledger flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dracula-theme django-theme diminish diff-hl define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-web company-statistics company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background nil)))))
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
