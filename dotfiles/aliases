@@ -37,3 +37,5 @@ alias dotgit="git -C $DOTREPO"
 # Translates
 alias tde="trans :de"
 alias ten="trans :en"
+
+alias feh="feh --scale-down --start-at"
