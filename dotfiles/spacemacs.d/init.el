@@ -734,14 +734,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Custom todo keywords - or not
   (setq org-todo-keywords
         '((sequence "TODO(t)" "IN PROGRESS(p)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)" )
-          (sequence "HABIT(h)" "TOREAD(r)" "TOWATCH(w)" "TOLISTEN(l)" "|")
+          (sequence "TOREAD(r)" "TOWATCH(w)" "TOLISTEN(l)" "|")
           ))
   (setq org-todo-keyword-faces
         '(("TOREAD" . "#5e8d87")
           ("TOWATCH" . "#85678f")
           ("TOLISTEN" . "#85678f")
           ("INACTIVE" . "#707880")
-          ("HABIT" . "#de935f")
+          ;; ("HABIT" . "#de935f")
           ("CANCELLED" . "#c5c8c6")
           ))
   (setq org-archive-tag "inactive")
@@ -778,6 +778,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                     ((org-agenda-filter-preset '("-someday"))
                      (org-agenda-todo-ignore-scheduled t)
                      (org-deadline-warning-days 90)))
+                    (tags-todo "habit")
                     (agenda ""
                      ((org-agenda-entry-types '(:deadline))
                       (org-agenda-span 1)
@@ -798,6 +799,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                    ((org-agenda-filter-preset '(""))
                     (org-agenda-view-columns-initially t)
                     ))
+                  ("l" "To listen" todo "TOLISTEN"
+                   ((org-agenda-filter-preset '(""))))
 
                   ;; Contexts
                   ("h" "@Home"
