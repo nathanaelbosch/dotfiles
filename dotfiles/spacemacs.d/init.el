@@ -641,11 +641,12 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                     ))
                   ("s" "Someday" tags "someday"
                    ((org-agenda-filter-preset '("+someday"))
+                    (org-use-tag-inheritance nil)
                     (org-agenda-todo-ignore-with-date nil)))
                   ("r" "To read" todo "TOREAD"
-                   ((org-agenda-filter-preset '("+someday"))))
+                   ((org-agenda-filter-preset '(""))))
                   ("w" "To watch" todo "TOWATCH"
-                   ((org-agenda-filter-preset '("+someday"))))
+                   ((org-agenda-filter-preset '(""))))
 
                   ("c" . "Contexts")
                   ("ch" "@Home" tags-todo "@home")
