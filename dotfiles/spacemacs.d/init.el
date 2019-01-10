@@ -84,7 +84,9 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(interleave
-                                      yasnippet-snippets)
+                                      yasnippet-snippets
+                                      org-subtask-reset
+                                      org-habits)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -507,7 +509,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
      (gnuplot . t)
      ))
 
-  (add-to-list 'org-modules 'habits)
   )
 
 
@@ -720,7 +721,19 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
            ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i")
            ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
-            "* TODO Wäsche\nSCHEDULED: %t\n- [ ] Machen\n- [ ] Aufhängen\n- [ ] Abhängen")
+            "* Wäsche [%]
+:PROPERTIES:
+:ORDERED:  t
+:END:
+** TODO Wäsche: In die Maschine und machen
+SCHEDULED: %t
+** TODO Wäsche: Aufhängen
+SCHEDULED: %t
+** TODO Wäsche: Abhängen
+SCHEDULED: %t
+** TODO Wäsche: Aufräumen
+SCHEDULED: %t
+")
            ("m" "Masterpraktikum")
            ("mg" "Masterpraktikum: General" entry (file+headline "~/Dropbox/org/masterpraktikum.org" "General")
             "* TODO %?")
@@ -852,6 +865,20 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
 
   (setq org-clock-out-when-done t)
+
+  ;; Tasks that cannot be done because of dependencies should not clutter the agenda
+  ;; t grays them out, 'invisible makes them disappear
+  (setq org-agenda-dim-blocked-tasks t)
+  (setq org-agenda-dim-blocked-tasks 'invisible)
+
+  ;; (add-to-list 'org-modules 'habits)
+
+  ;; Better overview in agenda with my recurring tasks
+  (setq org-agenda-show-future-repeats 'next)
+
+  ;; Parents can only be marked as DONE if children tasks are undone
+  ;; with the "ORDERED" property TODO children is blocked until all earlier siblings are marked DONE
+  (setq org-enforce-todo-dependencies t)
   )
 
 (defun dotspacemacs/user-load ()
