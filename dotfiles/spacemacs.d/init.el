@@ -803,6 +803,21 @@ SCHEDULED: %t
                       )))
                    ;; ((org-agenda-compact-blocks t))
                    )
+                  ("N" "Next Actions - Including scheduled tasks"
+                   ((todo "TODO"
+                          ((org-agenda-filter-preset '("-someday"))
+                           ;; (org-agenda-todo-ignore-scheduled t)
+                           (org-deadline-warning-days 90)))
+                    (tags-todo "habit")
+                    (agenda ""
+                            ((org-agenda-entry-types '(:deadline))
+                             (org-agenda-span 1)
+                             (org-deadline-warning-days 90)
+                             (org-agenda-time-grid nil)
+                             (org-agenda-overriding-header "Upcoming Deadlines")
+                             )))
+                   ;; ((org-agenda-compact-blocks t))
+                   )
 
                   ;; Special types
                   ("s" "Someday" tags-todo "someday"
