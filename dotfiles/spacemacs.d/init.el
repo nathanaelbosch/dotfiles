@@ -805,7 +805,7 @@ SCHEDULED: %t
                    )
 
                   ;; Special types
-                  ("s" "Someday" tags "someday"
+                  ("s" "Someday" tags-todo "someday"
                    ((org-agenda-filter-preset '("+someday"))
                     (org-use-tag-inheritance nil)
                     (org-agenda-todo-ignore-with-date nil)))
@@ -825,11 +825,11 @@ SCHEDULED: %t
 
                   ;; Contexts
                   ("h" "@Home"
-                   ((tags "@home"
+                   ((tags-todo "@home"
                          ((org-agenda-todo-ignore-with-date nil)))
                    ))
                   ("u" "@Uni"
-                   ((tags "@uni"
+                   ((tags-todo "@uni"
                           ((org-agenda-todo-ignore-with-date nil)))
                     ))
 
