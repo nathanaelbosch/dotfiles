@@ -510,7 +510,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
      (gnuplot . t)
      ))
 
-  (spacemacs/toggle-mode-line-org-clock-on)
   )
 
 
@@ -792,7 +791,7 @@ SCHEDULED: %t
                    ((todo "TODO"
                     ((org-agenda-filter-preset '("-someday"))
                      (org-agenda-todo-ignore-scheduled t)
-                     (org-deadline-warning-days 90)))
+                     ))
                     (tags-todo "habit")
                     (agenda ""
                      ((org-agenda-entry-types '(:deadline))
@@ -888,6 +887,7 @@ SCHEDULED: %t
   ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
 
   (setq org-clock-out-when-done t)
+  (setq org-clock-out-remove-zero-time-clocks t)
 
   ;; Not optimal, but otherwise it creates wayy too many folders
   (setq-default org-download-image-dir "~/Dropbox/org/images")
@@ -921,6 +921,8 @@ SCHEDULED: %t
   ;; Parents can only be marked as DONE if children tasks are undone
   ;; with the "ORDERED" property TODO children is blocked until all earlier siblings are marked DONE
   (setq org-enforce-todo-dependencies t)
+
+  (spacemacs/toggle-mode-line-org-clock-on)
   )
 
 (defun dotspacemacs/user-load ()
