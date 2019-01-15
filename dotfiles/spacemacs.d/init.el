@@ -54,11 +54,12 @@ This function should only modify configuration layer settings."
      helm
      html
      (latex :variables
-            latex-enable-auto-fill nil
+            ;; latex-enable-auto-fill nil
             latex-enable-folding t)
      lua
      markdown
      mu4e
+     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      (org :variables org-want-todo-bindings t)
      pandoc
      pdf
@@ -790,7 +791,7 @@ SCHEDULED: %t
                    ((todo "TODO"
                     ((org-agenda-filter-preset '("-someday"))
                      (org-agenda-todo-ignore-scheduled t)
-                     (org-deadline-warning-days 90)))
+                     ))
                     (tags-todo "habit")
                     (agenda ""
                      ((org-agenda-entry-types '(:deadline))
@@ -798,30 +799,51 @@ SCHEDULED: %t
                       (org-deadline-warning-days 90)
                       (org-agenda-time-grid nil)
                       (org-agenda-overriding-header "Upcoming Deadlines")
-                      ))
-                    ))
+                      )))
+                   ;; ((org-agenda-compact-blocks t))
+                   )
+                  ("N" "Next Actions - Including scheduled tasks"
+                   ((todo "TODO"
+                          ((org-agenda-filter-preset '("-someday"))
+                           ;; (org-agenda-todo-ignore-scheduled t)
+                           (org-deadline-warning-days 90)))
+                    (tags-todo "habit")
+                    (agenda ""
+                            ((org-agenda-entry-types '(:deadline))
+                             (org-agenda-span 1)
+                             (org-deadline-warning-days 90)
+                             (org-agenda-time-grid nil)
+                             (org-agenda-overriding-header "Upcoming Deadlines")
+                             )))
+                   ;; ((org-agenda-compact-blocks t))
+                   )
 
                   ;; Special types
-                  ("s" "Someday" tags "someday"
+                  ("s" "Someday" tags-todo "someday"
                    ((org-agenda-filter-preset '("+someday"))
                     (org-use-tag-inheritance nil)
                     (org-agenda-todo-ignore-with-date nil)))
                   ("r" "To read" todo "TOREAD"
-                   ((org-agenda-filter-preset '(""))))
+                   ((org-agenda-filter-preset '(""))
+                    (org-agenda-sorting-strategy '(priority-down tag-down))
+                    ))
                   ("w" "To watch" todo "TOWATCH"
                    ((org-agenda-filter-preset '(""))
                     (org-agenda-view-columns-initially t)
+                    (org-agenda-sorting-strategy '(priority-down tag-down))
                     ))
                   ("l" "To listen" todo "TOLISTEN"
-                   ((org-agenda-filter-preset '(""))))
+                   ((org-agenda-filter-preset '(""))
+                    (org-agenda-sorting-strategy '(priority-down tag-down))
+                    ))
 
                   ;; Contexts
                   ("h" "@Home"
-                   ((tags "@home"
+                   ((tags-todo "@home"
                          ((org-agenda-todo-ignore-with-date nil)))
                    ))
                   ("u" "@Uni"
-                   ((tags "@uni"
+                   ((tags-todo "@uni"
                           ((org-agenda-todo-ignore-with-date nil)))
                     ))
 
@@ -861,10 +883,30 @@ SCHEDULED: %t
   (setq org-src-tab-acts-natively t)
 
   ;; Column view
-  (setq org-agenda-overriding-columns-format "%38ITEM(Details) %TAGS(Context) %7TODO(To Do) %5Effort(Time){:} %6CLOCKSUM{:}")
+  (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
   ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
 
   (setq org-clock-out-when-done t)
+  (setq org-clock-out-remove-zero-time-clocks t)
+
+  ;; Not optimal, but otherwise it creates wayy too many folders
+  (setq-default org-download-image-dir "~/Dropbox/org/images")
+
+
+  ;; remove comments from org document for use with export hook
+  ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
+  (defun delete-org-comments (backend)
+    (loop for comment in (reverse (org-element-map (org-element-parse-buffer)
+                                      'comment 'identity))
+          do
+          (setf (buffer-substring (org-element-property :begin comment)
+                                  (org-element-property :end comment))
+                "")))
+  ;; add to export hook
+  (add-hook 'org-export-before-processing-hook 'delete-org-comments)
+
+  ;; Inline images
+  (setq org-image-actual-width '(800))
 
   ;; Tasks that cannot be done because of dependencies should not clutter the agenda
   ;; t grays them out, 'invisible makes them disappear
@@ -879,6 +921,8 @@ SCHEDULED: %t
   ;; Parents can only be marked as DONE if children tasks are undone
   ;; with the "ORDERED" property TODO children is blocked until all earlier siblings are marked DONE
   (setq org-enforce-todo-dependencies t)
+
+  (spacemacs/toggle-mode-line-org-clock-on)
   )
 
 (defun dotspacemacs/user-load ()
