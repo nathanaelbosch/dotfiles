@@ -8,6 +8,7 @@ alias cat=bat
 alias evil="emacsclient -nc"
 alias vil="emacsclient -t"
 alias zt="zathura --fork"
+alias xclip="xclip -selection c"
 
 alias con="$EDITOR $HOME/.i3/config"
 alias comp="$EDITOR $HOME/.config/compton.conf"
@@ -39,3 +40,7 @@ alias tde="trans :de"
 alias ten="trans :en"
 
 alias feh="feh --scale-down --start-at"
+
+# Python things
+alias ipylab="ipython --pylab"
+alias p="ipython --pdb"
