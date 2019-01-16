@@ -677,6 +677,11 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         org-ref-default-bibliography '("~/MEGA/papers/references.bib")
         org-ref-pdf-directory "~/MEGA/papers/lib/")
 
+  ;; see org-ref for use of these variables
+  (setq helm-bibtex-notes-path "~/MEGA/papers/notes.org"
+        helm-bibtex-bibliography "~/MEGA/papers/references.bib"
+        helm-bibtex-library-path "~/MEGA/papers/lib")
+
   ;; Further variables for helm-bibtex
   (setq bibtex-completion-bibliography "~/MEGA/papers/references.bib"
         bibtex-completion-library-path "~/MEGA/papers/lib"
@@ -696,6 +701,30 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
   (evil-leader/set-key-for-mode 'org-mode "B" 'helm-bibtex)
   (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
+
+  (helm-add-action-to-source
+   "Edit Notes" 'helm-bibtex-edit-notes
+   helm-source-bibtex )
+
+  (setq org-ref-open-pdf-function
+        (lambda (fpath)
+          (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
+
+(setq org-ref-note-title-format "** TOREAD %t
+:PROPERTIES:
+:Custom_ID: %k
+:AUTHOR: %9a
+:JOURNAL: %j
+:YEAR: %y
+:VOLUME: %v
+:PAGES: %p
+:DOI: %D
+:URL: %U
+:BIBTEX_LABEL: %k
+:PDF: %F
+:INTERLEAVE_PDF: %F
+:END:
+")
   )
 
 
@@ -864,9 +893,10 @@ SCHEDULED: %t
   ;; (setq org-agenda-window-setup 'only-window)
 
   ;; org-refile
-  (setq org-refile-targets (quote (("todo.org" :maxlevel . 2)
-                                   ("notes.org" :maxlevel . 2)
-                                   )))
+  (setq org-refile-targets '(("~/Dropbox/org/todo.org" :maxlevel . 2)
+                             ("~/Dropbox/org/references.org" :maxlevel . 1)
+                             (nil . (:level . 1))
+                             ))
 
   ;; Automatically save org buffers when agenda is open
   ;; (add-hook 'org-agenda-mode-hook
@@ -925,6 +955,9 @@ SCHEDULED: %t
   (setq org-enforce-todo-dependencies t)
 
   (spacemacs/toggle-mode-line-org-clock-on)
+
+  ;; This would be cool, but it definitely needs tab completion in the minibuffer, which does not work :/
+  ;; (setq org-refile-use-outline-path 'file)
   )
 
 (defun dotspacemacs/user-load ()
