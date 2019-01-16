@@ -802,6 +802,7 @@ SCHEDULED: %t
   ;; Hide tag someday in agenda
   (setq org-agenda-filter-preset '("-someday"))
   (setq org-agenda-regexp-filter-preset '("-WAITING"))
+  (setq org-agenda-log-mode-items '(closed clock state))
 
   (setq org-agenda-custom-commands
         ;; (append org-agenda-custom-commands
@@ -854,6 +855,9 @@ SCHEDULED: %t
                     (org-use-tag-inheritance nil)
                     (org-agenda-todo-ignore-with-date nil)))
                   ("r" "To read" todo "TOREAD"
+                   ((org-agenda-sorting-strategy '(priority-down tag-down))
+                    ))
+                  ("R" "To read - including 'someday'" todo "TOREAD"
                    ((org-agenda-filter-preset '(""))
                     (org-agenda-sorting-strategy '(priority-down tag-down))
                     ))
@@ -862,10 +866,24 @@ SCHEDULED: %t
                     (org-agenda-view-columns-initially t)
                     (org-agenda-sorting-strategy '(priority-down tag-down))
                     ))
+                  ("w" "To watch - including 'someday'" todo "TOWATCH"
+                   ((org-agenda-view-columns-initially t)
+                    (org-agenda-sorting-strategy '(priority-down tag-down))
+                    ))
                   ("l" "To listen" todo "TOLISTEN"
                    ((org-agenda-filter-preset '(""))
                     (org-agenda-sorting-strategy '(priority-down tag-down))
                     ))
+                  ("p" "Papers" todo "TOREAD"
+                   ((org-agenda-files '("~/MEGA/papers/notes.org")))
+                   )
+                  ;; ("P" "Papers - Full List"
+                  ;;  ;; alltodo ""
+                  ;;  tags"CATEGORY=\"papers\""
+                  ;;  ((org-agenda-files '("~/MEGA/papers/notes.org"))
+                  ;;   (org-agenda-skip-function '(org-agenda-skip-entry-if 'done))
+                  ;;   )
+                  ;;  )
 
                   ;; Contexts
                   ("h" "@Home"
