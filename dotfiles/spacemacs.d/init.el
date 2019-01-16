@@ -86,8 +86,9 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(interleave
                                       yasnippet-snippets
-                                      org-subtask-reset
-                                      org-habits)
+                                      ;; org-subtask-reset
+                                      ;; org-habits
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -913,7 +914,8 @@ SCHEDULED: %t
   (setq org-agenda-dim-blocked-tasks t)
   (setq org-agenda-dim-blocked-tasks 'invisible)
 
-  ;; (add-to-list 'org-modules 'habits)
+  (add-to-list 'org-modules 'habits)
+  (add-to-list 'org-modules 'org-subtask-reset)
 
   ;; Better overview in agenda with my recurring tasks
   (setq org-agenda-show-future-repeats 'next)
