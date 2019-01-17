@@ -923,6 +923,11 @@ SCHEDULED: %t
   (setq org-enforce-todo-dependencies t)
 
   (spacemacs/toggle-mode-line-org-clock-on)
+
+
+  ;; Set long and latiude for sunset
+  (setq calendar-latitude 48.248872)
+  (setq calendar-longitude 11.653248)
   )
 
 (defun dotspacemacs/user-load ()
