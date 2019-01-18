@@ -196,7 +196,13 @@ libraries for this task
 *** Custom Hotkeys
 To access interleave mode and helm-bibtex
 #+BEGIN_SRC emacs-lisp
-  (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
+  (defun clock-in-and-interleave ()
+    (interactive)
+    (org-clock-in)
+    (interleave-mode))
+
+  (evil-leader/set-key-for-mode 'org-mode "I" 'clock-in-and-interleave)
+  ;; (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
   (evil-leader/set-key-for-mode 'org-mode "B" 'helm-bibtex)
   (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
 #+END_SRC
