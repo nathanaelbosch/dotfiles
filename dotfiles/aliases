@@ -43,3 +43,5 @@ alias feh="feh --scale-down --start-at"
 # Python things
 alias ipylab="ipython --pylab"
 alias p="ipython --pdb"
+
+alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"
