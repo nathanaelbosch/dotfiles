@@ -16,6 +16,11 @@ I like visual line mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
 #+END_SRC
+
+Smoother undo behavior
+#+BEGIN_SRC emacs-lisp
+  (setq evil-want-fine-undo t)
+#+END_SRC
 * Email
 #+BEGIN_SRC emacs-lisp
   ;; Email in emacs with mu4e
@@ -127,6 +132,20 @@ Correct indentation in org-babel source blocks
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
   ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
+#+END_SRC
+** Latex exports
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+
+  (add-to-list 'org-latex-classes
+               '("letter" "\\documentclass{letter}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+  (evil-leader/set-key-for-mode 'org-mode "e p" 'org-latex-export-to-pdf)
 #+END_SRC
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
