@@ -298,7 +298,7 @@ My templates
             "* TODO %?")
            ("r" "To read" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
             "* TOREAD %?")
-           ("p" "Paper" entry (file+headline "~/MEGA/org/papers.org" "Inbox")
+           ("p" "Paper" entry (file+headline "~/MEGA/papers/notes.org" "Inbox")
             "* TOREAD %?")
   ))
 #+END_SRC
