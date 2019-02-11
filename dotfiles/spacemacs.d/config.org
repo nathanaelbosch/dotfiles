@@ -316,16 +316,10 @@ Custom views
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
         ;; (append org-agenda-custom-commands
-                '(("g" . "GTD-Workflow")
-                  ("gw" "Upcoming week" agenda ""
+                '(("c" "Upcoming week - Columns" agenda ""
                    ((org-agenda-span 'week)
                     (org-agenda-filter-preset '("-habit"))
                     (org-agenda-view-columns-initially t)
-                    ))
-                  ("gr" "Review past week" agenda
-                   ((org-agenda-span 'week)
-                    (org-agenda-skip-scheduled-if-done nil)
-                    (org-agenda-log-mode)
                     ))
 
                   ("n" "Next Actions"
@@ -439,6 +433,9 @@ General agenda settings
 
   ;; Better overview in agenda with my recurring tasks
   (setq org-agenda-show-future-repeats 'next)
+
+  ;; Include archived files
+  (setq org-agenda-archives-mode t)
 #+END_SRC
 ** Clocking
 #+BEGIN_SRC emacs-lisp
