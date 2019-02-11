@@ -1,7 +1,13 @@
+# `-` as shortcut for last directory
 abbr -a -- - 'cd -'
+
+# Load aliases
 if test -e ~/.aliases
     source ~/.aliases
 end
+
+# Virtualfish
+eval (python -m virtualfish)
 
 # goto makro to quickly open any Project + venv
 function project -d "Go to project and activate venv"
@@ -33,4 +39,3 @@ function new_project
         return 1
     end
 end
-
