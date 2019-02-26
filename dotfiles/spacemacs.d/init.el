@@ -71,6 +71,7 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom)
      shell-scripts
      spell-checking
+     sql
      syntax-checking
      themes-megapack
      version-control
