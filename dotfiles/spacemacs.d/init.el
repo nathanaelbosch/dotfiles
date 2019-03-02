@@ -51,6 +51,7 @@ This function should only modify configuration layer settings."
      finance
      git
      google-calendar
+     haskell
      helm
      html
      (latex :variables
