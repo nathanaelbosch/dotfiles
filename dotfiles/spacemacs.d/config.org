@@ -104,6 +104,7 @@ Also, this was initially in user-init
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-targets '(("~/Dropbox/org/todo.org" :maxlevel . 2)
                              ("~/Dropbox/org/references.org" :maxlevel . 1)
+                             ("~/Dropbox/org/thesis.org" :level . 1)
                              (nil . (:level . 1))
                              ))
 #+END_SRC
