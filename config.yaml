@@ -18,6 +18,9 @@ config:
   link_by_default: false
   longkey: false
 dotfiles:
+  d_config_i3:
+    dst: ~/.config/i3
+    src: config/i3
   d_fish:
     dst: ~/.config/fish
     link: true
@@ -25,6 +28,9 @@ dotfiles:
   d_i3:
     dst: ~/.i3
     src: i3
+  d_i3status:
+    dst: ~/.config/i3status
+    src: config/i3status
   d_polybar:
     dst: ~/.config/polybar
     src: config/polybar
@@ -43,6 +49,9 @@ dotfiles:
     dst: ~/.spacemacs.d
     link: true
     src: spacemacs.d
+  d_sxhkd:
+    dst: ~/.config/sxhkd
+    src: config/sxhkd
   f_aliases:
     dst: ~/.aliases
     link: true
@@ -86,9 +95,6 @@ dotfiles:
   f_i3-scrot.conf:
     dst: ~/.config/i3-scrot.conf
     src: config/i3-scrot.conf
-  f_i3status.conf:
-    dst: ~/.i3status.conf
-    src: i3status.conf
   f_mpw:
     dst: ~/.mpw
     link: true
@@ -114,32 +120,54 @@ dotfiles:
     link: true
     src: yaourtrc
 profiles:
-  nath-laptop:
+  arch-laptop:
     dotfiles:
-    - f_bashrc
+    - d_config_i3
+    - d_fish
+    - d_i3status
+    - d_polybar
+    - d_spacemacs.d
+    - d_sxhkd
     - f_aliases
     - f_bash_profile
+    - f_bashrc
+    - f_config.py
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_gitconfig
+    - f_i3-scrot.conf
+    - f_mpw
+    - f_profile
+    - f_tmux.conf
+    - f_vimrc
+    - f_xresources
+  nath-laptop:
+    dotfiles:
+    - d_fish
+    - d_i3
+    - d_i3status
+    - d_polybar
+    - d_rofi
+    - d_screenlayout
+    - d_scripts
+    - d_spacemacs.d
+    - f_aliases
+    - f_bash_profile
+    - f_bashrc
+    - f_compton.conf
+    - f_config.py
     - f_extend.bashrc
     - f_extend.xresources
     - f_extend.xresources.mycolors
     - f_extend.xresources.sun
-    - f_profile
-    - f_xresources
-    - f_yaourtrc
-    - d_fish
     - f_gitconfig
-    - d_screenlayout
-    - f_compton.conf
-    - f_i3status.conf
-    - d_i3
-    - d_polybar
-    - f_config.py
-    - d_rofi
-    - d_scripts
+    - f_i3-scrot.conf
+    - f_mpw
+    - f_profile
     - f_tmux.conf
     - f_vimrc
-    - f_mpw
-    - d_spacemacs.d
+    - f_xresources
+    - f_yaourtrc
   nath-pc:
     dotfiles:
     - f_bashrc
@@ -156,7 +184,7 @@ profiles:
     - f_gitconfig
     - d_screenlayout
     - f_compton.conf
-    - f_i3status.conf
+    - d_i3status
     - d_i3
     - d_polybar
     - f_config.py
@@ -166,13 +194,3 @@ profiles:
     - f_vimrc
     - f_mpw
     - d_spacemacs.d
-  arch-laptop:
-    dotfiles:
-    - f_aliases
-    - f_xresources
-    - f_extend.xresources
-    - f_gitconfig
-    - f_config.py
-    - d_spacemacs.d
-    - d_polybar
-    - f_i3-scrot.conf

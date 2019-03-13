@@ -24,6 +24,7 @@ if [ "$HOSTNAME" = nath-pc ]; then
         i=$((i + 1))
         echo $i
     done
+    # polybar top &
 elif [ "$HOSTNAME" = nath-laptop ]; then
     polybar bottom_laptop &
 fi
