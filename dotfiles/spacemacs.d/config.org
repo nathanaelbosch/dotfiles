@@ -114,6 +114,12 @@ completion does not work well, and without that it is not very helpful.
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-refile-use-outline-path 'file)
 #+END_SRC
+** org-chef
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-chef
+    :ensure t)
+#+END_SRC
 ** org-babel and org-src
 Org-babel languages
 #+BEGIN_SRC emacs-lisp
@@ -301,6 +307,9 @@ My templates
             "* TOREAD %?")
            ("p" "Paper" entry (file+headline "~/MEGA/papers/notes.org" "Inbox")
             "* TOREAD %?")
+           ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
+            "%(org-chef-get-recipe-from-url)"
+            :empty-lines 1)
   ))
 #+END_SRC
 ** org-agenda
