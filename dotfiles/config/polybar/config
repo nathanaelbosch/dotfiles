@@ -22,6 +22,7 @@ cyan_light = ${xrdb:color14}
 white_dark = ${xrdb:color7}
 white_light = ${xrdb:color15}
 
+
 [bar/base]
 ; Some definitions that both top and bottom bars need anyways
 height = 27
@@ -41,8 +42,6 @@ font-5 = "unifont:size=6;-3"
 font-6 = "NotoSans-Regular:size=8;-1"
 font-7 = "MaterialIcons:style=Regular:size=10;1"
 font-8 = "Termsynu:size=8:antialias=false;0"
-
-; wm-restack = i3
 
 
 [bar/bottom_base]
