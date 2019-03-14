@@ -176,3 +176,17 @@ profiles:
     - d_spacemacs.d
     - d_polybar
     - f_i3-scrot.conf
+  askja:
+    dotfiles:
+    - f_aliases
+    - f_xresources
+    - f_extend.xresources
+    - d_spacemacs.d
+    - f_bashrc
+    - f_extend.bashrc
+    - f_vimrc
+    - d_fish
+    - d_spacemacs.d
+    - d_scripts
+    - f_profile
+    - f_tmux.conf

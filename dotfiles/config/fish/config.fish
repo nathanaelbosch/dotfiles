@@ -7,7 +7,7 @@ if test -e ~/.aliases
 end
 
 # Virtualfish
-eval (python -m virtualfish)
+eval (python3.6 -m virtualfish)
 
 # goto makro to quickly open any Project + venv
 function project -d "Go to project and activate venv"
