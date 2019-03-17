@@ -51,6 +51,7 @@ This function should only modify configuration layer settings."
      finance
      git
      google-calendar
+     haskell
      helm
      html
      (latex :variables
@@ -89,6 +90,7 @@ This function should only modify configuration layer settings."
                                       yasnippet-snippets
                                       ;; org-subtask-reset
                                       ;; org-habits
+                                      org-chef
                                       )
 
    ;; A list of packages that cannot be updated.
