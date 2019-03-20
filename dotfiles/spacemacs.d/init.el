@@ -61,6 +61,7 @@ This function should only modify configuration layer settings."
      markdown
      mu4e
      ;;(multiple-cursors :variables multiple-cursors-backend 'evil-mc)
+     nlinum
      (org :variables org-want-todo-bindings t)
      pandoc
      pdf

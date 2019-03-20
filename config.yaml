@@ -196,14 +196,17 @@ profiles:
     - f_yaourtrc
   askja:
     dotfiles:
+    - d_config_i3
     - d_fish
+    - d_i3status
     - d_scripts
     - d_spacemacs.d
-    - d_spacemacs.d
+    - d_sxhkd
     - f_aliases
     - f_bashrc
     - f_extend.bashrc
     - f_extend.xresources
+    - f_i3-scrot.conf
     - f_profile
     - f_tmux.conf
     - f_vimrc

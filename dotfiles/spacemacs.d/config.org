@@ -142,7 +142,9 @@ Correct indentation in org-babel source blocks
 #+END_SRC
 ** Latex exports
 #+BEGIN_SRC emacs-lisp
-  (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  ;; (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  (setq org-latex-pdf-process (list
+                               "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
 
   (add-to-list 'org-latex-classes
                '("letter" "\\documentclass{letter}"
@@ -153,6 +155,14 @@ Correct indentation in org-babel source blocks
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
   (evil-leader/set-key-for-mode 'org-mode "e p" 'org-latex-export-to-pdf)
+#+END_SRC
+** Latex/Org mode switch
+#+BEGIN_SRC emacs-lisp
+  (defun switch-org-latex-mode ()
+    (interactive)
+    (if (equal major-mode 'org-mode) (latex-mode) (org-mode)))
+  (evil-leader/set-key-for-mode 'org-mode "l" 'switch-org-latex-mode)
+  (evil-leader/set-key-for-mode 'latex-mode "l" 'switch-org-latex-mode)
 #+END_SRC
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
