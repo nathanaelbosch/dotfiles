@@ -50,10 +50,11 @@ This function should only modify configuration layer settings."
      evil-commentary
      finance
      git
-     ;;google-calendar
+     google-calendar
      haskell
      helm
      html
+     javascript
      (latex :variables
             ;; latex-enable-auto-fill nil
             latex-enable-folding t)
