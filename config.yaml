@@ -34,6 +34,10 @@ dotfiles:
   d_polybar:
     dst: ~/.config/polybar
     src: config/polybar
+  d_ranger:
+    dst: ~/.config/ranger
+    link: true
+    src: config/ranger
   d_rofi:
     dst: ~/.config/rofi
     src: config/rofi
@@ -142,6 +146,24 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
+  askja:
+    dotfiles:
+    - d_config_i3
+    - d_fish
+    - d_i3status
+    - d_scripts
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_aliases
+    - f_bashrc
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_i3-scrot.conf
+    - f_profile
+    - f_tmux.conf
+    - f_vimrc
+    - f_xresources
+    - d_ranger
   nath-laptop:
     dotfiles:
     - d_fish
@@ -195,20 +217,3 @@ profiles:
     - f_vimrc
     - f_xresources
     - f_yaourtrc
-  askja:
-    dotfiles:
-    - d_config_i3
-    - d_fish
-    - d_i3status
-    - d_scripts
-    - d_spacemacs.d
-    - d_sxhkd
-    - f_aliases
-    - f_bashrc
-    - f_extend.bashrc
-    - f_extend.xresources
-    - f_i3-scrot.conf
-    - f_profile
-    - f_tmux.conf
-    - f_vimrc
-    - f_xresources
