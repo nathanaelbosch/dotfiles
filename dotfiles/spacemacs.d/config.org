@@ -167,16 +167,16 @@ Correct indentation in org-babel source blocks
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN PROGRESS(p)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)")
-          (sequence "TOREAD(r)" "TOWATCH(w)" "TOLISTEN(l)" "|")
+        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)")
+          (sequence "TOREAD(r)" "TOWATCH(m)" "TOLISTEN(l)" "|")
           ))
   (setq org-todo-keyword-faces
         '(("TOREAD" . "#5e8d87")
           ("TOWATCH" . "#85678f")
           ("TOLISTEN" . "#85678f")
           ("INACTIVE" . "#707880")
-          ;; ("HABIT" . "#de935f")
-          ("CANCELLED" . "#c5c8c6")
+          ("WAITING" . "#8abeb7")
+          ("CANCELLED" . "#707880")
           ))
 #+END_SRC
 ** Hotkeys
