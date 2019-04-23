@@ -15,7 +15,7 @@ config:
   create: true
   dotpath: dotfiles
   keepdot: false
-  link_by_default: false
+  link_by_default: true
   longkey: false
 dotfiles:
   d_config_i3:
@@ -51,6 +51,7 @@ dotfiles:
     src: spacemacs.d
   d_sxhkd:
     dst: ~/.config/sxhkd
+    link: true
     src: config/sxhkd
   f_aliases:
     dst: ~/.aliases
