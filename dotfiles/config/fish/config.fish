@@ -1,13 +1,15 @@
 abbr -a -- - 'cd -'
 abbr -a -- paper 'zt ~/MEGA/papers/lib/'
 
+set pipenv_fish_fancy yes
+
 # Load aliases
 if test -e ~/.aliases
     source ~/.aliases
 end
 
 # Virtualfish
-eval (python3.6 -m virtualfish)
+# eval (python3.6 -m virtualfish)
 
 # goto makro to quickly open any Project + venv
 function project -d "Go to project and activate venv"
