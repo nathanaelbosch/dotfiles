@@ -167,7 +167,7 @@ Correct indentation in org-babel source blocks
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)")
+        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c@/!)" "DONE(d)")
           (sequence "TOREAD(r)" "TOWATCH(m)" "TOLISTEN(l)" "|")
           ))
   (setq org-todo-keyword-faces
@@ -330,6 +330,12 @@ Default agenda files
                            "~/Dropbox/org/gcal/"
                            "~/MEGA/papers/notes.org"))
   (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
+  (with-eval-after-load 'org-agenda
+    (require 'org-projectile)
+    (mapcar '(lambda (file)
+                  (when (file-exists-p file)
+                    (push file org-agenda-files)))
+            (org-projectile-todo-files)))
 #+END_SRC
 
 Custom views
