@@ -167,7 +167,7 @@ Correct indentation in org-babel source blocks
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c@/!)" "DONE(d)")
+        '((sequence "STARTED(s!)" "TODO(t)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c@/!)" "DONE(d)")
           (sequence "TOREAD(r)" "TOWATCH(m)" "TOLISTEN(l)" "|")
           ))
   (setq org-todo-keyword-faces
@@ -176,7 +176,11 @@ Correct indentation in org-babel source blocks
           ("TOLISTEN" . "#85678f")
           ("INACTIVE" . "#707880")
           ("WAITING" . "#8abeb7")
+          ("STARTED" . "#f0c674")
           ("CANCELLED" . "#707880")
+          ("1PASS" . (:foreground "#b5bd68" :weight bold))
+          ("2PASS" . (:foreground "#b5bd68" :weight bold))
+          ("3PASS" . (:foreground "#b5bd68" :weight bold))
           ))
 #+END_SRC
 ** Hotkeys
@@ -193,21 +197,21 @@ To better follow the spacemacs mnemonics instead of C-c C-x ...
       (insert-file-contents filePath)
       (split-string (buffer-string) "\n" t)))
   ;; Read lines from gcal.auth and store them in the variable
-  ;;(setq auth-lines (read-lines "~/gcal.auth"))
+  (setq auth-lines (read-lines "~/Dropbox/org/gcal.auth"))
   ;; Google Calendar
-  ;;(setq org-gcal-client-id (car auth-lines)
-  ;;      org-gcal-client-secret (car (cdr auth-lines)))
+  (setq org-gcal-client-id (car auth-lines)
+        org-gcal-client-secret (car (cdr auth-lines)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
   ;; Google Calendar
-  ;;(setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
-  ;;                            ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/Dropbox/org/gcal/vacances.org")
-  ;;                            ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
-  ;;                            ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
-  ;;                            ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
-  ;;                            ))
-  ;;(add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
+  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
+                              ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/Dropbox/org/gcal/vacances.org")
+                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
+                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
+                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
+                              ))
+  (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
 
 #+END_SRC
 ** org-ref
@@ -298,29 +302,37 @@ My templates
            "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
            "* TODO %?")
-          ;; ("w" "Weekly review" entry (file+olp+datetree "~/Dropbox/org/reviews.org")
-          ;;  (file "~/Dropbox/org/weeklyreview_template.org"))
           ;; ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
           ;;  "* %?\nEntered on %U\n  %i\n  %a")
            ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i")
            ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
            "* Wäsche [%]\n:PROPERTIES:\n:ORDERED:  t\n:END:\n** TODO Wäsche: In die Maschine und machen\nSCHEDULED: %t\n** TODO Wäsche: Aufhängen\nSCHEDULED: %t\n** TODO Wäsche: Abhängen\nSCHEDULED: %t\n** TODO Wäsche: Aufräumen\nSCHEDULED: %t")
-           ("m" "Masterpraktikum")
-           ("mg" "Masterpraktikum: General" entry (file+headline "~/Dropbox/org/masterpraktikum.org" "General")
-            "* TODO %?")
-           ("mc" "Masterpraktikum: Clustering" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Clustering" "Tasks")
-            "* TODO %?")
-           ("ma" "Masterpraktikum: Anomaly Detection 2" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Anomaly Detection 2" "Tasks")
-            "* TODO %?")
-           ("r" "To read" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-            "* TOREAD %?")
-           ("p" "Paper" entry (file+headline "~/MEGA/papers/notes.org" "Inbox")
-            "* TOREAD %?")
+           ;; ("r" "To read" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           ;;  "* TOREAD %?")
+           ;; ("p" "Paper" entry (file+headline "~/MEGA/papers/notes.org" "Inbox")
+           ;;  "* TOREAD %?")
            ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
             "%(org-chef-get-recipe-from-url)"
             :empty-lines 1)
   ))
+#+END_SRC
+** org-projectile
+Add project files to the org agenda
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'org-agenda
+    (require 'org-projectile)
+    (mapcar '(lambda (file)
+               (when (file-exists-p file)
+                 (push file org-agenda-files)))
+            (org-projectile-todo-files)))
+#+END_SRC
+
+Add project capture to capture menu
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-capture-templates
+               (org-projectile-project-todo-entry
+                :capture-character "p"))
 #+END_SRC
 ** org-agenda
 Default agenda files
@@ -330,110 +342,105 @@ Default agenda files
                            "~/Dropbox/org/gcal/"
                            "~/MEGA/papers/notes.org"))
   (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (mapcar '(lambda (file)
-                  (when (file-exists-p file)
-                    (push file org-agenda-files)))
-            (org-projectile-todo-files)))
 #+END_SRC
 
 Custom views
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
-        ;; (append org-agenda-custom-commands
-                '(("c" "Upcoming week - Columns" agenda ""
-                   ((org-agenda-span 'week)
-                    (org-agenda-filter-preset '("-habit"))
-                    (org-agenda-view-columns-initially t)
-                    ))
+        '(("c" "Upcoming week - Columns" agenda ""
+           ((org-agenda-span 'week)
+            (org-agenda-filter-preset '("-habit"))
+            (org-agenda-view-columns-initially t)
+            ))
 
-                  ("n" "Next Actions"
-                   ((todo "TODO"
-                    ((org-agenda-filter-preset '("-someday"))
-                     (org-agenda-todo-ignore-scheduled t)
-                     ))
-                    (tags-todo "habit")
-                    (agenda ""
-                     ((org-agenda-entry-types '(:deadline))
-                      (org-agenda-span 1)
-                      (org-deadline-warning-days 90)
-                      (org-agenda-time-grid nil)
-                      (org-agenda-overriding-header "Upcoming Deadlines")
-                      )))
-                   ;; ((org-agenda-compact-blocks t))
-                   )
-                  ("N" "Next Actions - Including scheduled tasks"
-                   ((todo "TODO"
-                          ((org-agenda-filter-preset '("-someday"))
-                           ;; (org-agenda-todo-ignore-scheduled t)
-                           (org-deadline-warning-days 90)))
-                    (tags-todo "habit")
-                    (agenda ""
-                            ((org-agenda-entry-types '(:deadline))
-                             (org-agenda-span 1)
-                             (org-deadline-warning-days 90)
-                             (org-agenda-time-grid nil)
-                             (org-agenda-overriding-header "Upcoming Deadlines")
-                             )))
-                   ;; ((org-agenda-compact-blocks t))
-                   )
-
-                  ;; Special types
-                  ("s" "Someday" tags-todo "someday"
-                   ((org-agenda-filter-preset '("+someday"))
-                    (org-use-tag-inheritance nil)
-                    (org-agenda-todo-ignore-with-date nil)))
-                  ("r" "To read" todo "TOREAD"
-                   ((org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("R" "To read - including 'someday'" todo "TOREAD"
-                   ((org-agenda-filter-preset '(""))
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("w" "To watch" todo "TOWATCH"
-                   ((org-agenda-filter-preset '(""))
-                    (org-agenda-view-columns-initially t)
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("w" "To watch - including 'someday'" todo "TOWATCH"
-                   ((org-agenda-view-columns-initially t)
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("l" "To listen" todo "TOLISTEN"
-                   ((org-agenda-filter-preset '(""))
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("p" "Papers" todo "TOREAD"
-                   ((org-agenda-files '("~/MEGA/papers/notes.org")))
-                   )
-                  ;; ("P" "Papers - Full List"
-                  ;;  ;; alltodo ""
-                  ;;  tags"CATEGORY=\"papers\""
-                  ;;  ((org-agenda-files '("~/MEGA/papers/notes.org"))
-                  ;;   (org-agenda-skip-function '(org-agenda-skip-entry-if 'done))
-                  ;;   )
-                  ;;  )
-
-                  ;; Contexts
-                  ("h" "@Home"
-                   ((tags-todo "@home"
-                         ((org-agenda-todo-ignore-with-date nil)))
+          ("n" "Next Actions"
+           ((todo "TODO"
+                  ((org-agenda-filter-preset '("-someday"))
+                   (org-agenda-todo-ignore-scheduled t)
                    ))
-                  ("u" "@Uni"
-                   ((tags-todo "@uni"
-                          ((org-agenda-todo-ignore-with-date nil)))
-                    ))
+            (tags-todo "habit")
+            (agenda ""
+                    ((org-agenda-entry-types '(:deadline))
+                     (org-agenda-span 1)
+                     (org-deadline-warning-days 90)
+                     (org-agenda-time-grid nil)
+                     (org-agenda-overriding-header "Upcoming Deadlines")
+                     ))))
+          ("N" "Next Actions - Including scheduled tasks"
+           ((todo "TODO"
+                  ((org-agenda-filter-preset '("-someday"))
+                   ;; (org-agenda-todo-ignore-scheduled t)
+                   (org-deadline-warning-days 90)))
+            (tags-todo "habit")
+            (agenda ""
+                    ((org-agenda-entry-types '(:deadline))
+                     (org-agenda-span 1)
+                     (org-deadline-warning-days 90)
+                     (org-agenda-time-grid nil)
+                     (org-agenda-overriding-header "Upcoming Deadlines")
+                     ))))
 
-                  ("d" "Upcoming deadlines" agenda ""
-                   ((org-agenda-entry-types '(:deadline))
-                    (org-agenda-span 1)
-                    (org-deadline-warning-days 60)
-                    (org-agenda-overriding-header "Upcoming Deadlines")
-                    (org-agenda-time-grid nil)))
+          ;; Special types
+          ("s" "Someday" tags-todo "someday"
+           ((org-agenda-filter-preset '("+someday"))
+            (org-use-tag-inheritance nil)
+            (org-agenda-todo-ignore-with-date nil)))
+          ("r" "To read" todo "TOREAD"
+           ((org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("R" "To read - including 'someday'" todo "TOREAD"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("w" "To watch" todo "TOWATCH"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-view-columns-initially t)
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("w" "To watch - including 'someday'" todo "TOWATCH"
+           ((org-agenda-view-columns-initially t)
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("l" "To listen" todo "TOLISTEN"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("p" "Papers" todo "TOREAD"
+           ((org-agenda-files '("~/MEGA/papers/notes.org"))))
 
-                  )
-                )
+          ;; Contexts
+          ("h" "@Home" tags-todo "@home"
+           ((org-agenda-todo-ignore-with-date nil)))
+          ("u" "@Uni" tags-todo "@uni"
+           ((org-agenda-todo-ignore-with-date nil)))
+
+          ("d" "Upcoming deadlines" agenda ""
+           ((org-agenda-entry-types '(:deadline))
+            (org-agenda-span 1)
+            (org-deadline-warning-days 60)
+            (org-agenda-overriding-header "Upcoming Deadlines")
+            (org-agenda-time-grid nil)))
+
+          ("v" "Thesis"
+           ((agenda ""
+                    ((org-agenda-span 1)
+                     (org-agenda-files '("~/Dropbox/org/thesis.org"
+                                         "~/Dropbox/org/gcal/"
+                                         "~/Projekte/visual-gp-dynamics/TODOs.org"))
+                     (org-agenda-overriding-header "Thesis Agenda")))
+            ;; (todo "STARTED"
+            ;;       ((org-agenda-overriding-header "Started Tasks")))
+            ;; (tags-todo "-someday+TODO=\"TODO\""
+            (tags-todo "-someday"
+                  ((org-agenda-todo-ignore-scheduled t)
+                   ;; (org-agenda-skip-entry-if 'todo '("TODO" "WAITING"))
+                   (org-agenda-overriding-header "TODOs")))
+            ;; (todo "WAITING"
+            ;;       ((org-agenda-overriding-header "WAITING tasks")))
+            (tags-todo "someday"
+                       ((org-agenda-overriding-header "Someday: Ideas/features/...")))
+            )
+           ((org-agenda-files '("~/Dropbox/org/thesis.org"
+                                "~/Projekte/visual-gp-dynamics/TODOs.org"))
+            (org-agenda-sorting-strategy '(priority-down tag-down todo-state-up))
+            (org-agenda-filter-preset '("")))
+           )
+          ))
 #+END_SRC
 
 General agenda settings
@@ -509,6 +516,15 @@ To be able to press "S" in the agenda ;)
   ;; Start magit commit in insert mode
   (add-hook 'with-editor-mode-hook 'evil-insert-state)
 #+END_SRC
+* Sphinx Doc
+Always enable sphinx-doc-mode
+#+begin_src emacs-lisp
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (require 'sphinx-doc)
+              (sphinx-doc-mode t)))
+  (evil-leader/set-key-for-mode 'python-mode "d d" 'sphinx-doc)
+#+end_src
 * LaTeX
 Ask me about the TeX master file if unsure
 #+BEGIN_SRC emacs-lisp

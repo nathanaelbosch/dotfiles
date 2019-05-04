@@ -93,6 +93,8 @@ This function should only modify configuration layer settings."
                                       ;; org-subtask-reset
                                       ;; org-habits
                                       org-chef
+                                      sphinx-doc
+                                      frame-mode
                                       )
 
    ;; A list of packages that cannot be updated.
