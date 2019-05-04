@@ -15,7 +15,7 @@ config:
   create: true
   dotpath: dotfiles
   keepdot: false
-  link_by_default: false
+  link_by_default: true
   longkey: false
 dotfiles:
   d_config_i3:
@@ -34,6 +34,10 @@ dotfiles:
   d_polybar:
     dst: ~/.config/polybar
     src: config/polybar
+  d_ranger:
+    dst: ~/.config/ranger
+    link: true
+    src: config/ranger
   d_rofi:
     dst: ~/.config/rofi
     src: config/rofi
@@ -51,6 +55,7 @@ dotfiles:
     src: spacemacs.d
   d_sxhkd:
     dst: ~/.config/sxhkd
+    link: true
     src: config/sxhkd
   f_aliases:
     dst: ~/.aliases
@@ -141,6 +146,24 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
+  askja:
+    dotfiles:
+    - d_config_i3
+    - d_fish
+    - d_i3status
+    - d_scripts
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_aliases
+    - f_bashrc
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_i3-scrot.conf
+    - f_profile
+    - f_tmux.conf
+    - f_vimrc
+    - f_xresources
+    - d_ranger
   nath-laptop:
     dotfiles:
     - d_fish
@@ -170,27 +193,27 @@ profiles:
     - f_yaourtrc
   nath-pc:
     dotfiles:
-    - f_bashrc
+    - d_fish
+    - d_i3
+    - d_i3status
+    - d_polybar
+    - d_rofi
+    - d_screenlayout
+    - d_scripts
+    - d_spacemacs.d
     - f_aliases
     - f_bash_profile
+    - f_bashrc
+    - f_compton.conf
+    - f_config.py
     - f_extend.bashrc
     - f_extend.xresources
     - f_extend.xresources.mycolors
     - f_extend.xresources.sun
-    - f_profile
-    - f_xresources
-    - f_yaourtrc
-    - d_fish
     - f_gitconfig
-    - d_screenlayout
-    - f_compton.conf
-    - d_i3status
-    - d_i3
-    - d_polybar
-    - f_config.py
-    - d_rofi
-    - d_scripts
+    - f_mpw
+    - f_profile
     - f_tmux.conf
     - f_vimrc
-    - f_mpw
-    - d_spacemacs.d
+    - f_xresources
+    - f_yaourtrc

@@ -47,3 +47,6 @@ alias p="ipython --pdb"
 
 alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"
 alias pokerstars="wine .wine/drive_c/Program\ Files\ \(x86\)/PokerStars.EU/PokerStarsUpdate.exe"
+
+alias lazyvf="vf activate lazy"
+alias papers="ranger ~/MEGA/papers/lib/"
