@@ -155,7 +155,7 @@ super + shift + p
 #   terminal -name htop_win -e htop
 
 super + shift + x
-  xsecurelock
+  slock
 
 super + z
   morc_menu
