@@ -153,9 +153,31 @@ Correct indentation in org-babel source blocks
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("scrbook" "\\documentclass{scrbook}"
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (evil-leader/set-key-for-mode 'org-mode "e p" 'org-latex-export-to-pdf)
+  (evil-leader/set-key-for-mode 'org-mode "e p"
+    'org-latex-export-to-pdf)
+  ;; (lambda () (interactive) (org-latex-export-to-pdf t)))
+  (evil-leader/set-key-for-mode 'org-mode "e b"
+    'org-beamer-export-to-pdf)
+  ;; (lambda () (interactive) (org-beamer-export-to-pdf t)))
+  (evil-leader/set-key-for-mode 'org-mode "e t"
+    'org-latex-export-to-latex)
 #+END_SRC
+
+Ability to ignore headings in the export, so that I can use them just to
+structure and fold my text:
+#+begin_src emacs-lisp
+  (require 'ox-extra)
+  (ox-extras-activate '(ignore-headlines org-export-ignore-headlines))
+#+end_src
 ** Latex/Org mode switch
 #+BEGIN_SRC emacs-lisp
   (defun switch-org-latex-mode ()
@@ -294,6 +316,11 @@ Customized the structure of the default notes entry, to contain more information
         (lambda (fpath)
           (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
 #+END_SRC
+*** Cleveref
+#+begin_src emacs-lisp
+  (setq org-ref-default-ref-type "cref")
+  (setq org-latex-prefer-user-labels t)
+#+end_src
 ** org-capture
 My templates
 #+BEGIN_SRC emacs-lisp
@@ -503,6 +530,8 @@ When I write org to not write LaTeX
 #+BEGIN_SRC emacs-lisp
   ;; Not optimal, but otherwise it creates wayy too many folders
   (setq-default org-download-image-dir "~/Dropbox/org/images")
+  (setq org-download-screenshot-method "sleep 1; gnome-screenshot -a -f %s")
+  (setq org-download-image-latex-width 7)
 #+END_SRC
 ** Misc
 To be able to press "S" in the agenda ;)
@@ -510,6 +539,14 @@ To be able to press "S" in the agenda ;)
   ;; Set long and latiude for sunset
   (setq calendar-latitude 48.248872)
   (setq calendar-longitude 11.653248)
+#+END_SRC
+** todo state logging note inserts now open in evil insert mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-log-buffer-setup-hook 'evil-insert-state)
+#+END_SRC
+** org image width
+#+BEGIN_SRC emacs-lisp
+  (setq org-image-actual-width '(300))
 #+END_SRC
 * Magit
 #+BEGIN_SRC emacs-lisp
