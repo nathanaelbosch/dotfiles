@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	urxvt
+    terminator
 
 # program launcher
 # super + @space
@@ -104,9 +104,9 @@ XF86AudioMute
 # focus/swap
 ###################################################################
 super + {_,shift + }{h,j,k,l}
-	i3-msg {focus, move} {left, down, up, right}
-super + {_,shift + }{left, down, up, right}
-	i3-msg {focus, move} {left, down, up, right}
+	i3-msg {focus, move} {Left, Down, Up, Right}
+super + {_,shift + }{Left, Down, Up, Right}
+	i3-msg {focus, move} {Left, Down, Up, Right}
 
 
 ###################################################################
@@ -115,7 +115,7 @@ super + {_,shift + }{left, down, up, right}
 super + {_, shift+} b
   i3-msg "{workspace back_and_forth, move container to workspace back_and_forth; workspace back_and_forth}"
 super + {comma, period}
-  i3-msg move workspace to output {left, right}
+  i3-msg move workspace to output {Left, Right}
 
 super + {1-9,0}
   export _WS="ws{1-9,10}";\
@@ -127,7 +127,7 @@ super + shift + {1-9,0}
   i3-msg move container to workspace $_WS_NAME;
 
 #navigate workspaces next / previous
-super + ctrl + {right, left}
+super + ctrl + {Right, Left}
   i3-msg workspace {next, prev}
 
 
@@ -147,9 +147,9 @@ super + ctrl + x
 
 # screenshots
 {_, super +, super + shift +} Print
-  i3-scrot {_, -w, -s}
+  sleep 0.2; scrot {_, -w, -s}
 super + shift + p
-  i3-scrot -s
+  sleep 0.2; scrot -s
 
 # ctrl + shift + escape
 #   terminal -name htop_win -e htop
