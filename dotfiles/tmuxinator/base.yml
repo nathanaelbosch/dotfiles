@@ -1,0 +1,60 @@
+# ~/.tmuxinator/base.yml
+
+name: base
+root: ~/
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: boards
+
+# Specitifes (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
+# startup_pane: 1
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t base
+
+windows:
+  - monitor:
+      layout: even-horizontal
+      panes:
+          - htop
+          - watch -n 1 nvidia-smi
+  - code:
+      layout: tiled
+      panes:
+        - cd Projekte/visual-gp-dynamics
+        - cd Projekte/visual-gp-dynamics
+        - cd Projekte/visual-gp-dynamics
+        - cd Projekte/visual-gp-dynamics
+        - cd Projekte/visual-gp-dynamics
+        - cd Projekte/visual-gp-dynamics
+  - cluster: ssh login.cluster.is.localnet
+  - boards:
+      layout: tiled
+      panes:
+          - TB1:
+              - cd forked_packages/extended-tensorboard
+              - ~/bin/bazel run //extended_tensorboard -- --logdir /is/rg/ev/scratch/nbosch/visual-gp-dynamics/forward_dynamics/ --host localhost --port 6006
+          - TB2:
+              - cd forked_packages/extended-tensorboard
+              - ~/bin/bazel run //extended_tensorboard -- --logdir /is/rg/ev/scratch/nbosch/visual-gp-dynamics/tmp/forward_dynamics/ --host localhost --port 6007
+          - TB3:
+              - cd forked_packages/extended-tensorboard
+              - ~/bin/bazel run //extended_tensorboard -- --logdir /tmp/visgp/pure_vae --host localhost --port 6010
+          - spare1: 
+              - cd forked_packages/extended-tensorboard
+          - spare2:
+              - cd forked_packages/extended-tensorboard
+          - spare3:
+              - cd forked_packages/extended-tensorboard
+          - omniboard:
+              - .npm-packages/bin/omniboard --mu 'mongodb://nbosch:9LtgR0IvW5lt@localhost:27017/gp_space_dynamics?authSource=admin&authMechanism=SCRAM-SHA-1'
+          - omniboard2:
+              - .npm-packages/bin/omniboard --mu 'mongodb://nbosch:9LtgR0IvW5lt@localhost:27017/forward_dynamics?authSource=admin&authMechanism=SCRAM-SHA-1'
+          - project:
+              - cd Projekte/visual-gp-dynamics
