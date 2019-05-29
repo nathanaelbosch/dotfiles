@@ -189,7 +189,7 @@ structure and fold my text:
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "STARTED(s!)" "TODO(t)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c@/!)" "DONE(d)")
+        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c@)" "DONE(d!)")
           (sequence "TOREAD(r)" "TOWATCH(m)" "TOLISTEN(l)" "|")
           ))
   (setq org-todo-keyword-faces
@@ -327,6 +327,8 @@ My templates
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
            "* TODO %?")
+          ("m" "MasterThesis" entry (file+headline "~/Dropbox/org/thesis.org" "Tasks / Projects")
+           "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
            "* TODO %?")
           ;; ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
@@ -350,8 +352,20 @@ Default agenda files
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"
-                           "~/MEGA/papers/notes.org"))
-  (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
+                           "~/MEGA/papers/notes.org"
+                           "~/Projekte/masterthesis-learning-visionbased-control/notes/"
+                           ))
+  ;; (mapcar '(lambda (file)
+  ;;            (push file org-agenda-files))
+  ;;         '("~/Dropbox/org/"
+  ;;           "~/Dropbox/org/gcal/"
+  ;;           "~/MEGA/papers/notes.org"
+  ;;           "~/Projekte/masterthesis-learning-visionbased-control/notes/"
+  ;;           "~/Projekte/masterthesis-learning-visionbased-control/thesis/"
+  ;;           )
+  ;;         )
+
+    (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
 #+END_SRC
 
 Custom views
@@ -429,26 +443,23 @@ Custom views
           ("v" "Thesis"
            ((agenda ""
                     ((org-agenda-span 1)
-                     (org-agenda-files '("~/Dropbox/org/thesis.org"
-                                         "~/Dropbox/org/gcal/"
-                                         "~/Projekte/visual-gp-dynamics/TODOs.org"))
+                     (org-agenda-skip-function '(org-agenda-skip-entry-if
+                                                 'todo '("WAITING")))
                      (org-agenda-overriding-header "Thesis Agenda")))
-            ;; (todo "STARTED"
-            ;;       ((org-agenda-overriding-header "Started Tasks")))
-            ;; (tags-todo "-someday+TODO=\"TODO\""
             (tags-todo "-someday"
-                  ((org-agenda-todo-ignore-scheduled t)
-                   ;; (org-agenda-skip-entry-if 'todo '("TODO" "WAITING"))
-                   (org-agenda-overriding-header "TODOs")))
+                       ((org-agenda-todo-ignore-scheduled t)
+                        ;; (org-agenda-skip-entry-if 'todo '("TODO" "WAITING"))
+                        (org-agenda-overriding-header "TODOs")))
             ;; (todo "WAITING"
             ;;       ((org-agenda-overriding-header "WAITING tasks")))
             (tags-todo "someday"
                        ((org-agenda-overriding-header "Someday: Ideas/features/...")))
             )
-           ((org-agenda-files '("~/Dropbox/org/thesis.org"
-                                "~/Projekte/visual-gp-dynamics/TODOs.org"))
-            (org-agenda-sorting-strategy '(priority-down tag-down todo-state-up))
-            (org-agenda-filter-preset '("")))
+           ((org-agenda-sorting-strategy '(time-up priority-down tag-down todo-state-up))
+            (org-agenda-filter-preset '(""))
+            (org-agenda-regexp-filter-preset '(""))
+            (org-agenda-tag-filter-preset '("+WORK"))
+            )
            )
           ))
 #+END_SRC
