@@ -57,6 +57,10 @@ dotfiles:
     dst: ~/.config/sxhkd
     link: true
     src: config/sxhkd
+  d_tmuxinator:
+    dst: ~/.tmuxinator
+    link: true
+    src: tmuxinator
   f_aliases:
     dst: ~/.aliases
     link: true
@@ -164,6 +168,7 @@ profiles:
     - f_vimrc
     - f_xresources
     - d_ranger
+    - d_tmuxinator
   nath-laptop:
     dotfiles:
     - d_fish
