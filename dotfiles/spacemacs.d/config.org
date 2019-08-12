@@ -422,6 +422,7 @@ Custom views
 
 General agenda settings
 #+BEGIN_SRC emacs-lisp
+  ;; (setq org-agenda-filter-preset '("-someday" "-WORK"))
   (setq org-agenda-filter-preset '("-someday"))
   (setq org-agenda-regexp-filter-preset '("-WAITING"))
   (setq org-agenda-log-mode-items '(closed clock state))
