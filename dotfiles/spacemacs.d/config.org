@@ -183,7 +183,7 @@ To better follow the spacemacs mnemonics instead of C-c C-x ...
       (insert-file-contents filePath)
       (split-string (buffer-string) "\n" t)))
   ;; Read lines from gcal.auth and store them in the variable
-  (setq auth-lines (read-lines "~/gcal.auth"))
+  (setq auth-lines (read-lines "~/Dropbox/org/gcal.auth"))
   ;; Google Calendar
   (setq org-gcal-client-id (car auth-lines)
         org-gcal-client-secret (car (cdr auth-lines)))
@@ -639,6 +639,12 @@ Ask me about the TeX master file if unsure
 
 #+END_SRC
 * Misc
+** Split vertically / horizontally
+Force vertical splits
+#+BEGIN_SRC emacs-lisp
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0)
+#+END_SRC
 ** Comment with ctrl-shift-c
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)

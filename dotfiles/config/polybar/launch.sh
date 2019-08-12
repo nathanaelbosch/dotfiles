@@ -15,9 +15,9 @@ if [ "$HOSTNAME" = nath-pc ]; then
             0)
                 polybar bottom_main &;;
             1)
-                polybar bottom_left &;;
-            2)
                 polybar bottom_right &;;
+            2)
+                polybar bottom_left &;;
             *)
                 # polybar top &
         esac

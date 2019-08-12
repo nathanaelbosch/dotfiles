@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
             ;; latex-enable-auto-fill nil
             latex-enable-folding t)
      lua
-     markdown
+     (markdown :variables markdown-live-preview-engine 'vmd)
      mu4e
      (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      (org :variables org-want-todo-bindings t)

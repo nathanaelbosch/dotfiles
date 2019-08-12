@@ -67,7 +67,7 @@ modules-right = wired-network memory cpu date
 ; Now some variations to have bars at the different monitors
 [bar/bottom_main]
 inherit = bar/bottom_base
-monitor = DisplayPort-0
+monitor = DP-2
 tray-position = right
 
 [bar/bottom_left]
