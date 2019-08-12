@@ -2,4 +2,6 @@
 # ~/.bash_profile
 #
 
+export PATH="$PATH:/home/nath/.local/bin"
+
 [[ -f ~/.bashrc ]] && . ~/.bashrc

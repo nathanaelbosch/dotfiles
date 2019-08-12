@@ -9,6 +9,8 @@
 [[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 [[ -f ~/.profile ]] && . ~/.profile
 
+export PATH="$PATH:/home/nath/.local/bin"
+
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 
