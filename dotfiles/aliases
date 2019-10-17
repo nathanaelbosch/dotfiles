@@ -39,6 +39,7 @@ alias tde="trans :de"
 alias ten="trans :en"
 alias tfr="trans :fr"
 
+# alias feh="feh --scale-down --auto-zoom --start-at"
 alias feh="feh --scale-down --start-at"
 
 # Python things
@@ -50,3 +51,5 @@ alias pokerstars="wine .wine/drive_c/Program\ Files\ \(x86\)/PokerStars.EU/Poker
 
 alias lazyvf="vf activate lazy"
 alias papers="ranger ~/MEGA/papers/lib/"
+
+alias f="fuck"

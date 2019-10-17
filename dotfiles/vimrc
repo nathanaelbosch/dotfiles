@@ -2,7 +2,6 @@ filetype plugin indent on
 syntax on
 
 colorscheme default
-hi Search cterm=NONE ctermfg=black ctermbg=yellow
  
 " Show partial commands in the last line of the screen
 set showcmd
@@ -56,10 +55,13 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
 call plug#end()
+"colorscheme gruvbox
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='tomorrow'
+"let g:airline_theme='tomorrow'
+let g:airline_theme='gruvbox'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif

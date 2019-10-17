@@ -18,6 +18,10 @@ config:
   link_by_default: true
   longkey: false
 dotfiles:
+  d_bat:
+    dst: ~/.config/bat
+    link: true
+    src: config/bat
   d_config_i3:
     dst: ~/.config/i3
     src: config/i3
@@ -158,6 +162,7 @@ profiles:
     - d_scripts
     - d_spacemacs.d
     - d_sxhkd
+    - f_config.py
     - f_aliases
     - f_bashrc
     - f_extend.bashrc
@@ -169,6 +174,7 @@ profiles:
     - f_xresources
     - d_ranger
     - d_tmuxinator
+    - d_bat
   nath-laptop:
     dotfiles:
     - d_fish

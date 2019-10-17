@@ -2,6 +2,18 @@
 # ~/.bashrc
 #
 
+CUDA_VERSION=10.0
+export PATH=/is/software/nvidia/cuda-$CUDA_VERSION/bin:$PATH
+export LD_LIBRARY_PATH=/is/software/nvidia/cuda-$CUDA_VERSION/lib64:$LD_LIBRARY_PATH
+export CUDA_HOME=/is/software/nvidia/cuda-$CUDA_VERSION
+#-cuDNN
+CUDNN_VERSION=7.5-cu$CUDA_VERSION
+export C_INCLUDE_PATH=/is/software/nvidia/cudnn-$CUDNN_VERSION:$CPATH
+export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH
+export LIBRARY_PATH=/is/software/nvidia/cudnn-$CUDNN_VERSION:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/is/software/nvidia/cudnn-$CUDNN_VERSION/lib64:$LD_LIBRARY_PATH
+
+
 export PATH="${PATH}:$HOME/scripts"
 export PATH="${PATH}:$HOME/.local/bin"
 export PATH="${PATH}:$HOME/bin"
@@ -21,4 +33,7 @@ export PATH="${PATH}:$HOME/bin"
 
 
 ## FISH DEFAULT SHELL
+[[ $TERM == "tramp" ]] && PS1='$ ' && return
+[[ $TERM == "dumb" ]] && PS1='$ ' && return
 [[ -f /usr/bin/fish ]] && exec fish
+export MPW_FULLNAME=nathanael.bosch

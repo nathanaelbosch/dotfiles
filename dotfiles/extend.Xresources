@@ -1,31 +1,61 @@
-#define BG      #1d1f21
-#define BG50    #801d1f21
-#define BG80    #cc1d1f21
-#define FG      #c5c8c6
-!! black dark/light
-#define C0      #282a2e
-#define C8      #373b41
-!! red dark/light
-#define C1      #a54242
-#define C9      #cc6666
-!! green dark/light
-#define C2      #8c9440
-#define C10     #b5bd68
-!! yellow dark/light
-#define C3      #de935f
-#define C11     #f0c674
-!! blue dark/light
-#define C4      #5f819d
-#define C12     #81a2be
-!! magenta dark/light
-#define C5      #85678f
-#define C13     #b294bb
-!! cyan dark/light
-#define C6      #5e8d87
-#define C14     #8abeb7
-!! white dark/light
-#define C7      #707880
-#define C15     #c5c8c6
+!! #define BG      #1d1f21
+!! #define BG50    #801d1f21
+!! #define BG80    #cc1d1f21
+!! #define FG      #c5c8c6
+!! !! black dark/light
+!! #define C0      #282a2e
+!! #define C8      #373b41
+!! !! red dark/light
+!! #define C1      #a54242
+!! #define C9      #cc6666
+!! !! green dark/light
+!! #define C2      #8c9440
+!! #define C10     #b5bd68
+!! !! yellow dark/light
+!! #define C3      #de935f
+!! #define C11     #f0c674
+!! !! blue dark/light
+!! #define C4      #5f819d
+!! #define C12     #81a2be
+!! !! magenta dark/light
+!! #define C5      #85678f
+!! #define C13     #b294bb
+!! !! cyan dark/light
+!! #define C6      #5e8d87
+!! #define C14     #8abeb7
+!! !! white dark/light
+!! #define C7      #707880
+!! #define C15     #c5c8c6
+
+
+! hard contrast: *background: #1d2021
+#define BG #282828
+! soft contrast: *background: #32302f
+#define FG #ebdbb2
+! Black + DarkGrey
+#define C0 #282828
+#define C8 #928374
+! DarkRed + Red
+#define C1 #cc241d
+#define C9 #fb4934
+! DarkGreen + Green
+#define C2 #98971a
+#define C10 #b8bb26
+! DarkYellow + Yellow
+#define C3 #d79921
+#define C11 #fabd2f
+! DarkBlue + Blue
+#define C4 #458588
+#define C12 #83a598
+! DarkMagenta + Magenta
+#define C5 #b16286
+#define C13 #d3869b
+! DarkCyan + Cyan
+#define C6 #689d6a
+#define C14 #8ec07c
+! LightGrey + White
+#define C7 #a89984
+#define C15 #ebdbb2
 
 
 *background:                      BG
