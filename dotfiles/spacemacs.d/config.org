@@ -63,7 +63,7 @@ Also, this was initially in user-init
 #+END_SRC
 *** Other modules
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'org-modules 'org-subtask-reset)
+  ;; (add-to-list 'org-modules 'org-subtask-reset)
 #+END_SRC
 
 *** Order can be super useful!
@@ -104,7 +104,7 @@ Also, this was initially in user-init
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-targets '(("~/Dropbox/org/todo.org" :maxlevel . 2)
                              ("~/Dropbox/org/references.org" :maxlevel . 1)
-                             ("~/Dropbox/org/thesis.org" :level . 1)
+                             ("~/Dropbox/org/thesis.org" :level . 2)
                              (nil . (:level . 1))
                              ))
 #+END_SRC
@@ -140,33 +140,25 @@ Correct indentation in org-babel source blocks
   (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
   ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
 #+END_SRC
-** Latex exports
-#+BEGIN_SRC emacs-lisp
-  (setq org-latex-pdf-process (list "latexmk -pdf %f"))
-
-  (add-to-list 'org-latex-classes
-               '("letter" "\\documentclass{letter}"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-  (evil-leader/set-key-for-mode 'org-mode "e p" 'org-latex-export-to-pdf)
-#+END_SRC
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IN PROGRESS(p)" "INACTIVE(i)" "|" "CANCELLED(c)" "DONE(d)")
-          (sequence "TOREAD(r)" "TOWATCH(w)" "TOLISTEN(l)" "|")
+        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c@)" "DONE(d!)")
+          (sequence "TOREAD(r)" "TOWATCH(W)" "TOLISTEN(l)" "|")
+          (sequence "REMINDER(R)" "|")
           ))
   (setq org-todo-keyword-faces
         '(("TOREAD" . "#5e8d87")
           ("TOWATCH" . "#85678f")
           ("TOLISTEN" . "#85678f")
           ("INACTIVE" . "#707880")
-          ;; ("HABIT" . "#de935f")
-          ("CANCELLED" . "#c5c8c6")
+          ("WAITING" . "#8abeb7")
+          ("STARTED" . "#f0c674")
+          ("CANCELLED" . "#707880")
+          ("1PASS" . (:foreground "#b5bd68" :weight bold))
+          ("2PASS" . (:foreground "#b5bd68" :weight bold))
+          ("3PASS" . (:foreground "#b5bd68" :weight bold))
+          ("REMINDER" . "#5e8d87")
           ))
 #+END_SRC
 ** Hotkeys
@@ -264,6 +256,7 @@ Customized the structure of the default notes entry, to contain more information
   :PDF: %F
   :INTERLEAVE_PDF: %F
   :END:
+  PDF: file:%F
   ")
 #+END_SRC
 *** PDF opening
@@ -280,36 +273,37 @@ Customized the structure of the default notes entry, to contain more information
         (lambda (fpath)
           (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
 #+END_SRC
+*** Cleveref
+#+begin_src emacs-lisp
+  (setq org-ref-default-ref-type "cref")
+  (setq org-latex-prefer-user-labels t)
+#+end_src
 ** org-capture
 My templates
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
            "* TODO %?")
+          ("m" "MasterThesis" entry (file+headline "~/Dropbox/org/thesis.org" "Inbox")
+           "* TODO %?")
           ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
            "* TODO %?")
-          ;; ("w" "Weekly review" entry (file+olp+datetree "~/Dropbox/org/reviews.org")
-          ;;  (file "~/Dropbox/org/weeklyreview_template.org"))
           ;; ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
           ;;  "* %?\nEntered on %U\n  %i\n  %a")
            ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i")
            ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
            "* Wäsche [%]\n:PROPERTIES:\n:ORDERED:  t\n:END:\n** TODO Wäsche: In die Maschine und machen\nSCHEDULED: %t\n** TODO Wäsche: Aufhängen\nSCHEDULED: %t\n** TODO Wäsche: Abhängen\nSCHEDULED: %t\n** TODO Wäsche: Aufräumen\nSCHEDULED: %t")
-           ("m" "Masterpraktikum")
-           ("mg" "Masterpraktikum: General" entry (file+headline "~/Dropbox/org/masterpraktikum.org" "General")
-            "* TODO %?")
-           ("mc" "Masterpraktikum: Clustering" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Clustering" "Tasks")
-            "* TODO %?")
-           ("ma" "Masterpraktikum: Anomaly Detection 2" entry (file+olp "~/Dropbox/org/masterpraktikum.org" "Anomaly Detection 2" "Tasks")
-            "* TODO %?")
-           ("r" "To read" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-            "* TOREAD %?")
-           ("p" "Paper" entry (file+headline "~/MEGA/papers/notes.org" "Inbox")
-            "* TOREAD %?")
+           ;; ("r" "To read" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           ;;  "* TOREAD %?")
+           ;; ("p" "Paper" entry (file+headline "~/MEGA/papers/notes.org" "Inbox")
+           ;;  "* TOREAD %?")
            ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
             "%(org-chef-get-recipe-from-url)"
             :empty-lines 1)
+           ("v" "Thesis journal" entry
+            (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
+            "* %?\n\nEntered on %U\n  %i")
   ))
 #+END_SRC
 ** org-agenda
@@ -318,112 +312,117 @@ Default agenda files
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"
-                           "~/MEGA/papers/notes.org"))
-  (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
+                           "~/MEGA/papers/notes.org"
+                           "~/Projekte/masterthesis-learning-visionbased-control/notes/"
+                           ))
+  ;; (mapcar '(lambda (file)
+  ;;            (push file org-agenda-files))
+  ;;         '("~/Dropbox/org/"
+  ;;           "~/Dropbox/org/gcal/"
+  ;;           "~/MEGA/papers/notes.org"
+  ;;           "~/Projekte/masterthesis-learning-visionbased-control/notes/"
+  ;;           "~/Projekte/masterthesis-learning-visionbased-control/thesis/"
+  ;;           )
+  ;;         )
+
+    (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
 #+END_SRC
 
 Custom views
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
-        ;; (append org-agenda-custom-commands
-                '(("c" "Upcoming week - Columns" agenda ""
-                   ((org-agenda-span 'week)
-                    (org-agenda-filter-preset '("-habit"))
-                    (org-agenda-view-columns-initially t)
-                    ))
+        '(("c" "Upcoming week - Columns" agenda ""
+           ((org-agenda-span 'week)
+            (org-agenda-filter-preset '("-habit"))
+            (org-agenda-view-columns-initially t)
+            ))
 
-                  ("n" "Next Actions"
-                   ((todo "TODO"
-                    ((org-agenda-filter-preset '("-someday"))
-                     (org-agenda-todo-ignore-scheduled t)
-                     ))
-                    (tags-todo "habit")
-                    (agenda ""
-                     ((org-agenda-entry-types '(:deadline))
-                      (org-agenda-span 1)
-                      (org-deadline-warning-days 90)
-                      (org-agenda-time-grid nil)
-                      (org-agenda-overriding-header "Upcoming Deadlines")
-                      )))
-                   ;; ((org-agenda-compact-blocks t))
-                   )
-                  ("N" "Next Actions - Including scheduled tasks"
-                   ((todo "TODO"
-                          ((org-agenda-filter-preset '("-someday"))
-                           ;; (org-agenda-todo-ignore-scheduled t)
-                           (org-deadline-warning-days 90)))
-                    (tags-todo "habit")
-                    (agenda ""
-                            ((org-agenda-entry-types '(:deadline))
-                             (org-agenda-span 1)
-                             (org-deadline-warning-days 90)
-                             (org-agenda-time-grid nil)
-                             (org-agenda-overriding-header "Upcoming Deadlines")
-                             )))
-                   ;; ((org-agenda-compact-blocks t))
-                   )
-
-                  ;; Special types
-                  ("s" "Someday" tags-todo "someday"
-                   ((org-agenda-filter-preset '("+someday"))
-                    (org-use-tag-inheritance nil)
-                    (org-agenda-todo-ignore-with-date nil)))
-                  ("r" "To read" todo "TOREAD"
-                   ((org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("R" "To read - including 'someday'" todo "TOREAD"
-                   ((org-agenda-filter-preset '(""))
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("w" "To watch" todo "TOWATCH"
-                   ((org-agenda-filter-preset '(""))
-                    (org-agenda-view-columns-initially t)
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("w" "To watch - including 'someday'" todo "TOWATCH"
-                   ((org-agenda-view-columns-initially t)
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("l" "To listen" todo "TOLISTEN"
-                   ((org-agenda-filter-preset '(""))
-                    (org-agenda-sorting-strategy '(priority-down tag-down))
-                    ))
-                  ("p" "Papers" todo "TOREAD"
-                   ((org-agenda-files '("~/MEGA/papers/notes.org")))
-                   )
-                  ;; ("P" "Papers - Full List"
-                  ;;  ;; alltodo ""
-                  ;;  tags"CATEGORY=\"papers\""
-                  ;;  ((org-agenda-files '("~/MEGA/papers/notes.org"))
-                  ;;   (org-agenda-skip-function '(org-agenda-skip-entry-if 'done))
-                  ;;   )
-                  ;;  )
-
-                  ;; Contexts
-                  ("h" "@Home"
-                   ((tags-todo "@home"
-                         ((org-agenda-todo-ignore-with-date nil)))
+          ("n" "Next Actions"
+           ((todo "TODO"
+                  ((org-agenda-filter-preset '("-someday"))
+                   (org-agenda-todo-ignore-scheduled 'future)
                    ))
-                  ("u" "@Uni"
-                   ((tags-todo "@uni"
-                          ((org-agenda-todo-ignore-with-date nil)))
-                    ))
+            (tags-todo "habit")
+            (agenda ""
+                    ((org-agenda-entry-types '(:deadline))
+                     (org-agenda-span 1)
+                     (org-deadline-warning-days 90)
+                     (org-agenda-time-grid nil)
+                     (org-agenda-overriding-header "Upcoming Deadlines")
+                     ))))
+          ("N" "Next Actions - Including scheduled tasks"
+           ((todo "TODO"
+                  ((org-agenda-filter-preset '("-someday"))
+                   (org-agenda-todo-ignore-scheduled nil)
+                   (org-deadline-warning-days 90)))
+            (tags-todo "habit")
+            (agenda ""
+                    ((org-agenda-entry-types '(:deadline))
+                     (org-agenda-span 1)
+                     (org-deadline-warning-days 90)
+                     (org-agenda-time-grid nil)
+                     (org-agenda-overriding-header "Upcoming Deadlines")
+                     ))))
 
-                  ("d" "Upcoming deadlines" agenda ""
-                   ((org-agenda-entry-types '(:deadline))
-                    (org-agenda-span 1)
-                    (org-deadline-warning-days 60)
-                    (org-agenda-overriding-header "Upcoming Deadlines")
-                    (org-agenda-time-grid nil)))
+          ;; Special types
+          ("s" "Someday" tags-todo "someday"
+           ((org-agenda-filter-preset '("+someday"))
+            (org-use-tag-inheritance nil)
+            (org-agenda-todo-ignore-with-date nil)))
+          ("r" "To read" todo "TOREAD"
+           ((org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("R" "To read - including 'someday'" todo "TOREAD"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("w" "To watch" todo "TOWATCH"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-view-columns-initially t)
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("w" "To watch - including 'someday'" todo "TOWATCH"
+           ((org-agenda-view-columns-initially t)
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("l" "To listen" todo "TOLISTEN"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("p" "Papers" todo "TOREAD"
+           ((org-agenda-files '("~/MEGA/papers/notes.org"))))
 
-                  )
-                )
+          ;; Contexts
+          ("h" "@Home" tags-todo "@home"
+           ((org-agenda-todo-ignore-with-date nil)))
+          ("u" "@Uni" tags-todo "@uni"
+           ((org-agenda-todo-ignore-with-date nil)))
+
+          ("d" "Upcoming deadlines" agenda ""
+           ((org-agenda-entry-types '(:deadline))
+            (org-agenda-span 1)
+            (org-deadline-warning-days 60)
+            (org-agenda-overriding-header "Upcoming Deadlines")
+            (org-agenda-time-grid nil)))
+
+          ("v" "Thesis"
+           ((agenda ""
+                    ((org-agenda-span 1)
+                     (org-agenda-skip-function '(org-agenda-skip-entry-if
+                                                 'todo '("WAITING")))
+                     (org-agenda-overriding-header "Thesis Agenda")))
+            (tags-todo "WORK"
+                       ((org-agenda-todo-ignore-scheduled t)
+                        (org-agenda-overriding-header "TODOs")))
+            )
+           ((org-agenda-sorting-strategy '(time-up priority-down tag-down todo-state-up))
+            (org-agenda-filter-preset '(""))
+            (org-agenda-regexp-filter-preset '(""))
+            (org-agenda-tag-filter-preset '("+WORK"))
+            )
+           )
+          ))
 #+END_SRC
 
 General agenda settings
 #+BEGIN_SRC emacs-lisp
-  ;; (setq org-agenda-filter-preset '("-someday" "-WORK"))
-  (setq org-agenda-filter-preset '("-someday"))
+  ;; (setq org-agenda-filter-preset '("-someday"))
+  (setq org-agenda-filter-preset '("-someday" "-WORK"))
   (setq org-agenda-regexp-filter-preset '("-WAITING"))
   (setq org-agenda-log-mode-items '(closed clock state))
 
@@ -447,6 +446,23 @@ General agenda settings
 
   ;; Include archived files
   (setq org-agenda-archives-mode t)
+#+END_SRC
+** org-projectile
+Add project files to the org agenda
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'org-agenda
+    (require 'org-projectile)
+    (mapcar '(lambda (file)
+               (when (file-exists-p file)
+                 (push file org-agenda-files)))
+            (org-projectile-todo-files)))
+#+END_SRC
+
+Add project capture to capture menu
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-capture-templates
+               (org-projectile-project-todo-entry
+                :capture-character "p"))
 #+END_SRC
 ** Clocking
 #+BEGIN_SRC emacs-lisp
@@ -481,6 +497,8 @@ When I write org to not write LaTeX
 #+BEGIN_SRC emacs-lisp
   ;; Not optimal, but otherwise it creates wayy too many folders
   (setq-default org-download-image-dir "~/Dropbox/org/images")
+  (setq org-download-screenshot-method "sleep 3; gnome-screenshot -a -f %s")
+  (setq org-download-image-latex-width 7)
 #+END_SRC
 ** Misc
 To be able to press "S" in the agenda ;)
@@ -489,15 +507,168 @@ To be able to press "S" in the agenda ;)
   (setq calendar-latitude 48.248872)
   (setq calendar-longitude 11.653248)
 #+END_SRC
+** todo state logging note inserts now open in evil insert mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-log-buffer-setup-hook 'evil-insert-state)
+#+END_SRC
+** org image width
+#+BEGIN_SRC emacs-lisp
+  (setq org-image-actual-width '(300))
+#+END_SRC
+** org cycle
+#+BEGIN_SRC emacs-lisp
+  ;; (setq org-cycle-separator-lines 1)
+#+END_SRC
+* Org & Latex
+** Latex exports
+#+BEGIN_SRC emacs-lisp
+  ;; (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  (setq org-latex-pdf-process (list
+                               "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
+
+  (add-to-list 'org-latex-classes
+               '("letter" "\\documentclass{letter}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("article" "\\documentclass[a4paper]{article}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("scrbook" "\\documentclass{scrbook}"
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("tumthesis" "\\documentclass{tumthesis}"
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+  (evil-leader/set-key-for-mode 'org-mode "e p"
+    'org-latex-export-to-pdf)
+  ;; (lambda () (interactive) (org-latex-export-to-pdf t)))
+  (evil-leader/set-key-for-mode 'org-mode "e B"
+    'org-beamer-export-to-pdf)
+  (evil-leader/set-key-for-mode 'org-mode "e b"
+    'org-beamer-export-to-latex)
+  ;; (lambda () (interactive) (org-beamer-export-to-pdf t)))
+  (evil-leader/set-key-for-mode 'org-mode "e t"
+    'org-latex-export-to-latex)
+#+END_SRC
+
+Ability to ignore headings in the export, so that I can use them just to
+structure and fold my text:
+#+begin_src emacs-lisp
+  (require 'ox-extra)
+  (ox-extras-activate '(ignore-headlines org-export-ignore-headlines))
+#+end_src
+
+Make TODOs red in the latex export
+#+begin_src emacs-lisp
+(defun org-latex-format-headline-colored-keywords-function
+    (todo todo-type priority text tags info)
+        (concat
+           (cond ((string= todo "TODO")(and todo (format "{\\color{red}\\bfseries\\sffamily %s} " todo)))
+   ((string= todo "DONE")(and todo (format "{\\color{green}\\bfseries\\sffamily %s} " todo))))
+            (and priority (format "\\framebox{\\#%c} " priority))
+            text
+            (and tags
+            (format "\\hfill{}\\textsc{%s}"
+    (mapconcat (lambda (tag) (org-latex-plain-text tag info))
+           tags ":")))))
+
+(setq org-latex-format-headline-function 'org-latex-format-headline-colored-keywords-function)
+#+end_src
+** Latex/Org mode switch
+#+BEGIN_SRC emacs-lisp
+  (defun switch-org-latex-mode ()
+    (interactive)
+    (if (equal major-mode 'org-mode) (latex-mode) (org-mode)))
+  (evil-leader/set-key-for-mode 'org-mode "l" 'switch-org-latex-mode)
+  (evil-leader/set-key-for-mode 'latex-mode "l" 'switch-org-latex-mode)
+#+END_SRC
+** cdlatex environments
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key-for-mode 'org-mode "i E" 'cdlatex-environment)
+#+END_SRC
+** Org latex syntax highlight
+#+BEGIN_SRC emacs-lisp
+  (setq org-highlight-latex-and-related '(latex))
+#+END_SRC
+** Org latex table caption below
+#+begin_src emacs-lisp
+  (setq org-latex-caption-above nil)
+#+end_src
 * Magit
 #+BEGIN_SRC emacs-lisp
   ;; Start magit commit in insert mode
   (add-hook 'with-editor-mode-hook 'evil-insert-state)
 #+END_SRC
+* Sphinx Doc
+Always enable sphinx-doc-mode
+#+begin_src emacs-lisp
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (require 'sphinx-doc)
+              (sphinx-doc-mode t)))
+  (evil-leader/set-key-for-mode 'python-mode "d d" 'sphinx-doc)
+#+end_src
 * LaTeX
 Ask me about the TeX master file if unsure
 #+BEGIN_SRC emacs-lisp
   (setq-default TeX-master nil)
+#+END_SRC
+** RefTex
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key-for-mode 'latex-mode "r r" 'reftex-cleveref-cref)
+#+END_SRC
+** Outline Minor Mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'LaTeX-mode-hook #'outline-minor-mode)
+#+END_SRC
+Fake sections for better manipulation:
+#+BEGIN_SRC emacs-lisp
+  (setq TeX-outline-extra
+        '(("%chapter" 1)
+          ("%section" 2)
+          ("%subsection" 3)
+          ("%subsubsection" 4)
+          ("%paragraph" 5)))
+  ;; add font locking to the headers
+  (font-lock-add-keywords
+   'latex-mode
+   '(("^%\\(chapter\\|\\(sub\\|subsub\\)?section\\|paragraph\\)"
+      0 'font-lock-keyword-face t)
+     ("^%chapter{\\(.*\\)}"       1 'font-latex-sectioning-1-face t)
+     ("^%section{\\(.*\\)}"       1 'font-latex-sectioning-2-face t)
+     ("^%subsection{\\(.*\\)}"    1 'font-latex-sectioning-3-face t)
+     ("^%subsubsection{\\(.*\\)}" 1 'font-latex-sectioning-4-face t)
+     ("^%paragraph{\\(.*\\)}"     1 'font-latex-sectioning-5-face t)))
+#+END_SRC
+** Outline-magic
+#+BEGIN_SRC emacs-lisp
+  (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)
+  (define-key outline-minor-mode-map (kbd "M-h") 'outline-promote)
+  (define-key outline-minor-mode-map (kbd "M-j") 'outline-move-subtree-down)
+  (define-key outline-minor-mode-map (kbd "M-k") 'outline-move-subtree-up)
+  (define-key outline-minor-mode-map (kbd "M-l") 'outline-demote)
+  (define-key outline-minor-mode-map (kbd "M-H")
+    (lambda() (interactive) (evil-visual-line) (outline-promote)))
+  (define-key outline-minor-mode-map (kbd "M-L")
+    (lambda() (interactive) (evil-visual-line) (outline-demote)))
 #+END_SRC
 * Fira Code
 #+BEGIN_SRC emacs-lisp
@@ -639,12 +810,6 @@ Ask me about the TeX master file if unsure
 
 #+END_SRC
 * Misc
-** Split vertically / horizontally
-Force vertical splits
-#+BEGIN_SRC emacs-lisp
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 0)
-#+END_SRC
 ** Comment with ctrl-shift-c
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)
@@ -678,4 +843,16 @@ open pdfs scaled to fit page
 ** Visual line mode when working with text based content
 #+BEGIN_SRC emacs-lisp
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+#+END_SRC
+
+** Global auto revert modes
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode t)
+#+END_SRC
+* Python
+** Black instead of yapf
+
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key-for-mode 'python-mode "="
+    'blacken-buffer)
 #+END_SRC
