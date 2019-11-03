@@ -104,6 +104,10 @@ dotfiles:
   f_i3-scrot.conf:
     dst: ~/.config/i3-scrot.conf
     src: config/i3-scrot.conf
+  f_latexmkrc:
+    dst: ~/.latexmkrc
+    link: true
+    src: latexmkrc
   f_mpw:
     dst: ~/.mpw
     link: true
@@ -221,4 +225,5 @@ profiles:
     - f_vimrc
     - f_xresources
     - f_yaourtrc
+    - f_latexmkrc
     - d_bat
