@@ -138,8 +138,8 @@ dotfiles:
 profiles:
   arch-laptop:
     dotfiles:
-    - d_i3
     - d_fish
+    - d_i3
     - d_i3status
     - d_polybar
     - d_spacemacs.d
@@ -159,9 +159,10 @@ profiles:
     - f_xresources
   askja:
     dotfiles:
-    - d_i3
     - d_fish
+    - d_i3
     - d_i3status
+    - d_ranger
     - d_scripts
     - d_spacemacs.d
     - d_sxhkd
@@ -174,7 +175,6 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
-    - d_ranger
   nath-laptop:
     dotfiles:
     - d_fish
@@ -202,6 +202,7 @@ profiles:
     - f_yaourtrc
   nath-pc:
     dotfiles:
+    - d_bat
     - d_fish
     - d_i3
     - d_i3status
@@ -210,6 +211,7 @@ profiles:
     - d_screenlayout
     - d_scripts
     - d_spacemacs.d
+    - d_sxhkd
     - f_aliases
     - f_bash_profile
     - f_bashrc
@@ -218,14 +220,12 @@ profiles:
     - f_extend.bashrc
     - f_extend.xresources
     - f_gitconfig
+    - f_latexmkrc
     - f_mpw
     - f_profile
     - f_tmux.conf
     - f_vimrc
+    - f_xinitrc
+    - f_xprofile
     - f_xresources
     - f_yaourtrc
-    - f_latexmkrc
-    - d_bat
-    - f_xinitrc
-    - d_sxhkd
-    - f_xprofile
