@@ -78,7 +78,7 @@ monitor = DVI-1
 
 [bar/bottom_right]
 inherit = bar/bottom_base
-monitor = DVI-0
+monitor = DVI-D-0
 
 [bar/bottom_laptop]
 inherit = bar/bottom_base
