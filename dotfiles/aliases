@@ -11,6 +11,7 @@ alias l='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=aut
 # Emacs
 alias evil="emacsclient -nc"
 alias vil="emacsclient -t"
+alias zt="zathura --fork"
 
 # Pacman
 alias fixit="sudo rm -f /var/lib/pacman/db.lck"
