@@ -27,8 +27,10 @@ white_light = ${xrdb:color15}
 ; Some definitions that both top and bottom bars need anyways
 height = 27
 width = 100%
-background = ${colors.bg80}
-foreground = ${colors.white80}
+;background = ${colors.bg80}
+background = ${colors.bg}
+;foreground = ${colors.white80}
+foreground = ${colors.fg}
 line-color = ${bar/base.background}
 
 font-0 = "Hack:style=Regular:size=10;1"
