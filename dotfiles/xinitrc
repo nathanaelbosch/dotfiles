@@ -67,26 +67,10 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-setxkbmap -layout us,de
 
-~/.screenlayout/3_monitor_layout.sh 
-pulseaudio &
-pa-applet &
-nm-applet &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-nitrogen --restore &
-compton -b --config ~/.compton.conf &
-xfce4-power-manager &
-clipit &
-ff-theme-util &
-fix_xcursor &
-# ~/.config/polybar/launch.sh &
-~/scripts/keyboard_setup.sh &
-dropbox start &
-# spotify &
-megasync &
-redshift-gtk -l 48.2488721:11.6532477 &
-emacs --daemon &
+# Make sure this is before the 'exec' command or it won't be sourced.
+[ -f /etc/xprofile ] && . /etc/xprofile
+[ -f ~/.xprofile ] && . ~/.xprofile
 
 
 exec $(get_session)

@@ -1,0 +1,38 @@
+#
+# ~/.xprofile
+#
+#
+
+# if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+#     eval "$(dbus-launch --sh-syntax --exit-with-session)"
+# fi
+
+# Environment variables
+#
+
+~/.screenlayout/3_monitor_layout.sh &
+
+setxkbmap -option "compose:ralt"
+setxkbmap -option "grp:alt_space_toggle"
+setxkbmap -layout us,de
+
+pulseaudio &
+pa-applet &
+nm-applet &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+nitrogen --restore &
+# compton -b --config ~/.compton.conf &
+xfce4-power-manager &
+clipit &
+ff-theme-util &
+fix_xcursor &
+# ~/.config/polybar/launch.sh &
+~/scripts/keyboard_setup.sh &
+dropbox start &
+# spotify &
+megasync &
+redshift-gtk -l 48.2488721:11.6532477 &
+emacs --daemon &
+
+
+[[ -f ~/.extend.xprofile ]] && . ~/.extend.xprofile
