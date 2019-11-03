@@ -891,6 +891,11 @@ Fake sections for better manipulation:
   ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
 #+end_src
 * Misc
+** Better vertical splitting
+#+BEGIN_SRC emacs-lisp
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 160)
+#+END_SRC
 ** Comment with ctrl-shift-c
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-S-c") 'evil-commentary-line)
