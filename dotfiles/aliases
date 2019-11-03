@@ -23,6 +23,7 @@ alias printer="system-config-printer"
 alias xopen="xdg-open"
 alias nfetch="neofetch --w3m"
 
+alias crontab='crontab - i'
 alias bashrc="$EDITOR $HOME/.bashrc"
 alias zshrc="$EDITOR $HOME/.zshrc"
 alias fishrc="$EDITOR $HOME/.config/fish/config.fish"
