@@ -5,6 +5,8 @@
 export PATH="${PATH}:$HOME/scripts"
 export PATH="${PATH}:$HOME/bin"
 export PATH="${PATH}:$HOME/.local/bin"
+export PATH="$PATH:/home/nath/.local/bin"
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -12,14 +14,14 @@ export PATH="${PATH}:$HOME/.local/bin"
 [[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 [[ -f ~/.profile ]] && . ~/.profile
 
-export PATH="$PATH:/home/nath/.local/bin"
+# Aliases
+[[ -f ~/.aliases ]] && . ~/.aliases
 
+# Bash Completion
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-
-## Master Password App
+# Master Password App
 [[ -f ~/.mpw ]] && . ~/.mpw
 
-
-## FISH DEFAULT SHELL
+# FISH DEFAULT SHELL
 [[ -f /usr/bin/fish ]] && exec fish
