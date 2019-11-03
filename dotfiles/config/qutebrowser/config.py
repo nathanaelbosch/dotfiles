@@ -44,3 +44,8 @@ c.confirm_quit = ['multiple-tabs']
 
 config.bind('<Ctrl-Tab>', 'tab-next')
 config.bind('<Ctrl-Shift-Tab>', 'tab-prev')
+
+config.unbind('d', mode='normal')
+# config.bind('dd', 'tab-close')
+config.bind('d', 'scroll-page 0 0.5')
+config.bind('u', 'scroll-page 0 -0.5')
