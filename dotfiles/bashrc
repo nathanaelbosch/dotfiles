@@ -2,10 +2,17 @@
 # ~/.bashrc
 #
 
+export PATH="${PATH}:$HOME/scripts"
+export PATH="${PATH}:$HOME/bin"
+export PATH="${PATH}:$HOME/.local/bin"
+# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Source the other relevant files
 [[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 [[ -f ~/.profile ]] && . ~/.profile
+
+export PATH="$PATH:/home/nath/.local/bin"
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
@@ -14,9 +21,5 @@
 [[ -f ~/.mpw ]] && . ~/.mpw
 
 
-## BASH IS BAD
-if command -v fish >/dev/null; then
-    exec fish
-elif command -v zsh >/dev/null; then
-    exec zsh
-fi
+## FISH DEFAULT SHELL
+[[ -f /usr/bin/fish ]] && exec fish

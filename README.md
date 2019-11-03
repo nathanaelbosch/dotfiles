@@ -7,7 +7,7 @@ Dotdrop requires python as well as some packages to work, so make sure to have a
 ```bash
 git clone --recursive https://github.com/nathbo/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-pip install --user -r dotfiles/requirements.txt
+pip install --user -r dotdrop/requirements.txt
 ```
 After this the `./dotdrop.sh` should be functional. Test it with `./dotdrop.sh help`.
 

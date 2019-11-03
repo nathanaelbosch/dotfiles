@@ -15,15 +15,16 @@ if [ "$HOSTNAME" = nath-pc ]; then
             0)
                 polybar bottom_main &;;
             1)
-                polybar bottom_left &;;
-            2)
                 polybar bottom_right &;;
+            2)
+                polybar bottom_left &;;
             *)
                 # polybar top &
         esac
         i=$((i + 1))
         echo $i
     done
+    # polybar top &
 elif [ "$HOSTNAME" = nath-laptop ]; then
     polybar bottom_laptop &
 fi

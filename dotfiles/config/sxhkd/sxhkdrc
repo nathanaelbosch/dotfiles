@@ -1,0 +1,164 @@
+###################################################################
+# wm independent hotkeys
+###################################################################
+
+# terminal emulator
+super + Return
+	urxvt
+
+# program launcher
+# super + @space
+# 	dmenu_run
+# super + d
+#   rofi -show run
+# alt + Tab
+#   rofi -show window
+super + d
+	dmenu_run -sb "#5F819D" -nf "#c5c8c6" -sf "#c5c8c6"
+
+# Emacs hotkey
+super + e
+  emacsclient -c
+
+# make sxhkd reload its configuration files:
+super + ctrl + r
+	pkill -USR1 -x sxhkd
+
+# Dropdown terminal
+# F12
+#   id=$(cat /tmp/scratchid);\
+#   bspc node $id --flag hidden;bspc node -f $id
+# F12
+#   tdrop -ma -w 50% -x 25% -y 25% -h 50% urxvt
+F12
+  i3-msg [instance="^my_guake$"] scratchpad show
+super + F12
+  urxvt -name my_guake
+
+ctrl + shift + Escape
+  urxvt -name htop_win -e htop
+
+###################################################################
+# Basic i3 controls
+###################################################################
+super + shift + r
+  i3-msg restart
+super + shift + e
+  i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'
+
+super + {u, y, n}
+  i3-msg border {none, pixel 1, normal}
+
+{super + shift + q, alt + F4}
+	i3-msg kill
+
+# super + r
+#   ~/bin/resize_mode
+
+super + {v, q}
+  i3-msg split {v, toggle}
+
+super + {_, shift +} f
+  i3-msg fullscreen toggle {_, global}
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+super + {s, w, shift+t}
+  i3-msg layout {stacking, tabbed, toggle split}
+
+# toggle tiling / floating
+super + shift + space
+  i3-msg floating toggle
+
+# change focus between tiling / floating windows
+super + space
+  i3-msg focus mode_toggle
+
+# toggle sticky
+super + shift + s
+  i3-msg sticky toggle
+
+# focus the parent container
+super + a
+  i3-msg focus parent
+
+# Scratchpad
+super + {_, shift +} minus
+  i3-msg {[instance="^(?!my_guake).*$"] scratchpad show, move scratchpad}
+
+super + o
+  i3-msg open
+
+
+###################################################################
+# Sound
+###################################################################
+# Pulse Audio controls
+{XF86AudioRaiseVolume, XF86AudioLowerVolume}
+  pactl set-sink-volume 0 {+5%, -5%}
+XF86AudioMute
+  pactl set-sink-mute 0 toggle
+
+
+###################################################################
+# focus/swap
+###################################################################
+super + {_,shift + }{h,j,k,l}
+	i3-msg {focus, move} {left, down, up, right}
+super + {_,shift + }{left, down, up, right}
+	i3-msg {focus, move} {left, down, up, right}
+
+
+###################################################################
+# Workspaces
+###################################################################
+super + {_, shift+} b
+  i3-msg "{workspace back_and_forth, move container to workspace back_and_forth; workspace back_and_forth}"
+super + {comma, period}
+  i3-msg move workspace to output {left, right}
+
+super + {1-9,0}
+  export _WS="ws{1-9,10}";\
+  export _WS_NAME=$(grep "^set \$$_WS " ~/.config/i3/config | sed "s/set \$$_WS //g");\
+  i3-msg workspace $_WS_NAME
+super + shift + {1-9,0}
+  export _WS="ws{1-9,10}";\
+  export _WS_NAME=$(grep "^set \$$_WS " ~/.config/i3/config | sed "s/set \$$_WS //g");\
+  i3-msg move container to workspace $_WS_NAME;
+
+#navigate workspaces next / previous
+super + ctrl + {right, left}
+  i3-msg workspace {next, prev}
+
+
+###################################################################
+# Applications
+###################################################################
+super + F2
+  qutebrowser
+super + {_, shift +} F3
+  {_,gksu} pcmanfm
+# super + {_, shift +} t
+#   {pkill compton, compton -b --config ~/.compton.conf}
+# super + shift + d
+#   killall dunst; exec notify-send 'restart dunst'
+super + ctrl + x
+  xkill
+
+# screenshots
+{_, super +, super + shift +} Print
+  i3-scrot {_, -w, -s}
+super + shift + p
+  i3-scrot -s
+
+# ctrl + shift + escape
+#   terminal -name htop_win -e htop
+
+super + shift + x
+  slock
+
+super + z
+  morc_menu
+
+super + ctrl + m
+  pavucontrol
