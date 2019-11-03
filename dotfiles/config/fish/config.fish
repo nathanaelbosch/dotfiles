@@ -10,6 +10,8 @@ end
 
 # Virtualfish
 # eval (python3.6 -m virtualfish)
+# Pipenv
+set pipenv_fish_fancy yes
 
 # goto makro to quickly open any Project + venv
 function project -d "Go to project and activate venv"
@@ -33,3 +35,5 @@ end
 if test -z "$DISPLAY" -a $XDG_VTNR = 1
     exec startx -- -keeptty
 end
+
+thefuck --alias | source
