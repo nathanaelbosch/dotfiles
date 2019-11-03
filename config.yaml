@@ -18,6 +18,10 @@ config:
   link_by_default: true
   longkey: false
 dotfiles:
+  d_bat:
+    dst: ~/.config/bat
+    link: true
+    src: config/bat
   d_config_i3:
     dst: ~/.config/i3
     src: config/i3
@@ -217,3 +221,4 @@ profiles:
     - f_vimrc
     - f_xresources
     - f_yaourtrc
+    - d_bat
