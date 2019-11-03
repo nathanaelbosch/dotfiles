@@ -3,16 +3,16 @@
 alias cp="cp -i"                          # confirm before overwriting something
 alias df="df -h"                          # human-readable sizes
 alias free="free -h"                      # human-readable sizes
-# alias cat=bat
+alias cat="bat"
 alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias l='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 
+alias crontab='crontab - i'
+
 # Emacs
 alias evil="emacsclient -nc"
 alias vil="emacsclient -t"
-alias zt="zathura --fork"
-alias xclip="xclip -selection c"
 
 # Pacman
 alias fixit="sudo rm -f /var/lib/pacman/db.lck"
@@ -20,23 +20,15 @@ alias inst="sudo pacman -S"
 alias uninst="sudo pacman -Rsu"
 alias mirrors="sudo pacman-mirrors -g"
 
-# Config files
+# Config
 #alias con="$EDITOR $HOME/.i3/config"
 alias con="$EDITOR $HOME/.config/i3/config"
 alias comp="$EDITOR $HOME/.config/compton.conf"
 alias printer="system-config-printer"
-alias xopen="xdg-open"
-alias nfetch="neofetch --w3m"
-
-alias crontab='crontab - i'
 alias bashrc="$EDITOR $HOME/.bashrc"
 alias zshrc="$EDITOR $HOME/.zshrc"
 alias fishrc="$EDITOR $HOME/.config/fish/config.fish"
 
-# Misc
-alias printer="system-config-printer"
-alias xopen="xdg-open"
-alias nfetch="neofetch --w3m"
 # Dotdrop for dotfiles
 alias dotdrop="$DOTREPO/dotdrop.sh"
 alias dotgit="git -C $DOTREPO"
@@ -47,14 +39,19 @@ alias tde="trans :de"
 alias ten="trans :en"
 alias tfr="trans :fr"
 
+# Programs
+alias zt="zathura --fork"
+alias xclip="xclip -selection c"
+alias xopen="xdg-open"
+alias nfetch="neofetch --w3m"
 alias feh="feh --scale-down --start-at"
+alias pokerstars="wine .wine/drive_c/Program\ Files\ \(x86\)/PokerStars.EU/PokerStarsUpdate.exe"
 
 # Python things
 alias ipylab="ipython --pylab"
 alias p="ipython --pdb"
 
+# Misc
 alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"
-alias pokerstars="wine .wine/drive_c/Program\ Files\ \(x86\)/PokerStars.EU/PokerStarsUpdate.exe"
-
 alias lazyvf="vf activate lazy"
 alias papers="ranger ~/MEGA/papers/lib/"
