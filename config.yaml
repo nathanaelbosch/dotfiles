@@ -22,16 +22,13 @@ dotfiles:
     dst: ~/.config/bat
     link: true
     src: config/bat
-  d_config_i3:
+  d_i3:
     dst: ~/.config/i3
     src: config/i3
   d_fish:
     dst: ~/.config/fish
     link: true
     src: config/fish
-  d_i3:
-    dst: ~/.i3
-    src: i3
   d_i3status:
     dst: ~/.config/i3status
     src: config/i3status
@@ -124,6 +121,10 @@ dotfiles:
     dst: ~/.vimrc
     link: true
     src: vimrc
+  f_xinitrc:
+    dst: ~/.xinitrc
+    link: true
+    src: xinitrc
   f_xresources:
     dst: ~/.Xresources
     link: true
@@ -135,7 +136,7 @@ dotfiles:
 profiles:
   arch-laptop:
     dotfiles:
-    - d_config_i3
+    - d_i3
     - d_fish
     - d_i3status
     - d_polybar
@@ -156,7 +157,7 @@ profiles:
     - f_xresources
   askja:
     dotfiles:
-    - d_config_i3
+    - d_i3
     - d_fish
     - d_i3status
     - d_scripts
@@ -227,3 +228,4 @@ profiles:
     - f_yaourtrc
     - f_latexmkrc
     - d_bat
+    - f_xinitrc
