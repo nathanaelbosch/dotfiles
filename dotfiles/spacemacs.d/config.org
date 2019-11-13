@@ -4,7 +4,7 @@
 Config also in [[file:init.el]]. All the layers are there, also all things that are
 customized in the original config file.
 
-Hotkey to modify this config file.
+** Hotkey to modify this config file.
 #+BEGIN_SRC emacs-lisp
   (spacemacs/set-leader-keys "f e c"
     (lambda()
@@ -12,15 +12,56 @@ Hotkey to modify this config file.
       (find-file "~/.spacemacs.d/config.org")))
 #+END_SRC
 
-I like visual line mode
+** I like visual line mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
 #+END_SRC
 
-Smoother undo behavior
+** Smoother undo behavior
 #+BEGIN_SRC emacs-lisp
   (setq evil-want-fine-undo t)
 #+END_SRC
+** Better vertical splitting
+#+BEGIN_SRC emacs-lisp
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 160)
+#+END_SRC
+** Comment with ctrl-shift-c
+#+BEGIN_SRC emacs-lisp
+  ;; (global-set-key (kbd "C-S-c") 'evil-commentary-line)
+  (global-set-key (kbd "C-S-c") 'evilnc-comment-or-uncomment-lines)
+#+END_SRC
+** Scroll margin
+#+BEGIN_SRC emacs-lisp
+  (setq scroll-margin 1)
+#+END_SRC
+
+** PDF
+open pdfs scaled to fit page
+#+BEGIN_SRC emacs-lisp
+  (setq-default pdf-view-display-size 'fit-page)
+#+END_SRC
+
+** Hitting "kj" fast makes me escape insert mode
+#+BEGIN_SRC emacs-lisp
+  ;; (setq-default evil-escape-key-sequence "kj")
+#+END_SRC
+
+** Auto-refresh buffers when files changed on disk
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode t)
+#+END_SRC
+
+** libnotify
+#+BEGIN_SRC emacs-lisp
+  ;; (setq alert-default-style 'libnotify)
+#+END_SRC
+
+** Visual line mode when working with text based content
+#+BEGIN_SRC emacs-lisp
+  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+#+END_SRC
+
 * Email
 #+BEGIN_SRC emacs-lisp
   ;; Email in emacs with mu4e
@@ -61,7 +102,7 @@ Also, this was initially in user-init
 #+BEGIN_SRC emacs-lisp
   (setq org-pretty-entities t)
 #+END_SRC
-*** Other modules
+*** Reset subtask module
 #+BEGIN_SRC emacs-lisp
   ;; (add-to-list 'org-modules 'org-subtask-reset)
 #+END_SRC
@@ -115,10 +156,8 @@ completion does not work well, and without that it is not very helpful.
   ;; (setq org-refile-use-outline-path 'file)
 #+END_SRC
 ** org-chef
-
 #+BEGIN_SRC emacs-lisp
-  (use-package org-chef
-    :ensure t)
+  (use-package org-chef :ensure t)
 #+END_SRC
 ** org-babel and org-src
 Org-babel languages
@@ -138,7 +177,7 @@ Correct indentation in org-babel source blocks
 #+END_SRC
 ** Column view
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
+  (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
   ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
 #+END_SRC
 ** Latex exports
@@ -181,14 +220,6 @@ structure and fold my text:
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines org-export-ignore-headlines))
 #+end_src
-** Latex/Org mode switch
-#+BEGIN_SRC emacs-lisp
-  (defun switch-org-latex-mode ()
-    (interactive)
-    (if (equal major-mode 'org-mode) (latex-mode) (org-mode)))
-  (evil-leader/set-key-for-mode 'org-mode "l" 'switch-org-latex-mode)
-  (evil-leader/set-key-for-mode 'latex-mode "l" 'switch-org-latex-mode)
-#+END_SRC
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
@@ -243,7 +274,7 @@ To better follow the spacemacs mnemonics instead of C-c C-x ...
   (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
 
 #+END_SRC
-** org-ref
+** Paper workflow
 Sources:
 - https://codearsonist.com/reading-for-programmers
 - https://github.com/jkitchin/org-ref
@@ -287,7 +318,7 @@ To access interleave mode and helm-bibtex
   ;; (evil-leader/set-key-for-mode 'org-mode "I" 'clock-in-and-interleave)
   ;; (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
   ;; (evil-leader/set-key-for-mode 'org-mode "B" 'helm-bibtex)
-  ;; (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
+  (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
 #+END_SRC
 *** org-ref notes
 Customized the structure of the default notes entry, to contain more information
@@ -349,23 +380,6 @@ My templates
             "* %?\n\nEntered on %U\n  %i")
   ))
 #+END_SRC
-** org-projectile
-Add project files to the org agenda
-#+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (mapcar '(lambda (file)
-               (when (file-exists-p file)
-                 (push file org-agenda-files)))
-            (org-projectile-todo-files)))
-#+END_SRC
-
-Add project capture to capture menu
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'org-capture-templates
-               (org-projectile-project-todo-entry
-                :capture-character "p"))
-#+END_SRC
 ** org-agenda
 Default agenda files
 #+BEGIN_SRC emacs-lisp
@@ -373,15 +387,13 @@ Default agenda files
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"
                            "~/MEGA/papers/notes.org"
-                           "~/Projekte/masterthesis-learning-visionbased-control/notes/"
                            ))
+  ;; To append to the list
   ;; (mapcar '(lambda (file)
   ;;            (push file org-agenda-files))
   ;;         '("~/Dropbox/org/"
   ;;           "~/Dropbox/org/gcal/"
   ;;           "~/MEGA/papers/notes.org"
-  ;;           "~/Projekte/masterthesis-learning-visionbased-control/notes/"
-  ;;           "~/Projekte/masterthesis-learning-visionbased-control/thesis/"
   ;;           )
   ;;         )
 
@@ -391,13 +403,19 @@ Default agenda files
 Custom views
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
-        '(("c" "Upcoming week - Columns" agenda ""
+        '(
+          ("c" "Coding Projects" tags "coding-TODO=\"DONE\"" ())
+          ("C" "Coding Projects" tags-tree "coding-TODO=\"DONE\"" ())
+
+
+          ;; GTD-like workflow; Currently unused, thus the hiding, but potentially very interesting!
+          ("g" . "GTD")
+          ("gc" "Upcoming week - Columns" agenda ""
            ((org-agenda-span 'week)
             (org-agenda-filter-preset '("-habit"))
             (org-agenda-view-columns-initially t)
             ))
-
-          ("n" "Next Actions"
+          ("gn" "Next Actions"
            ((todo "TODO"
                   ((org-agenda-filter-preset '("-someday"))
                    (org-agenda-todo-ignore-scheduled 'future)
@@ -410,7 +428,7 @@ Custom views
                      (org-agenda-time-grid nil)
                      (org-agenda-overriding-header "Upcoming Deadlines")
                      ))))
-          ("N" "Next Actions - Including scheduled tasks"
+          ("gN" "Next Actions - Including scheduled tasks"
            ((todo "TODO"
                   ((org-agenda-filter-preset '("-someday"))
                    (org-agenda-todo-ignore-scheduled nil)
@@ -423,64 +441,54 @@ Custom views
                      (org-agenda-time-grid nil)
                      (org-agenda-overriding-header "Upcoming Deadlines")
                      ))))
-
-          ;; Special types
-          ("s" "Someday" tags-todo "someday"
+          ("gs" "Someday" tags-todo "someday"
            ((org-agenda-filter-preset '("+someday"))
             (org-use-tag-inheritance nil)
             (org-agenda-todo-ignore-with-date nil)))
-          ("r" "To read" todo "TOREAD"
-           ((org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("R" "To read - including 'someday'" todo "TOREAD"
-           ((org-agenda-filter-preset '(""))
-            (org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("w" "To watch" todo "TOWATCH"
-           ((org-agenda-filter-preset '(""))
-            (org-agenda-view-columns-initially t)
-            (org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("w" "To watch - including 'someday'" todo "TOWATCH"
-           ((org-agenda-view-columns-initially t)
-            (org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("l" "To listen" todo "TOLISTEN"
-           ((org-agenda-filter-preset '(""))
-            (org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("p" "Papers" todo "TOREAD"
-           ((org-agenda-files '("~/MEGA/papers/notes.org"))))
-
-          ;; Contexts
-          ("h" "@Home" tags-todo "@home"
-           ((org-agenda-todo-ignore-with-date nil)))
-          ("u" "@Uni" tags-todo "@uni"
-           ((org-agenda-todo-ignore-with-date nil)))
-
-          ("d" "Upcoming deadlines" agenda ""
+          ("gd" "Upcoming deadlines" agenda ""
            ((org-agenda-entry-types '(:deadline))
             (org-agenda-span 1)
             (org-deadline-warning-days 60)
             (org-agenda-overriding-header "Upcoming Deadlines")
             (org-agenda-time-grid nil)))
 
-          ("v" "Thesis"
-           ((agenda ""
-                    ((org-agenda-span 1)
-                     (org-agenda-files '("~/Dropbox/org/thesis.org"
-                                         "~/Dropbox/org/gcal/"))
-                     (org-agenda-skip-function '(org-agenda-skip-entry-if
-                                                 'todo '("WAITING")))
-                     (org-agenda-overriding-header "Thesis Agenda")))
-            (tags-todo "WORK"
-                       ((org-agenda-todo-ignore-scheduled t)
-                        (org-agenda-overriding-header "TODOs")))
-            )
-           ((org-agenda-sorting-strategy '(time-up priority-down tag-down todo-state-up))
+          ;; Special types
+          ("z" . "Media")
+          ("zr" "To read" todo "TOREAD"
+           ((org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("zR" "To read - including 'someday'" todo "TOREAD"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("zw" "To watch" todo "TOWATCH"
+           (
             (org-agenda-filter-preset '(""))
-            (org-agenda-regexp-filter-preset '(""))
-            (org-agenda-tag-filter-preset '("+WORK"))
-            )
-           ((org-agenda-files '("~/Dropbox/org/thesis.org"))
-            (org-agenda-sorting-strategy '(priority-down tag-down todo-state-up))
-            (org-agenda-filter-preset '("")))
-           )
+            (org-agenda-view-columns-initially t)
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("zl" "To listen" todo "TOLISTEN"
+           ((org-agenda-filter-preset '(""))
+            (org-agenda-sorting-strategy '(priority-down tag-down))))
+
+          ;; ("w" "Work"
+          ;;  ((agenda ""
+          ;;           ((org-agenda-span 1)
+          ;;            (org-agenda-files '("~/Dropbox/org/thesis.org"
+          ;;                                "~/Dropbox/org/gcal/"))
+          ;;            (org-agenda-skip-function '(org-agenda-skip-entry-if
+          ;;                                        'todo '("WAITING")))
+          ;;            (org-agenda-overriding-header "Thesis Agenda")))
+          ;;   (tags-todo "WORK"
+          ;;              ((org-agenda-todo-ignore-scheduled t)
+          ;;               (org-agenda-overriding-header "TODOs")))
+          ;;   )
+          ;;  ((org-agenda-sorting-strategy '(time-up priority-down tag-down todo-state-up))
+          ;;   (org-agenda-filter-preset '(""))
+          ;;   (org-agenda-regexp-filter-preset '(""))
+          ;;   (org-agenda-tag-filter-preset '("+WORK"))
+          ;;   )
+          ;;  ((org-agenda-files '("~/Dropbox/org/thesis.org"))
+          ;;   (org-agenda-sorting-strategy '(priority-down tag-down todo-state-up))
+          ;;   (org-agenda-filter-preset '("")))
+          ;;  )
           ))
 #+END_SRC
 
@@ -489,21 +497,19 @@ General agenda settings
   ;; (setq org-agenda-filter-preset '("-someday"))
   (setq org-agenda-filter-preset '("-someday" "-WORK"))
   (setq org-agenda-regexp-filter-preset '("-WAITING"))
-  (setq org-agenda-log-mode-items '(closed clock state))
+  (setq org-agenda-log-mode-items '(clock state))
 
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-skip-scheduled-if-done t)
-  ;; (setq org-agenda-window-setup 'current-window)
-  ;; (setq org-agenda-window-setup 'only-window)
 
   ;; Start agenda in day mode
   (setq org-agenda-span 1)
+
   ;; Start week on monday
   (setq org-agenda-start-on-weekday 1)
 
   ;; Tasks that cannot be done because of dependencies should not clutter the agenda
   ;; t grays them out, 'invisible makes them disappear
-  ;; (setq org-agenda-dim-blocked-tasks t)
   (setq org-agenda-dim-blocked-tasks 'invisible)
 
   ;; Better overview in agenda with my recurring tasks
@@ -515,19 +521,19 @@ General agenda settings
 ** org-projectile
 Add project files to the org agenda
 #+BEGIN_SRC emacs-lisp
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (mapcar '(lambda (file)
-               (when (file-exists-p file)
-                 (push file org-agenda-files)))
-            (org-projectile-todo-files)))
+  ;; (with-eval-after-load 'org-agenda
+  ;;   (require 'org-projectile)
+  ;;   (mapcar '(lambda (file)
+  ;;              (when (file-exists-p file)
+  ;;                (push file org-agenda-files)))
+  ;;           (org-projectile-todo-files)))
 #+END_SRC
 
 Add project capture to capture menu
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'org-capture-templates
-               (org-projectile-project-todo-entry
-                :capture-character "p"))
+  ;; (add-to-list 'org-capture-templates
+  ;;              (org-projectile-project-todo-entry
+  ;;               :capture-character "p"))
 #+END_SRC
 ** Clocking
 #+BEGIN_SRC emacs-lisp
@@ -556,7 +562,7 @@ When I write org to not write LaTeX
                                   (org-element-property :end comment))
                 "")))
   ;; add to export hook
-  ;; (add-hook 'org-export-before-processing-hook 'delete-org-comments)
+  (add-hook 'org-export-before-processing-hook 'delete-org-comments)
 #+END_SRC
 ** org-download
 #+BEGIN_SRC emacs-lisp
@@ -575,10 +581,6 @@ To be able to press "S" in the agenda ;)
 ** todo state logging note inserts now open in evil insert mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-log-buffer-setup-hook 'evil-insert-state)
-#+END_SRC
-** org image width
-#+BEGIN_SRC emacs-lisp
-  (setq org-image-actual-width '(300))
 #+END_SRC
 ** org cycle
 #+BEGIN_SRC emacs-lisp
@@ -659,11 +661,11 @@ Make TODOs red in the latex export
 #+end_src
 ** Latex/Org mode switch
 #+BEGIN_SRC emacs-lisp
-  (defun switch-org-latex-mode ()
-    (interactive)
-    (if (equal major-mode 'org-mode) (latex-mode) (org-mode)))
-  (evil-leader/set-key-for-mode 'org-mode "l" 'switch-org-latex-mode)
-  (evil-leader/set-key-for-mode 'latex-mode "l" 'switch-org-latex-mode)
+  ;; (defun switch-org-latex-mode ()
+  ;;   (interactive)
+  ;;   (if (equal major-mode 'org-mode) (latex-mode) (org-mode)))
+  ;; (evil-leader/set-key-for-mode 'org-mode "l" 'switch-org-latex-mode)
+  ;; (evil-leader/set-key-for-mode 'latex-mode "l" 'switch-org-latex-mode)
 #+END_SRC
 ** cdlatex environments
 #+BEGIN_SRC emacs-lisp
@@ -682,15 +684,6 @@ Make TODOs red in the latex export
   ;; Start magit commit in insert mode
   (add-hook 'with-editor-mode-hook 'evil-insert-state)
 #+END_SRC
-* Sphinx Doc
-Always enable sphinx-doc-mode
-#+begin_src emacs-lisp
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (require 'sphinx-doc)
-              (sphinx-doc-mode t)))
-  (evil-leader/set-key-for-mode 'python-mode "d d" 'sphinx-doc)
-#+end_src
 * LaTeX
 Ask me about the TeX master file if unsure
 #+BEGIN_SRC emacs-lisp
@@ -704,6 +697,7 @@ Ask me about the TeX master file if unsure
 #+BEGIN_SRC emacs-lisp
   (add-hook 'LaTeX-mode-hook #'outline-minor-mode)
 #+END_SRC
+
 Fake sections for better manipulation:
 #+BEGIN_SRC emacs-lisp
   (setq TeX-outline-extra
@@ -735,143 +729,149 @@ Fake sections for better manipulation:
   (define-key outline-minor-mode-map (kbd "M-L")
     (lambda() (interactive) (evil-visual-line) (outline-demote)))
 #+END_SRC
+** Visual fill mode instead of auto fill
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'latex-mode-hook 'visual-fill-column-mode)
+  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-off)
+  (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
+#+END_SRC
 * Fira Code
 #+BEGIN_SRC emacs-lisp
-  (defun setup-fira-code ()
-    ;; Fira code stuff - copied from PierreSp
-    ;; This works when using emacs --daemon + emacsclient
-    (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
-    ;; This works when using emacs without server/client
-    (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
-    ;; I haven't found one statement that makes both of the above situations work, so I use both for now
+  ;; (defun setup-fira-code ()
+  ;;   ;; Fira code stuff - copied from PierreSp
+  ;;   ;; This works when using emacs --daemon + emacsclient
+  ;;   (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
+  ;;   ;; This works when using emacs without server/client
+  ;;   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
+  ;;   ;; I haven't found one statement that makes both of the above situations work, so I use both for now
 
-    (defconst fira-code-font-lock-keywords-alist
-      (mapcar (lambda (regex-char-pair)
-                `(,(car regex-char-pair)
-                  (0 (prog1 ()
-                       (compose-region (match-beginning 1)
-                                       (match-end 1)
-                                       ;; The first argument to concat is a string containing a literal tab
-                                       ,(concat "	" (list (decode-char 'ucs (cadr regex-char-pair)))))))))
-              '(("\\(www\\)"                   #Xe100)
-                ("[^/]\\(\\*\\*\\)[^/]"        #Xe101)
-                ("\\(\\*\\*\\*\\)"             #Xe102)
-                ("\\(\\*\\*/\\)"               #Xe103)
-                ("\\(\\*>\\)"                  #Xe104)
-                ("[^*]\\(\\*/\\)"              #Xe105)
-                ("\\(\\\\\\\\\\)"              #Xe106)
-                ("\\(\\\\\\\\\\\\\\)"          #Xe107)
-                ("\\({-\\)"                    #Xe108)
-                ;; ("\\(\\[\\]\\)"                #Xe109) This is the [] ligature and I don't like
-                ("\\(::\\)"                    #Xe10a)
-                ("\\(:::\\)"                   #Xe10b)
-                ("[^=]\\(:=\\)"                #Xe10c)
-                ("\\(!!\\)"                    #Xe10d)
-                ("\\(!=\\)"                    #Xe10e)
-                ("\\(!==\\)"                   #Xe10f)
-                ("\\(-}\\)"                    #Xe110)
-                ("\\(--\\)"                    #Xe111)
-                ("\\(---\\)"                   #Xe112)
-                ("\\(-->\\)"                   #Xe113)
-                ("[^-]\\(->\\)"                #Xe114)
-                ("\\(->>\\)"                   #Xe115)
-                ("\\(-<\\)"                    #Xe116)
-                ("\\(-<<\\)"                   #Xe117)
-                ("\\(-~\\)"                    #Xe118)
-                ("\\(#{\\)"                    #Xe119)
-                ("\\(#\\[\\)"                  #Xe11a)
-                ("\\(##\\)"                    #Xe11b)
-                ("\\(###\\)"                   #Xe11c)
-                ("\\(####\\)"                  #Xe11d)
-                ("\\(#(\\)"                    #Xe11e)
-                ("\\(#\\?\\)"                  #Xe11f)
-                ("\\(#_\\)"                    #Xe120)
-                ("\\(#_(\\)"                   #Xe121)
-                ("\\(\\.-\\)"                  #Xe122)
-                ("\\(\\.=\\)"                  #Xe123)
-                ("\\(\\.\\.\\)"                #Xe124)
-                ("\\(\\.\\.<\\)"               #Xe125)
-                ("\\(\\.\\.\\.\\)"             #Xe126)
-                ("\\(\\?=\\)"                  #Xe127)
-                ("\\(\\?\\?\\)"                #Xe128)
-                ("\\(;;\\)"                    #Xe129)
-                ("\\(/\\*\\)"                  #Xe12a)
-                ("\\(/\\*\\*\\)"               #Xe12b)
-                ("\\(/=\\)"                    #Xe12c)
-                ("\\(/==\\)"                   #Xe12d)
-                ("\\(/>\\)"                    #Xe12e)
-                ("\\(//\\)"                    #Xe12f)
-                ("\\(///\\)"                   #Xe130)
-                ("\\(&&\\)"                    #Xe131)
-                ("\\(||\\)"                    #Xe132)
-                ("\\(||=\\)"                   #Xe133)
-                                          ;("[^|]\\(|=\\)"                #Xe134)
-                ("\\(|>\\)"                    #Xe135)
-                ("\\(\\^=\\)"                  #Xe136)
-                ("\\(\\$>\\)"                  #Xe137)
-                ("\\(\\+\\+\\)"                #Xe138)
-                ("\\(\\+\\+\\+\\)"             #Xe139)
-                ("\\(\\+>\\)"                  #Xe13a)
-                ("\\(=:=\\)"                   #Xe13b)
-                                          ;("[^!/]\\(==\\)[^>]"           #Xe13c)
-                ("\\(===\\)"                   #Xe13d)
-                ("\\(==>\\)"                   #Xe13e)
-                                          ;("[^=]\\(=>\\)"                #Xe13f)
-                ("\\(=>>\\)"                   #Xe140)
-                ("\\(<=\\)"                    #Xe141)
-                ("\\(=<<\\)"                   #Xe142)
-                ("\\(=/=\\)"                   #Xe143)
-                ("\\(>-\\)"                    #Xe144)
-                ("\\(>=\\)"                    #Xe145)
-                ("\\(>=>\\)"                   #Xe146)
-                ("[^-=]\\(>>\\)"               #Xe147)
-                ("\\(>>-\\)"                   #Xe148)
-                ("\\(>>=\\)"                   #Xe149)
-                ("\\(>>>\\)"                   #Xe14a)
-                ("\\(<\\*\\)"                  #Xe14b)
-                ("\\(<\\*>\\)"                 #Xe14c)
-                ("\\(<|\\)"                    #Xe14d)
-                ("\\(<|>\\)"                   #Xe14e)
-                ("\\(<\\$\\)"                  #Xe14f)
-                ("\\(<\\$>\\)"                 #Xe150)
-                ("\\(<!--\\)"                  #Xe151)
-                ("\\(<-\\)"                    #Xe152)
-                ("\\(<--\\)"                   #Xe153)
-                ("\\(<->\\)"                   #Xe154)
-                ("\\(<\\+\\)"                  #Xe155)
-                ("\\(<\\+>\\)"                 #Xe156)
-                ("\\(<=\\)"                    #Xe157)
-                ("\\(<==\\)"                   #Xe158)
-                ("\\(<=>\\)"                   #Xe159)
-                ("\\(<=<\\)"                   #Xe15a)
-                ("\\(<>\\)"                    #Xe15b)
-                ("[^-=]\\(<<\\)"               #Xe15c)
-                ("\\(<<-\\)"                   #Xe15d)
-                ("\\(<<=\\)"                   #Xe15e)
-                ("\\(<<<\\)"                   #Xe15f)
-                ("\\(<~\\)"                    #Xe160)
-                ("\\(<~~\\)"                   #Xe161)
-                ("\\(</\\)"                    #Xe162)
-                ("\\(</>\\)"                   #Xe163)
-                ("\\(~@\\)"                    #Xe164)
-                ("\\(~-\\)"                    #Xe165)
-                ("\\(~=\\)"                    #Xe166)
-                ("\\(~>\\)"                    #Xe167)
-                ("[^<]\\(~~\\)"                #Xe168)
-                ("\\(~~>\\)"                   #Xe169)
-                ("\\(%%\\)"                    #Xe16a)
-                ;; ("\\(x\\)"                   #Xe16b) This ended up being hard to do properly so i'm leaving it out.
-                ("[^:=]\\(:\\)[^:=]"           #Xe16c)
-                ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
-                ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f)
-                )))
+  ;;   (defconst fira-code-font-lock-keywords-alist
+  ;;     (mapcar (lambda (regex-char-pair)
+  ;;               `(,(car regex-char-pair)
+  ;;                 (0 (prog1 ()
+  ;;                      (compose-region (match-beginning 1)
+  ;;                                      (match-end 1)
+  ;;                                      ;; The first argument to concat is a string containing a literal tab
+  ;;                                      ,(concat "	" (list (decode-char 'ucs (cadr regex-char-pair)))))))))
+  ;;             '(("\\(www\\)"                   #Xe100)
+  ;;               ("[^/]\\(\\*\\*\\)[^/]"        #Xe101)
+  ;;               ("\\(\\*\\*\\*\\)"             #Xe102)
+  ;;               ("\\(\\*\\*/\\)"               #Xe103)
+  ;;               ("\\(\\*>\\)"                  #Xe104)
+  ;;               ("[^*]\\(\\*/\\)"              #Xe105)
+  ;;               ("\\(\\\\\\\\\\)"              #Xe106)
+  ;;               ("\\(\\\\\\\\\\\\\\)"          #Xe107)
+  ;;               ("\\({-\\)"                    #Xe108)
+  ;;               ;; ("\\(\\[\\]\\)"                #Xe109) This is the [] ligature and I don't like
+  ;;               ("\\(::\\)"                    #Xe10a)
+  ;;               ("\\(:::\\)"                   #Xe10b)
+  ;;               ("[^=]\\(:=\\)"                #Xe10c)
+  ;;               ("\\(!!\\)"                    #Xe10d)
+  ;;               ("\\(!=\\)"                    #Xe10e)
+  ;;               ("\\(!==\\)"                   #Xe10f)
+  ;;               ("\\(-}\\)"                    #Xe110)
+  ;;               ("\\(--\\)"                    #Xe111)
+  ;;               ("\\(---\\)"                   #Xe112)
+  ;;               ("\\(-->\\)"                   #Xe113)
+  ;;               ("[^-]\\(->\\)"                #Xe114)
+  ;;               ("\\(->>\\)"                   #Xe115)
+  ;;               ("\\(-<\\)"                    #Xe116)
+  ;;               ("\\(-<<\\)"                   #Xe117)
+  ;;               ("\\(-~\\)"                    #Xe118)
+  ;;               ("\\(#{\\)"                    #Xe119)
+  ;;               ("\\(#\\[\\)"                  #Xe11a)
+  ;;               ("\\(##\\)"                    #Xe11b)
+  ;;               ("\\(###\\)"                   #Xe11c)
+  ;;               ("\\(####\\)"                  #Xe11d)
+  ;;               ("\\(#(\\)"                    #Xe11e)
+  ;;               ("\\(#\\?\\)"                  #Xe11f)
+  ;;               ("\\(#_\\)"                    #Xe120)
+  ;;               ("\\(#_(\\)"                   #Xe121)
+  ;;               ("\\(\\.-\\)"                  #Xe122)
+  ;;               ("\\(\\.=\\)"                  #Xe123)
+  ;;               ("\\(\\.\\.\\)"                #Xe124)
+  ;;               ("\\(\\.\\.<\\)"               #Xe125)
+  ;;               ("\\(\\.\\.\\.\\)"             #Xe126)
+  ;;               ("\\(\\?=\\)"                  #Xe127)
+  ;;               ("\\(\\?\\?\\)"                #Xe128)
+  ;;               ("\\(;;\\)"                    #Xe129)
+  ;;               ("\\(/\\*\\)"                  #Xe12a)
+  ;;               ("\\(/\\*\\*\\)"               #Xe12b)
+  ;;               ("\\(/=\\)"                    #Xe12c)
+  ;;               ("\\(/==\\)"                   #Xe12d)
+  ;;               ("\\(/>\\)"                    #Xe12e)
+  ;;               ("\\(//\\)"                    #Xe12f)
+  ;;               ("\\(///\\)"                   #Xe130)
+  ;;               ("\\(&&\\)"                    #Xe131)
+  ;;               ("\\(||\\)"                    #Xe132)
+  ;;               ("\\(||=\\)"                   #Xe133)
+  ;;                                         ;("[^|]\\(|=\\)"                #Xe134)
+  ;;               ("\\(|>\\)"                    #Xe135)
+  ;;               ("\\(\\^=\\)"                  #Xe136)
+  ;;               ("\\(\\$>\\)"                  #Xe137)
+  ;;               ("\\(\\+\\+\\)"                #Xe138)
+  ;;               ("\\(\\+\\+\\+\\)"             #Xe139)
+  ;;               ("\\(\\+>\\)"                  #Xe13a)
+  ;;               ("\\(=:=\\)"                   #Xe13b)
+  ;;                                         ;("[^!/]\\(==\\)[^>]"           #Xe13c)
+  ;;               ("\\(===\\)"                   #Xe13d)
+  ;;               ("\\(==>\\)"                   #Xe13e)
+  ;;                                         ;("[^=]\\(=>\\)"                #Xe13f)
+  ;;               ("\\(=>>\\)"                   #Xe140)
+  ;;               ("\\(<=\\)"                    #Xe141)
+  ;;               ("\\(=<<\\)"                   #Xe142)
+  ;;               ("\\(=/=\\)"                   #Xe143)
+  ;;               ("\\(>-\\)"                    #Xe144)
+  ;;               ("\\(>=\\)"                    #Xe145)
+  ;;               ("\\(>=>\\)"                   #Xe146)
+  ;;               ("[^-=]\\(>>\\)"               #Xe147)
+  ;;               ("\\(>>-\\)"                   #Xe148)
+  ;;               ("\\(>>=\\)"                   #Xe149)
+  ;;               ("\\(>>>\\)"                   #Xe14a)
+  ;;               ("\\(<\\*\\)"                  #Xe14b)
+  ;;               ("\\(<\\*>\\)"                 #Xe14c)
+  ;;               ("\\(<|\\)"                    #Xe14d)
+  ;;               ("\\(<|>\\)"                   #Xe14e)
+  ;;               ("\\(<\\$\\)"                  #Xe14f)
+  ;;               ("\\(<\\$>\\)"                 #Xe150)
+  ;;               ("\\(<!--\\)"                  #Xe151)
+  ;;               ("\\(<-\\)"                    #Xe152)
+  ;;               ("\\(<--\\)"                   #Xe153)
+  ;;               ("\\(<->\\)"                   #Xe154)
+  ;;               ("\\(<\\+\\)"                  #Xe155)
+  ;;               ("\\(<\\+>\\)"                 #Xe156)
+  ;;               ("\\(<=\\)"                    #Xe157)
+  ;;               ("\\(<==\\)"                   #Xe158)
+  ;;               ("\\(<=>\\)"                   #Xe159)
+  ;;               ("\\(<=<\\)"                   #Xe15a)
+  ;;               ("\\(<>\\)"                    #Xe15b)
+  ;;               ("[^-=]\\(<<\\)"               #Xe15c)
+  ;;               ("\\(<<-\\)"                   #Xe15d)
+  ;;               ("\\(<<=\\)"                   #Xe15e)
+  ;;               ("\\(<<<\\)"                   #Xe15f)
+  ;;               ("\\(<~\\)"                    #Xe160)
+  ;;               ("\\(<~~\\)"                   #Xe161)
+  ;;               ("\\(</\\)"                    #Xe162)
+  ;;               ("\\(</>\\)"                   #Xe163)
+  ;;               ("\\(~@\\)"                    #Xe164)
+  ;;               ("\\(~-\\)"                    #Xe165)
+  ;;               ("\\(~=\\)"                    #Xe166)
+  ;;               ("\\(~>\\)"                    #Xe167)
+  ;;               ("[^<]\\(~~\\)"                #Xe168)
+  ;;               ("\\(~~>\\)"                   #Xe169)
+  ;;               ("\\(%%\\)"                    #Xe16a)
+  ;;               ;; ("\\(x\\)"                   #Xe16b) This ended up being hard to do properly so i'm leaving it out.
+  ;;               ("[^:=]\\(:\\)[^:=]"           #Xe16c)
+  ;;               ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
+  ;;               ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f)
+  ;;               )))
 
-    (defun add-fira-code-symbol-keywords ()
-      (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
+  ;;   (defun add-fira-code-symbol-keywords ()
+  ;;     (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
 
-    (add-hook 'prog-mode-hook
-              #'add-fira-code-symbol-keywords)
-    )
+  ;;   (add-hook 'prog-mode-hook
+  ;;             #'add-fira-code-symbol-keywords)
+  ;;   )
 
 #+END_SRC
 * EXWM
@@ -890,55 +890,19 @@ Fake sections for better manipulation:
   ;; (call-process-shell-command "(sleep 10s && spotify) &" nil 0)
   ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
 #+end_src
-* Misc
-** Better vertical splitting
-#+BEGIN_SRC emacs-lisp
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 160)
-#+END_SRC
-** Comment with ctrl-shift-c
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-S-c") 'evil-commentary-line)
-#+END_SRC
-** Scroll margin
-#+BEGIN_SRC emacs-lisp
-  (setq scroll-margin 1)
-#+END_SRC
-
-** PDF
-open pdfs scaled to fit page
-#+BEGIN_SRC emacs-lisp
-  (setq-default pdf-view-display-size 'fit-page)
-#+END_SRC
-
-** Hitting "kj" fast makes me escape insert mode
-#+BEGIN_SRC emacs-lisp
-  ;; (setq-default evil-escape-key-sequence "kj")
-#+END_SRC
-
-** Auto-refresh buffers when files changed on disk
-#+BEGIN_SRC emacs-lisp
-  (global-auto-revert-mode t)
-#+END_SRC
-
-** libnotify
-#+BEGIN_SRC emacs-lisp
-  ;; (setq alert-default-style 'libnotify)
-#+END_SRC
-
-** Visual line mode when working with text based content
-#+BEGIN_SRC emacs-lisp
-  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
-#+END_SRC
-
-** Global auto revert modes
-#+BEGIN_SRC emacs-lisp
-  (global-auto-revert-mode t)
-#+END_SRC
 * Python
 ** Black instead of yapf
 
 #+BEGIN_SRC emacs-lisp
-  (evil-leader/set-key-for-mode 'python-mode "="
-    'blacken-buffer)
+  ;; (evil-leader/set-key-for-mode 'python-mode "="
+  ;;   'blacken-buffer)
 #+END_SRC
+** Sphinx Doc
+Always enable sphinx-doc-mode
+#+begin_src emacs-lisp
+  ;; (add-hook 'python-mode-hook
+  ;;           (lambda ()
+  ;;             (require 'sphinx-doc)
+  ;;             (sphinx-doc-mode t)))
+  ;; (evil-leader/set-key-for-mode 'python-mode "d d" 'sphinx-doc)
+#+end_src
