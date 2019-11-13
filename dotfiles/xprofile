@@ -11,6 +11,7 @@
 #
 
 ~/.screenlayout/3_monitor_layout.sh &
+# ~/.screenlayout/remote_layout.sh &
 
 setxkbmap -option "compose:ralt"
 setxkbmap -option "grp:alt_space_toggle"
@@ -29,10 +30,12 @@ fix_xcursor &
 # ~/.config/polybar/launch.sh &
 ~/scripts/keyboard_setup.sh &
 dropbox start &
-# spotify &
 megasync &
 redshift-gtk -l 48.2488721:11.6532477 &
 emacs --daemon &
+spotify &
+firefox &
+anydesk &
 
 
 [[ -f ~/.extend.xprofile ]] && . ~/.extend.xprofile
