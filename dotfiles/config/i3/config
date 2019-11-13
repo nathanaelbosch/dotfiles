@@ -49,17 +49,16 @@ workspace_auto_back_and_forth yes
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1:
-set $ws2 2:
-set $ws3 3:
-set $ws4 4:
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
-set $ws9 9:
+set $ws9 9
 set $ws10 10
-exec i3-msg workspace $ws1
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
@@ -77,7 +76,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 
 # switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
+# for_window [urgent=latest] focus
 
 
 ###############################################################################
@@ -258,7 +257,7 @@ exec --no-startup-id urxvt -name "my_guake"
 for_window [instance="^my_guake$"] floating enable sticky enable border none
 for_window [instance="^my_guake$"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
 # bindsym F12 [instance="^my_guake$"] scratchpad show
-bindsym $mod+F12 exec --no-startup-id urxvt -name my_guake
+# bindsym $mod+F12 exec --no-startup-id urxvt -name my_guake
 
 for_window [class="Spotify"] move workspace $ws10
 
