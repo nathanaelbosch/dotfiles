@@ -157,30 +157,13 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
-  askja:
-    dotfiles:
-    - d_fish
-    - d_i3
-    - d_i3status
-    - d_ranger
-    - d_scripts
-    - d_spacemacs.d
-    - d_sxhkd
-    - f_aliases
-    - f_bashrc
-    - f_extend.bashrc
-    - f_extend.xresources
-    - f_i3-scrot.conf
-    - f_profile
-    - f_tmux.conf
-    - f_vimrc
-    - f_xresources
-  nath-laptop:
+  nath-laptop.old:
     dotfiles:
     - d_fish
     - d_i3
     - d_i3status
     - d_polybar
+    - d_ranger
     - d_rofi
     - d_screenlayout
     - d_scripts
@@ -194,6 +177,32 @@ profiles:
     - f_extend.xresources
     - f_gitconfig
     - f_i3-scrot.conf
+    - f_mpw
+    - f_profile
+    - f_tmux.conf
+    - f_vimrc
+    - f_xresources
+    - f_yaourtrc
+  nath-laptop:
+    dotfiles:
+    - d_fish
+    - d_i3
+      # - d_i3status
+      # - d_polybar
+      # - d_rofi
+      # - d_screenlayout
+    - d_scripts
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_aliases
+    - f_bash_profile
+    - f_bashrc
+      # - f_compton.conf
+      # - f_config.py
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_gitconfig
+      # - f_i3-scrot.conf
     - f_mpw
     - f_profile
     - f_tmux.conf
