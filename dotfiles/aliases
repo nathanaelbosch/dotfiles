@@ -50,8 +50,10 @@ alias pokerstars="wine .wine/drive_c/Program\ Files\ \(x86\)/PokerStars.EU/Poker
 # Python things
 alias ipylab="ipython --pylab"
 alias p="ipython --pdb"
+alias xpython='xvfb-run --auto-servernum -s "-screen 0 1400x900x24" python'
 
 # Misc
 alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"
 alias lazyvf="vf activate lazy"
 alias papers="ranger ~/MEGA/papers/lib/"
+
