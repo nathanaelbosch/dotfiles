@@ -13,9 +13,8 @@
 ~/.screenlayout/3_monitor_layout.sh &
 # ~/.screenlayout/remote_layout.sh &
 
-setxkbmap -option "compose:ralt"
-setxkbmap -option "grp:alt_space_toggle"
-setxkbmap -layout us,de
+setxkbmap -layout us,de -option compose:ralt compose:menu grp:alt_space_toggle caps:super
+[[-x "$(command -v xcape)"]] && xcape -e 'Super_L=Escape'
 
 pulseaudio &
 pa-applet &
