@@ -208,6 +208,7 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
+    - f_xprofile
     - f_yaourtrc
   nath-pc:
     dotfiles:
