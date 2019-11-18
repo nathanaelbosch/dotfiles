@@ -16,8 +16,8 @@
 setxkbmap -layout us,de -option compose:ralt compose:menu grp:alt_space_toggle caps:super
 [[-x "$(command -v xcape)"]] && xcape -e 'Super_L=Escape'
 
-pulseaudio &
-pa-applet &
+sleep 5s && pulseaudio &
+sleep 5s && pa-applet &
 nm-applet &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nitrogen --restore &
