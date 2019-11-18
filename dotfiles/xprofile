@@ -35,6 +35,3 @@ emacs --daemon &
 spotify &
 firefox &
 anydesk &
-
-
-[[ -f ~/.extend.xprofile ]] && . ~/.extend.xprofile
