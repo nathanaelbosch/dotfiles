@@ -72,6 +72,7 @@ This function should only modify configuration layer settings."
      spell-checking
      syntax-checking
      themes-megapack
+     treemacs
      version-control
      yaml
      )

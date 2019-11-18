@@ -364,20 +364,27 @@ Customized the structure of the default notes entry, to contain more information
 My templates
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-           "* TODO %?\n%u")
-          ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
-           "* TODO %?")
-           ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
+        '(
+          ("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           "* TODO %?\n%U")
+          ("T" "Todo with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           "* TODO %?\n%U\n   %c" :empty-lines 1)
+          ;; ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
+          ;;  "* TODO %?")
+          ("n" "Note" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           "* NOTE %?\n%U" :empty-lines 1)
+          ("N" "Note with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           "* NOTE %?\n%U\n   %c" :empty-lines 1)
+          ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i")
-           ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
+          ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
            "* Wäsche [%]\n:PROPERTIES:\n:ORDERED:  t\n:END:\n** TODO Wäsche: In die Maschine und machen\nSCHEDULED: %t\n** TODO Wäsche: Aufhängen\nSCHEDULED: %t\n** TODO Wäsche: Abhängen\nSCHEDULED: %t\n** TODO Wäsche: Aufräumen\nSCHEDULED: %t")
-           ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
-            "%(org-chef-get-recipe-from-url)"
-            :empty-lines 1)
-           ("v" "Thesis journal" entry
-            (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
-            "* %?\n\nEntered on %U\n  %i")
+          ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
+           "%(org-chef-get-recipe-from-url)"
+           :empty-lines 1)
+          ;; ("v" "Thesis journal" entry
+          ;;  (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
+          ;;  "* %?\n\nEntered on %U\n  %i")
   ))
 #+END_SRC
 ** org-agenda
@@ -405,8 +412,12 @@ Custom views
   (setq org-agenda-custom-commands
         '(
           ("c" "Coding Projects" tags "coding-TODO=\"DONE\"" ())
-          ("C" "Coding Projects" tags-tree "coding-TODO=\"DONE\"" ())
+          ("C" "Coding Projects Tree" tags-tree "coding-TODO=\"DONE\"" ())
 
+          ("p" "Papers" todo "TOREAD" (
+            (org-agenda-files '("/home/nath/MEGA/papers/notes.org"))
+            (org-agenda-sorting-strategy '(priority-down tag-down))
+            ))
 
           ;; GTD-like workflow; Currently unused, thus the hiding, but potentially very interesting!
           ("g" . "GTD")
@@ -454,11 +465,14 @@ Custom views
 
           ;; Special types
           ("z" . "Media")
-          ("zr" "To read" todo "TOREAD"
-           ((org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("zR" "To read - including 'someday'" todo "TOREAD"
-           ((org-agenda-filter-preset '(""))
-            (org-agenda-sorting-strategy '(priority-down tag-down))))
+          ("zr" "To read (excluding papers)" tags-todo "TODO=\"TOREAD\"-CATEGORY=\"papers\""
+           (
+            (org-agenda-filter-preset '(""))
+            (org-agenda-sorting-strategy '(priority-down tag-down))
+            ))
+          ;; ("zR" "To read (excluding papers) - including 'someday'" tags-todo "TODO=\"TOREAD\"-CATEGORY=\"papers\""
+          ;;  ((org-agenda-filter-preset '(""))
+          ;;   (org-agenda-sorting-strategy '(priority-down tag-down))))
           ("zw" "To watch" todo "TOWATCH"
            (
             (org-agenda-filter-preset '(""))
