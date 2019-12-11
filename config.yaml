@@ -35,6 +35,12 @@ dotfiles:
     dst: ~/.config/i3status
     link: link
     src: config/i3status
+  d_msmtp:
+    dst: ../.config/msmtp
+    src: config/msmtp
+  d_offlineimap:
+    dst: ../.config/offlineimap
+    src: config/offlineimap
   d_polybar:
     dst: ~/.config/polybar
     link: link
@@ -125,8 +131,8 @@ dotfiles:
     src: xinitrc
   f_xprofile:
     dst: ~/.xprofile
-    src: xprofile
     link: link
+    src: xprofile
   f_xresources:
     dst: ~/.Xresources
     link: link
@@ -157,6 +163,29 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
+  nath-laptop:
+    dotfiles:
+    - d_fish
+    - d_i3
+    - d_polybar
+    - d_scripts
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_aliases
+    - f_bash_profile
+    - f_bashrc
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_gitconfig
+    - f_mpw
+    - f_profile
+    - f_tmux.conf
+    - f_vimrc
+    - f_xresources
+    - f_xprofile
+    - f_yaourtrc
+    - d_offlineimap
+    - d_msmtp
   nath-laptop.old:
     dotfiles:
     - d_fish
@@ -182,33 +211,6 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
-    - f_yaourtrc
-  nath-laptop:
-    dotfiles:
-    - d_fish
-    - d_i3
-      # - d_i3status
-      # - d_polybar
-      # - d_rofi
-      # - d_screenlayout
-    - d_scripts
-    - d_spacemacs.d
-    - d_sxhkd
-    - f_aliases
-    - f_bash_profile
-    - f_bashrc
-      # - f_compton.conf
-      # - f_config.py
-    - f_extend.bashrc
-    - f_extend.xresources
-    - f_gitconfig
-      # - f_i3-scrot.conf
-    - f_mpw
-    - f_profile
-    - f_tmux.conf
-    - f_vimrc
-    - f_xresources
-    - f_xprofile
     - f_yaourtrc
   nath-pc:
     dotfiles:
