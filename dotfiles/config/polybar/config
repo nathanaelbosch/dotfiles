@@ -63,7 +63,7 @@ module-margin-left = 0
 module-margin-right = 6
 
 
-modules-left = i3
+modules-left = exwm
 modules-right = wired-network memory cpu date
 
 ; Now some variations to have bars at the different monitors
@@ -374,3 +374,22 @@ menu-2-1-exec = menu_open-0
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[module/exwm]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = false
