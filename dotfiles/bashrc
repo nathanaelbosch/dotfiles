@@ -23,5 +23,8 @@ export PATH="$PATH:/home/nath/.local/bin"
 # Master Password App
 [[ -f ~/.mpw ]] && . ~/.mpw
 
+# pyenv
+[[ -x "$(command -v pyenv)" ]] && eval "$(pyenv init -)"
+
 # FISH DEFAULT SHELL
 [[ -f /usr/bin/fish ]] && exec fish
