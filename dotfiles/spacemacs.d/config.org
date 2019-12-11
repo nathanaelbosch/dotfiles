@@ -62,34 +62,178 @@ open pdfs scaled to fit page
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
 #+END_SRC
 
+** Show time and date in modeline
+#+begin_src emacs-lisp
+  (setq display-time-day-and-date t)
+#+end_src
+
+** Pop-up shell
+#+begin_src emacs-lisp
+  ;; (setq shell-pop-universal-key "<f12>")
+  (setq shell-default-shell 'eshell)
+  (setq shell-pop-autocd-to-working-dir nil)
+  (global-set-key (kbd "<f12>") 'spacemacs/default-pop-shell)
+  (global-set-key (kbd "<s-f12>") 'spacemacs/default-pop-shell)
+#+end_src
+
+** Auth-info
+#+begin_src emacs-lisp
+  (setq auth-sources
+        '((:source "~/.authinfo.gpg")))
+#+end_src
+
+** Nicer Treemacs
+#+begin_src emacs-lisp
+  (setq doom-themes-treemacs-theme
+        ;; "doom-colors"
+        "doom-atom"
+        )
+  (doom-themes-treemacs-config)
+#+end_src
 * Email
+** Contexts
 #+BEGIN_SRC emacs-lisp
-  ;; Email in emacs with mu4e
-  ;; (setq mu4e-sent-folder "/Gmail/[Google Mail].All Mail"
-  ;;       mu4e-drafts-folder "/Gmail/[Google Mail].Drafts"
-  ;;       mu4e-trash-folder "/Gmail/[Google Mail].Bin"
-  ;;       mu4e-refile-folder "/Gmail/[Google Mail].All Mail")
-  ;; (setq mu4e-account-alist
-  ;;       '(("gmail"
-  ;;          ;; Under each account, set the account-specific variables you want.
-  ;;          (mu4e-sent-messages-behavior delete)
-  ;;          (mu4e-sent-folder "/Gmail/[Gmail]/.Sent Mail")
-  ;;          (mu4e-drafts-folder "/gmail/[Gmail]/.Drafts")
-  ;;          (user-mail-address "billy@gmail.com")
-  ;;          (user-full-name "Billy"))
-  ;;         ("college"
-  ;;          (mu4e-sent-messages-behavior sent)
-  ;;          (mu4e-sent-folder "/college/Sent Items")
-  ;;          (mu4e-drafts-folder "/college/Drafts")
-  ;;          (user-mail-address "bb15@college.edu")
-  ;;          (user-full-name "Billy Bob 15"))))
-  ;; (mu4e/mail-account-reset)
+  (setq mu4e-contexts
+   `( ,(make-mu4e-context
+       :name "gmail"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@gmail.com")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/Gmail/[Google Mail].Bin")
+               (mu4e-refile-folder . "/Gmail/[Google Mail].Archive")
+               (mu4e-sent-folder . "/Gmail/[Google Mail].Sent Mail")
+               (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
+               ))
+     ))
 #+END_SRC
 
-Also, this was initially in user-init
+** Send Emails
 #+BEGIN_SRC emacs-lisp
-  ;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+  (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-sendmail-f-is-evil t
+        message-sendmail-function 'message-sendmail-with-sendmail
+        send-mail-function 'message-send-mail-with-sendmail
+        ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
+        sendmail-program "sendmail"
+        message-kill-buffer-on-exit t     ; kill old messages when sent
+        message-send-mail-function 'message-send-mail-with-sendmail
+        message-forward-before-signature nil
+        message-cite-reply-position 'above
+  )
+
+  (defun msmtpsq-fail-sentinel (process event)
+    "Informs the user if the process has failed"
+    (cond ((eq (process-status process) 'exit)
+           (message "msmtpq-runqueue has succeeded")
+           (let ((proc-buf (process-buffer process)))
+             (when (buffer-name proc-buf)
+               (with-current-buffer proc-buf
+                 (set-buffer-modified-p nil)
+                 (kill-buffer proc-buf)))))
+          ((memq (process-status process) '(failed signal))
+           (lwarn '(msmtp) :error "msmtpq-runqueue has failed! For info see %s" (process-buffer process)))))
+
+  (defun msmtpq-runqueue ()
+    "Runs the msmtp queue.
+
+  Uses the msmtpq-runqueue.sh script provided by the msmtp
+  package. In these scripts the queue directory can be set, see
+  there for more information."
+    (interactive)
+    (let* ((buf-name "*msmtp-runqueue output*")
+           (buffer  (get-buffer-create buf-name)))
+      (with-current-buffer buffer
+        (erase-buffer)
+        (message "running msmtpqueue ...")
+        (let ((proc
+               (start-process
+                "msmtpq-run" buffer
+                "/home/jonas/bin/msmtpqueue/msmtp-runqueue.sh")))
+          (set-process-sentinel proc 'msmtpsq-fail-sentinel)))))
+
+  ;; (define-key 'mu4e-main-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
+  ;; (define-key 'mu4e-headers-mode-map (kbd "C-c C-r") 'msmtpq-runqueue)
+  ;; (define-key 'mu4e-view-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
+
+  ;; Don't keep message buffer around
+  (setq message-kill-buffer-on-exit t)
 #+END_SRC
+
+*** Org
+#+begin_src emacs-lisp
+  (setq org-mu4e-convert-to-html t)
+#+end_src
+
+** HTML Mails with images
+
+#+begin_src emacs-lisp
+  ;; (setq
+  ;;  mu4e-html2text-command "w3m -T text/html"
+  ;;  mu4e-view-prefer-html t
+  ;;  )
+#+end_src
+
+#+begin_src emacs-lisp
+  ;; enable inline images
+  ;; (setq mu4e-view-show-images t)
+  ;; use imagemagick, if available
+  ;; (when (fboundp 'imagemagick-register-types)
+  ;;   (imagemagick-register-types))
+#+end_src
+
+Otherwise, open in a browser
+#+begin_src emacs-lisp
+  (add-to-list 'mu4e-view-actions
+               '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+#+end_src
+
+** Pandoc for HTML
+Seems not bad actually
+#+begin_src emacs-lisp
+  ;; (setq mu4e-html2text-command "iconv -c -t utf-8 | pandoc -f html -t plain")
+#+end_src
+
+** Visual line mode hook
+#+begin_src emacs-lisp
+  (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
+#+end_src
+
+** Check for supposed attachments prior to sending them
+#+begin_src emacs-lisp
+  (defvar my-message-attachment-regexp "\\(
+                                        [Ww]e send\\|
+                                        [Ii] send\\|
+                                        attach\\|
+                                        [aA]ngehängt\\|
+                                        [aA]nhang\\|
+                                        [sS]chicke\\|
+                                        angehaengt\\|
+                                        haenge\\|
+                                        hänge\\)")
+  (defun my-message-check-attachment nil
+    "Check if there is an attachment in the message if I claim it."
+    (save-excursion
+      (message-goto-body)
+      (when (search-forward-regexp my-message-attachment-regexp nil t nil)
+        (message-goto-body)
+        (unless (or (search-forward "<#part" nil t nil)
+                    (message-y-or-n-p
+                     "No attachment. Send the message ?" nil nil))
+          (error "No message sent")))))
+  (add-hook 'message-send-hook 'my-message-check-attachment)
+#+end_src
+
+** gnus view
+#+begin_src emacs-lisp
+  ;; (setq mu4e-view-use-gnus t)
+#+end_src
+** Link to message, not headers
+#+begin_src emacs-lisp
+  (setq org-mu4e-link-query-in-headers-mode nil)
+#+end_src
 * Org
 ** General settings
 *** Inline images
@@ -226,21 +370,23 @@ structure and fold my text:
         '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "INACTIVE(i)" "|" "CANCELLED(c@)" "DONE(d!)")
           (sequence "TOREAD(r)" "TOWATCH(W)" "TOLISTEN(l)" "|")
           (sequence "REMINDER(R)" "|")
+          (sequence "|" "NOTE(N)")
           ))
   (setq org-todo-keyword-faces
         '(
-          ("TODO" . (:foreground "#cc6666" :weight bold))
-          ("TOREAD" . (:foreground "#5e8d87" :weight bold))
-          ("TOWATCH" . (:foreground "#85678f" :weight bold))
-          ("TOLISTEN" . (:foreground "#85678f" :weight bold))
-          ("INACTIVE" . (:foreground "#707880" :weight bold))
-          ("WAITING" . (:foreground "#8abeb7" :weight bold))
-          ("STARTED" . (:foreground "#f0c674" :weight bold))
-          ("CANCELLED" . (:foreground "#707880" :weight bold))
-          ("1PASS" . (:foreground "#b5bd68" :weight bold))
-          ("2PASS" . (:foreground "#b5bd68" :weight bold))
-          ("3PASS" . (:foreground "#b5bd68" :weight bold))
-          ("REMINDER" . "#5e8d87")
+          ("TODO" . (:foreground "#fb4934" :weight bold))
+          ("TOREAD" . (:foreground "#d79921" :weight bold))
+          ("TOWATCH" . (:foreground "#b16286" :weight bold))
+          ("TOLISTEN" . (:foreground "#b16286" :weight bold))
+          ("INACTIVE" . (:foreground "#a89984" :weight bold))
+          ("WAITING" . (:foreground "#83a598" :weight bold))
+          ("STARTED" . (:foreground "#fe8019" :weight bold))
+          ("NOTE" . (:foreground "#fabd2f" :weight bold))
+          ("CANCELLED" . (:foreground "#928374" :weight bold))
+          ("1PASS" . (:foreground "#98971a" :weight bold))
+          ("2PASS" . (:foreground "#98971a" :weight bold))
+          ("3PASS" . (:foreground "#98971a" :weight bold))
+          ("REMINDER" . "#8ec07c")
           ))
 #+END_SRC
 ** Hotkeys
@@ -336,11 +482,11 @@ Customized the structure of the default notes entry, to contain more information
   :URL: %U
   :BIBTEX_LABEL: %k
   :PDF: %F
-  :INTERLEAVE_PDF: %F
   :END:
   PDF: file:%F
   ")
 #+END_SRC
+
 *** PDF opening
 #+BEGIN_SRC emacs-lisp
   ;; open pdf with system pdf viewer (works on mac)
@@ -360,6 +506,10 @@ Customized the structure of the default notes entry, to contain more information
   (setq org-ref-default-ref-type "cref")
   (setq org-latex-prefer-user-labels t)
 #+end_src
+*** pdf-noter
+#+begin_src emacs-lisp
+  (setq org-noter-property-doc-file "PDF")
+#+end_src
 ** org-capture
 My templates
 #+BEGIN_SRC emacs-lisp
@@ -368,13 +518,17 @@ My templates
           ("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
            "* TODO %?\n%U")
           ("T" "Todo with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-           "* TODO %?\n%U\n   %c" :empty-lines 1)
+           "* TODO %?\n%U\n%c\n" :empty-lines 1)
+          ("l" "Todo with link (e.g. for mail)" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           "* TODO %?\n%U\n%a\n")
+          ("e" "Email" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
           ;; ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
           ;;  "* TODO %?")
           ("n" "Note" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
            "* NOTE %?\n%U" :empty-lines 1)
           ("N" "Note with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-           "* NOTE %?\n%U\n   %c" :empty-lines 1)
+           "* NOTE %?\n%U\n%c\n" :empty-lines 1)
           ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i")
           ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
@@ -382,6 +536,17 @@ My templates
           ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
            "%(org-chef-get-recipe-from-url)"
            :empty-lines 1)
+          ("m" "Mail" entry
+           ;; (file+olp things-file "Inbox" "Mails")
+           (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           ;; Creates "* TODO <2019-05-01 Wed> FromName [[mu4e:msgid:uuid][MessageSubject]] :200ok:
+           ;; Therefore Emails can be properly:
+           ;;   - Used as tasks
+           ;;   - Attributed tags
+           ;;   - Ordered by priority
+           ;;   - Scheduled
+           ;;   - etc
+           "* TODO %(org-insert-time-stamp (org-read-date nil t \"%:date\") nil t) %(from-name \"%:fromname\" \"%:fromaddress\" \"%:from\") %a \t :%(get-domainname \"%:toaddress\"):")
           ;; ("v" "Thesis journal" entry
           ;;  (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
           ;;  "* %?\n\nEntered on %U\n  %i")
@@ -693,6 +858,10 @@ Make TODOs red in the latex export
 #+begin_src emacs-lisp
   (setq org-latex-caption-above nil)
 #+end_src
+* org-brain
+#+begin_src emacs-lisp
+ (setq org-brain-path "/home/nath/Dropbox/brain")
+#+end_src
 * Magit
 #+BEGIN_SRC emacs-lisp
   ;; Start magit commit in insert mode
@@ -709,7 +878,7 @@ Ask me about the TeX master file if unsure
 #+END_SRC
 ** Outline Minor Mode
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'LaTeX-mode-hook #'outline-minor-mode)
+  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
 #+END_SRC
 
 Fake sections for better manipulation:
@@ -746,7 +915,7 @@ Fake sections for better manipulation:
 ** Visual fill mode instead of auto fill
 #+BEGIN_SRC emacs-lisp
   (add-hook 'latex-mode-hook 'visual-fill-column-mode)
-  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-off)
+  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
   (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
 #+END_SRC
 * Fira Code
@@ -888,10 +1057,34 @@ Fake sections for better manipulation:
   ;;   )
 
 #+END_SRC
-* EXWM
+* Python
+** Black instead of yapf
+
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key-for-mode 'python-mode "=" 'blacken-buffer)
+#+END_SRC
+** Sphinx Doc
+Always enable sphinx-doc-mode
 #+begin_src emacs-lisp
-  ;; (require 'exwm-systemtray)
-  ;; (exwm-systemtray-enable)
+  ;; (add-hook 'python-mode-hook
+  ;;           (lambda ()
+  ;;             (require 'sphinx-doc)
+  ;;             (sphinx-doc-mode t)))
+  ;; (evil-leader/set-key-for-mode 'python-mode "d d" 'sphinx-doc)
+#+end_src
+* EXWM
+** Tray
+#+begin_src emacs-lisp
+    (require 'exwm-systemtray)
+    (exwm-systemtray-enable)
+#+end_src
+** Workspaces
+#+begin_src emacs-lisp
+  (setq exwm-workspace-number 10)
+#+end_src
+** Time
+#+begin_src emacs-lisp
+  (display-time-mode t)
 #+end_src
 
 ** Autostart
@@ -904,19 +1097,41 @@ Fake sections for better manipulation:
   ;; (call-process-shell-command "(sleep 10s && spotify) &" nil 0)
   ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
 #+end_src
-* Python
-** Black instead of yapf
 
-#+BEGIN_SRC emacs-lisp
-  ;; (evil-leader/set-key-for-mode 'python-mode "="
-  ;;   'blacken-buffer)
-#+END_SRC
-** Sphinx Doc
-Always enable sphinx-doc-mode
+** Global buffers
 #+begin_src emacs-lisp
-  ;; (add-hook 'python-mode-hook
-  ;;           (lambda ()
-  ;;             (require 'sphinx-doc)
-  ;;             (sphinx-doc-mode t)))
-  ;; (evil-leader/set-key-for-mode 'python-mode "d d" 'sphinx-doc)
+  (setq exwm-layout-show-all-buffers t)
+#+end_src
+
+* Wakatime
+#+begin_src emacs-lisp
+  ;; (global-wakatime-mode)
+#+end_src
+
+* Buffer Timer
+#+begin_src emacs-lisp
+  ;; (load-file "/home/nath/.spacemacs.d/packages/buffer-timer.el")
+  ;; (require 'buffer-timer)
+#+end_src
+
+Config
+#+begin_src emacs-lisp
+  ;; (setq buffer-timer-regexp-master-list
+  ;;   '(
+  ;;     ("idle" .
+  ;;      (("generic" .			  "^\\*idle\\*")
+  ;;       ("generic2" .			  "^\\*idle-2\\*")
+  ;;       ("minibuf" .                        "^ \\*Minibuf-.*")))
+  ;;     ("personal" .
+  ;;      (("reading" .                        "lib/ebooks/")
+  ;;       ("photography" .                    "images/capturedonearth")))
+  ;;     ("work" .
+  ;;       (("rocket engine project" .
+  ;;         (("docs" .                        "src/rocket.*org")
+  ;;          ("code" .                        "src/rocket.*\\(cpp\\|h\\)$")
+  ;;          ("generic" .                     "src/rocket")))
+  ;;        ("world peace" .
+  ;;         (("project planning" .            "src/worldpeas/TODO")
+  ;;          ("implementation" .              "src/worldpeas")))))
+  ;;      ))
 #+end_src
