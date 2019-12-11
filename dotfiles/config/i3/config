@@ -167,32 +167,32 @@ client.background       $background
 ###############################################################################
 ## i3-bar
 ###############################################################################
-bar {
-    status_command i3status
-    position bottom
-
-    tray_output primary
-
-    bindsym button4 nop
-    bindsym button5 nop
-    font xft:Hack 8
-    # strip_workspace_numbers yes
-
-    colors {
-        # background $transparent
-        background $background
-        statusline $foreground
-        separator  $color8
-
-        # border              background  text
-        focused_workspace   $foreground $color4     $foreground
-        active_workspace    $background $color4     $foreground
-        inactive_workspace  $background $background $color7
-        urgent_workspace    $color4     $color1     $foreground
-    }
-}
-# hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# bar {
+#     status_command i3status
+#     position bottom
+# 
+#     tray_output primary
+# 
+#     bindsym button4 nop
+#     bindsym button5 nop
+#     font xft:Hack 8
+#     # strip_workspace_numbers yes
+# 
+#     colors {
+#         # background $transparent
+#         background $background
+#         statusline $foreground
+#         separator  $color8
+# 
+#         # border              background  text
+#         focused_workspace   $foreground $color4     $foreground
+#         active_workspace    $background $color4     $foreground
+#         inactive_workspace  $background $background $color7
+#         urgent_workspace    $color4     $color1     $foreground
+#     }
+# }
+# # hide/unhide i3status bar
+# bindsym $mod+m bar mode toggle
 
 
 ###############################################################################
@@ -253,7 +253,7 @@ mode "$mode_gaps_outer" {
 for_window [instance="htop_win"] floating enable sticky enable border none
 
 # Floating terminal with F12, similar to guake
-exec --no-startup-id urxvt -name "my_guake"
+# exec --no-startup-id urxvt -name "my_guake"
 for_window [instance="^my_guake$"] floating enable sticky enable border none
 for_window [instance="^my_guake$"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
 # bindsym F12 [instance="^my_guake$"] scratchpad show

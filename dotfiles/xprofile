@@ -10,7 +10,7 @@
 # Environment variables
 #
 
-~/.screenlayout/3_monitor_layout.sh &
+# ~/.screenlayout/3_monitor_layout.sh &
 # ~/.screenlayout/remote_layout.sh &
 
 setxkbmap -layout us,de -option compose:ralt compose:menu grp:alt_space_toggle caps:super
@@ -25,13 +25,19 @@ nitrogen --restore &
 xfce4-power-manager &
 clipit &
 ff-theme-util &
-fix_xcursor &
+# fix_xcursor &
 # ~/.config/polybar/launch.sh &
 ~/scripts/keyboard_setup.sh &
+synclient TapButton1=1 &
+synclient TapButton2=3 &
+synclient TapButton3=2 &
+synclient VertScrollDelta=-111 &
+synclient HorizScrollDelta=-111 &
+synclient AccelFactor=0 &
 dropbox start &
 megasync &
 redshift-gtk -l 48.2488721:11.6532477 &
-emacs --daemon &
-spotify &
-firefox &
-anydesk &
+# emacs --daemon &
+# spotify &
+# firefox &
+# anydesk &

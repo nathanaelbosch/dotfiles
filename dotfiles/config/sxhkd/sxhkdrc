@@ -35,10 +35,12 @@ super + e
 #   bspc node $id --flag hidden;bspc node -f $id
 # F12
 #   tdrop -ma -w 50% -x 25% -y 25% -h 50% urxvt
+# F12
+  # i3-msg [instance="^my_guake$"] scratchpad show
+# super + F12
+  # urxvt -name my_guake
 F12
-  i3-msg [instance="^my_guake$"] scratchpad show
-super + F12
-  urxvt -name my_guake
+  xfce4-terminal --drop-down
 
 ctrl + shift + Escape
   urxvt -name htop_win -e htop
