@@ -19,6 +19,9 @@ config:
   link_dotfile_default: link
   longkey: false
 dotfiles:
+  d_awesome:
+    dst: ../.config/awesome
+    src: config/awesome
   d_bat:
     dst: ~/.config/bat
     link: link
@@ -186,6 +189,7 @@ profiles:
     - f_yaourtrc
     - d_offlineimap
     - d_msmtp
+    - d_awesome
   nath-laptop.old:
     dotfiles:
     - d_fish
