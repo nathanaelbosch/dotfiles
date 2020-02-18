@@ -13,7 +13,8 @@
 # ~/.screenlayout/3_monitor_layout.sh &
 # ~/.screenlayout/remote_layout.sh &
 
-setxkbmap -layout us,de -option compose:ralt compose:menu grp:alt_space_toggle caps:super
+setxkbmap -layout us,de -variant ,qwerty -option compose:menu grp:alt_space_toggle caps:super
+setxkbmap eu
 [[-x "$(command -v xcape)"]] && xcape -e 'Super_L=Escape'
 
 sleep 5s && pulseaudio &
