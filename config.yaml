@@ -15,14 +15,18 @@ config:
   create: true
   dotpath: dotfiles
   keepdot: false
-  link_by_default: false
   link_dotfile_default: link
   longkey: false
+  link_on_import: nolink
+  minversion: 0.30.0
 dotfiles:
   d_bat:
     dst: ~/.config/bat
     link: link
     src: config/bat
+  d_dunst:
+    dst: ../.config/dunst
+    src: config/dunst
   d_fish:
     dst: ~/.config/fish
     link: link
@@ -36,10 +40,12 @@ dotfiles:
     link: link
     src: config/i3status
   d_msmtp:
-    dst: ../.config/msmtp
+    dst: ~/.config/msmtp
+    link: link
     src: config/msmtp
   d_offlineimap:
-    dst: ../.config/offlineimap
+    dst: ~/.config/offlineimap
+    link: link
     src: config/offlineimap
   d_polybar:
     dst: ~/.config/polybar
@@ -141,6 +147,10 @@ dotfiles:
     dst: ~/.yaourtrc
     link: link
     src: yaourtrc
+  d_zathura:
+    src: config/zathura
+    dst: ~/.config/zathura
+    link: nolink
 profiles:
   arch-laptop:
     dotfiles:
@@ -241,3 +251,7 @@ profiles:
     - f_xprofile
     - f_xresources
     - f_yaourtrc
+    - d_offlineimap
+    - d_msmtp
+    - d_dunst
+    - d_zathura
