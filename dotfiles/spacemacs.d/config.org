@@ -982,10 +982,22 @@ Make TODOs red in the latex export
  (setq org-brain-path "/home/nath/Dropbox/brain")
 #+end_src
 * Magit
+** Start in Evil mode
 #+BEGIN_SRC emacs-lisp
   ;; Start magit commit in insert mode
   (add-hook 'with-editor-mode-hook 'evil-insert-state)
 #+END_SRC
+
+** Magit blame keys
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c b") 'magit-blame)
+#+end_src
+
+** Refine diffs
+#+begin_src emacs-lisp
+  (setq magit-diff-refine-hunk "all")
+#+end_src
+
 * LaTeX
 Ask me about the TeX master file if unsure
 #+BEGIN_SRC emacs-lisp
