@@ -132,6 +132,27 @@ Set custom hotkeys
 
 #+RESULTS:
 : i3-windmove-right
+
+** More beautiful PDF reading
+midnight mode
+#+begin_src emacs-lisp
+  (setq pdf-view-midnight-colors '("#fdf4c1" . "#282828"))
+#+end_src
+
+Delete the border
+#+begin_src emacs-lisp
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (set (make-local-variable
+                    'evil-evilified-state-cursor)
+                   (list nil))))
+#+end_src
+
+Always start in midnight mode
+#+begin_src emacs-lisp
+  ;; (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
+#+end_src
+
 * Email
 ** Contexts
 #+BEGIN_SRC emacs-lisp
