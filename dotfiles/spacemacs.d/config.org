@@ -327,6 +327,12 @@ Seems not bad actually
 
   (setq org-habit-graph-column 50)
 #+END_SRC
+
+** org-protocol
+#+begin_src emacs-lisp
+  ;; (require org-protocol)
+  (add-to-list 'org-modules 'org-protocol)
+#+end_src
 ** org-refile
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-targets '(("~/Dropbox/org/todo.org" :maxlevel . 2)
