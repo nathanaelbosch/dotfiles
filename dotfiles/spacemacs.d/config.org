@@ -1275,3 +1275,50 @@ Config
   ;;          ("implementation" .              "src/worldpeas")))))
   ;;      ))
 #+end_src
+
+* Zetteldeft
+From [[https://www.eliasstorms.net/zetteldeft/#orgc3a0d0e][Zetteldeft]]
+
+** Use the package
+#+begin_src emacs-lisp
+  (load-file "/home/nath/.spacemacs.d/packages/zetteldeft.el")
+  (require 'zetteldeft)
+#+end_src
+
+** Keybindings
+#+begin_src emacs-lisp
+(spacemacs/declare-prefix "d" "deft")
+
+(spacemacs/set-leader-keys "dd" 'deft)
+(spacemacs/set-leader-keys "dR" 'deft-refresh)
+(spacemacs/set-leader-keys "dD" 'zetteldeft-deft-new-search)
+(spacemacs/set-leader-keys "ds" 'zetteldeft-search-at-point)
+(spacemacs/set-leader-keys "dc" 'zetteldeft-search-current-id)
+(spacemacs/set-leader-keys "df" 'zetteldeft-follow-link)
+(spacemacs/set-leader-keys "dF" 'zetteldeft-avy-file-search-ace-window)
+(spacemacs/set-leader-keys "dl" 'zetteldeft-avy-link-search)
+(spacemacs/set-leader-keys "dt" 'zetteldeft-avy-tag-search)
+(spacemacs/set-leader-keys "dT" 'zetteldeft-tag-buffer)
+(spacemacs/set-leader-keys "di" 'zetteldeft-find-file-id-insert)
+(spacemacs/set-leader-keys "dI" 'zetteldeft-find-file-full-title-insert)
+(spacemacs/set-leader-keys "do" 'zetteldeft-find-file)
+(spacemacs/set-leader-keys "dn" 'zetteldeft-new-file)
+(spacemacs/set-leader-keys "dN" 'zetteldeft-new-file-and-link)
+(spacemacs/set-leader-keys "dr" 'zetteldeft-file-rename)
+(spacemacs/set-leader-keys "dx" 'zetteldeft-count-words)
+#+end_src
+
+** Directory
+#+begin_src emacs-lisp
+  (setq deft-directory "~/Dropbox/zettelkasten"))
+  (setq deft-recursive t)
+#+end_src
+
+** Ignore org-mode metadata
+#+begin_src emacs-lisp
+  (setq deft-strip-summary-regexp
+   (concat "\\("
+           "[\n\t]" ;; blank
+           "\\|^#\\+[a-zA-Z_]+:.*$" ;;org-mode metadata
+           "\\)"))
+#+end_src
