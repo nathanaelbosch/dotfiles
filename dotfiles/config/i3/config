@@ -260,6 +260,8 @@ for_window [instance="^my_guake$"] move scratchpad; [instance="^my_guake$"] scra
 # bindsym $mod+F12 exec --no-startup-id urxvt -name my_guake
 
 for_window [class="Spotify"] move workspace $ws10
+# for_window [instance="Spotify"] floating enable sticky enable border none
+# for_window [instance="Spotify"] move scratchpad; [instance="Spotify"] scratchpad show; move scratchpad
 
 # Mons to manage monitors
 # bindsym $mod+Shift+m exec mons -n right
