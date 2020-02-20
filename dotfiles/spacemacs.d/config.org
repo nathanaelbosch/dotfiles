@@ -1049,6 +1049,15 @@ Fake sections for better manipulation:
   (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
   (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
 #+END_SRC
+** Beamer: Bold as bold, not as alert!
+#+begin_src emacs-lisp
+  (defun my-beamer-bold (contents backend info)
+    (when (eq backend 'beamer)
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+
+  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
+#+end_src
+
 * Fira Code
 #+BEGIN_SRC emacs-lisp
   ;; (defun setup-fira-code ()
