@@ -37,3 +37,6 @@ export DOTREPO="~/dotfiles"
 export LEDGER_FILE="~/MEGA/finances.ledger"
 
 export PAPERDIR="~/MEGA/papers"
+
+# Used by emacs; Allows me to use the poetry venvs in spacemacs!
+export WORKON_HOME="~/.cache/pypoetry/virtualenvs"
