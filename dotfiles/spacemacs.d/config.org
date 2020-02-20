@@ -311,8 +311,9 @@ Seems not bad actually
 #+BEGIN_SRC emacs-lisp
   ;; Inline images
   (setq org-startup-with-inline-images t)
-  (setq org-image-actual-width '(800))
+  (setq org-image-actual-width 500)
 #+END_SRC
+
 *** Pretty entities
 #+BEGIN_SRC emacs-lisp
   (setq org-pretty-entities t)
