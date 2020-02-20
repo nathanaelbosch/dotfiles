@@ -25,7 +25,7 @@ hide_edge_borders none
 font xft:Hack 8
 
 # Set inner/outer gaps
-gaps inner 0
+gaps inner 10
 gaps outer 0
 
 # Smart gaps (gaps used if only more than one container on the workspace)
