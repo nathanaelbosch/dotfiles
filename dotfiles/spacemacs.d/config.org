@@ -153,6 +153,14 @@ Always start in midnight mode
   ;; (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
 #+end_src
 
+** Increase numbers as in vim
+#+begin_src emacs-lisp
+  (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+  (define-key evil-visual-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+  (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+  (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+#+end_src
+
 * Email
 ** Contexts
 #+BEGIN_SRC emacs-lisp
