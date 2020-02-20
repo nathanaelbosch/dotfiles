@@ -83,7 +83,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 ## Shutdown mode
 ###############################################################################
 # Set shut down, restart and locking features
-bindsym $mod+ssharp mode "$mode_system"
+bindsym $mod+minus mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id xsecurelock, mode "default"
