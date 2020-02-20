@@ -107,10 +107,18 @@ XF86AudioMute
 ###################################################################
 # focus/swap
 ###################################################################
-super + {_,shift + }{h,j,k,l}
-	i3-msg {focus, move} {left, down, up, right}
-super + {_,shift + }{left, down, up, right}
-	i3-msg {focus, move} {left, down, up, right}
+super + {h,j,k,l}
+  i3-msg focus {left, down, up, right}
+  # /home/nath/bin/i3-emacs-focus {left, down, up, right}
+super + {Left, Down, Up, Right}
+  i3-msg focus {left, down, up, right}
+  # /home/nath/bin/i3-emacs-focus {left, down, up, right}
+super + shift + {h,j,k,l}
+  i3-msg move {left, down, up, right}
+  # fish /home/nath/bin/i3-emacs-move {left, down, up, right}
+super + shift + {Left, Down, Up, Right}
+  i3-msg move {left, down, up, right}
+  # fish /home/nath/bin/i3-emacs-move {left, down, up, right}
 
 
 ###################################################################

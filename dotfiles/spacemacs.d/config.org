@@ -90,6 +90,48 @@ open pdfs scaled to fit page
         )
   (doom-themes-treemacs-config)
 #+end_src
+
+** Emacs-i3 window movement integration
+First define my custom windmove functions
+#+begin_src emacs-lisp
+  (defun i3-windmove-left ()
+    (interactive)
+    (condition-case nil
+        (windmove-left)
+      (error (shell-command "i3-msg focus left"))))
+
+  (defun i3-windmove-right ()
+    (interactive)
+    (condition-case nil
+        (windmove-right)
+      (error (shell-command "i3-msg focus right"))))
+
+  (defun i3-windmove-up ()
+    (interactive)
+    (condition-case nil
+        (windmove-up)
+      (error (shell-command "i3-msg focus up"))))
+
+  (defun i3-windmove-down ()
+    (interactive)
+    (condition-case nil
+        (windmove-down)
+      (error (shell-command "i3-msg focus down"))))
+#+end_src
+
+#+RESULTS:
+: i3-windmove-down
+
+Set custom hotkeys
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-s-h") 'i3-windmove-left)
+  (global-set-key (kbd "C-s-j") 'i3-windmove-down)
+  (global-set-key (kbd "C-s-k") 'i3-windmove-up)
+  (global-set-key (kbd "C-s-l") 'i3-windmove-right)
+#+end_src
+
+#+RESULTS:
+: i3-windmove-right
 * Email
 ** Contexts
 #+BEGIN_SRC emacs-lisp
