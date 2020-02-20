@@ -252,8 +252,10 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          gruvbox
+                         gruvbox-light-hard
                          sanityinc-tomorrow-night
                          sanityinc-tomorrow-day
+                         leuven
                          )
 
 
