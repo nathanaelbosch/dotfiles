@@ -1322,3 +1322,16 @@ From [[https://www.eliasstorms.net/zetteldeft/#orgc3a0d0e][Zetteldeft]]
            "\\|^#\\+[a-zA-Z_]+:.*$" ;;org-mode metadata
            "\\)"))
 #+end_src
+
+* Yequake
+#+begin_src emacs-lisp
+  (setq yequake-frames
+        '(("Yequake & scratch" .
+           ((width . 0.75)
+            (height . 0.5)
+            (alpha . 0.95)
+            (buffer-fns . ("~/src/emacs/yequake/yequake.el"
+                           split-window-horizontally
+                           "*scratch*"))
+            (frame-parameters . ((undecorated . t)))))))
+#+end_src
