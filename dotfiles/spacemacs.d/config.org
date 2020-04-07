@@ -1214,11 +1214,6 @@ Fake sections for better manipulation:
 
 #+END_SRC
 * Python
-** Black instead of yapf
-
-#+BEGIN_SRC emacs-lisp
-  (evil-leader/set-key-for-mode 'python-mode "=" 'blacken-buffer)
-#+END_SRC
 ** Sphinx Doc
 Always enable sphinx-doc-mode
 #+begin_src emacs-lisp

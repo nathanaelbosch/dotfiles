@@ -85,7 +85,8 @@ This function should only modify configuration layer settings."
      pandoc
      pdf
      (python :variables
-             python-test-runner 'pytest)
+             python-test-runner 'pytest
+             python-formatter 'yapf)
      ranger
      rust
      (shell :variables
