@@ -621,6 +621,19 @@ My templates
           ;;  :empty-lines 1)
           ("c" "org-protocol-capture" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
            "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)
+          ("C" "Contacts" entry (file "~/Dropbox/org/contacts.org")
+           "* %^{name}
+  :PROPERTIES:
+  :EMAIL: %^{email}
+  :PHONE:
+  :ALIAS:
+  :NICKNAME:
+  :IGNORE:
+  :ICON:
+  :NOTE:
+  :ADDRESS:
+  :BIRTHDAY:
+  :END:")
           ("m" "Mail" entry
            ;; (file+olp things-file "Inbox" "Mails")
            (file+headline "~/Dropbox/org/todo.org" "Inbox")
@@ -635,7 +648,7 @@ My templates
           ;; ("v" "Thesis journal" entry
           ;;  (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
           ;;  "* %?\n\nEntered on %U\n  %i")
-  ))
+          ))
 #+END_SRC
 
 ** org-agenda
