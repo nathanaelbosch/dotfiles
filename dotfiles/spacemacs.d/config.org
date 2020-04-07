@@ -476,27 +476,27 @@ To better follow the spacemacs mnemonics instead of C-c C-x ...
 ** Google Calendar
 #+BEGIN_SRC emacs-lisp
   ;; Function to read lines of a file and output a list
-  (defun read-lines (filePath)
-    "Return a list of lines of a file at filePath."
-    (with-temp-buffer
-      (insert-file-contents filePath)
-      (split-string (buffer-string) "\n" t)))
+  ;; (defun read-lines (filePath)
+  ;;   "Return a list of lines of a file at filePath."
+  ;;   (with-temp-buffer
+  ;;     (insert-file-contents filePath)
+  ;;     (split-string (buffer-string) "\n" t)))
   ;; Read lines from gcal.auth and store them in the variable
-  (setq auth-lines (read-lines "~/Dropbox/org/gcal.auth"))
+  ;; (setq auth-lines (read-lines "~/Dropbox/org/gcal.auth"))
   ;; Google Calendar
-  (setq org-gcal-client-id (car auth-lines)
-        org-gcal-client-secret (car (cdr auth-lines)))
+  ;; (setq org-gcal-client-id (car auth-lines)
+  ;;       org-gcal-client-secret (car (cdr auth-lines)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
   ;; Google Calendar
-  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
-                              ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/Dropbox/org/gcal/vacances.org")
-                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
-                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
-                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
-                              ))
-  (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
+  ;; (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
+  ;;                             ("y5ka3vijk107hk59p3ruo8b7mq8@group.calendar.google.com" . "~/Dropbox/org/gcal/vacances.org")
+  ;;                             ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
+  ;;                             ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
+  ;;                             ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
+  ;;                             ))
+  ;; (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
 
 #+END_SRC
 ** Paper workflow
