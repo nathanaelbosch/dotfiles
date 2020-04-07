@@ -1321,7 +1321,7 @@ From [[https://www.eliasstorms.net/zetteldeft/#orgc3a0d0e][Zetteldeft]]
 
 ** Directory
 #+begin_src emacs-lisp
-  (setq deft-directory "~/Dropbox/zettelkasten"))
+  (setq deft-directory "~/Dropbox/zettelkasten")
   (setq deft-recursive t)
 #+end_src
 
