@@ -11,7 +11,7 @@ alias l='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=aut
 alias crontab='crontab - i'
 
 # Emacs
-alias evil="emacsclient -nc"
+alias evil="emacsclient -nc -a ''"
 alias vil="emacsclient -t"
 
 # Pacman
