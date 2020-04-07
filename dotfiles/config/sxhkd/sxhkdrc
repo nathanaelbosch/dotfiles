@@ -36,9 +36,11 @@ super + e
 # F12
 #   tdrop -ma -w 50% -x 25% -y 25% -h 50% urxvt
 F12
-  i3-msg [instance="^my_guake$"] scratchpad show
+  i3-msg [title="eguake"] scratchpad show
+  # i3-msg [instance="^my_guake$"] scratchpad show
 super + F12
-  urxvt -name my_guake
+  emacsclient -a '' -n -e '(yequake-toggle "eguake")'
+  # urxvt -name my_guake
 
 ctrl + shift + Escape
   urxvt -name htop_win -e htop

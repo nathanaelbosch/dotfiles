@@ -35,6 +35,7 @@ dropbox start &
 megasync &
 redshift-gtk -l 48.2488721:11.6532477 &
 emacs --daemon &
+sleep 5s && emacsclient -a '' -n -e '(yequake-toggle "eguake")' &
 spotify &
 firefox &
 setxkbmap eu

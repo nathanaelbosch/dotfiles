@@ -256,6 +256,10 @@ for_window [instance="htop_win"] floating enable sticky enable border none
 exec --no-startup-id urxvt -name "my_guake"
 for_window [instance="^my_guake$"] floating enable sticky enable border none
 for_window [instance="^my_guake$"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
+# exec --no-startup-id emacs -nc -e '(setq-default frame-title-format \'"my_eguake"))'
+# for_window [class="Emacs"] floating enable
+for_window [class="Emacs" title="eguake"] floating enable sticky enable border none
+for_window [class="Emacs" title="eguake"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
 # bindsym F12 [instance="^my_guake$"] scratchpad show
 # bindsym $mod+F12 exec --no-startup-id urxvt -name my_guake
 
