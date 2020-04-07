@@ -78,6 +78,7 @@ This function should only modify configuration layer settings."
            mu4e-enable-async-operations t)
      ;;(multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      neotree
+     octave
      (org :variables org-want-todo-bindings t
           org-enable-reveal-js-support t)
      pandoc
