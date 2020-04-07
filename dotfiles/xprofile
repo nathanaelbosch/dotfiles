@@ -37,4 +37,5 @@ redshift-gtk -l 48.2488721:11.6532477 &
 emacs --daemon &
 spotify &
 firefox &
+setxkbmap eu
 # anydesk &
