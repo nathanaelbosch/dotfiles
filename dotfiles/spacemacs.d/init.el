@@ -65,7 +65,7 @@ This function should only modify configuration layer settings."
             latex-enable-auto-fill t
             latex-enable-magic t
             latex-enable-folding t)
-     lsp
+     ;; lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (mu4e :variables
            mu4e-use-maildirs-extension t
