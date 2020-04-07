@@ -128,6 +128,7 @@ This function should only modify configuration layer settings."
                                       w3m
                                       doom-themes
                                       yequake
+                                      disk-usage
                                       )
 
    ;; A list of packages that cannot be updated.
