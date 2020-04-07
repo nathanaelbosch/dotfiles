@@ -26,7 +26,7 @@ super + d
 
 # Emacs hotkey
 super + e
-  emacsclient -c
+  emacsclient -nc -a ''
 
 
 # Dropdown terminal
@@ -89,7 +89,7 @@ super + a
   i3-msg focus parent
 
 # Scratchpad
-super + {_, shift +} minus
+super + {_, shift +} equal
   i3-msg {[instance="^(?!my_guake).*$"] scratchpad show, move scratchpad}
 
 super + o
@@ -164,6 +164,8 @@ super + ctrl + x
   i3-scrot {_, -w, -s}
 super + shift + p
   i3-scrot -s
+super + ctrl + p
+  /home/nath/bin/pstreamer.py
 
 # ctrl + shift + escape
 #   terminal -name htop_win -e htop
