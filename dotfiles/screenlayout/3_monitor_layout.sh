@@ -9,3 +9,5 @@ xrandr --output DP-2 --primary --mode 2560x1440 --pos 0x0 --rotate normal
 #xrandr --addmode DVI-0 1280x1024_75.00
 #xrandr --output DVI-0 --mode 1280x1024_75.00 --pos 4240x0 --rotate normal
 #xrandr --output DVI-0 --mode 1280x1024_75.00 --pos 2560x0 --rotate normal
+
+xrandr --output DVI-D-0 --mode 1280x1024 --pos 2560x0 --rotate normal

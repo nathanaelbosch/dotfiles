@@ -15,128 +15,147 @@ config:
   create: true
   dotpath: dotfiles
   keepdot: false
-  link_by_default: true
+  link_dotfile_default: link
   longkey: false
+  link_on_import: nolink
+  minversion: 0.30.0
 dotfiles:
   d_bat:
     dst: ~/.config/bat
-    link: true
+    link: link
     src: config/bat
-  d_config_i3:
-    dst: ~/.config/i3
-    src: config/i3
+  d_dunst:
+    dst: ../.config/dunst
+    src: config/dunst
   d_fish:
     dst: ~/.config/fish
-    link: true
+    link: link
     src: config/fish
   d_i3:
-    dst: ~/.i3
-    src: i3
+    dst: ~/.config/i3
+    link: link
+    src: config/i3
   d_i3status:
     dst: ~/.config/i3status
+    link: link
     src: config/i3status
+  d_msmtp:
+    dst: ~/.config/msmtp
+    link: link
+    src: config/msmtp
+  d_offlineimap:
+    dst: ~/.config/offlineimap
+    link: link
+    src: config/offlineimap
   d_polybar:
     dst: ~/.config/polybar
+    link: link
     src: config/polybar
   d_ranger:
     dst: ~/.config/ranger
-    link: true
+    link: link
     src: config/ranger
   d_rofi:
     dst: ~/.config/rofi
+    link: link
     src: config/rofi
   d_screenlayout:
     dst: ~/.screenlayout
-    link: true
+    link: link
     src: screenlayout
   d_scripts:
     dst: ~/scripts
-    link: true
+    link: link
     src: scripts
   d_spacemacs.d:
     dst: ~/.spacemacs.d
-    link: true
+    link: link
     src: spacemacs.d
   d_sxhkd:
     dst: ~/.config/sxhkd
-    link: true
+    link: link
     src: config/sxhkd
   f_aliases:
     dst: ~/.aliases
-    link: true
+    link: link
     src: aliases
   f_bash_profile:
     dst: ~/.bash_profile
-    link: true
+    link: link
     src: bash_profile
   f_bashrc:
     dst: ~/.bashrc
-    link: true
+    link: link
     src: bashrc
   f_compton.conf:
     dst: ~/.compton.conf
-    link: true
+    link: link
     src: compton.conf
   f_config.py:
     dst: ~/.config/qutebrowser/config.py
-    link: true
+    link: link
     src: config/qutebrowser/config.py
   f_extend.bashrc:
     dst: ~/.extend.bashrc
-    link: true
+    link: link
     src: extend.bashrc
   f_extend.xresources:
     dst: ~/.extend.Xresources
-    link: true
+    link: link
     src: extend.Xresources
-  f_extend.xresources.mycolors:
-    dst: ~/.extend.Xresources.mycolors
-    link: true
-    src: extend.Xresources.mycolors
-  f_extend.xresources.sun:
-    dst: ~/.extend.Xresources.sun
-    link: true
-    src: extend.Xresources.sun
   f_gitconfig:
     dst: ~/.gitconfig
-    link: true
+    link: link
     src: gitconfig
   f_i3-scrot.conf:
     dst: ~/.config/i3-scrot.conf
+    link: link
     src: config/i3-scrot.conf
   f_latexmkrc:
     dst: ~/.latexmkrc
-    link: true
+    link: link
     src: latexmkrc
   f_mpw:
     dst: ~/.mpw
-    link: true
+    link: link
     src: mpw
   f_profile:
     dst: ~/.profile
-    link: true
+    link: link
     src: profile
   f_tmux.conf:
     dst: ~/.tmux.conf
-    link: true
+    link: link
     src: tmux.conf
   f_vimrc:
     dst: ~/.vimrc
-    link: true
+    link: link
     src: vimrc
+  f_xinitrc:
+    dst: ~/.xinitrc
+    link: link
+    src: xinitrc
+  f_xprofile:
+    dst: ~/.xprofile
+    link: link
+    src: xprofile
   f_xresources:
     dst: ~/.Xresources
-    link: true
+    link: link
     src: Xresources
   f_yaourtrc:
     dst: ~/.yaourtrc
-    link: true
+    link: link
     src: yaourtrc
+  d_zathura:
+    src: config/zathura
+    dst: ~/.config/zathura
+    link: nolink
 profiles:
   arch-laptop:
     dotfiles:
-    - d_config_i3
     - d_fish
+    - d_i3
     - d_i3status
     - d_polybar
     - d_spacemacs.d
@@ -154,30 +173,36 @@ profiles:
     - f_tmux.conf
     - f_vimrc
     - f_xresources
-  askja:
+  nath-laptop:
     dotfiles:
-    - d_config_i3
     - d_fish
-    - d_i3status
+    - d_i3
+    - d_polybar
     - d_scripts
     - d_spacemacs.d
     - d_sxhkd
     - f_aliases
+    - f_bash_profile
     - f_bashrc
     - f_extend.bashrc
     - f_extend.xresources
-    - f_i3-scrot.conf
+    - f_gitconfig
+    - f_mpw
     - f_profile
     - f_tmux.conf
     - f_vimrc
     - f_xresources
-    - d_ranger
-  nath-laptop:
+    - f_xprofile
+    - f_yaourtrc
+    - d_offlineimap
+    - d_msmtp
+  nath-laptop.old:
     dotfiles:
     - d_fish
     - d_i3
     - d_i3status
     - d_polybar
+    - d_ranger
     - d_rofi
     - d_screenlayout
     - d_scripts
@@ -189,8 +214,6 @@ profiles:
     - f_config.py
     - f_extend.bashrc
     - f_extend.xresources
-    - f_extend.xresources.mycolors
-    - f_extend.xresources.sun
     - f_gitconfig
     - f_i3-scrot.conf
     - f_mpw
@@ -201,6 +224,7 @@ profiles:
     - f_yaourtrc
   nath-pc:
     dotfiles:
+    - d_bat
     - d_fish
     - d_i3
     - d_i3status
@@ -209,6 +233,7 @@ profiles:
     - d_screenlayout
     - d_scripts
     - d_spacemacs.d
+    - d_sxhkd
     - f_aliases
     - f_bash_profile
     - f_bashrc
@@ -216,14 +241,17 @@ profiles:
     - f_config.py
     - f_extend.bashrc
     - f_extend.xresources
-    - f_extend.xresources.mycolors
-    - f_extend.xresources.sun
     - f_gitconfig
+    - f_latexmkrc
     - f_mpw
     - f_profile
     - f_tmux.conf
     - f_vimrc
+    - f_xinitrc
+    - f_xprofile
     - f_xresources
     - f_yaourtrc
-    - f_latexmkrc
-    - d_bat
+    - d_offlineimap
+    - d_msmtp
+    - d_dunst
+    - d_zathura

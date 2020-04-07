@@ -1,0 +1,42 @@
+#
+# ~/.xprofile
+#
+#
+
+# if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+#     eval "$(dbus-launch --sh-syntax --exit-with-session)"
+# fi
+
+# Environment variables
+#
+
+~/.screenlayout/3_monitor_layout.sh &
+# ~/.screenlayout/remote_layout.sh &
+
+# setxkbmap -layout us,de -variant ,qwerty -option compose:ralt compose:menu grp:alt_space_toggle caps:super
+setxkbmap -layout us,de -variant ,qwerty -option grp:alt_space_toggle caps:super
+setxkbmap eu
+[[-x "$(command -v xcape)"]] && xcape -e 'Super_L=Escape'
+
+
+sleep 5s && pulseaudio &
+sleep 5s && pa-applet &
+nm-applet &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+nitrogen --restore &
+# compton -b --config ~/.compton.conf &
+xfce4-power-manager &
+clipit &
+ff-theme-util &
+fix_xcursor &
+# ~/.config/polybar/launch.sh &
+~/scripts/keyboard_setup.sh &
+dropbox start &
+megasync &
+redshift-gtk -l 48.2488721:11.6532477 &
+emacs --daemon &
+sleep 5s && emacsclient -a '' -n -e '(yequake-toggle "eguake")' &
+spotify &
+firefox &
+setxkbmap eu
+# anydesk &

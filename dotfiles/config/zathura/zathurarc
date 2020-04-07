@@ -1,0 +1,8 @@
+set default-bg "#282828"
+set statusbar-bg "#282828"
+set tabbar-bg "#282828"
+set tabbar-focus-bg "#282828"
+set notification-fg "#282828"
+
+set recolor-darkcolor "#282828"
+set recolor-lightcolor "#fdf4c1"

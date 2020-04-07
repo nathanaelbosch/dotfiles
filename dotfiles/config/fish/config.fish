@@ -37,3 +37,7 @@ if test -z "$DISPLAY" -a $XDG_VTNR = 1
 end
 
 thefuck --alias | source
+
+if command -v pyenv > /dev/null
+    status --is-interactive; and source (pyenv init -|psub)
+end
