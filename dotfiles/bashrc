@@ -27,4 +27,6 @@ export PATH="$PATH:/home/nath/.local/bin"
 [[ -x "$(command -v pyenv)" ]] && eval "$(pyenv init -)"
 
 # FISH DEFAULT SHELL
+[[ $TERM == "tramp" ]] && PS1='$ ' && return
+[[ $TERM == "dumb" ]] && PS1='$ ' && return
 [[ -f /usr/bin/fish ]] && exec fish
