@@ -1010,6 +1010,12 @@ Make TODOs red in the latex export
 #+begin_src emacs-lisp
   ;; (require 'org-roam-protocol)
 #+end_src
+* eshell
+Make `helm-eshell-history`, a.k.a. ", H", use the current frame instead of
+opening a new one:
+#+begin_src emacs-lisp
+  (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
+#+end_src
 * Magit
 ** Start in Evil mode
 #+BEGIN_SRC emacs-lisp
