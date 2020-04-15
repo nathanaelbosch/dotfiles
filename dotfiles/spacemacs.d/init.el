@@ -77,7 +77,6 @@ This function should only modify configuration layer settings."
            mu4e-confirm-quit nil
            mu4e-enable-async-operations t)
      ;;(multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-     nlinum
      neotree
      octave
      (org :variables
