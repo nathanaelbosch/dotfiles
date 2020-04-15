@@ -445,8 +445,8 @@ structure and fold my text:
 ** Org todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
-          (sequence "TOREAD(r)" "TOWATCH(W)" "TOLISTEN(l)" "|")
+        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(W@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
+          (sequence "TOREAD(r)" "TOWATCH(w)" "TOLISTEN(l)" "|")
           (sequence "REMINDER(R)" "|")
           (sequence "|" "NOTE(n)")
           ))
