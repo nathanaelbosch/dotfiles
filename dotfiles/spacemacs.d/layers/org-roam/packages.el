@@ -7,7 +7,7 @@
         :hook
         (after-init . org-roam-mode)
         :custom
-        (org-roam-directory "~/Dropbox/zettelkasten/")
+        (org-roam-directory "~/Dropbox/org/zettelkasten/")
         :init
         (progn
           (spacemacs/declare-prefix "aoR" "org-roam")
