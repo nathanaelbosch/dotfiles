@@ -684,6 +684,11 @@ Custom views
             (org-agenda-sorting-strategy '(priority-down tag-down))
             ))
 
+          ("t" "Tasks (without papers!)" todo ""
+           ((org-agenda-files '("/home/nath/Dropbox/org/todo.org"))
+            (org-agenda-sorting-strategy '(priority-down tag-down))
+            ))
+
           ;; GTD-like workflow; Currently unused, thus the hiding, but potentially very interesting!
           ("g" . "GTD")
           ("gc" "Upcoming week - Columns" agenda ""
