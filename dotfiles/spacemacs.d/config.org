@@ -1022,6 +1022,50 @@ opening a new one:
 #+begin_src emacs-lisp
   (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
 #+end_src
+* Writeroom
+#+begin_src emacs-lisp
+  ;; (setq
+  ;;  ;; writeroom-maximize-window t
+  ;;  writeroom-fullscreen-effect nil
+  ;;  writeroom-extra-line-spacing 0.3
+  ;;  writeroom-width 88
+  ;;  writeroom-border-width 30
+  ;;  )
+#+end_src
+
+No line numbers
+#+begin_src emacs-lisp
+  ;; (defun my/writeroom-without-linenumbers (arg)
+  ;;   (cond
+  ;;    ((= arg 1)
+  ;;     (spacemacs/toggle-line-numbers-off))
+  ;;    ((= arg -1)
+  ;;     (spacemacs/toggle-line-numbers-on))))
+
+  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-without-linenumbers)
+#+end_src
+
+Enable some nice white Theme
+#+begin_src emacs-lisp
+  ;; (setq my/main-theme 'gruvbox)
+  ;; (setq my/writeroom-theme 'leuven)
+  ;; (load-theme my/writeroom-theme)
+  ;; (disable-theme my/writeroom-theme)
+  ;; (load-theme my/main-theme)
+  ;; (defun my/writeroom-theme-fn (arg)
+  ;;   (cond
+  ;;    ((= arg 1)
+  ;;     (enable-theme my/writeroom-theme)
+  ;;     (disable-theme my/main-theme)
+  ;;     )
+  ;;    ((= arg -1)
+  ;;     (disable-theme my/writeroom-theme)
+  ;;     (enable-theme my/main-theme)
+  ;;     )
+  ;;    ))
+  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-theme-fn)
+#+end_src
+
 * Magit
 ** Start in Evil mode
 #+BEGIN_SRC emacs-lisp
