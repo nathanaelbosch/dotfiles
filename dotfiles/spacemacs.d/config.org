@@ -351,6 +351,16 @@ Seems not bad actually
   (add-hook 'org-mode-hook 'org-indent-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
 #+END_SRC
+
+*** Latex Preview by Default
+#+begin_src emacs-lisp
+  (setq org-startup-with-latex-preview t)
+#+end_src
+
+*** Hide emphasis markers, for increased prettiness
+#+begin_src emacs-lisp
+  (setq org-hide-emphasis-markers t)
+#+end_src
 ** org-habit
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'org-modules 'org-habit)
