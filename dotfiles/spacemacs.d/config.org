@@ -652,6 +652,7 @@ My templates
 #+END_SRC
 
 ** org-agenda
+*** Files
 Default agenda files
 #+BEGIN_SRC emacs-lisp
   ;; Default folder for agenda files?
@@ -672,7 +673,7 @@ Default agenda files
     (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
 #+END_SRC
 
-Custom views
+*** Custom views
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
         '(
@@ -788,7 +789,7 @@ Custom views
           ))
 #+END_SRC
 
-General agenda settings
+*** General agenda settings
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-agenda-filter-preset '("-someday"))
   (setq org-agenda-filter-preset '("-someday" "-WORK"))
@@ -904,7 +905,6 @@ To be able to press "S" in the agenda ;)
           ;; ("attachments" . "~/.org/.attachments/")
           ))
 #+end_src
-
 * Org & Latex
 ** Latex exports
 #+BEGIN_SRC emacs-lisp
