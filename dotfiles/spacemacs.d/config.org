@@ -594,23 +594,23 @@ My templates
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
         '(
-          ("t" "Todo" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ("t" "Todo" entry (file "~/Dropbox/org/inbox.org")
            "* TODO %?\n%U")
           ;; ("T" "Todo with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
           ;;  "* TODO %?\n%U\n%c\n" :empty-lines 1)
-          ("T" "Todo Today" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ("T" "Todo Today" entry (file "~/Dropbox/org/inbox.org")
            "* TODO %?\nSCHEDULED: %t\n%U\n" :empty-lines 1)
           ;; ("l" "Todo with link (e.g. for mail)" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
           ;;  "* TODO %?\n%U\n%a\n")
-          ("l" "link" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ("l" "link" entry (file "~/Dropbox/org/inbox.org")
            "* TODO %(org-cliplink-capture)\n%c\n" :immediate-finish t)
-          ("e" "Email" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
            "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
           ;; ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
           ;;  "* TODO %?")
-          ("n" "Note" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ("n" "Note" entry (file "~/Dropbox/org/inbox.org")
            "* NOTE %?\n%U" :empty-lines 1)
-          ("N" "Note with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ("N" "Note with Clipboard" entry (file "~/Dropbox/org/inbox.org")
            "* NOTE %?\n%U\n%c\n" :empty-lines 1)
           ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i")
@@ -619,7 +619,7 @@ My templates
           ;; ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
           ;;  "%(org-chef-get-recipe-from-url)"
           ;;  :empty-lines 1)
-          ("c" "org-protocol-capture" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ("c" "org-protocol-capture" entry (file "~/Dropbox/org/inbox.org")
            "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)
           ("C" "Contacts" entry (file "~/Dropbox/org/contacts.org")
            "* %^{name}
@@ -636,7 +636,7 @@ My templates
   :END:")
           ("m" "Mail" entry
            ;; (file+olp things-file "Inbox" "Mails")
-           (file+headline "~/Dropbox/org/todo.org" "Inbox")
+           (file "~/Dropbox/org/inbox.org")
            ;; Creates "* TODO <2019-05-01 Wed> FromName [[mu4e:msgid:uuid][MessageSubject]] :200ok:
            ;; Therefore Emails can be properly:
            ;;   - Used as tasks
@@ -750,11 +750,12 @@ Custom views
           ("a" "Standard View"
            ((agenda ""
                     ((org-agenda-span 1)
-                     (org-agenda-entry-types '(:scheduled))
-                     (org-agenda-overriding-header "Scheduled Tasks")))
-            (agenda ""
-                    ((org-agenda-entry-types '(:deadline))
-                     (org-agenda-overriding-header "Deadlines")))
+                     (org-agenda-overriding-header "Agenda")))
+            (tags "CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "To Refile")
+                        (org-agenda-files '("/home/nath/Dropbox/org/inbox.org"))
+                        ;; (org-agenda-regexp-filter-preset '("-Inbox"))
+                        ))
             )
            )
 
