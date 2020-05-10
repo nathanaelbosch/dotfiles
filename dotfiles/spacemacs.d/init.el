@@ -67,15 +67,15 @@ This function should only modify configuration layer settings."
             latex-enable-folding t)
      ;; lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
-     (mu4e :variables
-           mu4e-use-maildirs-extension t
-           mu4e-maildir "~/Mail"
-           mu4e-enable-mode-line t
-           mu4e-get-mail-command "offlineimap"
-           mu4e-update-interval 180
-           mu4e-view-show-addresses t
-           mu4e-confirm-quit nil
-           mu4e-enable-async-operations t)
+     ;; (mu4e :variables
+     ;;       mu4e-use-maildirs-extension t
+     ;;       mu4e-maildir "~/Mail"
+     ;;       mu4e-enable-mode-line t
+     ;;       mu4e-get-mail-command "offlineimap"
+     ;;       mu4e-update-interval 180
+     ;;       mu4e-view-show-addresses t
+     ;;       mu4e-confirm-quit nil
+     ;;       mu4e-enable-async-operations t)
      ;;(multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      neotree
      octave
