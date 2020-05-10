@@ -170,73 +170,73 @@ Add the yasnippet-snippets snippets to yasnippet.
 * Email
 ** Contexts
 #+BEGIN_SRC emacs-lisp
-  (setq mu4e-contexts
-   `( ,(make-mu4e-context
-       :name "gmail"
-       :match-func (lambda (msg) (when msg
-         (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
-       :vars '(
-               (user-mail-address . "nathanael.bosch@gmail.com")
-               (user-full-name . "Nathanael Bosch")
-               (mu4e-trash-folder . "/Gmail/[Google Mail].Bin")
-               (mu4e-refile-folder . "/Gmail/[Google Mail].Archive")
-               (mu4e-sent-folder . "/Gmail/[Google Mail].Sent Mail")
-               (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
-               ))
-     ))
+  ;; (setq mu4e-contexts
+  ;;  `( ,(make-mu4e-context
+  ;;      :name "gmail"
+  ;;      :match-func (lambda (msg) (when msg
+  ;;        (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+  ;;      :vars '(
+  ;;              (user-mail-address . "nathanael.bosch@gmail.com")
+  ;;              (user-full-name . "Nathanael Bosch")
+  ;;              (mu4e-trash-folder . "/Gmail/[Google Mail].Bin")
+  ;;              (mu4e-refile-folder . "/Gmail/[Google Mail].Archive")
+  ;;              (mu4e-sent-folder . "/Gmail/[Google Mail].Sent Mail")
+  ;;              (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
+  ;;              ))
+  ;;    ))
 #+END_SRC
 
 ** Send Emails
 #+BEGIN_SRC emacs-lisp
-  (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-sendmail-f-is-evil t
-        message-sendmail-function 'message-sendmail-with-sendmail
-        send-mail-function 'message-send-mail-with-sendmail
-        ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
-        sendmail-program "sendmail"
-        message-kill-buffer-on-exit t     ; kill old messages when sent
-        message-send-mail-function 'message-send-mail-with-sendmail
-        message-forward-before-signature nil
-        message-cite-reply-position 'above
-  )
+  ;; (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
+  ;;       message-sendmail-extra-arguments '("--read-envelope-from")
+  ;;       message-sendmail-f-is-evil t
+  ;;       message-sendmail-function 'message-sendmail-with-sendmail
+  ;;       send-mail-function 'message-send-mail-with-sendmail
+  ;;       ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
+  ;;       sendmail-program "sendmail"
+  ;;       message-kill-buffer-on-exit t     ; kill old messages when sent
+  ;;       message-send-mail-function 'message-send-mail-with-sendmail
+  ;;       message-forward-before-signature nil
+  ;;       message-cite-reply-position 'above
+  ;; )
 
-  (defun msmtpsq-fail-sentinel (process event)
-    "Informs the user if the process has failed"
-    (cond ((eq (process-status process) 'exit)
-           (message "msmtpq-runqueue has succeeded")
-           (let ((proc-buf (process-buffer process)))
-             (when (buffer-name proc-buf)
-               (with-current-buffer proc-buf
-                 (set-buffer-modified-p nil)
-                 (kill-buffer proc-buf)))))
-          ((memq (process-status process) '(failed signal))
-           (lwarn '(msmtp) :error "msmtpq-runqueue has failed! For info see %s" (process-buffer process)))))
+  ;; (defun msmtpsq-fail-sentinel (process event)
+  ;;   "Informs the user if the process has failed"
+  ;;   (cond ((eq (process-status process) 'exit)
+  ;;          (message "msmtpq-runqueue has succeeded")
+  ;;          (let ((proc-buf (process-buffer process)))
+  ;;            (when (buffer-name proc-buf)
+  ;;              (with-current-buffer proc-buf
+  ;;                (set-buffer-modified-p nil)
+  ;;                (kill-buffer proc-buf)))))
+  ;;         ((memq (process-status process) '(failed signal))
+  ;;          (lwarn '(msmtp) :error "msmtpq-runqueue has failed! For info see %s" (process-buffer process)))))
 
-  (defun msmtpq-runqueue ()
-    "Runs the msmtp queue.
+  ;; (defun msmtpq-runqueue ()
+  ;;   "Runs the msmtp queue.
 
-  Uses the msmtpq-runqueue.sh script provided by the msmtp
-  package. In these scripts the queue directory can be set, see
-  there for more information."
-    (interactive)
-    (let* ((buf-name "*msmtp-runqueue output*")
-           (buffer  (get-buffer-create buf-name)))
-      (with-current-buffer buffer
-        (erase-buffer)
-        (message "running msmtpqueue ...")
-        (let ((proc
-               (start-process
-                "msmtpq-run" buffer
-                "/home/jonas/bin/msmtpqueue/msmtp-runqueue.sh")))
-          (set-process-sentinel proc 'msmtpsq-fail-sentinel)))))
+  ;; Uses the msmtpq-runqueue.sh script provided by the msmtp
+  ;; package. In these scripts the queue directory can be set, see
+  ;; there for more information."
+  ;;   (interactive)
+  ;;   (let* ((buf-name "*msmtp-runqueue output*")
+  ;;          (buffer  (get-buffer-create buf-name)))
+  ;;     (with-current-buffer buffer
+  ;;       (erase-buffer)
+  ;;       (message "running msmtpqueue ...")
+  ;;       (let ((proc
+  ;;              (start-process
+  ;;               "msmtpq-run" buffer
+  ;;               "/home/jonas/bin/msmtpqueue/msmtp-runqueue.sh")))
+  ;;         (set-process-sentinel proc 'msmtpsq-fail-sentinel)))))
 
-  ;; (define-key 'mu4e-main-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
-  ;; (define-key 'mu4e-headers-mode-map (kbd "C-c C-r") 'msmtpq-runqueue)
-  ;; (define-key 'mu4e-view-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
+  ;; ;; (define-key 'mu4e-main-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
+  ;; ;; (define-key 'mu4e-headers-mode-map (kbd "C-c C-r") 'msmtpq-runqueue)
+  ;; ;; (define-key 'mu4e-view-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
 
-  ;; Don't keep message buffer around
-  (setq message-kill-buffer-on-exit t)
+  ;; ;; Don't keep message buffer around
+  ;; (setq message-kill-buffer-on-exit t)
 #+END_SRC
 
 *** Org
@@ -263,8 +263,8 @@ Add the yasnippet-snippets snippets to yasnippet.
 
 Otherwise, open in a browser
 #+begin_src emacs-lisp
-  (add-to-list 'mu4e-view-actions
-               '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+  ;; (add-to-list 'mu4e-view-actions
+  ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 #+end_src
 
 ** Pandoc for HTML
@@ -275,32 +275,32 @@ Seems not bad actually
 
 ** Visual line mode hook
 #+begin_src emacs-lisp
-  (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
+  ;; (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
 #+end_src
 
 ** Check for supposed attachments prior to sending them
 #+begin_src emacs-lisp
-  (defvar my-message-attachment-regexp "\\(
-                                        [Ww]e send\\|
-                                        [Ii] send\\|
-                                        attach\\|
-                                        [aA]ngehängt\\|
-                                        [aA]nhang\\|
-                                        [sS]chicke\\|
-                                        angehaengt\\|
-                                        haenge\\|
-                                        hänge\\)")
-  (defun my-message-check-attachment nil
-    "Check if there is an attachment in the message if I claim it."
-    (save-excursion
-      (message-goto-body)
-      (when (search-forward-regexp my-message-attachment-regexp nil t nil)
-        (message-goto-body)
-        (unless (or (search-forward "<#part" nil t nil)
-                    (message-y-or-n-p
-                     "No attachment. Send the message ?" nil nil))
-          (error "No message sent")))))
-  (add-hook 'message-send-hook 'my-message-check-attachment)
+  ;; (defvar my-message-attachment-regexp "\\(
+  ;;                                       [Ww]e send\\|
+  ;;                                       [Ii] send\\|
+  ;;                                       attach\\|
+  ;;                                       [aA]ngehängt\\|
+  ;;                                       [aA]nhang\\|
+  ;;                                       [sS]chicke\\|
+  ;;                                       angehaengt\\|
+  ;;                                       haenge\\|
+  ;;                                       hänge\\)")
+  ;; (defun my-message-check-attachment nil
+  ;;   "Check if there is an attachment in the message if I claim it."
+  ;;   (save-excursion
+  ;;     (message-goto-body)
+  ;;     (when (search-forward-regexp my-message-attachment-regexp nil t nil)
+  ;;       (message-goto-body)
+  ;;       (unless (or (search-forward "<#part" nil t nil)
+  ;;                   (message-y-or-n-p
+  ;;                    "No attachment. Send the message ?" nil nil))
+  ;;         (error "No message sent")))))
+  ;; (add-hook 'message-send-hook 'my-message-check-attachment)
 #+end_src
 
 ** gnus view
@@ -309,7 +309,7 @@ Seems not bad actually
 #+end_src
 ** Link to message, not headers
 #+begin_src emacs-lisp
-  (setq org-mu4e-link-query-in-headers-mode nil)
+  ;; (setq org-mu4e-link-query-in-headers-mode nil)
 #+end_src
 * Org
 ** General settings
