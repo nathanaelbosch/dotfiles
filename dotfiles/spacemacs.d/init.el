@@ -88,7 +88,8 @@ This function should only modify configuration layer settings."
      octave
      (org :variables
           org-want-todo-bindings t
-          org-enable-reveal-js-support t)
+          org-enable-reveal-js-support nil
+          )
      org-roam
      pandoc
      pdf
