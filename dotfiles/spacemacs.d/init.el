@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
      ;; evil-commentary
      finance
      git
-     ;; google-calendar
+     google-calendar
      ;; haskell
      helm
      html
