@@ -264,6 +264,7 @@ for_window [class="Emacs" title="eguake"] move scratchpad; [instance="^my_guake$
 # bindsym $mod+F12 exec --no-startup-id urxvt -name my_guake
 
 for_window [class="Spotify"] move workspace $ws10
+for_window [class="Slack"] move workspace $ws9
 # for_window [instance="Spotify"] floating enable sticky enable border none
 # for_window [instance="Spotify"] move scratchpad; [instance="Spotify"] scratchpad show; move scratchpad
 
