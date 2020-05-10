@@ -418,6 +418,7 @@ Org-babel languages
      (python . t)
      (gnuplot . t)
      (shell . t)
+     ;; (julia . t)
      ))
 #+END_SRC
 
