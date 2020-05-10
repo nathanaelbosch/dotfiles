@@ -161,6 +161,12 @@ Always start in midnight mode
   (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
 #+end_src
 
+** Yasnippets
+Add the yasnippet-snippets snippets to yasnippet.
+#+begin_src emacs-lisp
+  (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
+#+end_src
+
 * Email
 ** Contexts
 #+BEGIN_SRC emacs-lisp
