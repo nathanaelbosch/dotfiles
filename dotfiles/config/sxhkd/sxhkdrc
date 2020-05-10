@@ -39,7 +39,7 @@ F12
   i3-msg [title="eguake"] scratchpad show
   # i3-msg [instance="^my_guake$"] scratchpad show
 super + F12
-  emacsclient -a '' -n -e '(yequake-toggle "eguake")'
+  emacsclient -n -e '(yequake-toggle "eguake")'
   # urxvt -name my_guake
 
 ctrl + shift + Escape
