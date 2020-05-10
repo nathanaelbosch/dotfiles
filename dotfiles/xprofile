@@ -14,8 +14,9 @@
 # ~/.screenlayout/remote_layout.sh &
 
 # setxkbmap -layout us,de -variant ,qwerty -option compose:ralt compose:menu grp:alt_space_toggle caps:super
-setxkbmap -layout us,de -variant ,qwerty -option grp:alt_space_toggle caps:super
-setxkbmap eu
+# setxkbmap -layout us,de -variant ,qwerty -option grp:alt_space_toggle caps:super
+# setxkbmap eu
+# setxkbmap -layout us,eu,de -variant norman,,qwerty -option grp:alt_space_toggle caps:super compose:ralt
 [[-x "$(command -v xcape)"]] && xcape -e 'Super_L=Escape'
 
 
@@ -35,8 +36,10 @@ dropbox start &
 megasync &
 redshift-gtk -l 48.2488721:11.6532477 &
 emacs --daemon &
-sleep 5s && emacsclient -a '' -n -e '(yequake-toggle "eguake")' &
+sleep 10s && emacsclient -nc -e '(funcall (lambda () (interactive) (find-file "~/Dropbox/org/todo.org") (org-agenda  nil "a")))' &
+sleep 15s && emacsclient -n -e '(yequake-toggle "eguake")' &
 spotify &
 firefox &
-setxkbmap eu
+slack &
+# setxkbmap -layout us,eu -variant norman, -option grp:alt_space_toggle caps:super compose:ralt
 # anydesk &
