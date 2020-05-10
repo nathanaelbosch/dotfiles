@@ -1451,8 +1451,8 @@ From [[https://www.eliasstorms.net/zetteldeft/#orgc3a0d0e][Zetteldeft]]
                            "*scratch*"))
             (frame-parameters . ((undecorated . t)))))
           ("eguake" .
-           ((width . 0.3)
-            (height . 0.3)
+           ((width . 853)
+            (height . 480)
             (top . 0.5)
             ;; (alpha . 0.95)
             (buffer-fns . (eshell))
