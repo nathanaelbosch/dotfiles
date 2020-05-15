@@ -170,36 +170,61 @@ Add the yasnippet-snippets snippets to yasnippet.
 * Email
 ** Contexts
 #+BEGIN_SRC emacs-lisp
-  ;; (setq mu4e-contexts
-  ;;  `( ,(make-mu4e-context
-  ;;      :name "gmail"
-  ;;      :match-func (lambda (msg) (when msg
-  ;;        (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
-  ;;      :vars '(
-  ;;              (user-mail-address . "nathanael.bosch@gmail.com")
-  ;;              (user-full-name . "Nathanael Bosch")
-  ;;              (mu4e-trash-folder . "/Gmail/[Google Mail].Bin")
-  ;;              (mu4e-refile-folder . "/Gmail/[Google Mail].Archive")
-  ;;              (mu4e-sent-folder . "/Gmail/[Google Mail].Sent Mail")
-  ;;              (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
-  ;;              ))
-  ;;    ))
+  (setq mu4e-contexts
+   `(
+     ,(make-mu4e-context
+       :name "gmail"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@gmail.com")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/Gmail/[Google Mail].Bin")
+               (mu4e-refile-folder . "/Gmail/[Google Mail].Archive")
+               (mu4e-sent-folder . "/Gmail/[Google Mail].Sent Mail")
+               (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
+               ))
+     ,(make-mu4e-context
+       :name "uni-tue"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/UniTue" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@uni-tuebingen.de")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/UniTue/Mail.trash")
+               ;; (mu4e-refile-folder . "/UniTue/")
+               (mu4e-sent-folder . "/UniTue/Mail.sent")
+               (mu4e-drafts-folder . "/UniTue/Mail.drafts")
+               ))
+     ,(make-mu4e-context
+       :name "mpi-is"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/MPI-IS" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@tuebingen.mpg.de")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/MPI-IS/Trash")
+               ;; (mu4e-refile-folder . "/MPI-IS/")
+               (mu4e-sent-folder . "/MPI-IS/Sent")
+               (mu4e-drafts-folder . "/MPI-IS/Drafts")
+               ))
+     ))
 #+END_SRC
 
 ** Send Emails
 #+BEGIN_SRC emacs-lisp
-  ;; (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
-  ;;       message-sendmail-extra-arguments '("--read-envelope-from")
-  ;;       message-sendmail-f-is-evil t
-  ;;       message-sendmail-function 'message-sendmail-with-sendmail
-  ;;       send-mail-function 'message-send-mail-with-sendmail
-  ;;       ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
-  ;;       sendmail-program "sendmail"
-  ;;       message-kill-buffer-on-exit t     ; kill old messages when sent
-  ;;       message-send-mail-function 'message-send-mail-with-sendmail
-  ;;       message-forward-before-signature nil
-  ;;       message-cite-reply-position 'above
-  ;; )
+  (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-sendmail-f-is-evil t
+        message-sendmail-function 'message-sendmail-with-sendmail
+        send-mail-function 'message-send-mail-with-sendmail
+        ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
+        sendmail-program "sendmail"
+        message-kill-buffer-on-exit t     ; kill old messages when sent
+        message-send-mail-function 'message-send-mail-with-sendmail
+        message-forward-before-signature nil
+        message-cite-reply-position 'above
+  )
 
   ;; (defun msmtpsq-fail-sentinel (process event)
   ;;   "Informs the user if the process has failed"

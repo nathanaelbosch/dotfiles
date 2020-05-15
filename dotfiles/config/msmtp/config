@@ -13,5 +13,13 @@ from           nathanael.bosch@gmail.com
 user           nathanael.bosch
 passwordeval   "authinfo.sh gmail"
 
+# Uni-Tue
+account        unitue
+host           smtpserv.uni-tuebingen.de
+port           587
+from           nathanael.bosch@uni-tuebingen.de
+user           iiina01
+passwordeval   "authinfo.sh machine='uni-tue'"
+
 # Set a default account
 account default : gmail

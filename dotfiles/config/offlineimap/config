@@ -2,7 +2,7 @@
 # get started fast.
 
 [general]
-accounts = Gmail
+accounts = Gmail,UniTue,MPI-IS
 pythonfile = ~/.config/offlineimap/custom.py
 
 [Account Gmail]
@@ -20,8 +20,32 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_password("gmail")
 folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail']
 
+[Account UniTue]
+localrepository = UniTueLocal
+remoterepository = UniTueRemote
 
-# [Repository Remote]
-# type = IMAP
-# remotehost = examplehost
-# remoteuser = jgoerzen
+[Repository UniTueLocal]
+type = Maildir
+localfolders = ~/Mail/UniTue
+
+[Repository UniTueRemote]
+type = IMAP
+remotehost = mailserv.uni-tuebingen.de
+remoteuser = iiina01
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotepasseval = get_password("uni-tue")
+
+[Account MPI-IS]
+localrepository = MPI-IS-Local
+remoterepository = MPI-IS-Remote
+
+[Repository MPI-IS-Local]
+type = Maildir
+localfolders = ~/Mail/MPI-IS
+
+[Repository MPI-IS-Remote]
+type = IMAP
+remotehost = mailhost.tuebingen.mpg.de
+remoteuser = nathanael.bosch@tuebingen.mpg.de
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotepasseval = get_password("mpi-is")
