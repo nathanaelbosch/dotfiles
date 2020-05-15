@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
      ;; evil-commentary
      finance
      git
-     google-calendar
+     ;; google-calendar
      ;; haskell
      helm
      html
@@ -90,7 +90,7 @@ This function should only modify configuration layer settings."
           org-want-todo-bindings t
           org-enable-reveal-js-support nil
           )
-     org-roam
+     ;; org-roam
      pandoc
      pdf
      (python :variables
@@ -133,6 +133,8 @@ This function should only modify configuration layer settings."
                                       org-chef
                                       org-board
                                       org-noter
+                                      org-roam
+                                      org-gcal
                                       ;; org-tempo
                                       ;; org-protocol
                                       sphinx-doc

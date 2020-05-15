@@ -1508,7 +1508,24 @@ Make TODOs red in the latex export
 * org-roam
 ** Set Directory
 #+begin_src emacs-lisp
- ;; (setq org-roam-directory "~/Dropbox/org/zettelkasten/")
+ (setq org-roam-directory "~/Dropbox/org/zettelkasten/")
+#+end_src
+** Add hotkeys
+#+begin_src emacs-lisp
+  (spacemacs/declare-prefix "aoR" "org-roam")
+  (spacemacs/set-leader-keys
+    "aoRl" 'org-roam
+    "aoRt" 'org-roam-today
+    "aoRf" 'org-roam-find-file
+    "aoRg" 'org-roam-show-graph)
+  (spacemacs/declare-prefix-for-mode 'org-mode "mr" "org-roam")
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "rl" 'org-roam
+    "rt" 'org-roam-today
+    "rb" 'org-roam-switch-to-buffer
+    "rf" 'org-roam-find-file
+    "ri" 'org-roam-insert
+    "rg" 'org-roam-show-graph)
 #+end_src
 
 ** Capture template
