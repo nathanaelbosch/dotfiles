@@ -443,6 +443,8 @@ Org-babel languages
      (python . t)
      (gnuplot . t)
      (shell . t)
+     (jupyter . t)
+     (ein . t)
      ;; (julia . t)
      ))
 #+END_SRC
@@ -450,6 +452,11 @@ Org-babel languages
 Correct indentation in org-babel source blocks
 #+BEGIN_SRC emacs-lisp
   (setq org-src-tab-acts-natively t)
+#+END_SRC
+
+Evaluate without confirmation
+#+BEGIN_SRC emacs-lisp
+  (setq org-confirm-babel-evaluate nil)
 #+END_SRC
 ** Column view
 #+BEGIN_SRC emacs-lisp
@@ -1938,4 +1945,19 @@ From [[https://www.eliasstorms.net/zetteldeft/#orgc3a0d0e][Zetteldeft]]
             (buffer-fns . (eshell))
             (frame-parameters . ((undecorated . t)))))
           ))
+#+end_src
+
+* Jupyter
+
+** ein
+
+*** Inline images
+#+begin_src emacs-lisp
+  (setq ein:output-area-inlined-images t)
+#+end_src
+
+*** Nicer Markdown
+#+begin_src emacs-lisp
+  ;; (setq poly-ein-mode t)
+  (setq ein:markdown-header-scaling t)
 #+end_src
