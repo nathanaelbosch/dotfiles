@@ -358,7 +358,7 @@ Seems not bad actually
 #+BEGIN_SRC emacs-lisp
   ;; Parents can only be marked as DONE if children tasks are undone
   ;; with the "ORDERED" property TODO children is blocked until all earlier siblings are marked DONE
-  (setq org-enforce-todo-dependencies t)
+  (setq org-enforce-todo-dependencies nil)
 #+END_SRC
 
 *** Autosave
@@ -554,8 +554,7 @@ To better follow the spacemacs mnemonics instead of C-c C-x ...
                               ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/Dropbox/org/gcal/phd.org")
                               ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/Dropbox/org/gcal/moml.org")
                               ))
-  (add-hook 'org-capture-after-finalize-hook 'google-calendar/sync-cal-after-capture)
-
+  ;; (add-hook 'org-capture-after-finalize-hook 'org-gcal-fetch)
 #+END_SRC
 ** Paper workflow
 Sources:
@@ -813,16 +812,18 @@ Default agenda files
                    ;; (org-agenda-regexp-filter-preset '("-Inbox"))
                    ))
             )
+           ((org-agenda-tag-filter-preset '("-PhD")))
            )
 
           ("w" "Work"
            ((agenda ""
                     ((org-agenda-span 1)
                      (org-agenda-files '("~/Dropbox/org/phd.org"
-                                         "~/Dropbox/org/phd.org_archive"
+                                         ;; "~/Dropbox/org/phd.org_archive"
                                          "~/Dropbox/org/phd_journal.org"
                                          "~/MEGA/papers/notes.org"
                                          "~/Dropbox/org/gcal/moml.org"
+                                         "~/Dropbox/org/gcal/uni.org"
                                          "~/Dropbox/org/gcal/phd.org"))
                      ;; (org-agenda-skip-function '(org-agenda-skip-entry-if
                      ;;                             'todo '("WAITING")))
@@ -897,7 +898,7 @@ Default agenda files
 *** General agenda settings
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-agenda-filter-preset '("-someday"))
-  (setq org-agenda-filter-preset '("-someday" "-WORK" "-inactive" "-ignore" "-PhD"))
+  (setq org-agenda-filter-preset '("-someday" "-WORK" "-inactive" "-ignore"))
   (setq org-agenda-regexp-filter-preset '("-WAITING"))
   (setq org-log-into-drawer t)
   (setq org-agenda-log-mode-items '(clock state))
@@ -913,7 +914,7 @@ Default agenda files
 
   ;; Tasks that cannot be done because of dependencies should not clutter the agenda
   ;; t grays them out, 'invisible makes them disappear
-  (setq org-agenda-dim-blocked-tasks 'invisible)
+  (setq org-agenda-dim-blocked-tasks t)
 
   ;; Better overview in agenda with my recurring tasks
   (setq org-agenda-show-future-repeats 'next)
@@ -1296,8 +1297,8 @@ Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Y
         (cond
          ((bh/is-project-p)
           subtree-end)
-         ((org-is-habit-p)
-          subtree-end)
+         ;; ((org-is-habit-p)
+         ;;  subtree-end)
          (t
           nil)))))
 
@@ -1307,8 +1308,8 @@ Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Y
       (widen)
       (let ((next-headline (save-excursion (or (outline-next-heading) (point-max)))))
         (cond
-         ((org-is-habit-p)
-          next-headline)
+         ;; ((org-is-habit-p)
+         ;;  next-headline)
          ((and bh/hide-scheduled-and-waiting-next-tasks
                (member "WAITING" (org-get-tags-at)))
           next-headline)
@@ -1331,8 +1332,8 @@ Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Y
         (cond
          ((bh/is-project-p)
           next-headline)
-         ((org-is-habit-p)
-          subtree-end)
+         ;; ((org-is-habit-p)
+         ;;  subtree-end)
          ((and (not limit-to-project)
                (bh/is-project-subtree-p))
           subtree-end)
@@ -1352,8 +1353,8 @@ Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Y
         (cond
          ((bh/is-project-p)
           subtree-end)
-         ((org-is-habit-p)
-          subtree-end)
+         ;; ((org-is-habit-p)
+         ;;  subtree-end)
          ((bh/is-project-subtree-p)
           subtree-end)
          (t
@@ -1369,8 +1370,8 @@ Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Y
         (cond
          ((bh/is-project-p)
           next-headline)
-         ((org-is-habit-p)
-          subtree-end)
+         ;; ((org-is-habit-p)
+         ;;  subtree-end)
          ((and (bh/is-project-subtree-p)
                (member (org-get-todo-state) (list "NEXT")))
           subtree-end)
@@ -1387,8 +1388,8 @@ Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Y
         (cond
          ((bh/is-project-p)
           subtree-end)
-         ((org-is-habit-p)
-          subtree-end)
+         ;; ((org-is-habit-p)
+         ;;  subtree-end)
          (t
           nil)))))
 
