@@ -65,14 +65,15 @@ This function should only modify configuration layer settings."
      html
      javascript
      (julia :variables
-            julia-mode-enable-lsp 'nil)
+            julia-backend 'lsp
+            )
      (latex :variables
             ;; latex-enable-auto-fill nil
             latex-build-command "LatexMk"
             latex-enable-auto-fill t
             latex-enable-magic t
             latex-enable-folding t)
-     ;; lsp
+     lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (mu4e :variables
            mu4e-use-maildirs-extension t
@@ -94,6 +95,8 @@ This function should only modify configuration layer settings."
      pandoc
      pdf
      (python :variables
+             python-backend 'lsp
+             python-lsp-server 'pyls
              python-test-runner 'pytest
              python-formatter 'black
              python-format-on-save t
