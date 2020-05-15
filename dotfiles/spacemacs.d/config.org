@@ -6,10 +6,8 @@ customized in the original config file.
 
 ** Hotkey to modify this config file.
 #+BEGIN_SRC emacs-lisp
-  (spacemacs/set-leader-keys "f e c"
-    (lambda()
-      (interactive)
-      (find-file "~/.spacemacs.d/config.org")))
+  (spacemacs/set-leader-keys "feC"
+    (lambda() (interactive) (find-file "~/.spacemacs.d/config.org")))
 #+END_SRC
 
 ** I like visual line mode
