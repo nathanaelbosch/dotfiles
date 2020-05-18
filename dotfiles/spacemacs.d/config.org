@@ -165,6 +165,11 @@ Add the yasnippet-snippets snippets to yasnippet.
   (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
 #+end_src
 
+** Yasnippets in ledger-mode
+#+begin_src emacs-lisp
+  (add-hook 'ledger-mode-hook 'yas-minor-mode)
+#+end_src
+
 * Email
 ** Contexts
 #+BEGIN_SRC emacs-lisp
