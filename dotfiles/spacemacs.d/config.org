@@ -52,7 +52,7 @@ open pdfs scaled to fit page
 
 ** libnotify
 #+BEGIN_SRC emacs-lisp
-  ;; (setq alert-default-style 'libnotify)
+  (setq alert-default-style 'libnotify)
 #+END_SRC
 
 ** Visual line mode when working with text based content
@@ -288,6 +288,11 @@ Otherwise, open in a browser
 #+begin_src emacs-lisp
   ;; (add-to-list 'mu4e-view-actions
   ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+#+end_src
+
+** Notifications for new Email
+#+begin_src emacs-lisp
+  (mu4e-alert-set-default-style 'libnotify)
 #+end_src
 
 ** Pandoc for HTML

@@ -83,6 +83,7 @@ This function should only modify configuration layer settings."
            mu4e-update-interval 180
            mu4e-view-show-addresses t
            mu4e-confirm-quit nil
+           mu4e-enable-notifications t
            mu4e-enable-async-operations t)
      ;;(multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      neotree
