@@ -568,6 +568,8 @@ completion does not work well, and without that it is not very helpful.
 ** org-babel and org-src
 Org-babel languages
 #+BEGIN_SRC emacs-lisp
+  (setq  inferior-julia-program-name (executable-find "julia"))
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((C . t)
@@ -576,7 +578,7 @@ Org-babel languages
      (shell . t)
      (jupyter . t)
      (ein . t)
-     ;; (julia . t)
+     (julia . t)
      ))
 #+END_SRC
 
