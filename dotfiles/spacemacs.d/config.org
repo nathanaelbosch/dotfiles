@@ -1,4 +1,5 @@
 #+TITLE:Literate Spacemacs Config with Org-babel
+#+PROPERTY: header-args :results silent
 
 * Table of Contents   :TOC:
 - [[#general][General]]
