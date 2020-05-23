@@ -90,6 +90,7 @@
   - [[#drop-down-emacs-with-yequake][Drop-down emacs with ~Yequake~]]
   - [[#ein-to-open-jupyter-notebooks-in-emacs][~ein~ to open jupyter notebooks in emacs]]
   - [[#yasnippets][Yasnippets]]
+  - [[#budget-money-with-ledger-cli][Budget money with ~ledger-cli~]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -1735,4 +1736,21 @@ Add the yasnippet-snippets snippets to yasnippet.
 Use Yasnippets in ~ledger-mode~
 #+begin_src emacs-lisp
   (add-hook 'ledger-mode-hook 'yas-minor-mode)
+#+end_src
+** Budget money with ~ledger-cli~
+#+begin_src emacs-lisp
+  (setq org-capture-templates
+        (append '(("l" "Ledger entries")
+                  ("lr" "Rewe" plain (file "~/MEGA/finances.ledger")
+                   "%(org-read-date) Rewe Einkauf
+    Expenses:Food:Groceries     %^{Amount}
+    Assets:Volksbank
+  ")
+  ;;                 ("lc" "Cash" plain (file "~/MEGA/finances.ledger")
+  ;;                  "%(org-read-date) * %^{Payee}
+  ;;   Expenses:%^{Account}  %^{Amount}
+  ;;   Expenses:Cash
+  ;; ")
+                  )
+                org-capture-templates))
 #+end_src
