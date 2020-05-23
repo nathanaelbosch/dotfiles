@@ -2,109 +2,96 @@
 #+PROPERTY: header-args :results silent
 
 * Table of Contents   :TOC:
-- [[#general][General]]
+- [[#general-emacs-settings][General Emacs settings]]
   - [[#hotkey-to-modify-this-config-file][Hotkey to modify this config file.]]
   - [[#i-like-visual-line-mode][I like visual line mode]]
   - [[#smoother-undo-behavior][Smoother undo behavior]]
   - [[#better-vertical-splitting][Better vertical splitting]]
-  - [[#scroll-margin][Scroll margin]]
-  - [[#pdf][PDF]]
+  - [[#larger-scroll-margin][Larger scroll margin]]
+  - [[#fit-pdf-page-to-frame][Fit PDF page to frame]]
+  - [[#pdf-dark-mode-to-fit-the-gruvbox-theme][PDF: Dark mode to fit the gruvbox theme]]
   - [[#auto-refresh-buffers-when-files-changed-on-disk][Auto-refresh buffers when files changed on disk]]
-  - [[#libnotify][libnotify]]
+  - [[#libnotify-to-display-notifications][~libnotify~ to display notifications]]
   - [[#show-time-and-date-in-modeline][Show time and date in modeline]]
   - [[#pop-up-shell][Pop-up shell]]
   - [[#auth-info][Auth-info]]
-  - [[#nicer-treemacs][Nicer Treemacs]]
+  - [[#nicer-treemacs][Nicer ~treemacs~]]
   - [[#emacs-i3-window-movement-integration][Emacs-i3 window movement integration]]
-  - [[#more-beautiful-pdf-reading][More beautiful PDF reading]]
-  - [[#increase-numbers-as-in-vim][Increase numbers as in vim]]
-  - [[#yasnippets][Yasnippets]]
-  - [[#yasnippets-in-ledger-mode][Yasnippets in ledger-mode]]
+  - [[#increase-numbers-with-the-same-hotkeys-as-in-vim][Increase numbers with the same hotkeys as in vim]]
   - [[#better-eshell-usage][Better eshell usage]]
-- [[#email][Email]]
-  - [[#contexts][Contexts]]
-  - [[#send-emails][Send Emails]]
-    - [[#org][Org]]
-  - [[#html-mails-with-images][HTML Mails with images]]
-  - [[#notifications-for-new-email][Notifications for new Email]]
-  - [[#pandoc-for-html][Pandoc for HTML]]
-  - [[#visual-line-mode-hook][Visual line mode hook]]
-  - [[#check-for-supposed-attachments-prior-to-sending-them][Check for supposed attachments prior to sending them]]
-  - [[#gnus-view][gnus view]]
-  - [[#link-to-message-not-headers][Link to message, not headers]]
-- [[#org-1][Org]]
+- [[#packages--languages--concepts][Packages / Languages / Concepts]]
+  - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
+    - [[#contexts][Contexts]]
+    - [[#send-emails][Send Emails]]
+      - [[#org][Org]]
+    - [[#html-mails-with-images][HTML Mails with images]]
+    - [[#notifications-for-new-email][Notifications for new Email]]
+    - [[#pandoc-for-html][Pandoc for HTML]]
+    - [[#visual-line-mode-hook][Visual line mode hook]]
+    - [[#check-for-supposed-attachments-prior-to-sending-them][Check for supposed attachments prior to sending them]]
+    - [[#gnus-view][gnus view]]
+    - [[#link-to-message-not-headers][Link to message, not headers]]
+  - [[#writeroom][Writeroom]]
+  - [[#magit---the-best-git-interface][~magit~ - The best git interface]]
+  - [[#latex][LaTeX]]
+    - [[#reftex][RefTex]]
+    - [[#outline-minor-mode][Outline Minor Mode]]
+    - [[#outline-magic][Outline-magic]]
+    - [[#visual-fill-mode-instead-of-auto-fill][Visual fill mode instead of auto fill]]
+    - [[#beamer-bold-as-bold-not-as-alert][Beamer: Bold as bold, not as alert!]]
+  - [[#exwm---the-emacs-x-window-manager][~exwm~ - The Emacs X Window Manager]]
+  - [[#drop-down-emacs-with-yequake][Drop-down emacs with ~Yequake~]]
+  - [[#ein-to-open-jupyter-notebooks-in-emacs][~ein~ to open jupyter notebooks in emacs]]
+  - [[#yasnippets][Yasnippets]]
+- [[#organize-my-life-with-org-mode][Organize my life with ~org-mode~]]
   - [[#general-settings][General settings]]
-    - [[#inline-images][Inline images]]
-    - [[#pretty-entities][Pretty entities]]
-    - [[#order-can-be-super-useful][Order can be super useful!]]
-    - [[#autosave][Autosave]]
+    - [[#prettier-org][Prettier org]]
+      - [[#inline-images][Inline images]]
+      - [[#pretty-entities][Pretty entities]]
+      - [[#hide-emphasis-markers-for-increased-prettiness][Hide emphasis markers, for increased prettiness]]
+      - [[#link-abbreviations][Link Abbreviations]]
+    - [[#enforce-todo-dependencies][Enforce todo dependencies]]
+    - [[#autosave-org-files][Autosave org files]]
     - [[#archive-tag-to-gray-out-things-i-do-not-need][Archive tag to gray out things I do not need]]
     - [[#start-org-with-some-useful-modes][Start org with some useful modes]]
-    - [[#hide-emphasis-markers-for-increased-prettiness][Hide emphasis markers, for increased prettiness]]
-  - [[#org-habit][org-habit]]
-  - [[#org-protocol][org-protocol]]
-  - [[#org-refile][org-refile]]
-  - [[#org-chef][org-chef]]
-  - [[#org-babel-and-org-src][org-babel and org-src]]
-  - [[#column-view][Column view]]
-  - [[#latex-exports][Latex exports]]
+    - [[#column-view][Column view]]
+  - [[#org-refile-targets][~org-refile~ targets]]
   - [[#keywords][keywords]]
-  - [[#org-gcal-google-calendar][org-gcal: Google Calendar]]
-  - [[#paper-workflow][Paper workflow]]
+  - [[#org-agenda][~org-agenda~]]
+    - [[#agenda-files][Agenda files]]
+    - [[#agenda-views][Agenda views]]
+    - [[#general-agenda-settings][General agenda settings]]
+  - [[#org-capture-templates][~org-capture~ Templates]]
+  - [[#project-management-any-task-with-subtasks-is-a-project][Project management: Any task with subtasks is a /project/!]]
+  - [[#tracking-time-through-clocking][Tracking time through /clocking/]]
+    - [[#general-clocking-settings][General clocking settings]]
+    - [[#more-from-org-mode---organize-your-life-in-plain-text][More from Org Mode - Organize Your Life In Plain Text!]]
+    - [[#define-hotkeys-for-clocking][Define hotkeys for clocking]]
+  - [[#literate-programming-with-org-src-and-org-babel][Literate programming with ~org-src~ and ~org-babel~]]
+  - [[#tracking-habits-with-org-habit][Tracking habits with ~org-habit~]]
+  - [[#capture-directly-from-the-browser-with-org-protocol][Capture directly from the browser with ~org-protocol~]]
+  - [[#my-paper-reading-workflow][My paper reading workflow]]
     - [[#general-variables][General Variables]]
     - [[#custom-hotkeys][Custom Hotkeys]]
-    - [[#org-ref-notes][org-ref notes]]
-    - [[#pdf-opening][PDF opening]]
-    - [[#cleveref][Cleveref]]
-    - [[#pdf-noter][pdf-noter]]
-  - [[#org-capture][org-capture]]
-  - [[#org-agenda][org-agenda]]
-    - [[#files][Files]]
-    - [[#custom-views][Custom views]]
-    - [[#general-agenda-settings][General agenda settings]]
+    - [[#org-ref-notes][~org-ref~ notes]]
+    - [[#use-cleveref-in-latex][Use ~cleveref~ in LaTeX]]
+    - [[#pdf-noter-for-note-taking][~pdf-noter~ for note-taking]]
+  - [[#manage-recipes-with-org-chef][Manage recipes with ~org-chef~]]
+  - [[#better-screenshots-with-org-download][Better screenshots with ~org-download~]]
   - [[#org-projectile][org-projectile]]
-  - [[#clocking][Clocking]]
-    - [[#more-from-org-mode---organize-your-life-in-plain-text][More from Org Mode - Organize Your Life In Plain Text!]]
-    - [[#set-keys-for-punching-in-and-out][Set Keys for punching in and out]]
-  - [[#exports][Exports]]
-  - [[#org-download][org-download]]
-  - [[#state-logging-note-inserts-now-open-in-evil-insert-mode][state logging note inserts now open in evil insert mode]]
-  - [[#link-abbreviations][Link Abbreviations]]
-  - [[#advanced-project-definition][Advanced Project Definition]]
-- [[#org--latex][Org & Latex]]
-  - [[#latex-exports-1][Latex exports]]
-  - [[#cdlatex-environments][cdlatex environments]]
-  - [[#org-latex-syntax-highlight][Org latex syntax highlight]]
-  - [[#org-latex-table-caption-below][Org latex table caption below]]
-- [[#org-roam][org-roam]]
-  - [[#set-directory][Set Directory]]
-  - [[#add-hotkeys][Add hotkeys]]
-  - [[#capture-template][Capture template]]
-  - [[#capture-ref-from-browser][Capture Ref from Browser]]
-- [[#writeroom-wip][Writeroom (WIP)]]
-- [[#magit][Magit]]
-  - [[#start-in-evil-mode][Start in Evil mode]]
-  - [[#magit-blame-keys][Magit blame keys]]
-  - [[#refine-diffs][Refine diffs]]
-- [[#latex][LaTeX]]
-  - [[#reftex][RefTex]]
-  - [[#outline-minor-mode][Outline Minor Mode]]
-  - [[#outline-magic][Outline-magic]]
-  - [[#visual-fill-mode-instead-of-auto-fill][Visual fill mode instead of auto fill]]
-  - [[#beamer-bold-as-bold-not-as-alert][Beamer: Bold as bold, not as alert!]]
-- [[#exwm][EXWM]]
-  - [[#tray][Tray]]
-  - [[#workspaces][Workspaces]]
-  - [[#time][Time]]
-  - [[#autostart][Autostart]]
-  - [[#global-buffers][Global buffers]]
-- [[#yequake][Yequake]]
-- [[#jupyter][Jupyter]]
-  - [[#ein][ein]]
-    - [[#inline-images-1][Inline images]]
-    - [[#nicer-markdown][Nicer Markdown]]
+  - [[#google-calendar-integration-with-org-gcal][Google-Calendar Integration with ~org-gcal~]]
+  - [[#export-org-to-latex][Export org to LaTeX]]
+    - [[#latex-exports][LaTeX exports]]
+    - [[#cdlatex-environments][cdlatex environments]]
+    - [[#syntax-highlight][Syntax highlight]]
+    - [[#caption-below-tables][Caption below tables]]
+  - [[#zettelkasten-with-org-roam][/Zettelkasten/ with ~org-roam~]]
+    - [[#set-directory][Set Directory]]
+    - [[#add-hotkeys][Add hotkeys]]
+    - [[#capture-template][Capture template]]
+    - [[#capture-ref-from-browser][Capture Ref from Browser]]
 
-* General
+* General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
 customized in the original config file.
 
@@ -128,27 +115,47 @@ customized in the original config file.
   (setq split-height-threshold nil)
   (setq split-width-threshold 160)
 #+END_SRC
-** Comment with ctrl-shift-c
+** Comment region/line with "C-S-c"
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-S-c") 'evilnc-comment-or-uncomment-lines)
 #+END_SRC
-** Scroll margin
+** Larger scroll margin
 #+BEGIN_SRC emacs-lisp
   (setq scroll-margin 1)
 #+END_SRC
 
-** PDF
+** Fit PDF page to frame
 open pdfs scaled to fit page
 #+BEGIN_SRC emacs-lisp
   (setq-default pdf-view-display-size 'fit-page)
 #+END_SRC
+
+** PDF: Dark mode to fit the gruvbox theme
+midnight mode
+#+begin_src emacs-lisp
+  (setq pdf-view-midnight-colors '("#fdf4c1" . "#282828"))
+#+end_src
+
+Delete the border
+#+begin_src emacs-lisp
+  (add-hook 'pdf-view-mode-hook
+            (lambda ()
+              (set (make-local-variable
+                    'evil-evilified-state-cursor)
+                   (list nil))))
+#+end_src
+
+Always start in midnight mode
+#+begin_src emacs-lisp
+  ;; (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
+#+end_src
 
 ** Auto-refresh buffers when files changed on disk
 #+BEGIN_SRC emacs-lisp
   (global-auto-revert-mode t)
 #+END_SRC
 
-** libnotify
+** ~libnotify~ to display notifications
 #+BEGIN_SRC emacs-lisp
   (setq alert-default-style 'libnotify)
 #+END_SRC
@@ -173,7 +180,7 @@ open pdfs scaled to fit page
         '((:source "~/.authinfo.gpg")))
 #+end_src
 
-** Nicer Treemacs
+** Nicer ~treemacs~
 #+begin_src emacs-lisp
   (setq doom-themes-treemacs-theme
         ;; "doom-colors"
@@ -182,7 +189,16 @@ open pdfs scaled to fit page
   (doom-themes-treemacs-config)
 #+end_src
 
-** Emacs-i3 window movement integration
+** Emacs-i3 window movement integration                                :WIP:
+The goal here: Have one hotkey to move windows in both i3wm and Emacs.
+The general idea had the following control flow:
+- Check if the currently focused window is emacs
+  - If not, change window focus as usual => DONW
+  - If yes, pass key presses on to Emacs
+    - Check if there is an emacs window on the desired direction
+      - If yes, change window focus inside emacs => DONE
+      - If not, change window focus in i3wm by calling ~i3-msg~ => DONE
+
 First define my custom windmove functions
 #+begin_src emacs-lisp
   (defun i3-windmove-left ()
@@ -224,43 +240,12 @@ Set custom hotkeys
 #+RESULTS:
 : i3-windmove-right
 
-** More beautiful PDF reading
-midnight mode
-#+begin_src emacs-lisp
-  (setq pdf-view-midnight-colors '("#fdf4c1" . "#282828"))
-#+end_src
-
-Delete the border
-#+begin_src emacs-lisp
-  (add-hook 'pdf-view-mode-hook
-            (lambda ()
-              (set (make-local-variable
-                    'evil-evilified-state-cursor)
-                   (list nil))))
-#+end_src
-
-Always start in midnight mode
-#+begin_src emacs-lisp
-  ;; (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
-#+end_src
-
-** Increase numbers as in vim
+** Increase numbers with the same hotkeys as in vim
 #+begin_src emacs-lisp
   (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
   (define-key evil-visual-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
   (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
   (define-key evil-visual-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
-#+end_src
-
-** Yasnippets
-Add the yasnippet-snippets snippets to yasnippet.
-#+begin_src emacs-lisp
-  (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
-#+end_src
-
-** Yasnippets in ledger-mode
-#+begin_src emacs-lisp
-  (add-hook 'ledger-mode-hook 'yas-minor-mode)
 #+end_src
 
 ** Better eshell usage
@@ -269,8 +254,10 @@ opening a new one:
 #+begin_src emacs-lisp
   (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
 #+end_src
-* Email
-** Contexts
+
+* Packages / Languages / Concepts
+** Manage my Email with ~mu4e~
+*** Contexts
 #+BEGIN_SRC emacs-lisp
   (setq mu4e-contexts
    `(
@@ -313,7 +300,7 @@ opening a new one:
      ))
 #+END_SRC
 
-** Send Emails
+*** Send Emails
 #+BEGIN_SRC emacs-lisp
   (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
         message-sendmail-extra-arguments '("--read-envelope-from")
@@ -366,12 +353,12 @@ opening a new one:
   ;; (setq message-kill-buffer-on-exit t)
 #+END_SRC
 
-*** Org
+**** Org
 #+begin_src emacs-lisp
   (setq org-mu4e-convert-to-html t)
 #+end_src
 
-** HTML Mails with images
+*** HTML Mails with images
 
 #+begin_src emacs-lisp
   ;; (setq
@@ -394,23 +381,23 @@ Otherwise, open in a browser
   ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 #+end_src
 
-** Notifications for new Email
+*** Notifications for new Email
 #+begin_src emacs-lisp
   (mu4e-alert-set-default-style 'libnotify)
 #+end_src
 
-** Pandoc for HTML
+*** Pandoc for HTML
 Seems not bad actually
 #+begin_src emacs-lisp
   ;; (setq mu4e-html2text-command "iconv -c -t utf-8 | pandoc -f html -t plain")
 #+end_src
 
-** Visual line mode hook
+*** Visual line mode hook
 #+begin_src emacs-lisp
   (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
 #+end_src
 
-** Check for supposed attachments prior to sending them
+*** Check for supposed attachments prior to sending them
 #+begin_src emacs-lisp
   ;; (defvar my-message-attachment-regexp "\\(
   ;;                                       [Ww]e send\\|
@@ -435,35 +422,247 @@ Seems not bad actually
   ;; (add-hook 'message-send-hook 'my-message-check-attachment)
 #+end_src
 
-** gnus view
+*** gnus view
 #+begin_src emacs-lisp
   ;; (setq mu4e-view-use-gnus t)
 #+end_src
-** Link to message, not headers
+*** Link to message, not headers
 #+begin_src emacs-lisp
   ;; (setq org-mu4e-link-query-in-headers-mode nil)
 #+end_src
-* Org
+** Writeroom                                                           :WIP:
+My goal here: Create a /beautiful/ writing environment!
+#+begin_src emacs-lisp
+  ;; (setq
+  ;;  ;; writeroom-maximize-window t
+  ;;  writeroom-fullscreen-effect nil
+  ;;  writeroom-extra-line-spacing 0.3
+  ;;  writeroom-width 88
+  ;;  writeroom-border-width 30
+  ;;  )
+#+end_src
+
+No line numbers
+#+begin_src emacs-lisp
+  ;; (defun my/writeroom-without-linenumbers (arg)
+  ;;   (cond
+  ;;    ((= arg 1)
+  ;;     (spacemacs/toggle-line-numbers-off))
+  ;;    ((= arg -1)
+  ;;     (spacemacs/toggle-line-numbers-on))))
+
+  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-without-linenumbers)
+#+end_src
+
+Enable some nice white Theme
+#+begin_src emacs-lisp
+  ;; (setq my/main-theme 'gruvbox)
+  ;; (setq my/writeroom-theme 'leuven)
+  ;; (load-theme my/writeroom-theme)
+  ;; (disable-theme my/writeroom-theme)
+  ;; (load-theme my/main-theme)
+  ;; (defun my/writeroom-theme-fn (arg)
+  ;;   (cond
+  ;;    ((= arg 1)
+  ;;     (enable-theme my/writeroom-theme)
+  ;;     (disable-theme my/main-theme)
+  ;;     )
+  ;;    ((= arg -1)
+  ;;     (disable-theme my/writeroom-theme)
+  ;;     (enable-theme my/main-theme)
+  ;;     )
+  ;;    ))
+  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-theme-fn)
+#+end_src
+
+** ~magit~ - The best git interface
+Start in Evil mode
+#+BEGIN_SRC emacs-lisp
+  ;; Start magit commit in insert mode
+  (add-hook 'with-editor-mode-hook 'evil-insert-state)
+#+END_SRC
+
+Magit blame keys
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c b") 'magit-blame)
+#+end_src
+
+Refine diffs
+#+begin_src emacs-lisp
+  (setq magit-diff-refine-hunk "all")
+#+end_src
+
+** LaTeX
+Ask me about the TeX master file if unsure
+#+BEGIN_SRC emacs-lisp
+  (setq-default TeX-master nil)
+#+END_SRC
+*** RefTex
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key-for-mode 'latex-mode "r r" 'reftex-cleveref-cref)
+#+END_SRC
+*** Outline Minor Mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+#+END_SRC
+
+Fake sections for better manipulation:
+#+BEGIN_SRC emacs-lisp
+  (setq TeX-outline-extra
+        '(("%chapter" 1)
+          ("%section" 2)
+          ("%subsection" 3)
+          ("%subsubsection" 4)
+          ("%paragraph" 5)))
+  ;; add font locking to the headers
+  (font-lock-add-keywords
+   'latex-mode
+   '(("^%\\(chapter\\|\\(sub\\|subsub\\)?section\\|paragraph\\)"
+      0 'font-lock-keyword-face t)
+     ("^%chapter{\\(.*\\)}"       1 'font-latex-sectioning-1-face t)
+     ("^%section{\\(.*\\)}"       1 'font-latex-sectioning-2-face t)
+     ("^%subsection{\\(.*\\)}"    1 'font-latex-sectioning-3-face t)
+     ("^%subsubsection{\\(.*\\)}" 1 'font-latex-sectioning-4-face t)
+     ("^%paragraph{\\(.*\\)}"     1 'font-latex-sectioning-5-face t)))
+#+END_SRC
+*** Outline-magic
+#+BEGIN_SRC emacs-lisp
+  (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)
+  (define-key outline-minor-mode-map (kbd "M-h") 'outline-promote)
+  (define-key outline-minor-mode-map (kbd "M-j") 'outline-move-subtree-down)
+  (define-key outline-minor-mode-map (kbd "M-k") 'outline-move-subtree-up)
+  (define-key outline-minor-mode-map (kbd "M-l") 'outline-demote)
+  (define-key outline-minor-mode-map (kbd "M-H")
+    (lambda() (interactive) (evil-visual-line) (outline-promote)))
+  (define-key outline-minor-mode-map (kbd "M-L")
+    (lambda() (interactive) (evil-visual-line) (outline-demote)))
+#+END_SRC
+*** Visual fill mode instead of auto fill
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'latex-mode-hook 'visual-fill-column-mode)
+  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
+  (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
+#+END_SRC
+*** Beamer: Bold as bold, not as alert!
+#+begin_src emacs-lisp
+  (defun my-beamer-bold (contents backend info)
+    (when (eq backend 'beamer)
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+
+  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
+#+end_src
+
+** ~exwm~ - The Emacs X Window Manager
+General settings:
+#+begin_src emacs-lisp
+  ;; Tray
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+
+  ;; Workspaces
+  (setq exwm-workspace-number 10)
+
+  ;; Display time
+  (display-time-mode t)
+
+  ;; Global buffers
+  (setq exwm-layout-show-all-buffers t)
+#+end_src
+
+Autostart programs
+#+begin_src emacs-lisp
+  ;; Autostart Dropbox
+  ;; (call-process-shell-command "(sleep 10s && dropbox) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && megasync) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && nm-applet) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && redshift-gtk -l 48.2488721:11.6532477) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && spotify) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
+#+end_src
+
+** Drop-down emacs with ~Yequake~
+#+begin_src emacs-lisp
+  (setq yequake-frames
+        '(("TODOs & scratch" .
+           ((width . 0.75)
+            (height . 0.5)
+            (alpha . 0.95)
+            (buffer-fns . ("~/Dropbox/org/todo.org"
+                           split-window-horizontally
+                           "*scratch*"))
+            (frame-parameters . ((undecorated . t)))))
+          ("eguake" .
+           ((width . 853)
+            (height . 480)
+            (top . 0.5)
+            ;; (alpha . 0.95)
+            (buffer-fns . (eshell))
+            (frame-parameters . ((undecorated . t)))))
+          ))
+#+end_src
+
+** ~ein~ to open jupyter notebooks in emacs
+Aesthetic settings:
+#+begin_src emacs-lisp
+  ;; Inline images
+  (setq ein:output-area-inlined-images t)
+
+  ;; Nicer Markdown
+  ;; (setq poly-ein-mode t)
+  (setq ein:markdown-header-scaling t)
+#+end_src
+** Yasnippets
+Add the yasnippet-snippets snippets to yasnippet.
+#+begin_src emacs-lisp
+  (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
+#+end_src
+
+Use Yasnippets in ~ledger-mode~
+#+begin_src emacs-lisp
+  (add-hook 'ledger-mode-hook 'yas-minor-mode)
+#+end_src
+
+* Organize my life with ~org-mode~
+I love org so much, it deserves its own heading.
 ** General settings
-*** Inline images
+*** Prettier org
+**** Inline images
 #+BEGIN_SRC emacs-lisp
   ;; Inline images
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 500)
 #+END_SRC
 
-*** Pretty entities
+**** Pretty entities
 #+BEGIN_SRC emacs-lisp
   (setq org-pretty-entities t)
 #+END_SRC
-*** Order can be super useful!
+**** Hide emphasis markers, for increased prettiness
+#+begin_src emacs-lisp
+  (setq org-hide-emphasis-markers t)
+#+end_src
+**** Link Abbreviations
+#+begin_src emacs-lisp
+  (setq org-link-abbrev-alist
+        '(
+          ("wolfram" . "https://wolframalpha.com/input/?i=%s")
+          ("duckduckgo" . "https://duckduckgo.com/?q=%s")
+          ("gmap" . "https://maps.google.com/maps?q=%s")
+          ("gimages" . "https://google.com/images?q=%s")
+          ("google" . "https://google.com/search?q=")
+          ("youtube" . "https://youtube.com/watch?v=%s")
+          ("youtu" . "https://youtube.com/results?search_query=%s")
+          ("github" . "https://github.com/%s")
+          ))
+#+end_src
+*** Enforce todo dependencies
 #+BEGIN_SRC emacs-lisp
   ;; Parents can only be marked as DONE if children tasks are undone
   ;; with the "ORDERED" property TODO children is blocked until all earlier siblings are marked DONE
-  (setq org-enforce-todo-dependencies nil)
+  (setq org-enforce-todo-dependencies t)
 #+END_SRC
 
-*** Autosave
+*** Autosave org files
 #+BEGIN_SRC emacs-lisp
   ;; Automatically save org buffers when agenda is open
   ;; (add-hook 'org-agenda-mode-hook
@@ -485,23 +684,11 @@ Seems not bad actually
   (add-hook 'org-mode-hook 'auto-fill-mode)
 #+END_SRC
 
-*** Hide emphasis markers, for increased prettiness
-#+begin_src emacs-lisp
-  (setq org-hide-emphasis-markers t)
-#+end_src
-** org-habit
+*** Column view
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'org-modules 'org-habit)
-
-  (setq org-habit-graph-column 50)
+  (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
 #+END_SRC
-
-** org-protocol
-#+begin_src emacs-lisp
-  (add-to-list 'org-modules 'org-protocol)
-#+end_src
-
-** org-refile
+** ~org-refile~ targets
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-targets '(
                              ;; ("~/Dropbox/org/todo.org" :maxlevel . 2)
@@ -518,88 +705,11 @@ Seems not bad actually
                              ))
 #+END_SRC
 
-This would be awesome: Refiling by incrementally choosing a path. However,
-completion does not work well, and without that it is not very helpful.
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-use-outline-path 'file)
   (setq org-outline-path-complete-in-steps nil)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
 #+END_SRC
-
-** org-chef
-#+BEGIN_SRC emacs-lisp
-  (use-package org-chef :ensure t)
-#+END_SRC
-** org-babel and org-src
-Org-babel languages
-#+BEGIN_SRC emacs-lisp
-  (setq  inferior-julia-program-name (executable-find "julia"))
-
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((C . t)
-     (python . t)
-     (gnuplot . t)
-     (shell . t)
-     (jupyter . t)
-     (ein . t)
-     (julia . t)
-     ))
-#+END_SRC
-
-Correct indentation in org-babel source blocks
-#+BEGIN_SRC emacs-lisp
-  (setq org-src-tab-acts-natively t)
-#+END_SRC
-
-Evaluate without confirmation
-#+BEGIN_SRC emacs-lisp
-  (setq org-confirm-babel-evaluate nil)
-#+END_SRC
-** Column view
-#+BEGIN_SRC emacs-lisp
-  (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
-#+END_SRC
-** Latex exports
-#+BEGIN_SRC emacs-lisp
-  ;; (setq org-latex-pdf-process (list "latexmk -pdf %f"))
-  (setq org-latex-pdf-process (list
-                               "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
-
-  (add-to-list 'org-latex-classes
-               '("letter" "\\documentclass{letter}"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-  (add-to-list 'org-latex-classes
-               '("scrbook" "\\documentclass{scrbook}"
-                 ("\\chapter{%s}" . "\\chapter*{%s}")
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-  (evil-leader/set-key-for-mode 'org-mode "e p"
-    'org-latex-export-to-pdf)
-  ;; (lambda () (interactive) (org-latex-export-to-pdf t)))
-  (evil-leader/set-key-for-mode 'org-mode "e B"
-    'org-beamer-export-to-pdf)
-  (evil-leader/set-key-for-mode 'org-mode "e b"
-    'org-beamer-export-to-latex)
-  ;; (lambda () (interactive) (org-beamer-export-to-pdf t)))
-  (evil-leader/set-key-for-mode 'org-mode "e t"
-    'org-latex-export-to-latex)
-#+END_SRC
-
-Ability to ignore headings in the export, so that I can use them just to
-structure and fold my text:
-#+begin_src emacs-lisp
-  (require 'ox-extra)
-  (ox-extras-activate '(ignore-headlines org-export-ignore-headlines))
-#+end_src
 ** Todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
@@ -626,200 +736,13 @@ structure and fold my text:
           ("3PASS" . (:foreground "#98971a" :weight bold))
           ("REMINDER" . "#8ec07c")
           ))
+
+  ;; Open the log-buffer in evil-insert-state
+  (add-hook 'org-log-buffer-setup-hook 'evil-insert-state)
 #+END_SRC
 
-** org-gcal: Google Calendar
-#+BEGIN_SRC emacs-lisp
-  ;; Function to read lines of a file and output a list
-  (defun read-lines (filePath)
-    "Return a list of lines of a file at filePath."
-    (with-temp-buffer
-      (insert-file-contents filePath)
-      (split-string (buffer-string) "\n" t)))
-  ;; ;; Read lines from gcal.auth and store them in the variable
-  (setq auth-lines (read-lines "~/Dropbox/org/gcal.auth"))
-  ;; ;; Google Calendar
-  (setq org-gcal-client-id (car auth-lines)
-        org-gcal-client-secret (car (cdr auth-lines)))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  ;; Google Calendar
-  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
-                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
-                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
-                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
-                              ("9kv80prb7ojqt998nmm24149e0@group.calendar.google.com" . "~/Dropbox/org/gcal/geburtstage.org")
-                              ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/Dropbox/org/gcal/phd.org")
-                              ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/Dropbox/org/gcal/moml.org")
-                              ))
-  ;; (add-hook 'org-capture-after-finalize-hook 'org-gcal-fetch)
-#+END_SRC
-** Paper workflow
-Sources:
-- https://codearsonist.com/reading-for-programmers
-- https://github.com/jkitchin/org-ref
-
-Goal is mostly to find the perfect paper workflow with emacs org-mode.
-*** General Variables
-Basically three parts:
-- global bibliography file
-- my notes
-- pdf directory
-These have to be defined in multiple locations as I use multiple different
-libraries for this task
-#+BEGIN_SRC emacs-lisp
-  (setq reftex-default-bibliography '("~/MEGA/papers/references.bib"))
-
-  ;; see org-ref for use of these variables
-  (setq org-ref-bibliography-notes "~/MEGA/papers/notes.org"
-        org-ref-default-bibliography '("~/MEGA/papers/references.bib")
-        org-ref-pdf-directory "~/MEGA/papers/lib/")
-
-  (setq helm-bibtex-notes-path "~/MEGA/papers/notes.org"
-        helm-bibtex-bibliography "~/MEGA/papers/references.bib"
-        helm-bibtex-library-path "~/MEGA/papers/lib")
-
-  ;; Further variables for helm-bibtex
-  (setq bibtex-completion-bibliography "~/MEGA/papers/references.bib"
-        bibtex-completion-library-path "~/MEGA/papers/lib"
-        bibtex-completion-notes-path "~/MEGA/papers/notes.org")
-
-  ;; Download directory
-  (setq biblio-download-directory "~/MEGA/papers/lib")
-#+END_SRC
-*** Custom Hotkeys
-To access interleave mode and helm-bibtex
-#+BEGIN_SRC emacs-lisp
-  (defun clock-in-and-interleave ()
-    (interactive)
-    (org-clock-in)
-    (interleave-mode))
-
-  ;; (evil-leader/set-key-for-mode 'org-mode "I" 'clock-in-and-interleave)
-  ;; (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
-  ;; (evil-leader/set-key-for-mode 'org-mode "B" 'helm-bibtex)
-  (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
-#+END_SRC
-*** org-ref notes
-Customized the structure of the default notes entry, to contain more information
-(such as pdf), use TOREAD instead of TODO, and automatically enable interleave mode.
-#+BEGIN_SRC emacs-lisp
-  (setq org-ref-note-title-format "** TOREAD %t
-  :PROPERTIES:
-  :Custom_ID: %k
-  :AUTHOR: %9a
-  :JOURNAL: %j
-  :YEAR: %y
-  :VOLUME: %v
-  :PAGES: %p
-  :DOI: %D
-  :URL: %U
-  :BIBTEX_LABEL: %k
-  :PDF: %F
-  :END:
-  PDF: file:%F
-  ")
-#+END_SRC
-
-*** PDF opening
-#+BEGIN_SRC emacs-lisp
-  ;; open pdf with system pdf viewer (works on mac)
-  (setq bibtex-completion-pdf-open-function
-        (lambda (fpath)
-          (start-process "open" "*open*" "open" fpath)))
-
-  ;; alternative
-  ;; (setq bibtex-completion-pdf-open-function 'org-open-file)
-
-  (setq org-ref-open-pdf-function
-        (lambda (fpath)
-          (start-process "zathura" "*helm-bibtex-zathura*" "/usr/bin/zathura" fpath)))
-#+END_SRC
-*** Cleveref
-#+begin_src emacs-lisp
-  (setq org-ref-default-ref-type "cref")
-  (setq org-latex-prefer-user-labels t)
-#+end_src
-*** pdf-noter
-#+begin_src emacs-lisp
-  (setq org-noter-property-doc-file "PDF")
-#+end_src
-** org-capture
-My templates
-#+BEGIN_SRC emacs-lisp
-  (setq org-capture-templates
-        '(
-          ("t" "Todo" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %?\n%U" :clock-in t :clock-resume t)
-          ;; ("T" "Todo with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-          ;;  "* TODO %?\n%U\n%c\n" :empty-lines 1)
-          ("T" "Todo Today" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %?\nSCHEDULED: %t\n%U\n" :empty-lines 1 :clock-in t :clock-resume t)
-          ;; ("l" "Todo with link (e.g. for mail)" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-          ;;  "* TODO %?\n%U\n%a\n")
-          ("l" "link" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %(org-cliplink-capture)\n%c\n" :immediate-finish t)
-          ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
-          ;; ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
-          ;;  "* TODO %?")
-          ("n" "Note" entry (file "~/Dropbox/org/inbox.org")
-           "* NOTE %?\n%U" :empty-lines 1 :clock-in t :clock-resume t)
-          ("N" "Note with Clipboard" entry (file "~/Dropbox/org/inbox.org")
-           "* NOTE %?\n%U\n%c\n" :empty-lines 1)
-          ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
-           "* %?\n\nEntered on %U\n  %i" :clock-in t :clock-resume t)
-          ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
-           "* Wäsche [%]\n:PROPERTIES:\n:ORDERED:  t\n:END:\n** TODO Wäsche: In die Maschine und machen\nSCHEDULED: %t\n** TODO Wäsche: Aufhängen\nSCHEDULED: %t\n** TODO Wäsche: Abhängen\nSCHEDULED: %t\n** TODO Wäsche: Aufräumen\nSCHEDULED: %t")
-          ;; ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
-          ;;  "%(org-chef-get-recipe-from-url)"
-          ;;  :empty-lines 1)
-          ("c" "org-protocol-capture" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO [[%:link][%:description]]\n%U\n %i" :immediate-finish t)
-          ("C" "Contacts" entry (file "~/Dropbox/org/contacts.org")
-           "* %^{name}
-  :PROPERTIES:
-  :EMAIL: %^{email}
-  :PHONE:
-  :ALIAS:
-  :NICKNAME:
-  :IGNORE:
-  :ICON:
-  :NOTE:
-  :ADDRESS:
-  :BIRTHDAY:
-  :END:")
-          ("m" "Mail" entry
-           ;; (file+olp things-file "Inbox" "Mails")
-           (file "~/Dropbox/org/inbox.org")
-           ;; Creates "* TODO <2019-05-01 Wed> FromName [[mu4e:msgid:uuid][MessageSubject]] :200ok:
-           ;; Therefore Emails can be properly:
-           ;;   - Used as tasks
-           ;;   - Attributed tags
-           ;;   - Ordered by priority
-           ;;   - Scheduled
-           ;;   - etc
-           "* TODO %(org-insert-time-stamp (org-read-date nil t \"%:date\") nil t) %(from-name \"%:fromname\" \"%:fromaddress\" \"%:from\") %a \t :%(get-domainname \"%:toaddress\"):")
-          ;; ("v" "Thesis journal" entry
-          ;;  (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
-          ;;  "* %?\n\nEntered on %U\n  %i")
-
-
-          ;; ("p" . "PhD")
-          ("p" "PhD Task" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
-           "** TODO %?\n%U" :clock-in t :clock-resume t)
-          ("P" "PhD Journal" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
-           "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
-          ("d" "Daily Sketch" entry (file+headline "~/Dropbox/org/phd.org" "Daily Sketch")
-           "** %u\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
-           :immediate-finish t :clock-in t :clock-resume t)
-          ))
-#+END_SRC
-
-** org-agenda
-*** Files
-Default agenda files
+** ~org-agenda~
+*** Agenda files
 #+BEGIN_SRC emacs-lisp
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
@@ -839,7 +762,7 @@ Default agenda files
     (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
 #+END_SRC
 
-*** Custom views
+*** Agenda views
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
         '(
@@ -1021,207 +944,78 @@ Default agenda files
   ;; Include archived files
   (setq org-agenda-archives-mode t)
 #+END_SRC
-** org-projectile
-Add project files to the org agenda
+** ~org-capture~ Templates
 #+BEGIN_SRC emacs-lisp
-  ;; (with-eval-after-load 'org-agenda
-  ;;   (require 'org-projectile)
-  ;;   (mapcar '(lambda (file)
-  ;;              (when (file-exists-p file)
-  ;;                (push file org-agenda-files)))
-  ;;           (org-projectile-todo-files)))
-#+END_SRC
-
-Add project capture to capture menu
-#+BEGIN_SRC emacs-lisp
-  ;; (add-to-list 'org-capture-templates
-  ;;              (org-projectile-project-todo-entry
-  ;;               :capture-character "p"))
-#+END_SRC
-** Clocking
-#+BEGIN_SRC emacs-lisp
-  (setq org-clock-out-when-done t)
-  (setq org-clock-out-remove-zero-time-clocks t)
-  (setq org-clock-report-include-clocking-task t)
-
-  ;; Agenda clock report parameters
-  (setq org-agenda-clockreport-parameter-plist '(:link t :maxlevel 4 :fileskip0 t :compact t))
-
-  ;; This seems to lead to some unpleasant behavior
-  ;; (add-hook 'kill-emacs-hook #'org-clock-out)
-
-  (spacemacs/toggle-mode-line-org-clock-on)
-#+END_SRC
-
-*** More from [[http://doc.norang.ca/org-mode.html#ClockSetup][Org Mode - Organize Your Life In Plain Text!]]
-:LOGBOOK:
-CLOCK: [2020-05-05 Di 14:25]--[2020-05-05 Di 14:28] =>  0:03
-:END:
-#+begin_src emacs-lisp
-  ;; Resume clocking task when emacs is restarted
-  (org-clock-persistence-insinuate)
-  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
-  (setq org-clock-persist t)
-
-  ;; Show lot of clocking history so it's easy to pick items off the C-F11 list
-  (setq org-clock-history-length 23)
-  ;; Resume clocking task on clock-in if the clock is open
-  (setq org-clock-in-resume t)
-  ;; Save clock data and state changes and notes in the LOGBOOK drawer
-  (setq org-clock-into-drawer t)
-#+end_src
-
-Now the fun part: Clock into parent if it has some TODO keyword; Into the
-default task otherwise
-#+begin_src emacs-lisp
-  (setq bh/keep-clock-running nil)
-
-  (defun bh/clock-in-to-next (kw)
-    "Switch a task from TODO to NEXT when clocking in.
-  Skips capture tasks, projects, and subprojects.
-  Switch projects and subprojects from NEXT back to TODO"
-    (when (not (and (boundp 'org-capture-mode) org-capture-mode))
-      (cond
-       ((and (member (org-get-todo-state) (list "TODO"))
-             (bh/is-task-p))
-        "NEXT")
-       ((and (member (org-get-todo-state) (list "NEXT"))
-             (bh/is-project-p))
-        "TODO"))))
-
-  (defun bh/find-project-task ()
-    "Move point to the parent (project) task if any"
-    (save-restriction
-      (widen)
-      (let ((parent-task (save-excursion (org-back-to-heading 'invisible-ok) (point))))
-        (while (org-up-heading-safe)
-          (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
-            (setq parent-task (point))))
-        (goto-char parent-task)
-        parent-task)))
-
-  (defun bh/punch-in (arg)
-    "Start continuous clocking and set the default task to the
-  selected task.  If no task is selected set the Organization task
-  as the default task."
-    (interactive "p")
-    (setq bh/keep-clock-running t)
-    (if (equal major-mode 'org-agenda-mode)
-        ;;
-        ;; We're in the agenda
-        ;;
-        (let* ((marker (org-get-at-bol 'org-hd-marker))
-               (tags (org-with-point-at marker (org-get-tags-at))))
-          (if (and (eq arg 4) tags)
-              (org-agenda-clock-in '(16))
-            (bh/clock-in-organization-task-as-default)))
-      ;;
-      ;; We are not in the agenda
-      ;;
-      (save-restriction
-        (widen)
-        ; Find the tags on the current task
-        (if (and (equal major-mode 'org-mode) (not (org-before-first-heading-p)) (eq arg 4))
-            (org-clock-in '(16))
-          (bh/clock-in-organization-task-as-default)))))
-
-  (defun bh/punch-out ()
-    (interactive)
-    (setq bh/keep-clock-running nil)
-    (when (org-clock-is-active)
-      (org-clock-out))
-    (org-agenda-remove-restriction-lock))
-
-  (defun bh/clock-in-default-task ()
-    (save-excursion
-      (org-with-point-at org-clock-default-task
-        (org-clock-in))))
-
-  (defun bh/clock-in-parent-task ()
-    "Move point to the parent (project) task if any and clock in"
-    (let ((parent-task))
-      (save-excursion
-        (save-restriction
-          (widen)
-          (while (and (not parent-task) (org-up-heading-safe))
-            (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
-              (setq parent-task (point))))
-          (if parent-task
-              (org-with-point-at parent-task
-                (org-clock-in))
-            (when bh/keep-clock-running
-              (bh/clock-in-default-task)))))))
-
-  (defvar bh/organization-task-id "eb155a82-92b2-4f25-a3c6-0304591af2f9")
-
-  (defun bh/clock-in-organization-task-as-default ()
-    (interactive)
-    (org-with-point-at (org-id-find bh/organization-task-id 'marker)
-      (org-clock-in '(16))))
-
-  (defvar bh/break-task-id "c6e6d526-bd09-4a7a-9522-b90eae4d36ae")
-
-  (defun bh/clock-in-break ()
-    (interactive)
-    (org-with-point-at (org-id-find bh/break-task-id 'marker)
-      (org-clock-in)))
-
-  (defun bh/clock-out-maybe ()
-    (when (and bh/keep-clock-running
-               (not org-clock-clocking-in)
-               (marker-buffer org-clock-default-task)
-               (not org-clock-resolving-clocks-due-to-idleness))
-      (bh/clock-in-parent-task)))
-
-  (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
-#+end_src
-*** Set Keys for punching in and out
-#+begin_src emacs-lisp
-  (evil-leader/set-key-for-mode 'org-mode "C s" 'bh/punch-in)
-  (evil-leader/set-key-for-mode 'org-mode "C S" 'bh/punch-out)
-  (evil-leader/set-key-for-mode 'org-mode "C b" 'bh/clock-in-break)
-#+end_src
-** Exports
-When I write org to not write LaTeX
-#+BEGIN_SRC emacs-lisp
-  ;; remove comments from org document for use with export hook
-  ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
-  (defun delete-org-comments (backend)
-    (loop for comment in (reverse (org-element-map (org-element-parse-buffer)
-                                      'comment 'identity))
-          do
-          (setf (buffer-substring (org-element-property :begin comment)
-                                  (org-element-property :end comment))
-                "")))
-  ;; add to export hook
-  (add-hook 'org-export-before-processing-hook 'delete-org-comments)
-#+END_SRC
-** org-download
-#+BEGIN_SRC emacs-lisp
-  ;; Not optimal, but otherwise it creates wayy too many folders
-  (setq-default org-download-image-dir "~/Dropbox/org/images")
-  (setq org-download-screenshot-method "sleep 1; scrot -s %s")
-  (setq org-download-image-latex-width 7)
-#+END_SRC
-** todo state logging note inserts now open in evil insert mode
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'org-log-buffer-setup-hook 'evil-insert-state)
-#+END_SRC
-** Link Abbreviations
-#+begin_src emacs-lisp
-  (setq org-link-abbrev-alist
+  (setq org-capture-templates
         '(
-          ("wolfram" . "https://wolframalpha.com/input/?i=%s")
-          ("duckduckgo" . "https://duckduckgo.com/?q=%s")
-          ("gmap" . "https://maps.google.com/maps?q=%s")
-          ("gimages" . "https://google.com/images?q=%s")
-          ("google" . "https://google.com/search?q=")
-          ("youtube" . "https://youtube.com/watch?v=%s")
-          ("youtu" . "https://youtube.com/results?search_query=%s")
-          ("github" . "https://github.com/%s")
+          ("t" "Todo" entry (file "~/Dropbox/org/inbox.org")
+           "* TODO %?\n%U" :clock-in t :clock-resume t)
+          ;; ("T" "Todo with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ;;  "* TODO %?\n%U\n%c\n" :empty-lines 1)
+          ("T" "Todo Today" entry (file "~/Dropbox/org/inbox.org")
+           "* TODO %?\nSCHEDULED: %t\n%U\n" :empty-lines 1 :clock-in t :clock-resume t)
+          ;; ("l" "Todo with link (e.g. for mail)" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
+          ;;  "* TODO %?\n%U\n%a\n")
+          ("l" "link" entry (file "~/Dropbox/org/inbox.org")
+           "* TODO %(org-cliplink-capture)\n%c\n" :immediate-finish t)
+          ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
+           "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
+          ;; ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
+          ;;  "* TODO %?")
+          ("n" "Note" entry (file "~/Dropbox/org/inbox.org")
+           "* NOTE %?\n%U" :empty-lines 1 :clock-in t :clock-resume t)
+          ("N" "Note with Clipboard" entry (file "~/Dropbox/org/inbox.org")
+           "* NOTE %?\n%U\n%c\n" :empty-lines 1)
+          ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
+           "* %?\n\nEntered on %U\n  %i" :clock-in t :clock-resume t)
+          ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
+           "* Wäsche [%]\n:PROPERTIES:\n:ORDERED:  t\n:END:\n** TODO Wäsche: In die Maschine und machen\nSCHEDULED: %t\n** TODO Wäsche: Aufhängen\nSCHEDULED: %t\n** TODO Wäsche: Abhängen\nSCHEDULED: %t\n** TODO Wäsche: Aufräumen\nSCHEDULED: %t")
+          ;; ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
+          ;;  "%(org-chef-get-recipe-from-url)"
+          ;;  :empty-lines 1)
+          ("c" "org-protocol-capture" entry (file "~/Dropbox/org/inbox.org")
+           "* TODO [[%:link][%:description]]\n%U\n %i" :immediate-finish t)
+          ("C" "Contacts" entry (file "~/Dropbox/org/contacts.org")
+           "* %^{name}
+  :PROPERTIES:
+  :EMAIL: %^{email}
+  :PHONE:
+  :ALIAS:
+  :NICKNAME:
+  :IGNORE:
+  :ICON:
+  :NOTE:
+  :ADDRESS:
+  :BIRTHDAY:
+  :END:")
+          ("m" "Mail" entry
+           ;; (file+olp things-file "Inbox" "Mails")
+           (file "~/Dropbox/org/inbox.org")
+           ;; Creates "* TODO <2019-05-01 Wed> FromName [[mu4e:msgid:uuid][MessageSubject]] :200ok:
+           ;; Therefore Emails can be properly:
+           ;;   - Used as tasks
+           ;;   - Attributed tags
+           ;;   - Ordered by priority
+           ;;   - Scheduled
+           ;;   - etc
+           "* TODO %(org-insert-time-stamp (org-read-date nil t \"%:date\") nil t) %(from-name \"%:fromname\" \"%:fromaddress\" \"%:from\") %a \t :%(get-domainname \"%:toaddress\"):")
+          ;; ("v" "Thesis journal" entry
+          ;;  (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
+          ;;  "* %?\n\nEntered on %U\n  %i")
+
+
+          ;; ("p" . "PhD")
+          ("p" "PhD Task" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+           "** TODO %?\n%U" :clock-in t :clock-resume t)
+          ("P" "PhD Journal" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
+           "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
+          ("d" "Daily Sketch" entry (file+headline "~/Dropbox/org/phd.org" "Daily Sketch")
+           "** %u\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
+           :immediate-finish t :clock-in t :clock-resume t)
           ))
-#+end_src
-** Advanced Project Definition
+#+END_SRC
+
+** Project management: Any task with subtasks is a /project/!
 Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Your Life In Plain Text!]]
 #+begin_src emacs-lisp
   (setq org-stuck-projects (quote ("" nil nil "")))
@@ -1481,8 +1275,319 @@ Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Y
         next-headline)))
 #+end_src
 
-* Org & Latex
-** Latex exports
+** Tracking time through /clocking/
+*** General clocking settings
+#+BEGIN_SRC emacs-lisp
+  (setq org-clock-out-when-done t)
+  (setq org-clock-out-remove-zero-time-clocks t)
+  (setq org-clock-report-include-clocking-task t)
+
+  ;; Agenda clock report parameters
+  (setq org-agenda-clockreport-parameter-plist '(:link t :maxlevel 4 :fileskip0 t :compact t))
+
+  ;; This seems to lead to some unpleasant behavior
+  ;; (add-hook 'kill-emacs-hook #'org-clock-out)
+
+  (spacemacs/toggle-mode-line-org-clock-on)
+#+END_SRC
+
+*** More from [[http://doc.norang.ca/org-mode.html#ClockSetup][Org Mode - Organize Your Life In Plain Text!]]
+#+begin_src emacs-lisp
+  ;; Resume clocking task when emacs is restarted
+  (org-clock-persistence-insinuate)
+  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
+  (setq org-clock-persist t)
+
+  ;; Show lot of clocking history so it's easy to pick items off the C-F11 list
+  (setq org-clock-history-length 23)
+  ;; Resume clocking task on clock-in if the clock is open
+  (setq org-clock-in-resume t)
+  ;; Save clock data and state changes and notes in the LOGBOOK drawer
+  (setq org-clock-into-drawer t)
+#+end_src
+
+Now the fun part: Clock into parent if it has some TODO keyword; Into the
+default task otherwise
+#+begin_src emacs-lisp
+  (setq bh/keep-clock-running nil)
+
+  (defun bh/clock-in-to-next (kw)
+    "Switch a task from TODO to NEXT when clocking in.
+  Skips capture tasks, projects, and subprojects.
+  Switch projects and subprojects from NEXT back to TODO"
+    (when (not (and (boundp 'org-capture-mode) org-capture-mode))
+      (cond
+       ((and (member (org-get-todo-state) (list "TODO"))
+             (bh/is-task-p))
+        "NEXT")
+       ((and (member (org-get-todo-state) (list "NEXT"))
+             (bh/is-project-p))
+        "TODO"))))
+
+  (defun bh/find-project-task ()
+    "Move point to the parent (project) task if any"
+    (save-restriction
+      (widen)
+      (let ((parent-task (save-excursion (org-back-to-heading 'invisible-ok) (point))))
+        (while (org-up-heading-safe)
+          (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+            (setq parent-task (point))))
+        (goto-char parent-task)
+        parent-task)))
+
+  (defun bh/punch-in (arg)
+    "Start continuous clocking and set the default task to the
+  selected task.  If no task is selected set the Organization task
+  as the default task."
+    (interactive "p")
+    (setq bh/keep-clock-running t)
+    (if (equal major-mode 'org-agenda-mode)
+        ;;
+        ;; We're in the agenda
+        ;;
+        (let* ((marker (org-get-at-bol 'org-hd-marker))
+               (tags (org-with-point-at marker (org-get-tags-at))))
+          (if (and (eq arg 4) tags)
+              (org-agenda-clock-in '(16))
+            (bh/clock-in-organization-task-as-default)))
+      ;;
+      ;; We are not in the agenda
+      ;;
+      (save-restriction
+        (widen)
+        ; Find the tags on the current task
+        (if (and (equal major-mode 'org-mode) (not (org-before-first-heading-p)) (eq arg 4))
+            (org-clock-in '(16))
+          (bh/clock-in-organization-task-as-default)))))
+
+  (defun bh/punch-out ()
+    (interactive)
+    (setq bh/keep-clock-running nil)
+    (when (org-clock-is-active)
+      (org-clock-out))
+    (org-agenda-remove-restriction-lock))
+
+  (defun bh/clock-in-default-task ()
+    (save-excursion
+      (org-with-point-at org-clock-default-task
+        (org-clock-in))))
+
+  (defun bh/clock-in-parent-task ()
+    "Move point to the parent (project) task if any and clock in"
+    (let ((parent-task))
+      (save-excursion
+        (save-restriction
+          (widen)
+          (while (and (not parent-task) (org-up-heading-safe))
+            (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+              (setq parent-task (point))))
+          (if parent-task
+              (org-with-point-at parent-task
+                (org-clock-in))
+            (when bh/keep-clock-running
+              (bh/clock-in-default-task)))))))
+
+  (defvar bh/organization-task-id "eb155a82-92b2-4f25-a3c6-0304591af2f9")
+
+  (defun bh/clock-in-organization-task-as-default ()
+    (interactive)
+    (org-with-point-at (org-id-find bh/organization-task-id 'marker)
+      (org-clock-in '(16))))
+
+  (defvar bh/break-task-id "c6e6d526-bd09-4a7a-9522-b90eae4d36ae")
+
+  (defun bh/clock-in-break ()
+    (interactive)
+    (org-with-point-at (org-id-find bh/break-task-id 'marker)
+      (org-clock-in)))
+
+  (defun bh/clock-out-maybe ()
+    (when (and bh/keep-clock-running
+               (not org-clock-clocking-in)
+               (marker-buffer org-clock-default-task)
+               (not org-clock-resolving-clocks-due-to-idleness))
+      (bh/clock-in-parent-task)))
+
+  (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
+#+end_src
+*** Define hotkeys for clocking
+#+begin_src emacs-lisp
+  (evil-leader/set-key-for-mode 'org-mode "C s" 'bh/punch-in)
+  (evil-leader/set-key-for-mode 'org-mode "C S" 'bh/punch-out)
+  (evil-leader/set-key-for-mode 'org-mode "C b" 'bh/clock-in-break)
+#+end_src
+** Literate programming with ~org-src~ and ~org-babel~
+Org-babel languages
+#+BEGIN_SRC emacs-lisp
+  (setq  inferior-julia-program-name (executable-find "julia"))
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (python . t)
+     (gnuplot . t)
+     (shell . t)
+     (jupyter . t)
+     (ein . t)
+     (julia . t)
+     ))
+#+END_SRC
+
+Correct indentation in org-babel source blocks
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-tab-acts-natively t)
+#+END_SRC
+
+Evaluate without confirmation
+#+BEGIN_SRC emacs-lisp
+  (setq org-confirm-babel-evaluate nil)
+#+END_SRC
+** Tracking habits with ~org-habit~
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 50)
+#+END_SRC
+
+** Capture directly from the browser with ~org-protocol~
+#+begin_src emacs-lisp
+  (add-to-list 'org-modules 'org-protocol)
+#+end_src
+
+** My paper reading workflow
+Sources:
+- https://codearsonist.com/reading-for-programmers
+- https://github.com/jkitchin/org-ref
+
+Goal is mostly to find the perfect paper workflow with emacs org-mode.
+*** General Variables
+Basically three parts:
+- global bibliography file
+- my notes
+- pdf directory
+These have to be defined in multiple locations as I use multiple different
+libraries for this task
+#+BEGIN_SRC emacs-lisp
+  (setq reftex-default-bibliography '("~/MEGA/papers/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/MEGA/papers/notes.org"
+        org-ref-default-bibliography '("~/MEGA/papers/references.bib")
+        org-ref-pdf-directory "~/MEGA/papers/lib/")
+
+  (setq helm-bibtex-notes-path "~/MEGA/papers/notes.org"
+        helm-bibtex-bibliography "~/MEGA/papers/references.bib"
+        helm-bibtex-library-path "~/MEGA/papers/lib")
+
+  ;; Further variables for helm-bibtex
+  (setq bibtex-completion-bibliography "~/MEGA/papers/references.bib"
+        bibtex-completion-library-path "~/MEGA/papers/lib"
+        bibtex-completion-notes-path "~/MEGA/papers/notes.org")
+
+  ;; Download directory
+  (setq biblio-download-directory "~/MEGA/papers/lib")
+#+END_SRC
+*** Custom Hotkeys
+To access interleave mode and helm-bibtex
+#+BEGIN_SRC emacs-lisp
+  (defun clock-in-and-interleave ()
+    (interactive)
+    (org-clock-in)
+    (interleave-mode))
+
+  ;; (evil-leader/set-key-for-mode 'org-mode "I" 'clock-in-and-interleave)
+  ;; (evil-leader/set-key-for-mode 'org-mode "I" 'interleave-mode)
+  ;; (evil-leader/set-key-for-mode 'org-mode "B" 'helm-bibtex)
+  (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
+#+END_SRC
+*** ~org-ref~ notes
+Customized the structure of the default notes entry, to contain more information
+(such as pdf), use TOREAD instead of TODO, and automatically enable interleave mode.
+#+BEGIN_SRC emacs-lisp
+  (setq org-ref-note-title-format "** TOREAD %t
+  :PROPERTIES:
+  :Custom_ID: %k
+  :AUTHOR: %9a
+  :JOURNAL: %j
+  :YEAR: %y
+  :VOLUME: %v
+  :PAGES: %p
+  :DOI: %D
+  :URL: %U
+  :BIBTEX_LABEL: %k
+  :PDF: %F
+  :END:
+  PDF: file:%F
+  ")
+#+END_SRC
+
+*** Use ~cleveref~ in LaTeX
+#+begin_src emacs-lisp
+  (setq org-ref-default-ref-type "cref")
+  (setq org-latex-prefer-user-labels t)
+#+end_src
+*** ~pdf-noter~ for note-taking
+#+begin_src emacs-lisp
+  (setq org-noter-property-doc-file "PDF")
+#+end_src
+** Manage recipes with ~org-chef~
+#+BEGIN_SRC emacs-lisp
+  (use-package org-chef :ensure t)
+#+END_SRC
+
+** Better screenshots with ~org-download~
+#+BEGIN_SRC emacs-lisp
+  ;; Not optimal, but otherwise it creates wayy too many folders
+  (setq-default org-download-image-dir "~/Dropbox/org/images")
+  (setq org-download-screenshot-method "sleep 1; scrot -s %s")
+  (setq org-download-image-latex-width 7)
+#+END_SRC
+** org-projectile                                                 :inactive:
+Add project files to the org agenda
+#+BEGIN_SRC emacs-lisp
+  ;; (with-eval-after-load 'org-agenda
+  ;;   (require 'org-projectile)
+  ;;   (mapcar '(lambda (file)
+  ;;              (when (file-exists-p file)
+  ;;                (push file org-agenda-files)))
+  ;;           (org-projectile-todo-files)))
+#+END_SRC
+
+Add project capture to capture menu
+#+BEGIN_SRC emacs-lisp
+  ;; (add-to-list 'org-capture-templates
+  ;;              (org-projectile-project-todo-entry
+  ;;               :capture-character "p"))
+#+END_SRC
+** Google-Calendar Integration with ~org-gcal~
+#+BEGIN_SRC emacs-lisp
+  ;; Function to read lines of a file and output a list
+  (defun read-lines (filePath)
+    "Return a list of lines of a file at filePath."
+    (with-temp-buffer
+      (insert-file-contents filePath)
+      (split-string (buffer-string) "\n" t)))
+  ;; ;; Read lines from gcal.auth and store them in the variable
+  (setq auth-lines (read-lines "~/Dropbox/org/gcal.auth"))
+  ;; ;; Google Calendar
+  (setq org-gcal-client-id (car auth-lines)
+        org-gcal-client-secret (car (cdr auth-lines)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  ;; Google Calendar
+  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
+                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
+                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
+                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
+                              ("9kv80prb7ojqt998nmm24149e0@group.calendar.google.com" . "~/Dropbox/org/gcal/geburtstage.org")
+                              ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/Dropbox/org/gcal/phd.org")
+                              ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/Dropbox/org/gcal/moml.org")
+                              ))
+  ;; (add-hook 'org-capture-after-finalize-hook 'org-gcal-fetch)
+#+END_SRC
+** Export org to LaTeX
+For when I write org to not write LaTeX
+*** LaTeX exports
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-latex-pdf-process (list "latexmk -pdf %f"))
   (setq org-latex-pdf-process (list
@@ -1554,24 +1659,39 @@ Make TODOs red in the latex export
 
 (setq org-latex-format-headline-function 'org-latex-format-headline-colored-keywords-function)
 #+end_src
-** cdlatex environments
+
+Ignore org comments on export
+#+BEGIN_SRC emacs-lisp
+  ;; remove comments from org document for use with export hook
+  ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
+  (defun delete-org-comments (backend)
+    (loop for comment in (reverse (org-element-map (org-element-parse-buffer)
+                                      'comment 'identity))
+          do
+          (setf (buffer-substring (org-element-property :begin comment)
+                                  (org-element-property :end comment))
+                "")))
+  ;; add to export hook
+  (add-hook 'org-export-before-processing-hook 'delete-org-comments)
+#+END_SRC
+*** cdlatex environments
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key-for-mode 'org-mode "i E" 'cdlatex-environment)
 #+END_SRC
-** Org latex syntax highlight
+*** Syntax highlight
 #+BEGIN_SRC emacs-lisp
   (setq org-highlight-latex-and-related '(latex))
 #+END_SRC
-** Org latex table caption below
+*** Caption below tables
 #+begin_src emacs-lisp
   (setq org-latex-caption-above nil)
 #+end_src
-* org-roam
-** Set Directory
+** /Zettelkasten/ with ~org-roam~
+*** Set Directory
 #+begin_src emacs-lisp
  (setq org-roam-directory "~/Dropbox/org/zettelkasten/")
 #+end_src
-** Add hotkeys
+*** Add hotkeys
 #+begin_src emacs-lisp
   (spacemacs/declare-prefix "aoR" "org-roam")
   (spacemacs/set-leader-keys
@@ -1589,7 +1709,7 @@ Make TODOs red in the latex export
     "rg" 'org-roam-show-graph)
 #+end_src
 
-** Capture template
+*** Capture template
 #+begin_src emacs-lisp
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam-capture--get-point)
@@ -1601,7 +1721,7 @@ Make TODOs red in the latex export
            ))
         )
 #+end_src
-** Capture Ref from Browser
+*** Capture Ref from Browser
 #+begin_src emacs-lisp
   ;; (require 'org-roam-protocol)
 
@@ -1616,191 +1736,4 @@ Make TODOs red in the latex export
   ;;          :unnarrowed t
   ;;          :immediate-finish t
   ;;          )))
-#+end_src
-* Writeroom (WIP)
-#+begin_src emacs-lisp
-  ;; (setq
-  ;;  ;; writeroom-maximize-window t
-  ;;  writeroom-fullscreen-effect nil
-  ;;  writeroom-extra-line-spacing 0.3
-  ;;  writeroom-width 88
-  ;;  writeroom-border-width 30
-  ;;  )
-#+end_src
-
-No line numbers
-#+begin_src emacs-lisp
-  ;; (defun my/writeroom-without-linenumbers (arg)
-  ;;   (cond
-  ;;    ((= arg 1)
-  ;;     (spacemacs/toggle-line-numbers-off))
-  ;;    ((= arg -1)
-  ;;     (spacemacs/toggle-line-numbers-on))))
-
-  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-without-linenumbers)
-#+end_src
-
-Enable some nice white Theme
-#+begin_src emacs-lisp
-  ;; (setq my/main-theme 'gruvbox)
-  ;; (setq my/writeroom-theme 'leuven)
-  ;; (load-theme my/writeroom-theme)
-  ;; (disable-theme my/writeroom-theme)
-  ;; (load-theme my/main-theme)
-  ;; (defun my/writeroom-theme-fn (arg)
-  ;;   (cond
-  ;;    ((= arg 1)
-  ;;     (enable-theme my/writeroom-theme)
-  ;;     (disable-theme my/main-theme)
-  ;;     )
-  ;;    ((= arg -1)
-  ;;     (disable-theme my/writeroom-theme)
-  ;;     (enable-theme my/main-theme)
-  ;;     )
-  ;;    ))
-  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-theme-fn)
-#+end_src
-
-* Magit
-** Start in Evil mode
-#+BEGIN_SRC emacs-lisp
-  ;; Start magit commit in insert mode
-  (add-hook 'with-editor-mode-hook 'evil-insert-state)
-#+END_SRC
-
-** Magit blame keys
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-c b") 'magit-blame)
-#+end_src
-
-** Refine diffs
-#+begin_src emacs-lisp
-  (setq magit-diff-refine-hunk "all")
-#+end_src
-
-* LaTeX
-Ask me about the TeX master file if unsure
-#+BEGIN_SRC emacs-lisp
-  (setq-default TeX-master nil)
-#+END_SRC
-** RefTex
-#+BEGIN_SRC emacs-lisp
-  (evil-leader/set-key-for-mode 'latex-mode "r r" 'reftex-cleveref-cref)
-#+END_SRC
-** Outline Minor Mode
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
-#+END_SRC
-
-Fake sections for better manipulation:
-#+BEGIN_SRC emacs-lisp
-  (setq TeX-outline-extra
-        '(("%chapter" 1)
-          ("%section" 2)
-          ("%subsection" 3)
-          ("%subsubsection" 4)
-          ("%paragraph" 5)))
-  ;; add font locking to the headers
-  (font-lock-add-keywords
-   'latex-mode
-   '(("^%\\(chapter\\|\\(sub\\|subsub\\)?section\\|paragraph\\)"
-      0 'font-lock-keyword-face t)
-     ("^%chapter{\\(.*\\)}"       1 'font-latex-sectioning-1-face t)
-     ("^%section{\\(.*\\)}"       1 'font-latex-sectioning-2-face t)
-     ("^%subsection{\\(.*\\)}"    1 'font-latex-sectioning-3-face t)
-     ("^%subsubsection{\\(.*\\)}" 1 'font-latex-sectioning-4-face t)
-     ("^%paragraph{\\(.*\\)}"     1 'font-latex-sectioning-5-face t)))
-#+END_SRC
-** Outline-magic
-#+BEGIN_SRC emacs-lisp
-  (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)
-  (define-key outline-minor-mode-map (kbd "M-h") 'outline-promote)
-  (define-key outline-minor-mode-map (kbd "M-j") 'outline-move-subtree-down)
-  (define-key outline-minor-mode-map (kbd "M-k") 'outline-move-subtree-up)
-  (define-key outline-minor-mode-map (kbd "M-l") 'outline-demote)
-  (define-key outline-minor-mode-map (kbd "M-H")
-    (lambda() (interactive) (evil-visual-line) (outline-promote)))
-  (define-key outline-minor-mode-map (kbd "M-L")
-    (lambda() (interactive) (evil-visual-line) (outline-demote)))
-#+END_SRC
-** Visual fill mode instead of auto fill
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'latex-mode-hook 'visual-fill-column-mode)
-  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
-  (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
-#+END_SRC
-** Beamer: Bold as bold, not as alert!
-#+begin_src emacs-lisp
-  (defun my-beamer-bold (contents backend info)
-    (when (eq backend 'beamer)
-      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
-
-  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
-#+end_src
-
-* EXWM
-** Tray
-#+begin_src emacs-lisp
-    (require 'exwm-systemtray)
-    (exwm-systemtray-enable)
-#+end_src
-** Workspaces
-#+begin_src emacs-lisp
-  (setq exwm-workspace-number 10)
-#+end_src
-** Time
-#+begin_src emacs-lisp
-  (display-time-mode t)
-#+end_src
-
-** Autostart
-#+begin_src emacs-lisp
-  ;; Autostart Dropbox
-  ;; (call-process-shell-command "(sleep 10s && dropbox) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && megasync) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && nm-applet) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && redshift-gtk -l 48.2488721:11.6532477) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && spotify) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
-#+end_src
-
-** Global buffers
-#+begin_src emacs-lisp
-  (setq exwm-layout-show-all-buffers t)
-#+end_src
-
-* Yequake
-#+begin_src emacs-lisp
-  (setq yequake-frames
-        '(("TODOs & scratch" .
-           ((width . 0.75)
-            (height . 0.5)
-            (alpha . 0.95)
-            (buffer-fns . ("~/Dropbox/org/todo.org"
-                           split-window-horizontally
-                           "*scratch*"))
-            (frame-parameters . ((undecorated . t)))))
-          ("eguake" .
-           ((width . 853)
-            (height . 480)
-            (top . 0.5)
-            ;; (alpha . 0.95)
-            (buffer-fns . (eshell))
-            (frame-parameters . ((undecorated . t)))))
-          ))
-#+end_src
-
-* Jupyter
-
-** ein
-
-*** Inline images
-#+begin_src emacs-lisp
-  (setq ein:output-area-inlined-images t)
-#+end_src
-
-*** Nicer Markdown
-#+begin_src emacs-lisp
-  ;; (setq poly-ein-mode t)
-  (setq ein:markdown-header-scaling t)
 #+end_src
