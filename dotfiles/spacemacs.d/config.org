@@ -89,7 +89,7 @@
   - [[#exwm---the-emacs-x-window-manager][~exwm~ - The Emacs X Window Manager]]
   - [[#drop-down-emacs-with-yequake][Drop-down emacs with ~Yequake~]]
   - [[#ein-to-open-jupyter-notebooks-in-emacs][~ein~ to open jupyter notebooks in emacs]]
-  - [[#yasnippets][Yasnippets]]
+  - [[#yasnippet][YASnippet]]
   - [[#budget-money-with-ledger-cli][Budget money with ~ledger-cli~]]
 
 * General Emacs settings
@@ -1741,13 +1741,13 @@ Aesthetic settings:
   ;; (setq poly-ein-mode t)
   (setq ein:markdown-header-scaling t)
 #+end_src
-** Yasnippets
-Add the yasnippet-snippets snippets to yasnippet.
+** YASnippet
+Add the yasnippet-snippets snippets to YASnippet.
 #+begin_src emacs-lisp
   (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
 #+end_src
 
-Use Yasnippets in ~ledger-mode~
+Use YASnippet in ~ledger-mode~
 #+begin_src emacs-lisp
   (add-hook 'ledger-mode-hook 'yas-minor-mode)
 #+end_src
