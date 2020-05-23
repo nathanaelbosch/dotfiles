@@ -36,12 +36,10 @@
   - [[#general-settings][General settings]]
     - [[#inline-images][Inline images]]
     - [[#pretty-entities][Pretty entities]]
-    - [[#reset-subtask-module][Reset subtask module]]
     - [[#order-can-be-super-useful][Order can be super useful!]]
     - [[#autosave][Autosave]]
     - [[#archive-tag-to-gray-out-things-i-do-not-need][Archive tag to gray out things I do not need]]
     - [[#start-org-with-some-useful-modes][Start org with some useful modes]]
-    - [[#latex-preview-by-default][Latex Preview by Default]]
     - [[#hide-emphasis-markers-for-increased-prettiness][Hide emphasis markers, for increased prettiness]]
   - [[#org-habit][org-habit]]
   - [[#org-protocol][org-protocol]]
@@ -50,9 +48,8 @@
   - [[#org-babel-and-org-src][org-babel and org-src]]
   - [[#column-view][Column view]]
   - [[#latex-exports][Latex exports]]
-  - [[#org-todo-keywords][Org todo keywords]]
-  - [[#hotkeys][Hotkeys]]
-  - [[#google-calendar][Google Calendar]]
+  - [[#keywords][keywords]]
+  - [[#org-gcal-google-calendar][org-gcal: Google Calendar]]
   - [[#paper-workflow][Paper workflow]]
     - [[#general-variables][General Variables]]
     - [[#custom-hotkeys][Custom Hotkeys]]
@@ -71,19 +68,14 @@
     - [[#set-keys-for-punching-in-and-out][Set Keys for punching in and out]]
   - [[#exports][Exports]]
   - [[#org-download][org-download]]
-  - [[#misc][Misc]]
   - [[#state-logging-note-inserts-now-open-in-evil-insert-mode][state logging note inserts now open in evil insert mode]]
-  - [[#org-cycle][org cycle]]
-  - [[#more-priority-levels][more priority levels]]
   - [[#link-abbreviations][Link Abbreviations]]
   - [[#advanced-project-definition][Advanced Project Definition]]
 - [[#org--latex][Org & Latex]]
   - [[#latex-exports-1][Latex exports]]
-  - [[#latexorg-mode-switch][Latex/Org mode switch]]
   - [[#cdlatex-environments][cdlatex environments]]
   - [[#org-latex-syntax-highlight][Org latex syntax highlight]]
   - [[#org-latex-table-caption-below][Org latex table caption below]]
-- [[#org-brain][org-brain]]
 - [[#org-roam][org-roam]]
   - [[#set-directory][Set Directory]]
   - [[#add-hotkeys][Add hotkeys]]
@@ -464,11 +456,6 @@ Seems not bad actually
 #+BEGIN_SRC emacs-lisp
   (setq org-pretty-entities t)
 #+END_SRC
-*** Reset subtask module
-#+BEGIN_SRC emacs-lisp
-  ;; (add-to-list 'org-modules 'org-subtask-reset)
-#+END_SRC
-
 *** Order can be super useful!
 #+BEGIN_SRC emacs-lisp
   ;; Parents can only be marked as DONE if children tasks are undone
@@ -498,11 +485,6 @@ Seems not bad actually
   (add-hook 'org-mode-hook 'auto-fill-mode)
 #+END_SRC
 
-*** Latex Preview by Default
-#+begin_src emacs-lisp
-  ;; (setq org-startup-with-latex-preview t)
-#+end_src
-
 *** Hide emphasis markers, for increased prettiness
 #+begin_src emacs-lisp
   (setq org-hide-emphasis-markers t)
@@ -516,7 +498,6 @@ Seems not bad actually
 
 ** org-protocol
 #+begin_src emacs-lisp
-  ;; (require org-protocol)
   (add-to-list 'org-modules 'org-protocol)
 #+end_src
 
@@ -578,7 +559,6 @@ Evaluate without confirmation
 ** Column view
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
-  ;; (setq org-agenda-overriding-columns-format "%7TODO(To Do) %38ITEM(Details) %TAGS(Context) %5Effort(Time){:} %6CLOCKSUM{:}")
 #+END_SRC
 ** Latex exports
 #+BEGIN_SRC emacs-lisp
@@ -620,7 +600,7 @@ structure and fold my text:
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines org-export-ignore-headlines))
 #+end_src
-** Org todo keywords
+** Todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
         '((sequence "TODO(t)" "STARTED(s!)" "WAITING(W@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
@@ -648,12 +628,7 @@ structure and fold my text:
           ))
 #+END_SRC
 
-** Hotkeys
-To better follow the spacemacs mnemonics instead of C-c C-x ...
-#+BEGIN_SRC emacs-lisp
-  (evil-leader/set-key-for-mode 'org-mode "U" 'org-update-all-dblocks)
-#+END_SRC
-** Google Calendar
+** org-gcal: Google Calendar
 #+BEGIN_SRC emacs-lisp
   ;; Function to read lines of a file and output a list
   (defun read-lines (filePath)
@@ -1228,32 +1203,14 @@ When I write org to not write LaTeX
   (setq org-download-screenshot-method "sleep 1; scrot -s %s")
   (setq org-download-image-latex-width 7)
 #+END_SRC
-** Misc
-To be able to press "S" in the agenda ;)
-#+BEGIN_SRC emacs-lisp
-  ;; Set long and latiude for sunset
-  (setq calendar-latitude 48.248872)
-  (setq calendar-longitude 11.653248)
-#+END_SRC
 ** todo state logging note inserts now open in evil insert mode
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-log-buffer-setup-hook 'evil-insert-state)
 #+END_SRC
-** org cycle
-#+BEGIN_SRC emacs-lisp
-  ;; (setq org-cycle-separator-lines 1)
-#+END_SRC
-** more priority levels
-#+begin_src emacs-lisp
-  ;; (setq org-highest-priority ?A)
-  ;; (setq org-lowest-priority ?D)
-  ;; (setq org-default-priority ?C)
-#+end_src
 ** Link Abbreviations
 #+begin_src emacs-lisp
   (setq org-link-abbrev-alist
         '(
-          ;; ("doom-repo" . "https://github.com/hlissner/doom-emacs/%s")
           ("wolfram" . "https://wolframalpha.com/input/?i=%s")
           ("duckduckgo" . "https://duckduckgo.com/?q=%s")
           ("gmap" . "https://maps.google.com/maps?q=%s")
@@ -1262,7 +1219,6 @@ To be able to press "S" in the agenda ;)
           ("youtube" . "https://youtube.com/watch?v=%s")
           ("youtu" . "https://youtube.com/results?search_query=%s")
           ("github" . "https://github.com/%s")
-          ;; ("attachments" . "~/.org/.attachments/")
           ))
 #+end_src
 ** Advanced Project Definition
@@ -1598,14 +1554,6 @@ Make TODOs red in the latex export
 
 (setq org-latex-format-headline-function 'org-latex-format-headline-colored-keywords-function)
 #+end_src
-** Latex/Org mode switch
-#+BEGIN_SRC emacs-lisp
-  ;; (defun switch-org-latex-mode ()
-  ;;   (interactive)
-  ;;   (if (equal major-mode 'org-mode) (latex-mode) (org-mode)))
-  ;; (evil-leader/set-key-for-mode 'org-mode "l" 'switch-org-latex-mode)
-  ;; (evil-leader/set-key-for-mode 'latex-mode "l" 'switch-org-latex-mode)
-#+END_SRC
 ** cdlatex environments
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key-for-mode 'org-mode "i E" 'cdlatex-environment)
@@ -1617,10 +1565,6 @@ Make TODOs red in the latex export
 ** Org latex table caption below
 #+begin_src emacs-lisp
   (setq org-latex-caption-above nil)
-#+end_src
-* org-brain
-#+begin_src emacs-lisp
- (setq org-brain-path "/home/nath/Dropbox/brain")
 #+end_src
 * org-roam
 ** Set Directory
