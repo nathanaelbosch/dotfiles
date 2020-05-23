@@ -584,31 +584,15 @@ I love org so much, it deserves its own heading.
         '(
           ("t" "Todo" entry (file "~/Dropbox/org/inbox.org")
            "* TODO %?\n%U" :clock-in t :clock-resume t)
-          ;; ("T" "Todo with Clipboard" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-          ;;  "* TODO %?\n%U\n%c\n" :empty-lines 1)
           ("T" "Todo Today" entry (file "~/Dropbox/org/inbox.org")
            "* TODO %?\nSCHEDULED: %t\n%U\n" :empty-lines 1 :clock-in t :clock-resume t)
-          ;; ("l" "Todo with link (e.g. for mail)" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
-          ;;  "* TODO %?\n%U\n%a\n")
-          ;; ("l" "link" entry (file "~/Dropbox/org/inbox.org")
-          ;;  "* TODO %(org-cliplink-capture)\n%c\n" :immediate-finish t)
-          ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
-          ;; ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
-          ;;  "* TODO %?")
           ("n" "Note" entry (file "~/Dropbox/org/inbox.org")
            "* NOTE %?\n%U" :empty-lines 1 :clock-in t :clock-resume t)
           ("N" "Note with Clipboard" entry (file "~/Dropbox/org/inbox.org")
            "* NOTE %?\n%U\n%c\n" :empty-lines 1)
           ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
            "* %?\n\nEntered on %U\n  %i" :clock-in t :clock-resume t)
-          ("w" "Wäsche" entry (file+headline "~/Dropbox/org/todo.org" "Misc")
-           "* Wäsche [%]\n:PROPERTIES:\n:ORDERED:  t\n:END:\n** TODO Wäsche: In die Maschine und machen\nSCHEDULED: %t\n** TODO Wäsche: Aufhängen\nSCHEDULED: %t\n** TODO Wäsche: Abhängen\nSCHEDULED: %t\n** TODO Wäsche: Aufräumen\nSCHEDULED: %t")
-          ;; ("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
-          ;;  "%(org-chef-get-recipe-from-url)"
-          ;;  :empty-lines 1)
-          ("c" "org-protocol-capture" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO [[%:link][%:description]]\n%U\n %i" :immediate-finish t)
+
           ("C" "Contacts" entry (file "~/Dropbox/org/contacts.org")
            "* %^{name}
   :PROPERTIES:
@@ -622,6 +606,7 @@ I love org so much, it deserves its own heading.
   :ADDRESS:
   :BIRTHDAY:
   :END:")
+
           ("m" "Mail" entry
            ;; (file+olp things-file "Inbox" "Mails")
            (file "~/Dropbox/org/inbox.org")
@@ -633,21 +618,27 @@ I love org so much, it deserves its own heading.
            ;;   - Scheduled
            ;;   - etc
            "* TODO %(org-insert-time-stamp (org-read-date nil t \"%:date\") nil t) %(from-name \"%:fromname\" \"%:fromaddress\" \"%:from\") %a \t :%(get-domainname \"%:toaddress\"):")
-          ;; ("v" "Thesis journal" entry
-          ;;  (file+olp+datetree "~/Projekte/masterthesis-learning-visionbased-control/journal/journal.org")
-          ;;  "* %?\n\nEntered on %U\n  %i")
-
-
-          ;; ("p" . "PhD")
-          ("p" "PhD Task" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
-           "** TODO %?\n%U" :clock-in t :clock-resume t)
-          ("P" "PhD Journal" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
-           "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
-          ("d" "Daily Sketch" entry (file+headline "~/Dropbox/org/phd.org" "Daily Sketch")
-           "** %u\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
-           :immediate-finish t :clock-in t :clock-resume t)
+          ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
+           "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
           ))
 #+END_SRC
+
+PhD-related captures:
+#+begin_src emacs-lisp
+  (setq org-capture-templates
+        (append
+         org-capture-templates
+         '(("p" "PhD")
+           ("pt" "Task" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+            "** TODO %?\n%U" :clock-in t :clock-resume t)
+           ("pj" "Journal" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
+            "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
+           ("pd" "Daily Sketch" entry (file+headline "~/Dropbox/org/phd.org" "Daily Sketch")
+            "** %u\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
+            :immediate-finish t :clock-in t :clock-resume t)
+           )
+         ))
+#+end_src
 
 ** Project management: Any task with subtasks is a /project/!
 Copied from [[http://doc.norang.ca/org-mode.html#Projects][Org Mode - Organize Your Life In Plain Text!]]
@@ -1087,6 +1078,17 @@ Evaluate without confirmation
   (add-to-list 'org-modules 'org-protocol)
 #+end_src
 
+Capture template
+#+begin_src emacs-lisp
+  (setq org-capture-templates
+        (append
+         org-capture-templates
+         '(("y" "org-protocol-capture" entry (file "~/Dropbox/org/inbox.org")
+            "* TODO [[%:link][%:description]]\n%U\n %i" :immediate-finish t)
+           )
+         ))
+#+end_src
+
 ** My paper reading workflow
 Sources:
 - https://codearsonist.com/reading-for-programmers
@@ -1167,6 +1169,18 @@ Customized the structure of the default notes entry, to contain more information
 #+BEGIN_SRC emacs-lisp
   (use-package org-chef :ensure t)
 #+END_SRC
+
+Capture template
+#+begin_src emacs-lisp
+  (setq org-capture-templates
+        (append
+         org-capture-templates
+         '(("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
+            "%(org-chef-get-recipe-from-url)"
+            :empty-lines 1)
+           )
+         ))
+#+end_src
 
 ** Better screenshots with ~org-download~
 #+BEGIN_SRC emacs-lisp
@@ -1740,17 +1754,19 @@ Use Yasnippets in ~ledger-mode~
 ** Budget money with ~ledger-cli~
 #+begin_src emacs-lisp
   (setq org-capture-templates
-        (append '(("l" "Ledger entries")
-                  ("lr" "Rewe" plain (file "~/MEGA/finances.ledger")
-                   "%(org-read-date) Rewe Einkauf
-    Expenses:Food:Groceries     %^{Amount}
-    Assets:Volksbank
-  ")
-  ;;                 ("lc" "Cash" plain (file "~/MEGA/finances.ledger")
-  ;;                  "%(org-read-date) * %^{Payee}
-  ;;   Expenses:%^{Account}  %^{Amount}
-  ;;   Expenses:Cash
-  ;; ")
-                  )
-                org-capture-templates))
+        (append
+         org-capture-templates
+         '(("l" "Ledger entries")
+           ("lr" "Rewe" plain (file "~/MEGA/finances.ledger")
+            "%(org-read-date) Rewe Einkauf
+      Expenses:Food:Groceries     %^{Amount}
+      Assets:Volksbank
+    ")
+           ;; ("lc" "Cash" plain (file "~/MEGA/finances.ledger")
+           ;;  "%(org-read-date) * %^{Payee}
+           ;;   Expenses:%^{Account}  %^{Amount}
+           ;;   Expenses:Cash
+           ;; ")
+           )
+         ))
 #+end_src
