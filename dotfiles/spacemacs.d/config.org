@@ -19,30 +19,6 @@
   - [[#emacs-i3-window-movement-integration][Emacs-i3 window movement integration]]
   - [[#increase-numbers-with-the-same-hotkeys-as-in-vim][Increase numbers with the same hotkeys as in vim]]
   - [[#better-eshell-usage][Better eshell usage]]
-- [[#packages--languages--concepts][Packages / Languages / Concepts]]
-  - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
-    - [[#contexts][Contexts]]
-    - [[#send-emails][Send Emails]]
-      - [[#org][Org]]
-    - [[#html-mails-with-images][HTML Mails with images]]
-    - [[#notifications-for-new-email][Notifications for new Email]]
-    - [[#pandoc-for-html][Pandoc for HTML]]
-    - [[#visual-line-mode-hook][Visual line mode hook]]
-    - [[#check-for-supposed-attachments-prior-to-sending-them][Check for supposed attachments prior to sending them]]
-    - [[#gnus-view][gnus view]]
-    - [[#link-to-message-not-headers][Link to message, not headers]]
-  - [[#writeroom][Writeroom]]
-  - [[#magit---the-best-git-interface][~magit~ - The best git interface]]
-  - [[#latex][LaTeX]]
-    - [[#reftex][RefTex]]
-    - [[#outline-minor-mode][Outline Minor Mode]]
-    - [[#outline-magic][Outline-magic]]
-    - [[#visual-fill-mode-instead-of-auto-fill][Visual fill mode instead of auto fill]]
-    - [[#beamer-bold-as-bold-not-as-alert][Beamer: Bold as bold, not as alert!]]
-  - [[#exwm---the-emacs-x-window-manager][~exwm~ - The Emacs X Window Manager]]
-  - [[#drop-down-emacs-with-yequake][Drop-down emacs with ~Yequake~]]
-  - [[#ein-to-open-jupyter-notebooks-in-emacs][~ein~ to open jupyter notebooks in emacs]]
-  - [[#yasnippets][Yasnippets]]
 - [[#organize-my-life-with-org-mode][Organize my life with ~org-mode~]]
   - [[#general-settings][General settings]]
     - [[#prettier-org][Prettier org]]
@@ -90,6 +66,30 @@
     - [[#add-hotkeys][Add hotkeys]]
     - [[#capture-template][Capture template]]
     - [[#capture-ref-from-browser][Capture Ref from Browser]]
+- [[#other-packages--languages--concepts][Other Packages / Languages / Concepts]]
+  - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
+    - [[#contexts][Contexts]]
+    - [[#send-emails][Send Emails]]
+      - [[#org][Org]]
+    - [[#html-mails-with-images][HTML Mails with images]]
+    - [[#notifications-for-new-email][Notifications for new Email]]
+    - [[#pandoc-for-html][Pandoc for HTML]]
+    - [[#visual-line-mode-hook][Visual line mode hook]]
+    - [[#check-for-supposed-attachments-prior-to-sending-them][Check for supposed attachments prior to sending them]]
+    - [[#gnus-view][gnus view]]
+    - [[#link-to-message-not-headers][Link to message, not headers]]
+  - [[#writeroom][Writeroom]]
+  - [[#magit---the-best-git-interface][~magit~ - The best git interface]]
+  - [[#latex][LaTeX]]
+    - [[#reftex][RefTex]]
+    - [[#outline-minor-mode][Outline Minor Mode]]
+    - [[#outline-magic][Outline-magic]]
+    - [[#visual-fill-mode-instead-of-auto-fill][Visual fill mode instead of auto fill]]
+    - [[#beamer-bold-as-bold-not-as-alert][Beamer: Bold as bold, not as alert!]]
+  - [[#exwm---the-emacs-x-window-manager][~exwm~ - The Emacs X Window Manager]]
+  - [[#drop-down-emacs-with-yequake][Drop-down emacs with ~Yequake~]]
+  - [[#ein-to-open-jupyter-notebooks-in-emacs][~ein~ to open jupyter notebooks in emacs]]
+  - [[#yasnippets][Yasnippets]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -253,373 +253,6 @@ Make `helm-eshell-history`, a.k.a. ", H", use the current frame instead of
 opening a new one:
 #+begin_src emacs-lisp
   (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
-#+end_src
-
-* Packages / Languages / Concepts
-** Manage my Email with ~mu4e~
-*** Contexts
-#+BEGIN_SRC emacs-lisp
-  (setq mu4e-contexts
-   `(
-     ,(make-mu4e-context
-       :name "gmail"
-       :match-func (lambda (msg) (when msg
-         (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
-       :vars '(
-               (user-mail-address . "nathanael.bosch@gmail.com")
-               (user-full-name . "Nathanael Bosch")
-               (mu4e-trash-folder . "/Gmail/[Google Mail].Bin")
-               (mu4e-refile-folder . "/Gmail/[Google Mail].Archive")
-               (mu4e-sent-folder . "/Gmail/[Google Mail].Sent Mail")
-               (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
-               ))
-     ,(make-mu4e-context
-       :name "uni-tue"
-       :match-func (lambda (msg) (when msg
-         (string-prefix-p "/UniTue" (mu4e-message-field msg :maildir))))
-       :vars '(
-               (user-mail-address . "nathanael.bosch@uni-tuebingen.de")
-               (user-full-name . "Nathanael Bosch")
-               (mu4e-trash-folder . "/UniTue/Mail.trash")
-               ;; (mu4e-refile-folder . "/UniTue/")
-               (mu4e-sent-folder . "/UniTue/Mail.sent")
-               (mu4e-drafts-folder . "/UniTue/Mail.drafts")
-               ))
-     ,(make-mu4e-context
-       :name "mpi-is"
-       :match-func (lambda (msg) (when msg
-         (string-prefix-p "/MPI-IS" (mu4e-message-field msg :maildir))))
-       :vars '(
-               (user-mail-address . "nathanael.bosch@tuebingen.mpg.de")
-               (user-full-name . "Nathanael Bosch")
-               (mu4e-trash-folder . "/MPI-IS/Trash")
-               ;; (mu4e-refile-folder . "/MPI-IS/")
-               (mu4e-sent-folder . "/MPI-IS/Sent")
-               (mu4e-drafts-folder . "/MPI-IS/Drafts")
-               ))
-     ))
-#+END_SRC
-
-*** Send Emails
-#+BEGIN_SRC emacs-lisp
-  (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-sendmail-f-is-evil t
-        message-sendmail-function 'message-sendmail-with-sendmail
-        send-mail-function 'message-send-mail-with-sendmail
-        ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
-        sendmail-program "sendmail"
-        message-kill-buffer-on-exit t     ; kill old messages when sent
-        message-send-mail-function 'message-send-mail-with-sendmail
-        message-forward-before-signature nil
-        message-cite-reply-position 'above
-  )
-
-  ;; (defun msmtpsq-fail-sentinel (process event)
-  ;;   "Informs the user if the process has failed"
-  ;;   (cond ((eq (process-status process) 'exit)
-  ;;          (message "msmtpq-runqueue has succeeded")
-  ;;          (let ((proc-buf (process-buffer process)))
-  ;;            (when (buffer-name proc-buf)
-  ;;              (with-current-buffer proc-buf
-  ;;                (set-buffer-modified-p nil)
-  ;;                (kill-buffer proc-buf)))))
-  ;;         ((memq (process-status process) '(failed signal))
-  ;;          (lwarn '(msmtp) :error "msmtpq-runqueue has failed! For info see %s" (process-buffer process)))))
-
-  ;; (defun msmtpq-runqueue ()
-  ;;   "Runs the msmtp queue.
-
-  ;; Uses the msmtpq-runqueue.sh script provided by the msmtp
-  ;; package. In these scripts the queue directory can be set, see
-  ;; there for more information."
-  ;;   (interactive)
-  ;;   (let* ((buf-name "*msmtp-runqueue output*")
-  ;;          (buffer  (get-buffer-create buf-name)))
-  ;;     (with-current-buffer buffer
-  ;;       (erase-buffer)
-  ;;       (message "running msmtpqueue ...")
-  ;;       (let ((proc
-  ;;              (start-process
-  ;;               "msmtpq-run" buffer
-  ;;               "/home/jonas/bin/msmtpqueue/msmtp-runqueue.sh")))
-  ;;         (set-process-sentinel proc 'msmtpsq-fail-sentinel)))))
-
-  ;; ;; (define-key 'mu4e-main-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
-  ;; ;; (define-key 'mu4e-headers-mode-map (kbd "C-c C-r") 'msmtpq-runqueue)
-  ;; ;; (define-key 'mu4e-view-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
-
-  ;; ;; Don't keep message buffer around
-  ;; (setq message-kill-buffer-on-exit t)
-#+END_SRC
-
-**** Org
-#+begin_src emacs-lisp
-  (setq org-mu4e-convert-to-html t)
-#+end_src
-
-*** HTML Mails with images
-
-#+begin_src emacs-lisp
-  ;; (setq
-  ;;  mu4e-html2text-command "w3m -T text/html"
-  ;;  mu4e-view-prefer-html t
-  ;;  )
-#+end_src
-
-#+begin_src emacs-lisp
-  ;; enable inline images
-  ;; (setq mu4e-view-show-images t)
-  ;; use imagemagick, if available
-  ;; (when (fboundp 'imagemagick-register-types)
-  ;;   (imagemagick-register-types))
-#+end_src
-
-Otherwise, open in a browser
-#+begin_src emacs-lisp
-  ;; (add-to-list 'mu4e-view-actions
-  ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
-#+end_src
-
-*** Notifications for new Email
-#+begin_src emacs-lisp
-  (mu4e-alert-set-default-style 'libnotify)
-#+end_src
-
-*** Pandoc for HTML
-Seems not bad actually
-#+begin_src emacs-lisp
-  ;; (setq mu4e-html2text-command "iconv -c -t utf-8 | pandoc -f html -t plain")
-#+end_src
-
-*** Visual line mode hook
-#+begin_src emacs-lisp
-  (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
-#+end_src
-
-*** Check for supposed attachments prior to sending them
-#+begin_src emacs-lisp
-  ;; (defvar my-message-attachment-regexp "\\(
-  ;;                                       [Ww]e send\\|
-  ;;                                       [Ii] send\\|
-  ;;                                       attach\\|
-  ;;                                       [aA]ngehängt\\|
-  ;;                                       [aA]nhang\\|
-  ;;                                       [sS]chicke\\|
-  ;;                                       angehaengt\\|
-  ;;                                       haenge\\|
-  ;;                                       hänge\\)")
-  ;; (defun my-message-check-attachment nil
-  ;;   "Check if there is an attachment in the message if I claim it."
-  ;;   (save-excursion
-  ;;     (message-goto-body)
-  ;;     (when (search-forward-regexp my-message-attachment-regexp nil t nil)
-  ;;       (message-goto-body)
-  ;;       (unless (or (search-forward "<#part" nil t nil)
-  ;;                   (message-y-or-n-p
-  ;;                    "No attachment. Send the message ?" nil nil))
-  ;;         (error "No message sent")))))
-  ;; (add-hook 'message-send-hook 'my-message-check-attachment)
-#+end_src
-
-*** gnus view
-#+begin_src emacs-lisp
-  ;; (setq mu4e-view-use-gnus t)
-#+end_src
-*** Link to message, not headers
-#+begin_src emacs-lisp
-  ;; (setq org-mu4e-link-query-in-headers-mode nil)
-#+end_src
-** Writeroom                                                           :WIP:
-My goal here: Create a /beautiful/ writing environment!
-#+begin_src emacs-lisp
-  ;; (setq
-  ;;  ;; writeroom-maximize-window t
-  ;;  writeroom-fullscreen-effect nil
-  ;;  writeroom-extra-line-spacing 0.3
-  ;;  writeroom-width 88
-  ;;  writeroom-border-width 30
-  ;;  )
-#+end_src
-
-No line numbers
-#+begin_src emacs-lisp
-  ;; (defun my/writeroom-without-linenumbers (arg)
-  ;;   (cond
-  ;;    ((= arg 1)
-  ;;     (spacemacs/toggle-line-numbers-off))
-  ;;    ((= arg -1)
-  ;;     (spacemacs/toggle-line-numbers-on))))
-
-  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-without-linenumbers)
-#+end_src
-
-Enable some nice white Theme
-#+begin_src emacs-lisp
-  ;; (setq my/main-theme 'gruvbox)
-  ;; (setq my/writeroom-theme 'leuven)
-  ;; (load-theme my/writeroom-theme)
-  ;; (disable-theme my/writeroom-theme)
-  ;; (load-theme my/main-theme)
-  ;; (defun my/writeroom-theme-fn (arg)
-  ;;   (cond
-  ;;    ((= arg 1)
-  ;;     (enable-theme my/writeroom-theme)
-  ;;     (disable-theme my/main-theme)
-  ;;     )
-  ;;    ((= arg -1)
-  ;;     (disable-theme my/writeroom-theme)
-  ;;     (enable-theme my/main-theme)
-  ;;     )
-  ;;    ))
-  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-theme-fn)
-#+end_src
-
-** ~magit~ - The best git interface
-Start in Evil mode
-#+BEGIN_SRC emacs-lisp
-  ;; Start magit commit in insert mode
-  (add-hook 'with-editor-mode-hook 'evil-insert-state)
-#+END_SRC
-
-Magit blame keys
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-c b") 'magit-blame)
-#+end_src
-
-Refine diffs
-#+begin_src emacs-lisp
-  (setq magit-diff-refine-hunk "all")
-#+end_src
-
-** LaTeX
-Ask me about the TeX master file if unsure
-#+BEGIN_SRC emacs-lisp
-  (setq-default TeX-master nil)
-#+END_SRC
-*** RefTex
-#+BEGIN_SRC emacs-lisp
-  (evil-leader/set-key-for-mode 'latex-mode "r r" 'reftex-cleveref-cref)
-#+END_SRC
-*** Outline Minor Mode
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
-#+END_SRC
-
-Fake sections for better manipulation:
-#+BEGIN_SRC emacs-lisp
-  (setq TeX-outline-extra
-        '(("%chapter" 1)
-          ("%section" 2)
-          ("%subsection" 3)
-          ("%subsubsection" 4)
-          ("%paragraph" 5)))
-  ;; add font locking to the headers
-  (font-lock-add-keywords
-   'latex-mode
-   '(("^%\\(chapter\\|\\(sub\\|subsub\\)?section\\|paragraph\\)"
-      0 'font-lock-keyword-face t)
-     ("^%chapter{\\(.*\\)}"       1 'font-latex-sectioning-1-face t)
-     ("^%section{\\(.*\\)}"       1 'font-latex-sectioning-2-face t)
-     ("^%subsection{\\(.*\\)}"    1 'font-latex-sectioning-3-face t)
-     ("^%subsubsection{\\(.*\\)}" 1 'font-latex-sectioning-4-face t)
-     ("^%paragraph{\\(.*\\)}"     1 'font-latex-sectioning-5-face t)))
-#+END_SRC
-*** Outline-magic
-#+BEGIN_SRC emacs-lisp
-  (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)
-  (define-key outline-minor-mode-map (kbd "M-h") 'outline-promote)
-  (define-key outline-minor-mode-map (kbd "M-j") 'outline-move-subtree-down)
-  (define-key outline-minor-mode-map (kbd "M-k") 'outline-move-subtree-up)
-  (define-key outline-minor-mode-map (kbd "M-l") 'outline-demote)
-  (define-key outline-minor-mode-map (kbd "M-H")
-    (lambda() (interactive) (evil-visual-line) (outline-promote)))
-  (define-key outline-minor-mode-map (kbd "M-L")
-    (lambda() (interactive) (evil-visual-line) (outline-demote)))
-#+END_SRC
-*** Visual fill mode instead of auto fill
-#+BEGIN_SRC emacs-lisp
-  (add-hook 'latex-mode-hook 'visual-fill-column-mode)
-  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
-  (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
-#+END_SRC
-*** Beamer: Bold as bold, not as alert!
-#+begin_src emacs-lisp
-  (defun my-beamer-bold (contents backend info)
-    (when (eq backend 'beamer)
-      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
-
-  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
-#+end_src
-
-** ~exwm~ - The Emacs X Window Manager
-General settings:
-#+begin_src emacs-lisp
-  ;; Tray
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
-
-  ;; Workspaces
-  (setq exwm-workspace-number 10)
-
-  ;; Display time
-  (display-time-mode t)
-
-  ;; Global buffers
-  (setq exwm-layout-show-all-buffers t)
-#+end_src
-
-Autostart programs
-#+begin_src emacs-lisp
-  ;; Autostart Dropbox
-  ;; (call-process-shell-command "(sleep 10s && dropbox) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && megasync) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && nm-applet) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && redshift-gtk -l 48.2488721:11.6532477) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && spotify) &" nil 0)
-  ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
-#+end_src
-
-** Drop-down emacs with ~Yequake~
-#+begin_src emacs-lisp
-  (setq yequake-frames
-        '(("TODOs & scratch" .
-           ((width . 0.75)
-            (height . 0.5)
-            (alpha . 0.95)
-            (buffer-fns . ("~/Dropbox/org/todo.org"
-                           split-window-horizontally
-                           "*scratch*"))
-            (frame-parameters . ((undecorated . t)))))
-          ("eguake" .
-           ((width . 853)
-            (height . 480)
-            (top . 0.5)
-            ;; (alpha . 0.95)
-            (buffer-fns . (eshell))
-            (frame-parameters . ((undecorated . t)))))
-          ))
-#+end_src
-
-** ~ein~ to open jupyter notebooks in emacs
-Aesthetic settings:
-#+begin_src emacs-lisp
-  ;; Inline images
-  (setq ein:output-area-inlined-images t)
-
-  ;; Nicer Markdown
-  ;; (setq poly-ein-mode t)
-  (setq ein:markdown-header-scaling t)
-#+end_src
-** Yasnippets
-Add the yasnippet-snippets snippets to yasnippet.
-#+begin_src emacs-lisp
-  (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
-#+end_src
-
-Use Yasnippets in ~ledger-mode~
-#+begin_src emacs-lisp
-  (add-hook 'ledger-mode-hook 'yas-minor-mode)
 #+end_src
 
 * Organize my life with ~org-mode~
@@ -956,8 +589,8 @@ I love org so much, it deserves its own heading.
            "* TODO %?\nSCHEDULED: %t\n%U\n" :empty-lines 1 :clock-in t :clock-resume t)
           ;; ("l" "Todo with link (e.g. for mail)" entry (file+headline "~/Dropbox/org/todo.org" "Inbox")
           ;;  "* TODO %?\n%U\n%a\n")
-          ("l" "link" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %(org-cliplink-capture)\n%c\n" :immediate-finish t)
+          ;; ("l" "link" entry (file "~/Dropbox/org/inbox.org")
+          ;;  "* TODO %(org-cliplink-capture)\n%c\n" :immediate-finish t)
           ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
            "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
           ;; ("g" "Google Calendar Entry" entry (file "~/Dropbox/org/gcal/gcal.org")
@@ -1736,4 +1369,370 @@ Ignore org comments on export
   ;;          :unnarrowed t
   ;;          :immediate-finish t
   ;;          )))
+#+end_src
+* Other Packages / Languages / Concepts
+** Manage my Email with ~mu4e~
+*** Contexts
+#+BEGIN_SRC emacs-lisp
+  (setq mu4e-contexts
+   `(
+     ,(make-mu4e-context
+       :name "gmail"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@gmail.com")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/Gmail/[Google Mail].Bin")
+               (mu4e-refile-folder . "/Gmail/[Google Mail].Archive")
+               (mu4e-sent-folder . "/Gmail/[Google Mail].Sent Mail")
+               (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
+               ))
+     ,(make-mu4e-context
+       :name "uni-tue"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/UniTue" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@uni-tuebingen.de")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/UniTue/Mail.trash")
+               ;; (mu4e-refile-folder . "/UniTue/")
+               (mu4e-sent-folder . "/UniTue/Mail.sent")
+               (mu4e-drafts-folder . "/UniTue/Mail.drafts")
+               ))
+     ,(make-mu4e-context
+       :name "mpi-is"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/MPI-IS" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@tuebingen.mpg.de")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/MPI-IS/Trash")
+               ;; (mu4e-refile-folder . "/MPI-IS/")
+               (mu4e-sent-folder . "/MPI-IS/Sent")
+               (mu4e-drafts-folder . "/MPI-IS/Drafts")
+               ))
+     ))
+#+END_SRC
+
+*** Send Emails
+#+BEGIN_SRC emacs-lisp
+  (setq mail-user-agent 'mu4e-user-agent  ; set mua header in mails
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-sendmail-f-is-evil t
+        message-sendmail-function 'message-sendmail-with-sendmail
+        send-mail-function 'message-send-mail-with-sendmail
+        ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
+        sendmail-program "sendmail"
+        message-kill-buffer-on-exit t     ; kill old messages when sent
+        message-send-mail-function 'message-send-mail-with-sendmail
+        message-forward-before-signature nil
+        message-cite-reply-position 'above
+  )
+
+  ;; (defun msmtpsq-fail-sentinel (process event)
+  ;;   "Informs the user if the process has failed"
+  ;;   (cond ((eq (process-status process) 'exit)
+  ;;          (message "msmtpq-runqueue has succeeded")
+  ;;          (let ((proc-buf (process-buffer process)))
+  ;;            (when (buffer-name proc-buf)
+  ;;              (with-current-buffer proc-buf
+  ;;                (set-buffer-modified-p nil)
+  ;;                (kill-buffer proc-buf)))))
+  ;;         ((memq (process-status process) '(failed signal))
+  ;;          (lwarn '(msmtp) :error "msmtpq-runqueue has failed! For info see %s" (process-buffer process)))))
+
+  ;; (defun msmtpq-runqueue ()
+  ;;   "Runs the msmtp queue.
+
+  ;; Uses the msmtpq-runqueue.sh script provided by the msmtp
+  ;; package. In these scripts the queue directory can be set, see
+  ;; there for more information."
+  ;;   (interactive)
+  ;;   (let* ((buf-name "*msmtp-runqueue output*")
+  ;;          (buffer  (get-buffer-create buf-name)))
+  ;;     (with-current-buffer buffer
+  ;;       (erase-buffer)
+  ;;       (message "running msmtpqueue ...")
+  ;;       (let ((proc
+  ;;              (start-process
+  ;;               "msmtpq-run" buffer
+  ;;               "/home/jonas/bin/msmtpqueue/msmtp-runqueue.sh")))
+  ;;         (set-process-sentinel proc 'msmtpsq-fail-sentinel)))))
+
+  ;; ;; (define-key 'mu4e-main-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
+  ;; ;; (define-key 'mu4e-headers-mode-map (kbd "C-c C-r") 'msmtpq-runqueue)
+  ;; ;; (define-key 'mu4e-view-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
+
+  ;; ;; Don't keep message buffer around
+  ;; (setq message-kill-buffer-on-exit t)
+#+END_SRC
+
+**** Org
+#+begin_src emacs-lisp
+  (setq org-mu4e-convert-to-html t)
+#+end_src
+
+*** HTML Mails with images
+
+#+begin_src emacs-lisp
+  ;; (setq
+  ;;  mu4e-html2text-command "w3m -T text/html"
+  ;;  mu4e-view-prefer-html t
+  ;;  )
+#+end_src
+
+#+begin_src emacs-lisp
+  ;; enable inline images
+  ;; (setq mu4e-view-show-images t)
+  ;; use imagemagick, if available
+  ;; (when (fboundp 'imagemagick-register-types)
+  ;;   (imagemagick-register-types))
+#+end_src
+
+Otherwise, open in a browser
+#+begin_src emacs-lisp
+  ;; (add-to-list 'mu4e-view-actions
+  ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+#+end_src
+
+*** Notifications for new Email
+#+begin_src emacs-lisp
+  (mu4e-alert-set-default-style 'libnotify)
+#+end_src
+
+*** Pandoc for HTML
+Seems not bad actually
+#+begin_src emacs-lisp
+  ;; (setq mu4e-html2text-command "iconv -c -t utf-8 | pandoc -f html -t plain")
+#+end_src
+
+*** Visual line mode hook
+#+begin_src emacs-lisp
+  (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
+#+end_src
+
+*** Check for supposed attachments prior to sending them
+#+begin_src emacs-lisp
+  ;; (defvar my-message-attachment-regexp "\\(
+  ;;                                       [Ww]e send\\|
+  ;;                                       [Ii] send\\|
+  ;;                                       attach\\|
+  ;;                                       [aA]ngehängt\\|
+  ;;                                       [aA]nhang\\|
+  ;;                                       [sS]chicke\\|
+  ;;                                       angehaengt\\|
+  ;;                                       haenge\\|
+  ;;                                       hänge\\)")
+  ;; (defun my-message-check-attachment nil
+  ;;   "Check if there is an attachment in the message if I claim it."
+  ;;   (save-excursion
+  ;;     (message-goto-body)
+  ;;     (when (search-forward-regexp my-message-attachment-regexp nil t nil)
+  ;;       (message-goto-body)
+  ;;       (unless (or (search-forward "<#part" nil t nil)
+  ;;                   (message-y-or-n-p
+  ;;                    "No attachment. Send the message ?" nil nil))
+  ;;         (error "No message sent")))))
+  ;; (add-hook 'message-send-hook 'my-message-check-attachment)
+#+end_src
+
+*** gnus view
+#+begin_src emacs-lisp
+  ;; (setq mu4e-view-use-gnus t)
+#+end_src
+*** Link to message, not headers
+#+begin_src emacs-lisp
+  ;; (setq org-mu4e-link-query-in-headers-mode nil)
+#+end_src
+** Writeroom                                                           :WIP:
+My goal here: Create a /beautiful/ writing environment!
+#+begin_src emacs-lisp
+  ;; (setq
+  ;;  ;; writeroom-maximize-window t
+  ;;  writeroom-fullscreen-effect nil
+  ;;  writeroom-extra-line-spacing 0.3
+  ;;  writeroom-width 88
+  ;;  writeroom-border-width 30
+  ;;  )
+#+end_src
+
+No line numbers
+#+begin_src emacs-lisp
+  ;; (defun my/writeroom-without-linenumbers (arg)
+  ;;   (cond
+  ;;    ((= arg 1)
+  ;;     (spacemacs/toggle-line-numbers-off))
+  ;;    ((= arg -1)
+  ;;     (spacemacs/toggle-line-numbers-on))))
+
+  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-without-linenumbers)
+#+end_src
+
+Enable some nice white Theme
+#+begin_src emacs-lisp
+  ;; (setq my/main-theme 'gruvbox)
+  ;; (setq my/writeroom-theme 'leuven)
+  ;; (load-theme my/writeroom-theme)
+  ;; (disable-theme my/writeroom-theme)
+  ;; (load-theme my/main-theme)
+  ;; (defun my/writeroom-theme-fn (arg)
+  ;;   (cond
+  ;;    ((= arg 1)
+  ;;     (enable-theme my/writeroom-theme)
+  ;;     (disable-theme my/main-theme)
+  ;;     )
+  ;;    ((= arg -1)
+  ;;     (disable-theme my/writeroom-theme)
+  ;;     (enable-theme my/main-theme)
+  ;;     )
+  ;;    ))
+  ;; (add-to-list 'writeroom-global-effects 'my/writeroom-theme-fn)
+#+end_src
+
+** ~magit~ - The best git interface
+Start in Evil mode
+#+BEGIN_SRC emacs-lisp
+  ;; Start magit commit in insert mode
+  (add-hook 'with-editor-mode-hook 'evil-insert-state)
+#+END_SRC
+
+Magit blame keys
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c b") 'magit-blame)
+#+end_src
+
+Refine diffs
+#+begin_src emacs-lisp
+  (setq magit-diff-refine-hunk "all")
+#+end_src
+
+** LaTeX
+Ask me about the TeX master file if unsure
+#+BEGIN_SRC emacs-lisp
+  (setq-default TeX-master nil)
+#+END_SRC
+*** RefTex
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key-for-mode 'latex-mode "r r" 'reftex-cleveref-cref)
+#+END_SRC
+*** Outline Minor Mode
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+#+END_SRC
+
+Fake sections for better manipulation:
+#+BEGIN_SRC emacs-lisp
+  (setq TeX-outline-extra
+        '(("%chapter" 1)
+          ("%section" 2)
+          ("%subsection" 3)
+          ("%subsubsection" 4)
+          ("%paragraph" 5)))
+  ;; add font locking to the headers
+  (font-lock-add-keywords
+   'latex-mode
+   '(("^%\\(chapter\\|\\(sub\\|subsub\\)?section\\|paragraph\\)"
+      0 'font-lock-keyword-face t)
+     ("^%chapter{\\(.*\\)}"       1 'font-latex-sectioning-1-face t)
+     ("^%section{\\(.*\\)}"       1 'font-latex-sectioning-2-face t)
+     ("^%subsection{\\(.*\\)}"    1 'font-latex-sectioning-3-face t)
+     ("^%subsubsection{\\(.*\\)}" 1 'font-latex-sectioning-4-face t)
+     ("^%paragraph{\\(.*\\)}"     1 'font-latex-sectioning-5-face t)))
+#+END_SRC
+*** Outline-magic
+#+BEGIN_SRC emacs-lisp
+  (define-key outline-minor-mode-map (kbd "<C-tab>") 'outline-cycle)
+  (define-key outline-minor-mode-map (kbd "M-h") 'outline-promote)
+  (define-key outline-minor-mode-map (kbd "M-j") 'outline-move-subtree-down)
+  (define-key outline-minor-mode-map (kbd "M-k") 'outline-move-subtree-up)
+  (define-key outline-minor-mode-map (kbd "M-l") 'outline-demote)
+  (define-key outline-minor-mode-map (kbd "M-H")
+    (lambda() (interactive) (evil-visual-line) (outline-promote)))
+  (define-key outline-minor-mode-map (kbd "M-L")
+    (lambda() (interactive) (evil-visual-line) (outline-demote)))
+#+END_SRC
+*** Visual fill mode instead of auto fill
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'latex-mode-hook 'visual-fill-column-mode)
+  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
+  (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
+#+END_SRC
+*** Beamer: Bold as bold, not as alert!
+#+begin_src emacs-lisp
+  (defun my-beamer-bold (contents backend info)
+    (when (eq backend 'beamer)
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+
+  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
+#+end_src
+
+** ~exwm~ - The Emacs X Window Manager
+General settings:
+#+begin_src emacs-lisp
+  ;; Tray
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
+
+  ;; Workspaces
+  (setq exwm-workspace-number 10)
+
+  ;; Display time
+  (display-time-mode t)
+
+  ;; Global buffers
+  (setq exwm-layout-show-all-buffers t)
+#+end_src
+
+Autostart programs
+#+begin_src emacs-lisp
+  ;; Autostart Dropbox
+  ;; (call-process-shell-command "(sleep 10s && dropbox) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && megasync) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && nm-applet) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && redshift-gtk -l 48.2488721:11.6532477) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && spotify) &" nil 0)
+  ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
+#+end_src
+
+** Drop-down emacs with ~Yequake~
+#+begin_src emacs-lisp
+  (setq yequake-frames
+        '(("TODOs & scratch" .
+           ((width . 0.75)
+            (height . 0.5)
+            (alpha . 0.95)
+            (buffer-fns . ("~/Dropbox/org/todo.org"
+                           split-window-horizontally
+                           "*scratch*"))
+            (frame-parameters . ((undecorated . t)))))
+          ("eguake" .
+           ((width . 853)
+            (height . 480)
+            (top . 0.5)
+            ;; (alpha . 0.95)
+            (buffer-fns . (eshell))
+            (frame-parameters . ((undecorated . t)))))
+          ))
+#+end_src
+
+** ~ein~ to open jupyter notebooks in emacs
+Aesthetic settings:
+#+begin_src emacs-lisp
+  ;; Inline images
+  (setq ein:output-area-inlined-images t)
+
+  ;; Nicer Markdown
+  ;; (setq poly-ein-mode t)
+  (setq ein:markdown-header-scaling t)
+#+end_src
+** Yasnippets
+Add the yasnippet-snippets snippets to yasnippet.
+#+begin_src emacs-lisp
+  (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
+#+end_src
+
+Use Yasnippets in ~ledger-mode~
+#+begin_src emacs-lisp
+  (add-hook 'ledger-mode-hook 'yas-minor-mode)
 #+end_src
