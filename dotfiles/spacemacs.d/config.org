@@ -1056,6 +1056,7 @@ Org-babel languages
      (jupyter . t)
      (ein . t)
      (julia . t)
+     (ledger . t)
      ))
 #+END_SRC
 
