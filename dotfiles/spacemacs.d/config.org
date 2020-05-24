@@ -620,7 +620,7 @@ I love org so much, it deserves its own heading.
            ;;   - etc
            "* TODO %(org-insert-time-stamp (org-read-date nil t \"%:date\") nil t) %(from-name \"%:fromname\" \"%:fromaddress\" \"%:from\") %a \t :%(get-domainname \"%:toaddress\"):")
           ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %? email |- %:from: %:subject :EMAIL:\n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
+           "* TODO Process mail from %:fromname on %:subject \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
           ))
 #+END_SRC
 
