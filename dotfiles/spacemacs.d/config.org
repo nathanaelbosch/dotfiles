@@ -1039,8 +1039,11 @@ default task otherwise
 *** Define hotkeys for clocking
 #+begin_src emacs-lisp
   (evil-leader/set-key-for-mode 'org-mode "C s" 'bh/punch-in)
+  (evil-leader/set-key "a o C s" 'bh/punch-in)
   (evil-leader/set-key-for-mode 'org-mode "C S" 'bh/punch-out)
+  (evil-leader/set-key "a o C S" 'bh/punch-out)
   (evil-leader/set-key-for-mode 'org-mode "C b" 'bh/clock-in-break)
+  (evil-leader/set-key "a o C b" 'bh/clock-in-break)
 #+end_src
 ** Literate programming with ~org-src~ and ~org-babel~
 Org-babel languages
