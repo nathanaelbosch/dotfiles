@@ -52,6 +52,10 @@ alias ipylab="ipython --pylab"
 alias p="ipython --pdb"
 alias xpython='xvfb-run --auto-servernum -s "-screen 0 1400x900x24" python'
 
+# Julia things
+alias jnb="julia --project=. -e 'using IJulia; notebook(dir=\".\")'"
+alias j="julia --project=."
+
 # Misc
 alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"
 alias lazyvf="vf activate lazy"
