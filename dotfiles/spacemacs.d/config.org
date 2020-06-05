@@ -493,7 +493,8 @@ I love org so much, it deserves its own heading.
             (tags-todo "PhD"
                        ((org-agenda-todo-ignore-scheduled 'future)
                         (org-agenda-files '("~/Dropbox/org/phd.org"
-                                            "~/Dropbox/org/phd.org_archive"))
+                                            "~/Dropbox/org/phd.org_archive"
+                                            ))
                         (org-agenda-overriding-header "TODOs")))
             (tags-todo "PhD"
                        ((org-agenda-todo-ignore-scheduled 'future)
@@ -632,6 +633,8 @@ PhD-related captures:
          '(("p" "PhD")
            ("pt" "Task" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
+           ("pn" "Note" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+            "** NOTE %?\n%U" :clock-in t :clock-resume t)
            ("pj" "Journal" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
             "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
            ("pd" "Daily Sketch" entry (file+headline "~/Dropbox/org/phd.org" "Daily Sketch")
