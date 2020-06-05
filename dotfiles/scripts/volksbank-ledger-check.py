@@ -31,6 +31,8 @@ df = pd.read_csv(
     delimiter=";",
     decimal=",",
     thousands=".",
+    dtype=dict(Buchungstag=str, Valuta=str),
+    engine="python",
 )
 df.Buchungstag = pd.to_datetime(df.Buchungstag, format="%d%m%Y")
 df.Valuta = pd.to_datetime(df.Valuta, format="%d%m%Y")
