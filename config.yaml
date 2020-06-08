@@ -77,7 +77,7 @@ dotfiles:
     src: config/sxhkd
   d_tmuxinator:
     dst: ~/.tmuxinator
-    link: true
+    link: link
     src: tmuxinator
   f_aliases:
     dst: ~/.aliases
@@ -154,6 +154,10 @@ dotfiles:
   d_zathura:
     src: config/zathura
     dst: ~/.config/zathura
+    link: nolink
+  f_org-protocol.desktop:
+    src: local/share/applications/org-protocol.desktop
+    dst: ~/.local/share/applications/org-protocol.desktop
     link: nolink
 profiles:
   arch-laptop:
@@ -259,3 +263,4 @@ profiles:
     - d_msmtp
     - d_dunst
     - d_zathura
+    - f_org-protocol.desktop
