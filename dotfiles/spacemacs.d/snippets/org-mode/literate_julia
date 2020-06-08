@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Create align environment
+# key: literate_julia
+# --
+#+TITLE: $0
+#+AUTHOR: Nathanael Bosch
+#+EMAIL: nathanael.bosch@uni-tuebingen.de
+#+PROPERTY: header-args :session jl :async yes :exports both :noweb yes
+#+STARTUP: latexpreview
+#+STARTUP: inlineimages
+#+STARTUP: entitiesplain
