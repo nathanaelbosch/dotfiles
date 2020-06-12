@@ -51,7 +51,7 @@
     - [[#custom-hotkeys][Custom Hotkeys]]
     - [[#org-ref-notes][~org-ref~ notes]]
     - [[#use-cleveref-in-latex][Use ~cleveref~ in LaTeX]]
-    - [[#pdf-noter-for-note-taking][~pdf-noter~ for note-taking]]
+    - [[#org-noter-for-note-taking][~org-noter~ for note-taking]]
   - [[#manage-recipes-with-org-chef][Manage recipes with ~org-chef~]]
   - [[#better-screenshots-with-org-download][Better screenshots with ~org-download~]]
   - [[#org-projectile][org-projectile]]
@@ -66,6 +66,7 @@
     - [[#add-hotkeys][Add hotkeys]]
     - [[#capture-template][Capture template]]
     - [[#capture-ref-from-browser][Capture Ref from Browser]]
+    - [[#org-roam-bibtex][org-roam-bibtex]]
 - [[#other-packages--languages--concepts][Other Packages / Languages / Concepts]]
   - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
     - [[#contexts][Contexts]]
@@ -349,7 +350,7 @@ I love org so much, it deserves its own heading.
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
         '((sequence "TODO(t)" "STARTED(s!)" "WAITING(W@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
-          (sequence "TOREAD(r)" "|")
+          (sequence "TOREAD(r)" "|" "1PASS(1)" "2PASS(2)" "3PASS(3)")
           (sequence "TOWATCH(w)" "|")
           (sequence "TOLISTEN(l)" "|")
           (sequence "REMINDER(R)" "|" "NOTE(n)" "REFERENCE(D!)")
@@ -383,6 +384,7 @@ I love org so much, it deserves its own heading.
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"
                            "~/Dropbox/org/zettelkasten/"
+                           "~/Dropbox/org/zettelkasten/refs/"
                            "~/MEGA/papers/notes.org"
                            ))
   ;; To append to the list
@@ -475,32 +477,35 @@ I love org so much, it deserves its own heading.
           ("w" "Work"
            ((agenda ""
                     ((org-agenda-span 1)
-                     (org-agenda-files '("~/Dropbox/org/phd.org"
-                                         ;; "~/Dropbox/org/phd.org_archive"
-                                         "~/Dropbox/org/phd_journal.org"
-                                         "~/MEGA/papers/notes.org"
-                                         "~/Dropbox/org/gcal/moml.org"
-                                         "~/Dropbox/org/gcal/uni.org"
-                                         "~/Dropbox/org/gcal/phd.org"))
+                     ;; (org-agenda-files '("~/Dropbox/org/phd.org"
+                     ;;                     ;; "~/Dropbox/org/phd.org_archive"
+                     ;;                     "~/Dropbox/org/phd_journal.org"
+                     ;;                     "~/MEGA/papers/notes.org"
+                     ;;                     "~/Dropbox/org/gcal/moml.org"
+                     ;;                     "~/Dropbox/org/gcal/uni.org"
+                     ;;                     "~/Dropbox/org/gcal/phd.org"))
                      ;; (org-agenda-skip-function '(org-agenda-skip-entry-if
                      ;;                             'todo '("WAITING")))
                      (org-agenda-overriding-header "Thesis Agenda")))
             (tags-todo "CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "To Refile")
-                        (org-agenda-files '("~/Dropbox/org/phd.org"))
+                        ;; (org-agenda-files '("~/Dropbox/org/phd.org"))
                         ;; (org-agenda-regexp-filter-preset '("-Inbox"))
                         ))
-            (tags-todo "PhD"
+            (tags-todo "PhD-CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'future)
-                        (org-agenda-files '("~/Dropbox/org/phd.org"
-                                            "~/Dropbox/org/phd.org_archive"
-                                            ))
+                        ;; (org-agenda-files '("~/Dropbox/org/phd.org"
+                        ;;                     "~/Dropbox/org/phd.org_archive"
+                        ;;                     ))
                         (org-agenda-overriding-header "TODOs")))
-            (tags-todo "PhD"
+            (tags-todo "PhD+CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'future)
-                        (org-agenda-files '("~/MEGA/papers/notes.org"))
+                        ;; (org-agenda-files '("~/MEGA/papers/notes.org"
+                        ;;                     "~/Dropbox/org/zettelkasten/refs/"))
                         (org-agenda-overriding-header "Papers")))
-            ))
+            )
+           ((org-agenda-filter-preset '("+PhD")))
+           )
           ;;  ((org-agenda-sorting-strategy '(time-up priority-down tag-down todo-state-up))
           ;;   (org-agenda-filter-preset '(""))
           ;;   (org-agenda-regexp-filter-preset '(""))
@@ -1098,6 +1103,8 @@ Capture template
 #+end_src
 
 ** My paper reading workflow
+*This might not be up to date anymore, since I'm using org-roam now!*
+
 Sources:
 - https://codearsonist.com/reading-for-programmers
 - https://github.com/jkitchin/org-ref
@@ -1169,9 +1176,10 @@ Customized the structure of the default notes entry, to contain more information
   (setq org-ref-default-ref-type "cref")
   (setq org-latex-prefer-user-labels t)
 #+end_src
-*** ~pdf-noter~ for note-taking
+*** ~org-noter~ for note-taking
 #+begin_src emacs-lisp
   (setq org-noter-property-doc-file "PDF")
+  (setq org-noter-auto-save-last-location t)
 #+end_src
 ** Manage recipes with ~org-chef~
 #+BEGIN_SRC emacs-lisp
@@ -1370,7 +1378,7 @@ Ignore org comments on export
   (setq org-roam-capture-templates
         '(("d" "default" plain (function org-roam-capture--get-point)
            "%?"
-           :file-name "%<%Y-%m-%d-%H%M>-${slug}"
+           :file-name "%<%Y-%m-%d>-${slug}"
            :head "#+TITLE: ${title}\n- tags :: \n"
            :unnarrowed t
            :immediate-finish t
@@ -1379,19 +1387,75 @@ Ignore org comments on export
 #+end_src
 *** Capture Ref from Browser
 #+begin_src emacs-lisp
-  ;; (require 'org-roam-protocol)
+  (require 'org-roam-protocol)
 
-  ;; (setq org-roam-capture-ref-templates
-  ;;       '(("r" "ref" plain #'org-roam-capture--get-point
-  ;;          "* TODO [[${ref}][${title}]]\n"
-  ;;          :file-name "%<%Y-%m-%d-%H%M>-${slug}"
-  ;;          :head "#+TITLE: ${title}
-  ;; ,#+ROAM_KEY: ${ref}
-  ;; - source :: ${ref}
-  ;; - tags ::"
-  ;;          :unnarrowed t
-  ;;          :immediate-finish t
-  ;;          )))
+  (setq org-roam-capture-ref-templates
+        '(("r" "ref" plain #'org-roam-capture--get-point
+           "* TODO %? | [[${ref}][${title}]]\n"
+           :file-name "refs/%<%Y-%m-%d>-${slug}"
+           :head "#+TITLE: ${title}
+  ,#+ROAM_KEY: ${ref}
+  - source :: ${ref}
+  - tags ::
+
+  "
+           :unnarrowed t
+           )))
+#+end_src
+*** org-roam-bibtex
+#+begin_src emacs-lisp
+  (add-hook 'after-init-hook #'org-roam-bibtex-mode)
+#+end_src
+
+#+begin_src emacs-lisp
+  (setq orb-templates
+        '(
+          ("r" "ref" plain #'org-roam-capture--get-point
+           ""
+           :file-name "refs/%<%Y-%m-%d>-${citekey}"
+           :head "#+TITLE: ${title}
+  ,#+ROAM_KEY: ${ref}
+  - source :: ${ref}
+  - tags ::
+  "
+           :unnarrowed t)
+          ("p" "Paper" plain #'org-roam-capture--get-point
+           ""
+           :file-name "refs/%<%Y-%m-%d>-${citekey}"
+           :head "#+TITLE: ${title}
+  ,#+ROAM_KEY: ${ref}
+  ,#+CATEGORY: papers
+  ,#+FILETAGS: :papers:
+  - tags ::
+  - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
+
+  ,* TOREAD ${title}
+  :PROPERTIES:
+  :PDF: ~/MEGA/papers/lib/${citekey}.pdf
+  :END:
+  PDF: file:~/MEGA/papers/lib/${citekey}.pdf
+  "
+           :unnarrowed t)
+          ;; Same as above but with a "PhD" tag
+          ("P" "PhD Paper" plain #'org-roam-capture--get-point
+           ""
+           :file-name "refs/%<%Y-%m-%d>-${citekey}"
+           :head "#+TITLE: ${title}
+  ,#+ROAM_KEY: ${ref}
+  ,#+CATEGORY: papers
+  ,#+FILETAGS: :papers:PhD:
+  - tags ::
+  - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
+
+  ,* TOREAD ${title}
+  :PROPERTIES:
+  :PDF: ~/MEGA/papers/lib/${citekey}.pdf
+  :END:
+  PDF: file:~/MEGA/papers/lib/${citekey}.pdf
+  "
+           :unnarrowed t)
+          )
+        )
 #+end_src
 * Other Packages / Languages / Concepts
 ** Manage my Email with ~mu4e~
