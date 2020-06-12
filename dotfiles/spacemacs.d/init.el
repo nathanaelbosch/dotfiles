@@ -65,7 +65,7 @@ This function should only modify configuration layer settings."
      html
      javascript
      (julia :variables
-            julia-backend 'lsp
+            ;; julia-backend 'lsp
             )
      (latex :variables
             ;; latex-enable-auto-fill nil
@@ -140,6 +140,7 @@ This function should only modify configuration layer settings."
                                       org-noter
                                       org-roam
                                       org-roam-bibtex
+                                      company-org-roam
                                       org-gcal
                                       org-sidebar
                                       org-pomodoro
