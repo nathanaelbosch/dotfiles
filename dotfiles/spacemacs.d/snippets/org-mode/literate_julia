@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: Create align environment
+# name: Header for julia literate programming files
 # key: literate_julia
 # --
 #+TITLE: $0
