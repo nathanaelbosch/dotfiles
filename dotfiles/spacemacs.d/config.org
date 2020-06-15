@@ -63,6 +63,7 @@
     - [[#caption-below-tables][Caption below tables]]
   - [[#zettelkasten-with-org-roam][/Zettelkasten/ with ~org-roam~]]
     - [[#set-directory][Set Directory]]
+    - [[#start-org-roam-mode-on-startup][Start ~org-roam-mode~ on startup]]
     - [[#add-hotkeys][Add hotkeys]]
     - [[#capture-template][Capture template]]
     - [[#capture-ref-from-browser][Capture Ref from Browser]]
@@ -1354,6 +1355,10 @@ Ignore org comments on export
 *** Set Directory
 #+begin_src emacs-lisp
  (setq org-roam-directory "~/Dropbox/org/zettelkasten/")
+#+end_src
+*** Start ~org-roam-mode~ on startup
+#+begin_src emacs-lisp
+  (add-hook 'after-init-hook 'org-roam-mode)
 #+end_src
 *** Add hotkeys
 #+begin_src emacs-lisp
