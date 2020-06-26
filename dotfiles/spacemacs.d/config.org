@@ -643,8 +643,8 @@ PhD-related captures:
             "** NOTE %?\n%U" :clock-in t :clock-resume t)
            ("pj" "Journal" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
             "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
-           ("pd" "Daily Sketch" entry (file+headline "~/Dropbox/org/phd.org" "Daily Sketch")
-            "** %u\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
+           ("pd" "Daily Sketch" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
+            "* Daily Sketch\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
             :immediate-finish t :clock-in t :clock-resume t)
            )
          ))
