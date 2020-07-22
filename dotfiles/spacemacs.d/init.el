@@ -145,6 +145,7 @@ This function should only modify configuration layer settings."
                                       org-sidebar
                                       org-pomodoro
                                       org-clock-csv
+                                      org-fragtog
                                       ;; org-tempo
                                       ;; org-protocol
                                       sphinx-doc
