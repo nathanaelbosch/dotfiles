@@ -499,7 +499,7 @@ I love org so much, it deserves its own heading.
                         ;; (org-agenda-regexp-filter-preset '("-Inbox"))
                         ))
             (tags-todo "PhD-CATEGORY=\"papers\""
-                       ((org-agenda-todo-ignore-scheduled 'future)
+                       ((org-agenda-todo-ignore-scheduled 'all)
                         ;; (org-agenda-files '("~/Dropbox/org/phd.org"
                         ;;                     "~/Dropbox/org/phd.org_archive"
                         ;;                     ))
@@ -567,6 +567,7 @@ I love org so much, it deserves its own heading.
 *** General agenda settings
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-agenda-filter-preset '("-someday"))
+  (setq org-agenda-tags-todo-honor-ignore-options t)
   (setq org-agenda-filter-preset '("-someday" "-WORK" "-inactive" "-ignore"))
   (setq org-agenda-regexp-filter-preset '("-WAITING"))
   (setq org-log-into-drawer t)
