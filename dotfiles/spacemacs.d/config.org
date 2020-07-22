@@ -389,8 +389,8 @@ I love org so much, it deserves its own heading.
   ;; Default folder for agenda files?
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org/gcal/"
-                           "~/Dropbox/org/zettelkasten/"
-                           "~/Dropbox/org/zettelkasten/refs/"
+                           ;; "~/Dropbox/org/zettelkasten/"
+                           ;; "~/Dropbox/org/zettelkasten/refs/"
                            "~/MEGA/papers/notes.org"
                            ))
   ;; To append to the list
