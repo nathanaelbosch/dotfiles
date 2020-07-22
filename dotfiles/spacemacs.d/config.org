@@ -68,6 +68,7 @@
     - [[#capture-template][Capture template]]
     - [[#capture-ref-from-browser][Capture Ref from Browser]]
     - [[#org-roam-bibtex][org-roam-bibtex]]
+  - [[#org-fragtog-to-make-latex-easier][~org-fragtog~ to make latex easier]]
 - [[#other-packages--languages--concepts][Other Packages / Languages / Concepts]]
   - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
     - [[#contexts][Contexts]]
@@ -1461,6 +1462,10 @@ Ignore org comments on export
            :unnarrowed t)
           )
         )
+#+end_src
+** ~org-fragtog~ to make latex easier
+#+begin_src emacs-lisp
+  (add-hook 'org-mode-hook 'org-fragtog-mode)
 #+end_src
 * Other Packages / Languages / Concepts
 ** Manage my Email with ~mu4e~
