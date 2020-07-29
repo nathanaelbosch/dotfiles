@@ -1868,8 +1868,8 @@ Use YASnippet in ~ledger-mode~
   (setq flycheck-python-flake8-executable "flake8")
   (setq flycheck-flake8rc ".flake8")
 
-  (setq flycheck-python-pylint-executable "pylint")
-  (setq flycheck-python-mypy-executable "mypy")
+  ;; (setq flycheck-python-pylint-executable "pylint")
+  ;; (setq flycheck-python-mypy-executable "mypy")
 #+end_src
 *** python language server configuration
 #+begin_src emacs-lisp
@@ -1877,5 +1877,5 @@ Use YASnippet in ~ledger-mode~
 #+end_src
 *** Use fill column
 #+begin_src emacs-lisp
-  (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
+  ;; (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
 #+end_src
