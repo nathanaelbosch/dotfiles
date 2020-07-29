@@ -34,12 +34,13 @@ fix_xcursor &
 ~/scripts/keyboard_setup.sh &
 dropbox start &
 megasync &
+nextcloud &
 redshift-gtk -l 48.2488721:11.6532477 &
 emacs --daemon &
 sleep 10s && emacsclient -nc -e '(funcall (lambda () (interactive) (find-file "~/Dropbox/org/todo.org") (org-agenda  nil "a")))' &
 sleep 15s && emacsclient -n -e '(yequake-toggle "eguake")' &
 spotify &
 firefox &
-sleep 20s && slack &
+# sleep 20s && slack &
 # setxkbmap -layout us,eu -variant norman, -option grp:alt_space_toggle caps:super compose:ralt
 # anydesk &
