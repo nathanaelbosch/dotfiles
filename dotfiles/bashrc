@@ -24,6 +24,7 @@ export PATH="$PATH:/home/nath/.local/bin"
 [[ -f ~/.mpw ]] && . ~/.mpw
 
 # pyenv
+export PATH="${PATH}:$HOME/.pyenv/bin"
 [[ -x "$(command -v pyenv)" ]] && eval "$(pyenv init -)"
 
 # FISH DEFAULT SHELL
