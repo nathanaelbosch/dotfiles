@@ -339,7 +339,7 @@ I love org so much, it deserves its own heading.
                              ;; (nil . (:level . 1))
                              ;; (org-agenda-files . (:maxlevel . 2))
                              ("~/Dropbox/org/inbox.org" :level . 0)
-                             ("~/Dropbox/org/todo.org" :level . 2)
+                             ("~/Dropbox/org/todo.org" :maxlevel . 2)
                              ("~/Dropbox/org/references.org" :level . 1)
                              ("~/Dropbox/org/phd.org" :maxlevel . 2)
                              ("~/MEGA/papers/notes.org" :level . 1)
@@ -644,6 +644,8 @@ PhD-related captures:
          org-capture-templates
          '(("p" "PhD")
            ("pt" "Task" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+            "** TODO %?\n%U" :clock-in t :clock-resume t)
+           ("pp" "probnum Task" entry (file+headline "~/Dropbox/org/phd.org" "probnum")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
            ("pn" "Note" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
             "** NOTE %?\n%U" :clock-in t :clock-resume t)
@@ -1028,7 +1030,7 @@ default task otherwise
             (when bh/keep-clock-running
               (bh/clock-in-default-task)))))))
 
-  (defvar bh/organization-task-id "eb155a82-92b2-4f25-a3c6-0304591af2f9")
+  (defvar bh/organization-task-id "9e214582-66a4-4929-a067-1869c2ea16ef")
 
   (defun bh/clock-in-organization-task-as-default ()
     (interactive)
