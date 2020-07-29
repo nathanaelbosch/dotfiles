@@ -19,6 +19,7 @@
   - [[#emacs-i3-window-movement-integration][Emacs-i3 window movement integration]]
   - [[#increase-numbers-with-the-same-hotkeys-as-in-vim][Increase numbers with the same hotkeys as in vim]]
   - [[#better-eshell-usage][Better eshell usage]]
+  - [[#visible-bell-instead-of-ringing-bell][Visible bell instead of ringing bell]]
 - [[#organize-my-life-with-org-mode][Organize my life with ~org-mode~]]
   - [[#general-settings][General settings]]
     - [[#prettier-org][Prettier org]]
@@ -257,6 +258,11 @@ Make `helm-eshell-history`, a.k.a. ", H", use the current frame instead of
 opening a new one:
 #+begin_src emacs-lisp
   (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
+#+end_src
+
+** Visible bell instead of ringing bell
+#+begin_src emacs-lisp
+  (setq visible-bell t)
 #+end_src
 
 * Organize my life with ~org-mode~
