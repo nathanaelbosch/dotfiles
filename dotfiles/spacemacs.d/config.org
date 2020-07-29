@@ -95,6 +95,7 @@
   - [[#yasnippet][YASnippet]]
   - [[#budget-money-with-ledger-cli][Budget money with ~ledger-cli~]]
   - [[#grammar-checking-with-languagetool][Grammar checking with LanguageTool]]
+  - [[#julia][Julia]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -1857,4 +1858,14 @@ Use YASnippet in ~ledger-mode~
 #+begin_src emacs-lisp
   (setq langtool-default-language "en-US")
   (setq langtool-bin "/usr/bin/languagetool")
+#+end_src
+** Julia
+
+#+begin_src emacs-lisp
+  (add-hook 'julia-mode-hook
+            (lambda ()
+              (set-fill-column 92)
+              (auto-fill-mode t)
+              (spacemacs/toggle-fill-column-indicator-on)
+              ))
 #+end_src
