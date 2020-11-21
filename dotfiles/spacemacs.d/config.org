@@ -98,6 +98,8 @@
   - [[#budget-money-with-ledger-cli][Budget money with ~ledger-cli~]]
   - [[#grammar-checking-with-languagetool][Grammar checking with LanguageTool]]
   - [[#julia][Julia]]
+    - [[#julia-block][Julia block]]
+    - [[#jupyte-julia-default-org-babel-settings][Jupyte julia default org babel settings]]
   - [[#python][Python]]
     - [[#configure-flycheck][Configure flycheck]]
     - [[#python-language-server-configuration][python language server configuration]]
@@ -1889,6 +1891,25 @@ Use YASnippet in ~ledger-mode~
               (auto-fill-mode t)
               (spacemacs/toggle-fill-column-indicator-on)
               ))
+#+end_src
+*** Julia block
+#+begin_src emacs-lisp
+  ;; Type <j then tab key to create julia src block
+  (add-to-list 'org-structure-template-alist '("j" . "src julia"))
+#+end_src
+
+#+begin_src emacs-lisp
+  ;; Type <jj then tab key to create jupyter-julia src block
+  (add-to-list 'org-structure-template-alist '("jj" . "src jupyter-julia"))
+#+end_src
+*** Jupyte julia default org babel settings
+#+begin_src emacs-lisp
+  (setq org-babel-default-header-args:jupyter-julia '((:async . "yes")
+                                                      (:session . "jl")
+                                                      (:kernel . "julia-1.5")
+                                                      (:exports . "both")
+                                                      (:results . "scalar")))
+#+end_src
 ** Python
 *** Configure flycheck
 #+begin_src emacs-lisp
@@ -1905,3 +1926,4 @@ Use YASnippet in ~ledger-mode~
 *** Use fill column
 #+begin_src emacs-lisp
   ;; (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
+#+end_src
