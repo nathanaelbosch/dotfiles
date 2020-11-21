@@ -1,7 +1,9 @@
 [user]
-	email = nathanael.bosch@tum.de
+	email = nathanael.bosch@gmail.com
 	name = Nathanael Bosch
 [core]
 	editor = vim
 [github]
 	user = nathanaelbosch
+[gitlab "gitlab.mlcloud.uni-tuebingen.de/api/v4"]
+	user = nbosch
