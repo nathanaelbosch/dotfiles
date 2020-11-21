@@ -28,7 +28,7 @@
 !! #define C15     #c5c8c6
 
 ! hard contrast: *background: #1d2021
-#define BG #282828
+#define BG      #282828
 #define BG50    #80282828
 #define BG80    #cc282828
 ! soft contrast: *background: #32302f

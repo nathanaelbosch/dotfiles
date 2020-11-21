@@ -264,3 +264,38 @@ profiles:
     - d_dunst
     - d_zathura
     - f_org-protocol.desktop
+  murr:
+    dotfiles:
+    - d_bat
+    - d_fish
+    - d_i3
+    - d_i3status
+    # - d_polybar
+    # - d_rofi
+    - d_screenlayout
+    - d_scripts
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_aliases
+    - f_bash_profile
+    - f_bashrc
+    # - f_compton.conf
+    # - f_config.py
+    - f_extend.bashrc
+    - f_extend.xresources
+    - f_gitconfig
+    # - f_latexmkrc
+    # - f_mpw
+    - f_profile
+    - f_tmux.conf
+    - f_vimrc
+    - f_xinitrc
+    - f_xprofile
+    - f_xresources
+    # - f_yaourtrc
+    - d_offlineimap
+    - d_msmtp
+    # - d_dunst
+    - d_zathura
+    - f_org-protocol.desktop
+    - d_ranger
