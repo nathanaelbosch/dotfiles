@@ -41,6 +41,7 @@ sleep 10s && emacsclient -nc -e '(funcall (lambda () (interactive) (find-file "~
 sleep 15s && emacsclient -n -e '(yequake-toggle "eguake")' &
 spotify &
 firefox &
+discord &
 # sleep 20s && slack &
 # setxkbmap -layout us,eu -variant norman, -option grp:alt_space_toggle caps:super compose:ralt
 # anydesk &
