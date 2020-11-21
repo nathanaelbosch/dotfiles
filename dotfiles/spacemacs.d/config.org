@@ -84,6 +84,7 @@
     - [[#link-to-message-not-headers][Link to message, not headers]]
   - [[#writeroom][Writeroom]]
   - [[#magit---the-best-git-interface][~magit~ - The best git interface]]
+    - [[#add-uni-tuebingen-gitlab][Add uni-tuebingen gitlab]]
   - [[#latex][LaTeX]]
     - [[#reftex][RefTex]]
     - [[#outline-minor-mode][Outline Minor Mode]]
@@ -1716,6 +1717,13 @@ Magit blame keys
 Refine diffs
 #+begin_src emacs-lisp
   (setq magit-diff-refine-hunk "all")
+#+end_src
+
+*** Add uni-tuebingen gitlab
+#+begin_src emacs-lisp
+  (add-to-list 'forge-alist
+               '("gitlab.mlcloud.uni-tuebingen.de" "gitlab.mlcloud.uni-tuebingen.de/api/v4" "gitlab.mlcloud.uni-tuebingen.de" forge-gitlab-repository)
+               )
 #+end_src
 
 ** LaTeX
