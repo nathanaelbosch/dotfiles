@@ -603,6 +603,9 @@ I love org so much, it deserves its own heading.
 
   ;; Include archived files
   (setq org-agenda-archives-mode t)
+
+  ;; Re-center after jumping to an agenda item
+  (add-hook 'org-agenda-after-show-hook #'recenter)
 #+END_SRC
 ** ~org-capture~ Templates
 #+BEGIN_SRC emacs-lisp
