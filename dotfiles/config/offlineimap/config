@@ -33,7 +33,7 @@ type = IMAP
 remotehost = mailserv.uni-tuebingen.de
 remoteuser = iiina01
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-remotepasseval = get_password("uni-tue")
+remotepasseval = get_password("unitue")
 
 [Account MPI-IS]
 localrepository = MPI-IS-Local
