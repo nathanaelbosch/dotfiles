@@ -2,7 +2,7 @@
 # get started fast.
 
 [general]
-accounts = Gmail,UniTue,MPI-IS
+accounts = Gmail,Protonmail,UniTue,MPI-IS
 pythonfile = ~/.config/offlineimap/custom.py
 
 [Account Gmail]
@@ -49,3 +49,19 @@ remotehost = mailhost.tuebingen.mpg.de
 remoteuser = nathanael.bosch@tuebingen.mpg.de
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_password("mpi-is")
+
+[Account Protonmail]
+localrepository = Protonmail-Local
+remoterepository = Protonmail-Remote
+
+[Repository Protonmail-Local]
+type = Maildir
+localfolders = ~/Mail/Protonmail
+
+[Repository Protonmail-Remote]
+type = IMAP
+remotehost = 127.0.0.1
+remoteport = 1143
+remoteuser = nathanael.bosch@pm.me
+ssl = no
+remotepasseval = get_password("protonmail")

@@ -1508,6 +1508,18 @@ Ignore org comments on export
                (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
                ))
      ,(make-mu4e-context
+       :name "protonmail"
+       :match-func (lambda (msg) (when msg
+         (string-prefix-p "/Protonmail" (mu4e-message-field msg :maildir))))
+       :vars '(
+               (user-mail-address . "nathanael.bosch@pm.me")
+               (user-full-name . "Nathanael Bosch")
+               (mu4e-trash-folder . "/Protonmail/Trash")
+               ;; (mu4e-refile-folder . "/UniTue/")
+               (mu4e-sent-folder . "/Protonmail/Sent")
+               (mu4e-drafts-folder . "/Protonmail/Drafts")
+               ))
+     ,(make-mu4e-context
        :name "uni-tue"
        :match-func (lambda (msg) (when msg
          (string-prefix-p "/UniTue" (mu4e-message-field msg :maildir))))
