@@ -250,7 +250,8 @@ mode "$mode_gaps_outer" {
 
 # Floating htop with Ctrl+shift+Escape
 # bindsym Ctrl+shift+Escape exec --no-startup-id urxvt -name htop_win -e htop
-for_window [instance="htop_win"] floating enable sticky enable border none
+# for_window [instance="htop_win"] floating enable sticky enable border none
+for_window [instance="htop_win"] floating enable sticky enable 
 
 # Floating terminal with F12, similar to guake
 exec --no-startup-id urxvt -name "my_guake"
