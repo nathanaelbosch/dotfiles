@@ -9,9 +9,9 @@ if test -e ~/.aliases
 end
 
 # Start X at login
-if test -z "$DISPLAY" -a $XDG_VTNR = 1
-    exec startx -- -keeptty
-end
+# if test -z "$DISPLAY" -a $XDG_VTNR = 1
+    # exec startx -- -keeptty
+# end
 
 thefuck --alias | source
 
