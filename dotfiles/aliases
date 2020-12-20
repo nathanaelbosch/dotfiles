@@ -4,9 +4,10 @@ alias cp="cp -i"                          # confirm before overwriting something
 alias df="df -h"                          # human-readable sizes
 alias free="free -h"                      # human-readable sizes
 alias cat="bat"
-alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias l='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias l='lsd --group-dirs first --date=+"%d.%m.%Y %H:%M" -F'
+alias ls='l'
+alias ll='l -l'
+alias la='l -la'
 
 alias crontab='crontab - i'
 
@@ -21,7 +22,6 @@ alias uninst="sudo pacman -Rsu"
 alias mirrors="sudo pacman-mirrors -g"
 
 # Config
-#alias con="$EDITOR $HOME/.i3/config"
 alias con="$EDITOR $HOME/.config/i3/config"
 alias comp="$EDITOR $HOME/.config/compton.conf"
 alias printer="system-config-printer"
