@@ -159,6 +159,10 @@ dotfiles:
     src: local/share/applications/org-protocol.desktop
     dst: ~/.local/share/applications/org-protocol.desktop
     link: nolink
+  d_alacritty:
+    src: config/alacritty
+    dst: ~/.config/alacritty
+    link: nolink
 profiles:
   arch-laptop:
     dotfiles:
@@ -230,7 +234,7 @@ profiles:
     - f_vimrc
     - f_xresources
     - f_yaourtrc
-  nath-pc:
+  bree:
     dotfiles:
     - d_bat
     - d_fish
@@ -264,6 +268,7 @@ profiles:
     - d_dunst
     - d_zathura
     - f_org-protocol.desktop
+    - d_alacritty
   murr:
     dotfiles:
     - d_bat
