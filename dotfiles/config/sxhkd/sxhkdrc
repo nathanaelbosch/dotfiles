@@ -12,7 +12,7 @@ super + shift + ctrl + r
 
 # terminal emulator
 super + Return
-	urxvt
+	alacritty
 
 # program launcher
 # super + @space
@@ -43,7 +43,7 @@ super + F12
   # urxvt -name my_guake
 
 ctrl + shift + Escape
-  urxvt -name htop_win -e htop
+  alacritty --class htop_win -e htop
 
 ###################################################################
 # Basic i3 controls
@@ -151,7 +151,7 @@ super + ctrl + {right, left}
 super + F2
   qutebrowser
 super + {_, shift +} F3
-  {_,gksu} pcmanfm
+  {_,gksu} nautilus
 # super + {_, shift +} t
 #   {pkill compton, compton -b --config ~/.compton.conf}
 # super + shift + d
