@@ -1,4 +1,8 @@
 #!/bin/bash
+setxkbmap eu
 setxkbmap -option caps:super
 setxkbmap -option compose:menu
-xcape -e 'Super_L=Escape'
+if command -v xcape &> /dev/null
+then
+    xcape -e 'Super_L=Escape'
+fi
