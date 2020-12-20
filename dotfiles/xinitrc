@@ -53,6 +53,7 @@ get_session(){
 		enlightenment) dbus_args+=(enlightenment_start) ;;
 		fluxbox) dbus_args+=(startfluxbox) ;;
 		gnome) dbus_args+=(gnome-session) ;;
+		i3-gnome) dbus_args+=(gnome-session-i3) ;;
 		i3|i3wm) dbus_args+=(i3 --shmlog-size 0) ;;
 		jwm) dbus_args+=(jwm) ;;
 		kde) dbus_args+=(startkde) ;;
@@ -73,4 +74,4 @@ get_session(){
 [ -f ~/.xprofile ] && . ~/.xprofile
 
 
-exec $(get_session)
+# exec $(get_session)

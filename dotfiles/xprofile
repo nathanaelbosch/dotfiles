@@ -10,38 +10,48 @@
 # Environment variables
 #
 
-~/.screenlayout/3_monitor_layout.sh &
+# ~/.screenlayout/3_monitor_layout.sh &
 # ~/.screenlayout/remote_layout.sh &
 
 # setxkbmap -layout us,de -variant ,qwerty -option compose:ralt compose:menu grp:alt_space_toggle caps:super
 # setxkbmap -layout us,de -variant ,qwerty -option grp:alt_space_toggle caps:super
 # setxkbmap eu
 # setxkbmap -layout us,eu,de -variant norman,,qwerty -option grp:alt_space_toggle caps:super compose:ralt
-[[-x "$(command -v xcape)"]] && xcape -e 'Super_L=Escape'
-
-
-sleep 5s && pulseaudio &
-sleep 5s && pa-applet &
-nm-applet &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-nitrogen --restore &
-# compton -b --config ~/.compton.conf &
-xfce4-power-manager &
-clipit &
-ff-theme-util &
-fix_xcursor &
-# ~/.config/polybar/launch.sh &
 ~/scripts/keyboard_setup.sh &
+[[-x "$(command -v xcape)"]] && xcape -e 'Super_L=Escape'
+xrandr --output DP-2 --primary
+
+if [ -f $HOME/.Xresources ]; then
+   xrdb -merge $HOME/.Xresources
+fi
+
+
+# Gnome stuff
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# /usr/lib/gsd-xsettings &
+# gnome-flashback &
+# gsettings set org.gnome.gnome-flashback desktop false
+
+
+# sleep 5s && pulseaudio &
+# sleep 5s && pa-applet &
+nm-applet &
+# nitrogen --restore &
+# compton -b --config ~/.compton.conf &
+# clipit &
+# ff-theme-util &
+# fix_xcursor &
+# ~/.config/polybar/launch.sh &
 dropbox start &
 megasync &
-nextcloud &
+# nextcloud &
 redshift-gtk -l 48.2488721:11.6532477 &
-emacs --daemon &
-sleep 10s && emacsclient -nc -e '(funcall (lambda () (interactive) (find-file "~/Dropbox/org/todo.org") (org-agenda  nil "a")))' &
-sleep 15s && emacsclient -n -e '(yequake-toggle "eguake")' &
-spotify &
-firefox &
-discord &
+# emacs --daemon &
+# sleep 10s && emacsclient -nc -e '(funcall (lambda () (interactive) (find-file "~/Dropbox/org/todo.org") (org-agenda  nil "a")))' &
+# sleep 15s && emacsclient -n -e '(yequake-toggle "eguake")' &
+# spotify &
+# firefox &
+# discord &
 protonmail-bridge &
 # sleep 20s && slack &
 # setxkbmap -layout us,eu -variant norman, -option grp:alt_space_toggle caps:super compose:ralt
