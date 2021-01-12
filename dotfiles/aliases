@@ -6,7 +6,7 @@ alias free="free -h"                      # human-readable sizes
 alias cat="bat"
 alias l='lsd --group-dirs first --date=+"%d.%m.%Y %H:%M" -F'
 alias ls='l'
-alias ll='l -l'
+alias ll='l -lh'
 alias la='l -la'
 
 alias crontab='crontab - i'
