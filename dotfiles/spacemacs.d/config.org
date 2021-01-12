@@ -7,6 +7,7 @@
   - [[#i-like-visual-line-mode][I like visual line mode]]
   - [[#smoother-undo-behavior][Smoother undo behavior]]
   - [[#better-vertical-splitting][Better vertical splitting]]
+  - [[#comment-regionline-with-c-s-c][Comment region/line with "C-S-c"]]
   - [[#larger-scroll-margin][Larger scroll margin]]
   - [[#fit-pdf-page-to-frame][Fit PDF page to frame]]
   - [[#pdf-dark-mode-to-fit-the-gruvbox-theme][PDF: Dark mode to fit the gruvbox theme]]
@@ -635,20 +636,9 @@ I love org so much, it deserves its own heading.
   :ADDRESS:
   :BIRTHDAY:
   :END:")
-
-          ("m" "Mail" entry
-           ;; (file+olp things-file "Inbox" "Mails")
-           (file "~/Dropbox/org/inbox.org")
-           ;; Creates "* TODO <2019-05-01 Wed> FromName [[mu4e:msgid:uuid][MessageSubject]] :200ok:
-           ;; Therefore Emails can be properly:
-           ;;   - Used as tasks
-           ;;   - Attributed tags
-           ;;   - Ordered by priority
-           ;;   - Scheduled
-           ;;   - etc
-           "* TODO %(org-insert-time-stamp (org-read-date nil t \"%:date\") nil t) %(from-name \"%:fromname\" \"%:fromaddress\" \"%:from\") %a \t :%(get-domainname \"%:toaddress\"):")
           ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO Process mail from %:fromname on %:subject \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n")
+           "* TODO Email: %a (%:fromname) \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n"
+           :clock-in t :clock-resume t)
           ))
 #+END_SRC
 
@@ -669,6 +659,9 @@ PhD-related captures:
            ("pd" "Daily Sketch" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
             "* Daily Sketch\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
             :immediate-finish t :clock-in t :clock-resume t)
+           ("pe" "Email" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+            "* TODO Email: %a (%:fromname) \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n"
+            :clock-in t :clock-resume t)
            )
          ))
 #+end_src
