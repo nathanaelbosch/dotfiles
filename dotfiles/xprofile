@@ -56,3 +56,6 @@ protonmail-bridge &
 # sleep 20s && slack &
 # setxkbmap -layout us,eu -variant norman, -option grp:alt_space_toggle caps:super compose:ralt
 # anydesk &
+
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK

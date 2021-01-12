@@ -27,6 +27,14 @@ export PATH="$PATH:/home/nath/.local/bin"
 export PATH="${PATH}:$HOME/.pyenv/bin"
 [[ -x "$(command -v pyenv)" ]] && eval "$(pyenv init -)"
 
+# ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
 # FISH DEFAULT SHELL
 [[ $TERM == "tramp" ]] && PS1='$ ' && return
 [[ $TERM == "dumb" ]] && PS1='$ ' && return
