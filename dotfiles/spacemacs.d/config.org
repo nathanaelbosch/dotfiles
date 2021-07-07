@@ -344,17 +344,17 @@ I love org so much, it deserves its own heading.
 ** ~org-refile~ targets
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-targets '(
-                             ;; ("~/Dropbox/org/todo.org" :maxlevel . 2)
-                             ;; ("~/Dropbox/org/references.org" :maxlevel . 1)
-                             ;; ("~/Dropbox/org/thesis.org" :level . 2)
+                             ;; ("~/org/todo.org" :maxlevel . 2)
+                             ;; ("~/org/references.org" :maxlevel . 1)
+                             ;; ("~/org/thesis.org" :level . 2)
                              ;; (nil . (:level . 1))
                              ;; (org-agenda-files . (:maxlevel . 2))
-                             ("~/Dropbox/org/inbox.org" :level . 0)
-                             ("~/Dropbox/org/todo.org" :maxlevel . 2)
-                             ("~/Dropbox/org/references.org" :level . 1)
-                             ("~/Dropbox/org/phd.org" :maxlevel . 2)
+                             ("~/org/inbox.org" :level . 0)
+                             ("~/org/todo.org" :maxlevel . 2)
+                             ("~/org/references.org" :level . 1)
+                             ("~/org/phd.org" :maxlevel . 2)
                              ("~/MEGA/papers/notes.org" :level . 1)
-                             ("~/Dropbox/org/projects/odefilters.org" :level . 1)
+                             ("~/org/projects/odefilters.org" :level . 1)
                              (nil . (:maxlevel . 2))
                              ))
 #+END_SRC
@@ -399,23 +399,23 @@ I love org so much, it deserves its own heading.
 *** Agenda files
 #+BEGIN_SRC emacs-lisp
   ;; Default folder for agenda files?
-  (setq org-agenda-files '("~/Dropbox/org/"
-                           "~/Dropbox/org/gcal/"
-                           "~/Dropbox/org/projects/"
-                           ;; "~/Dropbox/org/zettelkasten/"
-                           ;; "~/Dropbox/org/zettelkasten/refs/"
+  (setq org-agenda-files '("~/org/"
+                           "~/org/gcal/"
+                           "~/org/projects/"
+                           ;; "~/org/zettelkasten/"
+                           ;; "~/org/zettelkasten/refs/"
                            "~/MEGA/papers/notes.org"
                            ))
   ;; To append to the list
   ;; (mapcar '(lambda (file)
   ;;            (push file org-agenda-files))
-  ;;         '("~/Dropbox/org/"
-  ;;           "~/Dropbox/org/gcal/"
+  ;;         '("~/org/"
+  ;;           "~/org/gcal/"
   ;;           "~/MEGA/papers/notes.org"
   ;;           )
   ;;         )
 
-    (with-eval-after-load 'org (setq org-default-notes-file '"~/Dropbox/org/todo.org"))
+    (with-eval-after-load 'org (setq org-default-notes-file '"~/org/todo.org"))
 #+END_SRC
 
 *** Agenda views
@@ -486,7 +486,7 @@ I love org so much, it deserves its own heading.
                      (org-agenda-overriding-header "Agenda")))
             (tags "CATEGORY=\"Inbox\""
                   ((org-agenda-overriding-header "To Refile")
-                   ;; (org-agenda-files '("/home/nath/Dropbox/org/inbox.org"))
+                   ;; (org-agenda-files '("/home/nath/org/inbox.org"))
                    (org-agenda-regexp-filter-preset '("-Inbox"))
                    ))
             )
@@ -496,31 +496,31 @@ I love org so much, it deserves its own heading.
           ("w" "Work"
            ((agenda ""
                     ((org-agenda-span 1)
-                     ;; (org-agenda-files '("~/Dropbox/org/phd.org"
-                     ;;                     ;; "~/Dropbox/org/phd.org_archive"
-                     ;;                     "~/Dropbox/org/phd_journal.org"
+                     ;; (org-agenda-files '("~/org/phd.org"
+                     ;;                     ;; "~/org/phd.org_archive"
+                     ;;                     "~/org/phd_journal.org"
                      ;;                     "~/MEGA/papers/notes.org"
-                     ;;                     "~/Dropbox/org/gcal/moml.org"
-                     ;;                     "~/Dropbox/org/gcal/uni.org"
-                     ;;                     "~/Dropbox/org/gcal/phd.org"))
+                     ;;                     "~/org/gcal/moml.org"
+                     ;;                     "~/org/gcal/uni.org"
+                     ;;                     "~/org/gcal/phd.org"))
                      ;; (org-agenda-skip-function '(org-agenda-skip-entry-if
                      ;;                             'todo '("WAITING")))
                      (org-agenda-overriding-header "Thesis Agenda")))
             (tags-todo "CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "To Refile")
-                        ;; (org-agenda-files '("~/Dropbox/org/phd.org"))
+                        ;; (org-agenda-files '("~/org/phd.org"))
                         ;; (org-agenda-regexp-filter-preset '("-Inbox"))
                         ))
             (tags-todo "PhD-CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'all)
-                        ;; (org-agenda-files '("~/Dropbox/org/phd.org"
-                        ;;                     "~/Dropbox/org/phd.org_archive"
+                        ;; (org-agenda-files '("~/org/phd.org"
+                        ;;                     "~/org/phd.org_archive"
                         ;;                     ))
                         (org-agenda-overriding-header "TODOs")))
             (tags-todo "PhD+CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'future)
                         ;; (org-agenda-files '("~/MEGA/papers/notes.org"
-                        ;;                     "~/Dropbox/org/zettelkasten/refs/"))
+                        ;;                     "~/org/zettelkasten/refs/"))
                         (org-agenda-overriding-header "Papers")))
             )
            ((org-agenda-filter-preset '("+PhD")))
@@ -530,7 +530,7 @@ I love org so much, it deserves its own heading.
           ;;   (org-agenda-regexp-filter-preset '(""))
           ;;   (org-agenda-tag-filter-preset '("+WORK"))
           ;;   )
-          ;;  ((org-agenda-files '("~/Dropbox/org/thesis.org"))
+          ;;  ((org-agenda-files '("~/org/thesis.org"))
           ;;   (org-agenda-sorting-strategy '(priority-down tag-down todo-state-up))
           ;;   (org-agenda-filter-preset '("")))
           ;;  )
@@ -612,18 +612,18 @@ I love org so much, it deserves its own heading.
 #+BEGIN_SRC emacs-lisp
   (setq org-capture-templates
         '(
-          ("t" "Todo" entry (file "~/Dropbox/org/inbox.org")
+          ("t" "Todo" entry (file "~/org/inbox.org")
            "* TODO %?\n%U" :clock-in t :clock-resume t)
-          ("T" "Todo Today" entry (file "~/Dropbox/org/inbox.org")
+          ("T" "Todo Today" entry (file "~/org/inbox.org")
            "* TODO %?\nSCHEDULED: %t\n%U\n" :empty-lines 1 :clock-in t :clock-resume t)
-          ("n" "Note" entry (file "~/Dropbox/org/inbox.org")
+          ("n" "Note" entry (file "~/org/inbox.org")
            "* NOTE %?\n%U" :empty-lines 1 :clock-in t :clock-resume t)
-          ("N" "Note with Clipboard" entry (file "~/Dropbox/org/inbox.org")
+          ("N" "Note with Clipboard" entry (file "~/org/inbox.org")
            "* NOTE %?\n%U\n%c\n" :empty-lines 1)
-          ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
+          ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")
            "* %?\n\nEntered on %U\n  %i" :clock-in t :clock-resume t)
 
-          ("C" "Contacts" entry (file "~/Dropbox/org/contacts.org")
+          ("C" "Contacts" entry (file "~/org/contacts.org")
            "* %^{name}
   :PROPERTIES:
   :EMAIL: %^{email}
@@ -636,7 +636,7 @@ I love org so much, it deserves its own heading.
   :ADDRESS:
   :BIRTHDAY:
   :END:")
-          ("e" "Email" entry (file "~/Dropbox/org/inbox.org")
+          ("e" "Email" entry (file "~/org/inbox.org")
            "* TODO Email: %a (%:fromname) \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n"
            :clock-in t :clock-resume t)
           ))
@@ -648,18 +648,18 @@ PhD-related captures:
         (append
          org-capture-templates
          '(("p" "PhD")
-           ("pt" "Task" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+           ("pt" "Task" entry (file+headline "~/org/phd.org" "Inbox")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
-           ("pp" "probnum Task" entry (file+headline "~/Dropbox/org/phd.org" "probnum")
+           ("pp" "probnum Task" entry (file+headline "~/org/phd.org" "probnum")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
-           ("pn" "Note" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+           ("pn" "Note" entry (file+headline "~/org/phd.org" "Inbox")
             "** NOTE %?\n%U" :clock-in t :clock-resume t)
-           ("pj" "Journal" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
+           ("pj" "Journal" entry (file+olp+datetree "~/org/phd_journal.org")
             "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
-           ("pd" "Daily Sketch" entry (file+olp+datetree "~/Dropbox/org/phd_journal.org")
+           ("pd" "Daily Sketch" entry (file+olp+datetree "~/org/phd_journal.org")
             "* Daily Sketch\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
             :immediate-finish t :clock-in t :clock-resume t)
-           ("pe" "Email" entry (file+headline "~/Dropbox/org/phd.org" "Inbox")
+           ("pe" "Email" entry (file+headline "~/org/phd.org" "Inbox")
             "* TODO Email: %a (%:fromname) \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n"
             :clock-in t :clock-resume t)
            )
@@ -1113,7 +1113,7 @@ Capture template
   (setq org-capture-templates
         (append
          org-capture-templates
-         '(("y" "org-protocol-capture" entry (file "~/Dropbox/org/inbox.org")
+         '(("y" "org-protocol-capture" entry (file "~/org/inbox.org")
             "* TODO [[%:link][%:description]]\n%U\n %i" :immediate-finish t)
            )
          ))
@@ -1208,7 +1208,7 @@ Capture template
   (setq org-capture-templates
         (append
          org-capture-templates
-         '(("c" "Cookbook" entry (file "~/Dropbox/org/cookbook.org")
+         '(("c" "Cookbook" entry (file "~/org/cookbook.org")
             "%(org-chef-get-recipe-from-url)"
             :empty-lines 1)
            )
@@ -1218,7 +1218,7 @@ Capture template
 ** Better screenshots with ~org-download~
 #+BEGIN_SRC emacs-lisp
   ;; Not optimal, but otherwise it creates wayy too many folders
-  (setq-default org-download-image-dir "~/Dropbox/org/images")
+  (setq-default org-download-image-dir "~/org/images")
   (setq org-download-screenshot-method "sleep 1; scrot -s %s")
   (setq org-download-image-latex-width 7)
 #+END_SRC
@@ -1248,7 +1248,7 @@ Add project capture to capture menu
       (insert-file-contents filePath)
       (split-string (buffer-string) "\n" t)))
   ;; ;; Read lines from gcal.auth and store them in the variable
-  (setq auth-lines (read-lines "~/Dropbox/org/gcal.auth"))
+  (setq auth-lines (read-lines "~/org/gcal.auth"))
   ;; ;; Google Calendar
   (setq org-gcal-client-id (car auth-lines)
         org-gcal-client-secret (car (cdr auth-lines)))
@@ -1256,13 +1256,13 @@ Add project capture to capture menu
 
 #+BEGIN_SRC emacs-lisp
   ;; Google Calendar
-  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/Dropbox/org/gcal/gcal.org")
-                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/Dropbox/org/gcal/uni.org")
-                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/Dropbox/org/gcal/urlaube.org")
-                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/Dropbox/org/gcal/tumonline.org")
-                              ("9kv80prb7ojqt998nmm24149e0@group.calendar.google.com" . "~/Dropbox/org/gcal/geburtstage.org")
-                              ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/Dropbox/org/gcal/phd.org")
-                              ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/Dropbox/org/gcal/moml.org")
+  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/org/gcal/gcal.org")
+                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/org/gcal/uni.org")
+                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/org/gcal/urlaube.org")
+                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/org/gcal/tumonline.org")
+                              ("9kv80prb7ojqt998nmm24149e0@group.calendar.google.com" . "~/org/gcal/geburtstage.org")
+                              ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/org/gcal/phd.org")
+                              ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/org/gcal/moml.org")
                               ))
   ;; (add-hook 'org-capture-after-finalize-hook 'org-gcal-fetch)
 #+END_SRC
@@ -1370,7 +1370,7 @@ Ignore org comments on export
 ** /Zettelkasten/ with ~org-roam~
 *** Set Directory
 #+begin_src emacs-lisp
- (setq org-roam-directory "~/Dropbox/org/zettelkasten/")
+ (setq org-roam-directory "~/org/zettelkasten/")
 #+end_src
 *** Start ~org-roam-mode~ on startup
 #+begin_src emacs-lisp
@@ -1833,7 +1833,7 @@ Autostart programs
            ((width . 0.75)
             (height . 0.5)
             (alpha . 0.95)
-            (buffer-fns . ("~/Dropbox/org/todo.org"
+            (buffer-fns . ("~/org/todo.org"
                            split-window-horizontally
                            "*scratch*"))
             (frame-parameters . ((undecorated . t)))))

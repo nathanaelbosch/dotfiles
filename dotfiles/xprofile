@@ -42,7 +42,7 @@ nm-applet &
 # ff-theme-util &
 # fix_xcursor &
 # ~/.config/polybar/launch.sh &
-dropbox start &
+# dropbox start &
 megasync &
 # nextcloud &
 redshift-gtk -l 48.2488721:11.6532477 &

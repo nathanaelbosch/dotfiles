@@ -81,8 +81,8 @@ This function should only modify configuration layer settings."
            mu4e-maildir "~/Mail"
            mu4e-enable-mode-line t
            mu4e-get-mail-command "offlineimap"
-           mu4e-update-interval 180
-           mu4e-org-contacts-file "~/Dropbox/org/contacts.org"
+           ;; mu4e-update-interval 180
+           mu4e-org-contacts-file "~/org/contacts.org"
            mu4e-view-show-addresses t
            mu4e-view-show-images t
            mu4e-confirm-quit nil
@@ -611,7 +611,7 @@ you should place your code here."
   ;; Most important part of this config file: Load the ACTUAL config!
   (org-babel-load-file "~/.spacemacs.d/config.org")
 
-  (find-file "~/Dropbox/org/todo.org")
+  (find-file "~/org/todo.org")
 
   ;; (cd "~/")
 )
