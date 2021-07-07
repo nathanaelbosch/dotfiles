@@ -12,7 +12,7 @@ super + shift + ctrl + r
 
 # terminal emulator
 super + Return
-	alacritty
+  alacritty
 
 # program launcher
 # super + @space

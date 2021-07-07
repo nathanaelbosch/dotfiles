@@ -65,6 +65,7 @@
     - [[#caption-below-tables-or-not][Caption below tables... or not!]]
     - [[#booktabs-for-tables][~booktabs~ for tables]]
     - [[#code-highlighting][Code highlighting]]
+    - [[#no-hyperref-setup-by-default][No hyperref setup by default]]
   - [[#zettelkasten-with-org-roam][/Zettelkasten/ with ~org-roam~]]
     - [[#set-directory][Set Directory]]
     - [[#start-org-roam-mode-on-startup][Start ~org-roam-mode~ on startup]]
@@ -370,7 +371,7 @@ I love org so much, it deserves its own heading.
 ** Todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "STARTED(s!)" "WAITING(W@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
+        '((sequence "TODO(t)" "NEXT(N)" "STARTED(s!)" "WAITING(W@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
           (sequence "TOREAD(r)" "|" "1PASS(1)" "2PASS(2)" "3PASS(3)")
           (sequence "TOWATCH(w)" "|")
           (sequence "TOLISTEN(l)" "|")
@@ -379,6 +380,7 @@ I love org so much, it deserves its own heading.
   (setq org-todo-keyword-faces
         '(
           ("TODO" . (:foreground "#fb4934" :weight bold))
+          ("NEXT" . (:foreground "#fe8019" :weight bold))
           ("TOREAD" . (:foreground "#d79921" :weight bold))
           ("TOWATCH" . (:foreground "#b16286" :weight bold))
           ("TOLISTEN" . (:foreground "#b16286" :weight bold))
@@ -428,10 +430,15 @@ I love org so much, it deserves its own heading.
           ("c" "Coding Projects" tags "coding-TODO=\"DONE\"" ())
           ("C" "Coding Projects Tree" tags-tree "coding-TODO=\"DONE\"" ())
 
-          ("p" "Papers" todo "TOREAD" (
-                                       (org-agenda-files '("/home/nath/MEGA/papers/notes.org"))
-                                       (org-agenda-sorting-strategy '(priority-down tag-down))
-                                       ))
+          ("p" "Papers"
+           ((tags-todo "PhD+CATEGORY=\"papers\""
+                       ((org-agenda-todo-ignore-scheduled 'future)
+                        (org-agenda-overriding-header "Papers (phd.org)")))
+            (todo "TOREAD"
+                  ((org-agenda-files '("~/MEGA/papers/notes.org"))
+                   (org-agenda-sorting-strategy '(priority-down tag-down))
+                   (org-agenda-overriding-header "Papers (notes.org)")))
+            ))
 
           ("d" "Taskslist"
            ((tags-todo "-CATEGORY=\"papers\""
@@ -509,22 +516,57 @@ I love org so much, it deserves its own heading.
                      ;; (org-agenda-skip-function '(org-agenda-skip-entry-if
                      ;;                             'todo '("WAITING")))
                      (org-agenda-overriding-header "Thesis Agenda")))
-            (tags-todo "CATEGORY=\"Inbox\""
+            (tags-todo "CATEGORY=\"PhD-Inbox\""
                        ((org-agenda-overriding-header "To Refile")
                         ;; (org-agenda-files '("~/org/phd.org"))
-                        ;; (org-agenda-regexp-filter-preset '("-Inbox"))
+                        ;; (org-agenda-regexp-filter-preset '("-PhD-Inbox"))
                         ))
+            (tags-todo "-CANCELLED/!"
+                       ((org-agenda-overriding-header "Stuck Projects")
+                        (org-agenda-skip-function 'bh/skip-non-stuck-projects)
+                        (org-agenda-sorting-strategy
+                         '(category-keep))
+                        (org-agenda-dim-blocked-tasks nil)
+                        ))
+            (tags-todo "-HOLD-CANCELLED/!"
+                       ((org-agenda-overriding-header "Projects")
+                        (org-agenda-skip-function 'bh/skip-non-projects)
+                        ;; (org-tags-match-list-sublevels 'indented)
+                        (org-agenda-sorting-strategy
+                         '(category-keep))
+                        (org-agenda-dim-blocked-tasks nil)
+                        ))
+            (tags-todo "PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"PhD-Inbox\""
+                       ((org-agenda-overriding-header (concat "Standalone Tasks"
+                                                              (if bh/hide-scheduled-and-waiting-next-tasks
+                                                                  ""
+                                                                " (including WAITING and SCHEDULED tasks)")))
+                        (org-agenda-skip-function 'bh/skip-project-tasks)
+                        (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-sorting-strategy
+                         '(category-keep))))
+            (tags-todo "-CANCELLED+WAITING|HOLD/!"
+                       ((org-agenda-overriding-header (concat "Waiting and Postponed Tasks"
+                                                              (if bh/hide-scheduled-and-waiting-next-tasks
+                                                                  ""
+                                                                " (including WAITING and SCHEDULED tasks)")))
+                        (org-agenda-skip-function 'bh/skip-non-tasks)
+                        (org-tags-match-list-sublevels nil)
+                        (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)))
             (tags-todo "PhD-CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'all)
                         ;; (org-agenda-files '("~/org/phd.org"
                         ;;                     "~/org/phd.org_archive"
                         ;;                     ))
                         (org-agenda-overriding-header "TODOs")))
-            (tags-todo "PhD+CATEGORY=\"papers\""
-                       ((org-agenda-todo-ignore-scheduled 'future)
-                        ;; (org-agenda-files '("~/MEGA/papers/notes.org"
-                        ;;                     "~/org/zettelkasten/refs/"))
-                        (org-agenda-overriding-header "Papers")))
+            ;; (tags-todo "PhD+CATEGORY=\"papers\""
+            ;;            ((org-agenda-todo-ignore-scheduled 'future)
+            ;;             ;; (org-agenda-files '("~/MEGA/papers/notes.org"
+            ;;             ;;                     "~/org/zettelkasten/refs/"))
+            ;;             (org-agenda-overriding-header "Papers")))
             )
            ((org-agenda-filter-preset '("+PhD")))
            )
@@ -577,7 +619,8 @@ I love org so much, it deserves its own heading.
 
 
 
-  ))
+          ))
+
 #+END_SRC
 
 *** General agenda settings
@@ -1369,6 +1412,7 @@ Ignore org comments on export
 *** Caption below tables... or not!
 #+begin_src emacs-lisp
   ;; (setq org-latex-caption-above nil)
+  (setq org-latex-caption-above '(table))
 #+end_src
 *** ~booktabs~ for tables
 #+begin_src emacs-lisp
@@ -1384,6 +1428,10 @@ Ignore org comments on export
 ;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 ;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 ;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+#+end_src
+*** No hyperref setup by default
+#+begin_src emacs-lisp
+  ;; (setq org-latex-with-hyperref nil)
 #+end_src
 ** /Zettelkasten/ with ~org-roam~
 *** Set Directory
@@ -1819,18 +1867,18 @@ Fake sections for better manipulation:
 ** ~exwm~ - The Emacs X Window Manager
 General settings:
 #+begin_src emacs-lisp
-  ;; Tray
-  (require 'exwm-systemtray)
-  (exwm-systemtray-enable)
+  ;; ;; Tray
+  ;; (require 'exwm-systemtray)
+  ;; (exwm-systemtray-enable)
 
-  ;; Workspaces
-  (setq exwm-workspace-number 10)
+  ;; ;; Workspaces
+  ;; (setq exwm-workspace-number 10)
 
-  ;; Display time
-  (display-time-mode t)
+  ;; ;; Display time
+  ;; (display-time-mode t)
 
-  ;; Global buffers
-  (setq exwm-layout-show-all-buffers t)
+  ;; ;; Global buffers
+  ;; (setq exwm-layout-show-all-buffers t)
 #+end_src
 
 Autostart programs
