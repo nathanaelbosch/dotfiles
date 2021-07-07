@@ -11,6 +11,8 @@
 #
 
 # ~/.screenlayout/3_monitor_layout.sh &
+xrdb -merge ~/.Xresources
+# ~/.screenlayout/uni_layout.sh &
 # ~/.screenlayout/remote_layout.sh &
 
 # setxkbmap -layout us,de -variant ,qwerty -option compose:ralt compose:menu grp:alt_space_toggle caps:super

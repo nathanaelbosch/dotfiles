@@ -22,3 +22,4 @@ Xft.lcdfilter: lcddefault
 XTerm*pointerColor: #16A085
 !XTerm*faceName: Fixed
 XTerm*faceSize: 11
+URxvt*font:    xft:Hack Nerd Font:style=Regular:size=11
