@@ -62,7 +62,9 @@
     - [[#latex-exports][LaTeX exports]]
     - [[#cdlatex-environments][cdlatex environments]]
     - [[#syntax-highlight][Syntax highlight]]
-    - [[#caption-below-tables][Caption below tables]]
+    - [[#caption-below-tables-or-not][Caption below tables... or not!]]
+    - [[#booktabs-for-tables][~booktabs~ for tables]]
+    - [[#code-highlighting][Code highlighting]]
   - [[#zettelkasten-with-org-roam][/Zettelkasten/ with ~org-roam~]]
     - [[#set-directory][Set Directory]]
     - [[#start-org-roam-mode-on-startup][Start ~org-roam-mode~ on startup]]
@@ -1363,9 +1365,24 @@ Ignore org comments on export
 #+BEGIN_SRC emacs-lisp
   (setq org-highlight-latex-and-related '(latex))
 #+END_SRC
-*** Caption below tables
+*** Caption below tables... or not!
 #+begin_src emacs-lisp
-  (setq org-latex-caption-above nil)
+  ;; (setq org-latex-caption-above nil)
+#+end_src
+*** ~booktabs~ for tables
+#+begin_src emacs-lisp
+  (setq org-latex-tables-booktabs t)
+#+end_src
+*** Code highlighting
+#+begin_src emacs-lisp
+;; (require 'ox-latex)
+;; (add-to-list 'org-latex-packages-alist '("" "minted"))
+;; (setq org-latex-listings 'minted)
+
+;; (setq org-latex-pdf-process
+;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+;;         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 #+end_src
 ** /Zettelkasten/ with ~org-roam~
 *** Set Directory
@@ -1480,7 +1497,7 @@ Ignore org comments on export
 #+end_src
 ** ~org-fragtog~ to make latex easier
 #+begin_src emacs-lisp
-  (add-hook 'org-mode-hook 'org-fragtog-mode)
+  ;; (add-hook 'org-mode-hook 'org-fragtog-mode)
 #+end_src
 * Other Packages / Languages / Concepts
 ** Manage my Email with ~mu4e~
