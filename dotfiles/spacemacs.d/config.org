@@ -1954,6 +1954,11 @@ Use YASnippet in ~ledger-mode~
   ;; (add-hook 'python-mode-hook 'spacemacs/toggle-fill-column-indicator-on)
 #+end_src
 ** Bugfix TRAMP
+Faster than the default scp:
+#+begin_src emacs-lisp
+  (setq tramp-default-method "ssh")
+#+end_src
+
 #+begin_src emacs-lisp
   ;; fixes to git-gutter+ when using tramp
   (with-eval-after-load 'git-gutter+
