@@ -9,7 +9,7 @@ alias ls='l'
 alias ll='l -lh'
 alias la='l -la'
 
-alias crontab='crontab - i'
+alias crontab='crontab -i'
 
 # Emacs
 alias evil="emacsclient -nc -a ''"
