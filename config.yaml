@@ -3,6 +3,7 @@ actions:
     omf-install: NONINTERACTIVE=1 fish -c "$(curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install)"
     agnoster-install: fish -c 'omf install agnoster'
     bat-build-cache: bat cache --build
+    spacemacs-install: git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 config:
   backup: true
   banner: true
@@ -58,6 +59,8 @@ dotfiles:
   d_spacemacs.d:
     dst: ~/.spacemacs.d
     src: spacemacs.d
+    actions:
+      - spacemacs-install
   d_sxhkd:
     dst: ~/.config/sxhkd
     src: config/sxhkd
