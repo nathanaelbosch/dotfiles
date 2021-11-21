@@ -1,15 +1,8 @@
 actions:
   post:
+    omf-install: NONINTERACTIVE=1 fish -c "$(curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install)"
     agnoster-install: fish -c 'omf install agnoster'
-    omf-install: curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
     bat-build-cache: bat cache --build
-  pre:
-    compton-install: pacman -S --needed compton
-    fish-install: pacman -S --needed fish
-    git-install: pacman -S --needed git
-    polybar-install: pacman -S --needed polybar
-    rofi-install: pacman -S --needed rofi
-    vim-install: pacman -S --needed vim
 config:
   backup: true
   banner: true
