@@ -132,7 +132,6 @@ dotfiles:
   d_alacritty:
     src: config/alacritty
     dst: ~/.config/alacritty
-    link: nolink
 profiles:
   terminal:
     dotfiles:
