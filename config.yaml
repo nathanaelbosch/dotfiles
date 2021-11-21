@@ -2,6 +2,7 @@ actions:
   post:
     agnoster-install: fish -c 'omf install agnoster'
     omf-install: curl -L https://get.oh-my.fish | fish
+    bat-build-cache: bat cache --build
   pre:
     compton-install: pacman -S --needed compton
     fish-install: pacman -S --needed fish
@@ -23,6 +24,8 @@ dotfiles:
   d_bat:
     dst: ~/.config/bat
     src: config/bat
+    actions:
+      - bat-build-cache
   d_dunst:
     dst: ../.config/dunst
     src: config/dunst
@@ -132,104 +135,58 @@ dotfiles:
     dst: ~/.config/alacritty
     link: nolink
 profiles:
-  arch-laptop:
+  terminal:
     dotfiles:
     - d_fish
-    - d_i3
-    - d_i3status
-    - d_polybar
-    - d_spacemacs.d
-    - d_sxhkd
-    - f_aliases
-    - f_bash_profile
-    - f_bashrc
-    - f_config.py
-    - f_extend.bashrc
-    - f_extend.xresources
-    - f_gitconfig
-    - f_i3-scrot.conf
-    - f_mpw
-    - f_profile
-    - f_tmux.conf
-    - f_vimrc
-    - f_xresources
-  nath-laptop:
-    dotfiles:
-    - d_fish
-    - d_i3
-    - d_polybar
-    - d_scripts
-    - d_spacemacs.d
-    - d_sxhkd
-    - f_aliases
-    - f_bash_profile
-    - f_bashrc
-    - f_extend.bashrc
-    - f_extend.xresources
-    - f_gitconfig
-    - f_mpw
-    - f_profile
-    - f_tmux.conf
-    - f_vimrc
-    - f_xresources
-    - f_xprofile
-    - f_yaourtrc
-    - d_offlineimap
-    - d_msmtp
-  nath-laptop.old:
-    dotfiles:
-    - d_fish
-    - d_i3
-    - d_i3status
-    - d_polybar
-    - d_ranger
-    - d_rofi
-    - d_screenlayout
-    - d_scripts
-    - d_spacemacs.d
-    - f_aliases
-    - f_bash_profile
-    - f_bashrc
-    - f_compton.conf
-    - f_config.py
-    - f_extend.bashrc
-    - f_extend.xresources
-    - f_gitconfig
-    - f_i3-scrot.conf
-    - f_mpw
-    - f_profile
-    - f_tmux.conf
-    - f_vimrc
-    - f_xresources
-    - f_yaourtrc
-  bree:
-    dotfiles:
     - d_bat
-    - d_fish
-    - d_i3
-    - d_i3status
-    - d_polybar
-    - d_rofi
-    - d_screenlayout
     - d_scripts
-    - d_spacemacs.d
-    - d_sxhkd
     - f_aliases
     - f_bash_profile
     - f_bashrc
-    - f_compton.conf
-    - f_config.py
     - f_extend.bashrc
     - f_extend.xresources
     - f_gitconfig
-    - f_latexmkrc
-    - f_mpw
     - f_profile
     - f_tmux.conf
     - f_vimrc
     - f_xinitrc
     - f_xprofile
     - f_xresources
+  arch-laptop:
+    include:
+      - terminal
+    dotfiles:
+    - d_i3
+    - d_i3status
+    - d_polybar
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_i3-scrot.conf
+  nath-laptop:
+    include:
+      - terminal
+    dotfiles:
+    - d_polybar
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_mpw
+    - f_yaourtrc
+    - d_offlineimap
+    - d_msmtp
+  bree:
+    include:
+      - terminal
+    dotfiles:
+    - d_i3
+    - d_i3status
+    - d_polybar
+    - d_rofi
+    - d_screenlayout
+    - d_spacemacs.d
+    - d_sxhkd
+    - f_compton.conf
+    - f_latexmkrc
+    - f_mpw
     - f_yaourtrc
     - d_offlineimap
     - d_msmtp
@@ -238,37 +195,17 @@ profiles:
     - f_org-protocol.desktop
     - d_alacritty
   murr:
+    include:
+      - terminal
     dotfiles:
     - d_bat
-    - d_fish
     - d_i3
     - d_i3status
-    # - d_polybar
-    # - d_rofi
     - d_screenlayout
-    - d_scripts
     - d_spacemacs.d
     - d_sxhkd
-    - f_aliases
-    - f_bash_profile
-    - f_bashrc
-    # - f_compton.conf
-    # - f_config.py
-    - f_extend.bashrc
-    - f_extend.xresources
-    - f_gitconfig
-    # - f_latexmkrc
-    # - f_mpw
-    - f_profile
-    - f_tmux.conf
-    - f_vimrc
-    - f_xinitrc
-    - f_xprofile
-    - f_xresources
-    # - f_yaourtrc
     - d_offlineimap
     - d_msmtp
-    # - d_dunst
     - d_zathura
     - f_org-protocol.desktop
     - d_ranger
