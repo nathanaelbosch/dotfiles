@@ -25,6 +25,9 @@ dotfiles:
   d_fish:
     dst: ~/.config/fish
     src: config/fish
+    actions:
+      - omf-install
+      - agnoster-install
   d_i3:
     dst: ~/.config/i3
     src: config/i3
