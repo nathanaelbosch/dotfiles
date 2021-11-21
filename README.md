@@ -1,22 +1,17 @@
-# My dotfiles
+# There's no place like $HOME
 I use [dotdrop](https://github.com/deadc0de6/dotdrop) to manage my dotfiles.
 
-## Usage
-### Dotdrop Installation
-Dotdrop requires python as well as some packages to work, so make sure to have a working **python** and **pip** installed.
+## Installation
 ```bash
-git clone --recursive https://github.com/nathbo/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-pip install --user -r dotdrop/requirements.txt
+sh -c "$(curl https://raw.githubusercontent.com/nathanaelbosch/dotfiles/master/install.sh)"
 ```
-After this the `./dotdrop.sh` should be functional. Test it with `./dotdrop.sh help`.
+Check out the [install script](install.sh) for more details.
 
-### Installing dotfiles
-If the hostname matches one of the profiles, just use
+If the hostname does not match any of the profiles, you can also specify a profile that differs from the hostname to install it, such as
 ```bash
-./dotdrop.sh install
+./dotdrop.sh install -p terminal
 ```
-You can also specify a profile that differs from the hostname to install it. If you want to customize your installation, the best way is to edit the `config.yaml` file directly.
+If you want to customize your installation, the best way is to edit the `config.yaml` file directly.
 
 ### More useful commands:
 ```bash
@@ -27,41 +22,30 @@ You can also specify a profile that differs from the hostname to install it. If 
 Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) for more detailed explanations.
 
 
-## My Setup
-
-![laptop neofetch](screenshots/neofetch.png?raw=true "Laptop Neofetch")
-
-Both my computers currently use the same setup
-- **OS**: [Manjaro](https://manjaro.org/community-editions/) (i3 community edition)
-- **WM**: [i3-gaps](https://github.com/Airblader/i3) with [polybar](https://github.com/jaagr/polybar)
-- **Terminal**: [urxvt](https://wiki.archlinux.org/index.php/Rxvt-unicode)
-- **Shell**: [fish](https://fishshell.com/) with [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
-- **AUR Package Manager**: yay
-
-## Applications
-- Terminal and System:
+## List of relevant applications
+- **Terminal and System**:
+    - fish (with [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) and the agnoster theme)
     - git
     - arandr
-    - compton
     - xcape
     - xclip
     - tmux
-    - mons (on laptop)
+    - i3-gaps
+    - alacritty
 - Text Editors:
-    - sublime-text-dev (AUR)
+    - emacs ([spacemacs](https://www.spacemacs.org))
     - vim
 - Browser:
-    - qutebrowser
-    - chromium
+    - firefox
 - Documents:
     - libreoffice
-    - evince (pdf viewer)
+    - zathura
     - LaTeX (texlive-most; biber)
 - Media:
     - vlc
     - spotify (AUR)
 - Cloud Storage:
-    - dropbox (AUR)
+    - syncthing
     - megasync (from website)
 - Fonts:
     - powerline-fonts-git (AUR)
