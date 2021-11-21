@@ -23,6 +23,12 @@ Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) for more detail
 
 
 ## List of relevant applications
+To get a minimal working environment, the following applications should be installed before installing the dotfiles:
+```bash
+sudo pacman -S git fish emacs vimbat lsd alacritty xcape
+```
+
+Here's a longer list of applications:
 - **Terminal and System**:
     - fish (with [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) and the agnoster theme)
     - git
