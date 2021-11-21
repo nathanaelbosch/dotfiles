@@ -13,7 +13,9 @@ end
     # exec startx -- -keeptty
 # end
 
-thefuck --alias | source
+if command -v thefuck > /dev/null
+    thefuck --alias | source
+end
 
 if command -v pyenv > /dev/null
     status --is-interactive; and source (pyenv init -|psub)
