@@ -2004,7 +2004,7 @@ Use YASnippet in ~ledger-mode~
 #+begin_src emacs-lisp
   (setq org-babel-default-header-args:jupyter-julia '((:async . "yes")
                                                       (:session . "jl")
-                                                      (:kernel . "julia-1.5")
+                                                      (:kernel . "julia-1.6")
                                                       (:exports . "both")
                                                       (:results . "scalar")))
 #+end_src
