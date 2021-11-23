@@ -59,5 +59,7 @@ protonmail-bridge &
 # setxkbmap -layout us,eu -variant norman, -option grp:alt_space_toggle caps:super compose:ralt
 # anydesk &
 
+/opt/piavpn/bin/pia-client &
+
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
