@@ -526,6 +526,7 @@ I love org so much, it deserves its own heading.
                         (org-agenda-skip-function 'bh/skip-non-stuck-projects)
                         (org-agenda-sorting-strategy
                          '(category-keep))
+                        (org-tags-match-list-sublevels 'indented)
                         (org-agenda-dim-blocked-tasks nil)
                         ))
             (tags-todo "-HOLD-CANCELLED/!"
@@ -1421,8 +1422,8 @@ Ignore org comments on export
 *** Code highlighting
 #+begin_src emacs-lisp
 ;; (require 'ox-latex)
-;; (add-to-list 'org-latex-packages-alist '("" "minted"))
-;; (setq org-latex-listings 'minted)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(setq org-latex-listings 'minted)
 
 ;; (setq org-latex-pdf-process
 ;;       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
@@ -1434,42 +1435,50 @@ Ignore org comments on export
   ;; (setq org-latex-with-hyperref nil)
 #+end_src
 ** /Zettelkasten/ with ~org-roam~
+#+begin_src emacs-lisp
+  (setq org-roam-v2-ack t)
+#+end_src
 *** Set Directory
 #+begin_src emacs-lisp
  (setq org-roam-directory "~/org/zettelkasten/")
 #+end_src
 *** Start ~org-roam-mode~ on startup
 #+begin_src emacs-lisp
-  (add-hook 'after-init-hook 'org-roam-mode)
+    ;; (add-hook 'after-init-hook 'org-roam-mode)
+    (org-roam-setup)
 #+end_src
 *** Add hotkeys
 #+begin_src emacs-lisp
   (spacemacs/declare-prefix "aoR" "org-roam")
   (spacemacs/set-leader-keys
-    "aoRl" 'org-roam
-    "aoRt" 'org-roam-today
-    "aoRf" 'org-roam-find-file
-    "aoRg" 'org-roam-show-graph)
+  ;;   "aoRl" 'org-roam
+  ;;   "aoRt" 'org-roam-today
+    "aoRc" 'org-roam-capture
+    "aoRf" 'org-roam-node-find
+    ;; "aoRg" 'org-roam-show-graph
+    )
   (spacemacs/declare-prefix-for-mode 'org-mode "mr" "org-roam")
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "rl" 'org-roam
-    "rt" 'org-roam-today
-    "rb" 'org-roam-switch-to-buffer
-    "rf" 'org-roam-find-file
-    "ri" 'org-roam-insert
-    "rg" 'org-roam-show-graph)
+  ;;   "rl" 'org-roam
+  ;;   "rt" 'org-roam-today
+  ;;   "rb" 'org-roam-switch-to-buffer
+    "rc" 'org-roam-capture
+    "rf" 'org-roam-node-find
+    "ri" 'org-roam-node-insert
+    ;;   "rg" 'org-roam-show-graph
+    )
 #+end_src
 
 *** Capture template
 #+begin_src emacs-lisp
   (setq org-roam-capture-templates
-        '(("d" "default" plain (function org-roam-capture--get-point)
+        '(
+          ("d" "default" plain
            "%?"
-           :file-name "%<%Y-%m-%d>-${slug}"
-           :head "#+TITLE: ${title}\n- tags :: \n"
-           :unnarrowed t
-           :immediate-finish t
-           ))
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n- tags :: \n")
+           :unnarrowed t)
+          )
         )
 #+end_src
 *** Capture Ref from Browser
@@ -1477,71 +1486,82 @@ Ignore org comments on export
   (require 'org-roam-protocol)
 
   (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain #'org-roam-capture--get-point
+        '(("r" "ref" plain
            "* TODO %? | [[${ref}][${title}]]\n"
-           :file-name "refs/%<%Y-%m-%d>-${slug}"
-           :head "#+TITLE: ${title}
+
+           :if-new (file+head
+                    "refs/%<%Y-%m-%d>-${slug}.org"
+           "#+TITLE: ${title}
   ,#+ROAM_KEY: ${ref}
   - source :: ${ref}
   - tags ::
 
-  "
+  ")
            :unnarrowed t
            )))
 #+end_src
 *** org-roam-bibtex
 #+begin_src emacs-lisp
   (add-hook 'after-init-hook #'org-roam-bibtex-mode)
+  (add-hook 'bibtex-mode-hook #'org-roam-bibtex-mode)
 #+end_src
 
 #+begin_src emacs-lisp
-  (setq orb-templates
+  ;; (setq orb-templates
+  (setq org-roam-capture-templates
+        (append
+         org-roam-capture-templates
         '(
-          ("r" "ref" plain #'org-roam-capture--get-point
-           ""
-           :file-name "refs/%<%Y-%m-%d>-${citekey}"
-           :head "#+TITLE: ${title}
-  ,#+ROAM_KEY: ${ref}
-  - source :: ${ref}
-  - tags ::
-  "
-           :unnarrowed t)
-          ("p" "Paper" plain #'org-roam-capture--get-point
-           ""
-           :file-name "refs/%<%Y-%m-%d>-${citekey}"
-           :head "#+TITLE: ${title}
-  ,#+ROAM_KEY: ${ref}
-  ,#+CATEGORY: papers
-  ,#+FILETAGS: :papers:
-  - tags ::
-  - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
+          ("r" "bibliography reference" plain "%?"
+           :if-new
+           (file+head "refs/%<%Y-%m-%d>-${slug}.org"
+                      "#+title: ${title}\n- source :: ${ref}\n- tags ::")
+           :unnarrowed t)    ;;         ("r" "ref" plain #'org-roam-capture--get-point
+          ;;          ""
+          ;;          :file-name "refs/%<%Y-%m-%d>-${citekey}"
+          ;;          :head "#+TITLE: ${title}
+          ;; ,#+ROAM_KEY: ${ref}
+          ;; - source :: ${ref}
+          ;; - tags ::
+          ;; "
+          ;;          :unnarrowed t)
+          ;;         ("p" "Paper" plain #'org-roam-capture--get-point
+          ;;          ""
+          ;;          :file-name "refs/%<%Y-%m-%d>-${citekey}"
+          ;;          :head "#+TITLE: ${title}
+          ;; ,#+ROAM_KEY: ${ref}
+          ;; ,#+CATEGORY: papers
+          ;; ,#+FILETAGS: :papers:
+          ;; - tags ::
+          ;; - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
 
-  ,* Notes
-  :PROPERTIES:
-  :PDF: ~/MEGA/papers/lib/${citekey}.pdf
-  :END:
-  PDF: file:~/MEGA/papers/lib/${citekey}.pdf
-  "
-           :unnarrowed t)
-          ;; Same as above but with a "PhD" tag
-          ("P" "PhD Paper" plain #'org-roam-capture--get-point
-           ""
-           :file-name "refs/%<%Y-%m-%d>-${citekey}"
-           :head "#+TITLE: ${title}
-  ,#+ROAM_KEY: ${ref}
-  ,#+CATEGORY: papers
-  ,#+FILETAGS: :papers:PhD:
-  - tags ::
-  - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
+          ;; ,* Notes
+          ;; :PROPERTIES:
+          ;; :PDF: ~/MEGA/papers/lib/${citekey}.pdf
+          ;; :END:
+          ;; PDF: file:~/MEGA/papers/lib/${citekey}.pdf
+          ;; "
+          ;;          :unnarrowed t)
+          ;;         ;; Same as above but with a "PhD" tag
+          ;;         ("P" "PhD Paper" plain #'org-roam-capture--get-point
+          ;;          ""
+          ;;          :file-name "refs/%<%Y-%m-%d>-${citekey}"
+          ;;          :head "#+TITLE: ${title}
+          ;; ,#+ROAM_KEY: ${ref}
+          ;; ,#+CATEGORY: papers
+          ;; ,#+FILETAGS: :papers:PhD:
+          ;; - tags ::
+          ;; - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
 
-  ,* Notes
-  :PROPERTIES:
-  :PDF: ~/MEGA/papers/lib/${citekey}.pdf
-  :END:
-  PDF: file:~/MEGA/papers/lib/${citekey}.pdf
-  "
-           :unnarrowed t)
+          ;; ,* Notes
+          ;; :PROPERTIES:
+          ;; :PDF: ~/MEGA/papers/lib/${citekey}.pdf
+          ;; :END:
+          ;; PDF: file:~/MEGA/papers/lib/${citekey}.pdf
+          ;; "
+          ;;          :unnarrowed t)
           )
+        )
         )
 #+end_src
 ** ~org-fragtog~ to make latex easier
@@ -1699,7 +1719,7 @@ Seems not bad actually
 
 *** Visual line mode hook
 #+begin_src emacs-lisp
-  (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
+  ;; (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
 #+end_src
 
 *** Check for supposed attachments prior to sending them
@@ -1962,7 +1982,7 @@ Use YASnippet in ~ledger-mode~
   (add-hook 'julia-mode-hook
             (lambda ()
               (set-fill-column 92)
-              (auto-fill-mode t)
+              ;; (auto-fill-mode t)
               (spacemacs/toggle-fill-column-indicator-on)
               ))
 #+end_src
