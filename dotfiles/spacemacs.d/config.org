@@ -274,6 +274,10 @@ opening a new one:
   (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
 #+end_src
 
+#+begin_src emacs-lisp
+  (setq eshell-history-size 1000)
+#+end_src
+
 ** Visible bell instead of ringing bell
 #+begin_src emacs-lisp
   (setq visible-bell t)
