@@ -19,7 +19,7 @@ dotfiles:
     dst: ~/.config/bat
     src: config/bat
     actions:
-      - bat-build-cache
+    - bat-build-cache
   d_dunst:
     dst: ../.config/dunst
     src: config/dunst
@@ -27,8 +27,8 @@ dotfiles:
     dst: ~/.config/fish
     src: config/fish
     actions:
-      - omf-install
-      - agnoster-install
+    - omf-install
+    - agnoster-install
   d_i3:
     dst: ~/.config/i3
     src: config/i3
@@ -60,7 +60,7 @@ dotfiles:
     dst: ~/.spacemacs.d
     src: spacemacs.d
     actions:
-      - spacemacs-install
+    - spacemacs-install
   d_sxhkd:
     dst: ~/.config/sxhkd
     src: config/sxhkd
@@ -132,6 +132,10 @@ dotfiles:
   d_alacritty:
     src: config/alacritty
     dst: ~/.config/alacritty
+  d_kitty:
+    src: config/kitty
+    dst: ~/.config/kitty
+    link: nolink
 profiles:
   terminal:
     dotfiles:
@@ -152,7 +156,7 @@ profiles:
     - f_xresources
   arch-laptop:
     include:
-      - terminal
+    - terminal
     dotfiles:
     - d_i3
     - d_i3status
@@ -162,7 +166,7 @@ profiles:
     - f_i3-scrot.conf
   nath-laptop:
     include:
-      - terminal
+    - terminal
     dotfiles:
     - d_polybar
     - d_spacemacs.d
@@ -173,7 +177,7 @@ profiles:
     - d_msmtp
   bree:
     include:
-      - terminal
+    - terminal
     dotfiles:
     - d_i3
     - d_i3status
@@ -194,7 +198,7 @@ profiles:
     - d_alacritty
   murr:
     include:
-      - terminal
+    - terminal
     dotfiles:
     - d_bat
     - d_i3
@@ -207,3 +211,8 @@ profiles:
     - d_zathura
     - f_org-protocol.desktop
     - d_ranger
+  MyStandalone:
+    include:
+    - terminal
+    dotfiles:
+    - d_kitty
