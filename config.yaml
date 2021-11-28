@@ -124,7 +124,6 @@ dotfiles:
   d_zathura:
     src: config/zathura
     dst: ~/.config/zathura
-    link: nolink
   f_org-protocol.desktop:
     src: local/share/applications/org-protocol.desktop
     dst: ~/.local/share/applications/org-protocol.desktop
@@ -154,65 +153,46 @@ profiles:
     - f_xinitrc
     - f_xprofile
     - f_xresources
-  arch-laptop:
-    include:
-    - terminal
+  spacemacs_full:
     dotfiles:
-    - d_i3
-    - d_i3status
-    - d_polybar
     - d_spacemacs.d
-    - d_sxhkd
-    - f_i3-scrot.conf
-  nath-laptop:
-    include:
-    - terminal
-    dotfiles:
-    - d_polybar
-    - d_spacemacs.d
-    - d_sxhkd
-    - f_mpw
-    - f_yaourtrc
     - d_offlineimap
     - d_msmtp
+    - f_org-protocol.desktop
   bree:
     include:
     - terminal
+    - spacemacs_full
     dotfiles:
     - d_i3
     - d_i3status
     - d_polybar
     - d_rofi
     - d_screenlayout
-    - d_spacemacs.d
     - d_sxhkd
     - f_compton.conf
     - f_latexmkrc
     - f_mpw
     - f_yaourtrc
-    - d_offlineimap
-    - d_msmtp
     - d_dunst
     - d_zathura
-    - f_org-protocol.desktop
     - d_alacritty
   murr:
     include:
     - terminal
+    - spacemacs_full
     dotfiles:
     - d_bat
     - d_i3
     - d_i3status
     - d_screenlayout
-    - d_spacemacs.d
     - d_sxhkd
-    - d_offlineimap
-    - d_msmtp
     - d_zathura
-    - f_org-protocol.desktop
     - d_ranger
   MyStandalone:
     include:
     - terminal
+    - spacemacs_full
     dotfiles:
     - d_kitty
+    - d_zathura
