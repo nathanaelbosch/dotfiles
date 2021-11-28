@@ -49,3 +49,6 @@ font:
     family: FiraCode
     style: Italic
   size: 11
+
+key_bindings:
+  - { key: V,              mods: Control,           action: Paste            }
