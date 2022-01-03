@@ -1484,7 +1484,7 @@ Ignore org comments on export
         '(
           ("d" "default" plain
            "%?"
-           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+           :if-new (file+head "%<%Y-%m-%d>-${slug}.org"
                               "#+title: ${title}\n- tags :: \n")
            :unnarrowed t)
           )
@@ -1493,21 +1493,17 @@ Ignore org comments on export
 *** Capture Ref from Browser
 #+begin_src emacs-lisp
   (require 'org-roam-protocol)
+#+end_src
 
+#+begin_src emacs-lisp
   (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain
-           "* TODO %? | [[${ref}][${title}]]\n"
-
-           :if-new (file+head
-                    "refs/%<%Y-%m-%d>-${slug}.org"
-           "#+TITLE: ${title}
-  ,#+ROAM_KEY: ${ref}
-  - source :: ${ref}
-  - tags ::
-
-  ")
-           :unnarrowed t
-           )))
+        (append
+         org-roam-capture-ref-templates
+         '(("x" "browserref" plain "%?" :if-new
+            (file+head "refs/%<%Y-%m-%d>-${slug}.org"
+                       "#+TITLE: ${title}\n- tags :: \n\n")
+            :unnarrowed t))
+         ))
 #+end_src
 *** org-roam-bibtex
 #+begin_src emacs-lisp
@@ -1525,50 +1521,7 @@ Ignore org comments on export
            :if-new
            (file+head "refs/%<%Y-%m-%d>-${slug}.org"
                       "#+title: ${title}\n- source :: ${ref}\n- tags ::")
-           :unnarrowed t)    ;;         ("r" "ref" plain #'org-roam-capture--get-point
-          ;;          ""
-          ;;          :file-name "refs/%<%Y-%m-%d>-${citekey}"
-          ;;          :head "#+TITLE: ${title}
-          ;; ,#+ROAM_KEY: ${ref}
-          ;; - source :: ${ref}
-          ;; - tags ::
-          ;; "
-          ;;          :unnarrowed t)
-          ;;         ("p" "Paper" plain #'org-roam-capture--get-point
-          ;;          ""
-          ;;          :file-name "refs/%<%Y-%m-%d>-${citekey}"
-          ;;          :head "#+TITLE: ${title}
-          ;; ,#+ROAM_KEY: ${ref}
-          ;; ,#+CATEGORY: papers
-          ;; ,#+FILETAGS: :papers:
-          ;; - tags ::
-          ;; - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
-
-          ;; ,* Notes
-          ;; :PROPERTIES:
-          ;; :PDF: ~/MEGA/papers/lib/${citekey}.pdf
-          ;; :END:
-          ;; PDF: file:~/MEGA/papers/lib/${citekey}.pdf
-          ;; "
-          ;;          :unnarrowed t)
-          ;;         ;; Same as above but with a "PhD" tag
-          ;;         ("P" "PhD Paper" plain #'org-roam-capture--get-point
-          ;;          ""
-          ;;          :file-name "refs/%<%Y-%m-%d>-${citekey}"
-          ;;          :head "#+TITLE: ${title}
-          ;; ,#+ROAM_KEY: ${ref}
-          ;; ,#+CATEGORY: papers
-          ;; ,#+FILETAGS: :papers:PhD:
-          ;; - tags ::
-          ;; - PDF :: file:~/MEGA/papers/lib/${citekey}.pdf
-
-          ;; ,* Notes
-          ;; :PROPERTIES:
-          ;; :PDF: ~/MEGA/papers/lib/${citekey}.pdf
-          ;; :END:
-          ;; PDF: file:~/MEGA/papers/lib/${citekey}.pdf
-          ;; "
-          ;;          :unnarrowed t)
+           :unnarrowed t)
           )
         )
         )
@@ -2034,23 +1987,4 @@ Use YASnippet in ~ledger-mode~
 Faster than the default scp:
 #+begin_src emacs-lisp
   (setq tramp-default-method "ssh")
-#+end_src
-
-#+begin_src emacs-lisp
-  ;; fixes to git-gutter+ when using tramp
-  (with-eval-after-load 'git-gutter+
-    ;; https://github.com/syl20bnr/spacemacs/issues/12860#issuecomment-602084919
-    (defun git-gutter+-remote-default-directory (dir file)
-      (let* ((vec (tramp-dissect-file-name file))
-             (method (tramp-file-name-method vec))
-             (user (tramp-file-name-user vec))
-             (domain (tramp-file-name-domain vec))
-             (host (tramp-file-name-host vec))
-             (port (tramp-file-name-port vec)))
-        (tramp-make-tramp-file-name method user domain host port dir)))
-
-    (defun git-gutter+-remote-file-path (dir file)
-      (let ((file (tramp-file-name-localname (tramp-dissect-file-name file))))
-        (replace-regexp-in-string (concat "\\`" dir) "" file)))
-    )
 #+end_src
