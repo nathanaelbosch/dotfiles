@@ -196,3 +196,14 @@ profiles:
     dotfiles:
     - d_kitty
     - d_zathura
+  shire:
+    include:
+    - terminal
+    - spacemacs_full
+    dotfiles:
+    - d_i3
+    - d_i3status
+    - d_sxhkd
+    - f_latexmkrc
+    - d_zathura
+    - d_alacritty
