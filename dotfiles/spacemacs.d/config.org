@@ -68,6 +68,7 @@
     - [[#no-hyperref-setup-by-default][No hyperref setup by default]]
   - [[#zettelkasten-with-org-roam][/Zettelkasten/ with ~org-roam~]]
     - [[#set-directory][Set Directory]]
+    - [[#autosync-mode-is-needed-apparently][Autosync Mode is needed apparently]]
     - [[#start-org-roam-mode-on-startup][Start ~org-roam-mode~ on startup]]
     - [[#add-hotkeys][Add hotkeys]]
     - [[#capture-template][Capture template]]
@@ -1446,10 +1447,14 @@ Ignore org comments on export
 #+begin_src emacs-lisp
  (setq org-roam-directory "~/org/zettelkasten/")
 #+end_src
+*** Autosync Mode is needed apparently
+#+begin_src emacs-lisp
+  (org-roam-db-autosync-mode)
+#+end_src
 *** Start ~org-roam-mode~ on startup
 #+begin_src emacs-lisp
     ;; (add-hook 'after-init-hook 'org-roam-mode)
-    (org-roam-setup)
+    ;; (org-roam-setup)
 #+end_src
 *** Add hotkeys
 #+begin_src emacs-lisp

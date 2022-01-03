@@ -77,6 +77,7 @@ This function should only modify configuration layer settings."
      lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (mu4e :variables
+           mu4e-installation-path "/usr/share/emacs/site-lisp"
            mu4e-use-maildirs-extension t
            mu4e-maildir "~/Mail"
            mu4e-enable-mode-line t
@@ -88,7 +89,8 @@ This function should only modify configuration layer settings."
            mu4e-confirm-quit nil
            mu4e-enable-notifications t
            mu4e-headers-skip-duplicates t
-           mu4e-enable-async-operations t)
+           mu4e-enable-async-operations t
+           )
      ;;(multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      neotree
      octave
@@ -591,6 +593,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; (setq shell-file-name "fish")
   ;; (require 'exwm-systemtray)
   ;; (exwm-systemtray-enable)
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp")
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
   )
 
 (defun dotspacemacs/user-load ()
