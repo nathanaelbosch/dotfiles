@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import datetime
 import requests
+from pathlib import Path
 
 
 def get_price(curr):
@@ -21,5 +22,5 @@ P {dt_str} ZEC {get_price("zec")}€
 """
 print(db_str)
 
-with open("/home/nath/MEGA/prices.db", "w") as f:
+with Path.home().joinpath("MEGA/prices.db").open("w") as f:
     f.write(db_str)
