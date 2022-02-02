@@ -33,6 +33,7 @@
     - [[#archive-tag-to-gray-out-things-i-do-not-need][Archive tag to gray out things I do not need]]
     - [[#start-org-with-some-useful-modes][Start org with some useful modes]]
     - [[#column-view][Column view]]
+    - [[#priorities][Priorities]]
   - [[#org-refile-targets][~org-refile~ targets]]
   - [[#keywords][keywords]]
   - [[#org-agenda][~org-agenda~]]
@@ -350,6 +351,13 @@ I love org so much, it deserves its own heading.
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
 #+END_SRC
+
+*** Priorities
+#+begin_src emacs-lisp
+  (setq org-priority-lowest 68) ;; Add "D" for really unimportant stuff
+  ;; (setq org-priority-highest 65) ;; Default
+  (setq org-priority-default 67)
+#+end_src
 ** ~org-refile~ targets
 #+BEGIN_SRC emacs-lisp
   (setq org-refile-targets '(
