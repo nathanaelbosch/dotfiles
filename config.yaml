@@ -196,6 +196,7 @@ profiles:
     dotfiles:
     - d_kitty
     - d_zathura
+    - f_latexmkrc
   shire:
     include:
     - terminal
