@@ -1,6 +1,8 @@
 abbr -a -- - 'cd -'
 abbr -a -- paper 'zt ~/MEGA/papers/lib/'
 
+set theme_hide_hostname no
+
 set pipenv_fish_fancy yes
 
 # Load aliases
