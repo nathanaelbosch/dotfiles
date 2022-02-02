@@ -189,7 +189,7 @@ profiles:
     - d_sxhkd
     - d_zathura
     - d_ranger
-  MyStandalone:
+  dev:
     include:
     - terminal
     - spacemacs_full
