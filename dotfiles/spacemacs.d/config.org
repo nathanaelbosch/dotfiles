@@ -698,6 +698,8 @@ I love org so much, it deserves its own heading.
            "* NOTE %?\n%U\n%c\n" :empty-lines 1)
           ("j" "Journal" entry (file+olp+datetree "~/org/journal.org")
            "* %?\n\nEntered on %U\n  %i" :clock-in t :clock-resume t)
+          ("z" "Zettelkasten" entry (file "~/org/zettelkasten/inbox.org")
+           "* %?\n%U")
 
           ("C" "Contacts" entry (file "~/org/contacts.org")
            "* %^{name}
