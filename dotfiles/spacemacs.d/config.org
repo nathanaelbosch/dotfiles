@@ -443,7 +443,7 @@ I love org so much, it deserves its own heading.
           ("c" "Coding Projects" tags "coding-TODO=\"DONE\"" ())
           ("C" "Coding Projects Tree" tags-tree "coding-TODO=\"DONE\"" ())
 
-          ("p" "Papers"
+          ("P" "Papers"
            ((tags-todo "PhD+CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'future)
                         (org-agenda-overriding-header "Papers (phd.org)")))
@@ -502,19 +502,6 @@ I love org so much, it deserves its own heading.
           ("zl" "To listen" todo "TOLISTEN"
            ((org-agenda-filter-preset '(""))
             (org-agenda-sorting-strategy '(priority-down tag-down))))
-
-          ("a" "Standard View"
-           ((agenda ""
-                    ((org-agenda-span 1)
-                     (org-agenda-overriding-header "Agenda")))
-            (tags "CATEGORY=\"Inbox\""
-                  ((org-agenda-overriding-header "To Refile")
-                   ;; (org-agenda-files '("/home/nath/org/inbox.org"))
-                   (org-agenda-regexp-filter-preset '("-Inbox"))
-                   ))
-            )
-           ((org-agenda-tag-filter-preset '("-PhD")))
-           )
 
           ("w" "Work"
            ((agenda ""
@@ -584,6 +571,35 @@ I love org so much, it deserves its own heading.
             )
            ((org-agenda-filter-preset '("+PhD")))
            )
+
+
+          ("a" "Standard View"
+           ((agenda ""
+                    ((org-agenda-span 1)
+                     ;; (org-agenda-overriding-header "Thesis Agenda")
+                     ))
+            (tags-todo "CATEGORY=\"Inbox\"-CATEGORY=\"PhD\""
+                       ((org-agenda-overriding-header "To Refile")
+                        ))
+            (tags-todo "-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\"-CATEGORY=\"PhD\""
+                       ((org-agenda-overriding-header (concat "Standalone Tasks"
+                                                              (if bh/hide-scheduled-and-waiting-next-tasks
+                                                                  ""
+                                                                " (including WAITING and SCHEDULED tasks)")))
+                        (org-agenda-skip-function 'bh/skip-project-tasks)
+                        (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-sorting-strategy
+                         '(priority-down category-keep))))
+            )
+           ;; ((org-agenda-filter-preset '("-PhD")))
+           )
+
+
+
+
+
           ;;  ((org-agenda-sorting-strategy '(time-up priority-down tag-down todo-state-up))
           ;;   (org-agenda-filter-preset '(""))
           ;;   (org-agenda-regexp-filter-preset '(""))
