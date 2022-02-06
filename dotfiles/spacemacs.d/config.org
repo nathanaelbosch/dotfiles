@@ -1,4 +1,4 @@
-#+TITLE:Literate Spacemacs Config with Org-babel
+#+TITLE: Literate Spacemacs Config with Org-babel
 #+PROPERTY: header-args :results silent
 
 * Table of Contents   :TOC:
@@ -350,7 +350,7 @@ I love org so much, it deserves its own heading.
 
 *** Column view
 #+BEGIN_SRC emacs-lisp
-  (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
+  ;; (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
 #+END_SRC
 
 *** Priorities
@@ -441,9 +441,6 @@ I love org so much, it deserves its own heading.
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
         '(
-          ("c" "Coding Projects" tags "coding-TODO=\"DONE\"" ())
-          ("C" "Coding Projects Tree" tags-tree "coding-TODO=\"DONE\"" ())
-
           ("P" "Papers"
            ((tags-todo "PhD+CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'future)
@@ -474,10 +471,6 @@ I love org so much, it deserves its own heading.
                         (org-agenda-todo-ignore-scheduled 'future)
                         (org-agenda-tags-todo-honor-ignore-options t)))
             ))
-          ("gs" "Someday" tags-todo "someday"
-           ((org-agenda-filter-preset '("+someday"))
-            (org-use-tag-inheritance nil)
-            (org-agenda-todo-ignore-with-date nil)))
           ("gd" "Upcoming deadlines" agenda ""
            ((org-agenda-entry-types '(:deadline))
             (org-agenda-span 1)
@@ -486,58 +479,31 @@ I love org so much, it deserves its own heading.
             (org-agenda-time-grid nil)))
 
           ;; Special types
-          ("z" . "Media")
-          ("zr" "To read (excluding papers)" tags-todo "TODO=\"TOREAD\"-CATEGORY=\"papers\""
-           (
-            (org-agenda-filter-preset '(""))
-            (org-agenda-sorting-strategy '(priority-down tag-down))
-            ))
-          ;; ("zR" "To read (excluding papers) - including 'someday'" tags-todo "TODO=\"TOREAD\"-CATEGORY=\"papers\""
-          ;;  ((org-agenda-filter-preset '(""))
-          ;;   (org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("zw" "To watch" todo "TOWATCH"
-           (
-            (org-agenda-filter-preset '(""))
-            (org-agenda-view-columns-initially t)
-            (org-agenda-sorting-strategy '(priority-down tag-down))))
-          ("zl" "To listen" todo "TOLISTEN"
-           ((org-agenda-filter-preset '(""))
+          ("r" "To read (excluding papers)"
+           tags-todo "TODO=\"TOREAD\"-CATEGORY=\"papers\""
+           (;;(org-agenda-filter-preset '(""))
             (org-agenda-sorting-strategy '(priority-down tag-down))))
 
           ("w" "Work"
            ((agenda ""
                     ((org-agenda-span 1)
-                     ;; (org-agenda-files '("~/org/phd.org"
-                     ;;                     ;; "~/org/phd.org_archive"
-                     ;;                     "~/org/phd_journal.org"
-                     ;;                     "~/MEGA/papers/notes.org"
-                     ;;                     "~/org/gcal/moml.org"
-                     ;;                     "~/org/gcal/uni.org"
-                     ;;                     "~/org/gcal/phd.org"))
-                     ;; (org-agenda-skip-function '(org-agenda-skip-entry-if
-                     ;;                             'todo '("WAITING")))
                      (org-agenda-overriding-header "Thesis Agenda")))
             (tags-todo "CATEGORY=\"PhD-Inbox\""
-                       ((org-agenda-overriding-header "To Refile")
-                        ;; (org-agenda-files '("~/org/phd.org"))
-                        ;; (org-agenda-regexp-filter-preset '("-PhD-Inbox"))
-                        ))
+                       ((org-agenda-overriding-header "To Refile")))
             (tags-todo "-CANCELLED/!"
                        ((org-agenda-overriding-header "Stuck Projects")
                         (org-agenda-skip-function 'bh/skip-non-stuck-projects)
                         (org-agenda-sorting-strategy
                          '(category-keep))
                         (org-tags-match-list-sublevels 'indented)
-                        (org-agenda-dim-blocked-tasks nil)
-                        ))
+                        (org-agenda-dim-blocked-tasks nil)))
             (tags-todo "-HOLD-CANCELLED/!"
                        ((org-agenda-overriding-header "Projects")
                         (org-agenda-skip-function 'bh/skip-non-projects)
                         ;; (org-tags-match-list-sublevels 'indented)
                         (org-agenda-sorting-strategy
                          '(category-keep))
-                        (org-agenda-dim-blocked-tasks nil)
-                        ))
+                        (org-agenda-dim-blocked-tasks nil)))
             (tags-todo "PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"PhD-Inbox\""
                        ((org-agenda-overriding-header (concat "Standalone Tasks"
                                                               (if bh/hide-scheduled-and-waiting-next-tasks
@@ -560,105 +526,47 @@ I love org so much, it deserves its own heading.
                         (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)))
             (tags-todo "PhD-CATEGORY=\"papers\""
                        ((org-agenda-todo-ignore-scheduled 'all)
-                        ;; (org-agenda-files '("~/org/phd.org"
-                        ;;                     "~/org/phd.org_archive"
-                        ;;                     ))
                         (org-agenda-overriding-header "TODOs")))
-            ;; (tags-todo "PhD+CATEGORY=\"papers\""
-            ;;            ((org-agenda-todo-ignore-scheduled 'future)
-            ;;             ;; (org-agenda-files '("~/MEGA/papers/notes.org"
-            ;;             ;;                     "~/org/zettelkasten/refs/"))
-            ;;             (org-agenda-overriding-header "Papers")))
             )
            ((org-agenda-filter-preset '("+PhD")))
            )
 
+          ("p" "PhD View"
+           ((agenda "" ((org-agenda-span 1)))
+            (tags-todo "PhD+CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "To Refile")))
+            (tags-todo "PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "All Tasks")
+                        (org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-todo-ignore-deadlines 'all)
+                        (org-agenda-todo-ignore-with-date 'all)
+                        (org-agenda-sorting-strategy '(priority-down))
+                        ))
+            )
+           ;; ((org-agenda-filter-preset '("+PhD")))
+           )
 
           ("a" "Standard View"
-           ((agenda ""
-                    ((org-agenda-span 1)
-                     ;; (org-agenda-overriding-header "Thesis Agenda")
-                     ))
+           ((agenda "" ((org-agenda-span 1)))
             (tags-todo "CATEGORY=\"Inbox\"-CATEGORY=\"PhD\""
-                       ((org-agenda-overriding-header "To Refile")
+                       ((org-agenda-overriding-header "To Refile")))
+            (tags-todo "-PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "All Tasks")
+                        (org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-todo-ignore-deadlines 'all)
+                        (org-agenda-todo-ignore-with-date 'all)
+                        (org-agenda-sorting-strategy '(priority-down))
                         ))
-            (tags-todo "-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\"-CATEGORY=\"PhD\""
-                       ((org-agenda-overriding-header (concat "Standalone Tasks"
-                                                              (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                  ""
-                                                                " (including WAITING and SCHEDULED tasks)")))
-                        (org-agenda-skip-function 'bh/skip-project-tasks)
-                        (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-sorting-strategy
-                         '(priority-down category-keep))))
             )
            ;; ((org-agenda-filter-preset '("-PhD")))
            )
-
-
-
-
-
-          ;;  ((org-agenda-sorting-strategy '(time-up priority-down tag-down todo-state-up))
-          ;;   (org-agenda-filter-preset '(""))
-          ;;   (org-agenda-regexp-filter-preset '(""))
-          ;;   (org-agenda-tag-filter-preset '("+WORK"))
-          ;;   )
-          ;;  ((org-agenda-files '("~/org/thesis.org"))
-          ;;   (org-agenda-sorting-strategy '(priority-down tag-down todo-state-up))
-          ;;   (org-agenda-filter-preset '("")))
-          ;;  )
-
-          ("gp" "Project Organization Stuff"
-           (
-            (tags-todo "-CANCELLED/!"
-                       ((org-agenda-overriding-header "Stuck Projects")
-                        (org-agenda-skip-function 'bh/skip-non-stuck-projects)
-                        (org-agenda-sorting-strategy '(category-keep))))
-            (tags-todo "-INACTIVE-HOLD-CANCELLED/!"
-                       ((org-agenda-overriding-header "Projects")
-                        (org-agenda-skip-function 'bh/skip-non-projects)
-                        (org-tags-match-list-sublevels 'indented)
-                        (org-agenda-sorting-strategy '(category-keep))))
-            (tags-todo "-CANCELLED/!NEXT"
-                       ((org-agenda-overriding-header (concat "Project Next Tasks"
-                                                              (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                  ""
-                                                                " (including WAITING and SCHEDULED tasks)")))
-                        (org-agenda-skip-function 'bh/skip-projects-and-habits-and-single-tasks)
-                        (org-tags-match-list-sublevels t)
-                        (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-sorting-strategy
-                         '(todo-state-down effort-up category-keep))))
-            (tags-todo "-REFILE-CANCELLED-WAITING-HOLD/!"
-                       ((org-agenda-overriding-header (concat "Project Subtasks"
-                                                              (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                  ""
-                                                                " (including WAITING and SCHEDULED tasks)")))
-                        (org-agenda-skip-function 'bh/skip-non-project-tasks)
-                        (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
-                        (org-agenda-sorting-strategy
-                         '(category-keep))))
-            ))
-
-
-
-
           ))
-
 #+END_SRC
 
 *** General agenda settings
 #+BEGIN_SRC emacs-lisp
-  ;; (setq org-agenda-filter-preset '("-someday"))
   (setq org-agenda-tags-todo-honor-ignore-options t)
-  (setq org-agenda-filter-preset '("-someday" "-WORK" "-inactive" "-ignore"))
+  (setq org-agenda-filter-preset '("-inactive" "-ignore"))
   (setq org-agenda-regexp-filter-preset '("-WAITING"))
   (setq org-log-into-drawer t)
   (setq org-agenda-log-mode-items '(clock state))
