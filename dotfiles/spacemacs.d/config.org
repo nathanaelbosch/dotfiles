@@ -1142,7 +1142,7 @@ Org-babel languages
      (python . t)
      (gnuplot . t)
      (shell . t)
-     (jupyter . t)
+     ;; (jupyter . t)
      (ein . t)
      (julia . t)
      (ledger . t)
@@ -1978,8 +1978,8 @@ Use YASnippet in ~ledger-mode~
 ** Python
 *** Configure flycheck
 #+begin_src emacs-lisp
-  (setq flycheck-python-flake8-executable "flake8")
-  (setq flycheck-flake8rc ".flake8")
+  ;; (setq flycheck-python-flake8-executable "flake8")
+  ;; (setq flycheck-flake8rc ".flake8")
 
   ;; (setq flycheck-python-pylint-executable "pylint")
   ;; (setq flycheck-python-mypy-executable "mypy")
