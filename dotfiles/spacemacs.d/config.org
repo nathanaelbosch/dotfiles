@@ -442,15 +442,10 @@ I love org so much, it deserves its own heading.
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-custom-commands
         '(
-          ("P" "Papers"
-           ((tags-todo "PhD+CATEGORY=\"papers\""
-                       ((org-agenda-todo-ignore-scheduled 'future)
-                        (org-agenda-overriding-header "Papers (phd.org)")))
-            (todo "TOREAD"
-                  ((org-agenda-files '("~/MEGA/papers/notes.org"))
-                   (org-agenda-sorting-strategy '(priority-down tag-down))
-                   (org-agenda-overriding-header "Papers (notes.org)")))
-            ))
+          ("P" "Papers" tags-todo "PhD+CATEGORY=\"papers\""
+           ((org-agenda-todo-ignore-scheduled 'future)
+            (org-agenda-overriding-header "Papers (phd.org)"))
+           )
 
           ("d" "Taskslist"
            ((tags-todo "-CATEGORY=\"papers\""
@@ -562,7 +557,8 @@ I love org so much, it deserves its own heading.
            ((org-agenda-filter-preset '("-PhD")))
            )
 
-          ("c" "Cleanup" tags "-PhD-papers+TODO=\"DONE\"|-PhD-papers+TODO=\"CANCELLED\"")
+          ("c" "Cleanup" tags "-PhD-papers+TODO=\"DONE\"|-PhD-papers+TODO=\"CANCELLED\""
+           ((org-agenda-skip-function 'bh/skip-project-tasks)))
           ))
 #+END_SRC
 
