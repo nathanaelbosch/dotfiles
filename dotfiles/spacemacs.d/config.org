@@ -558,8 +558,10 @@ I love org so much, it deserves its own heading.
                         (org-agenda-sorting-strategy '(priority-down))
                         ))
             )
-           ;; ((org-agenda-filter-preset '("-PhD")))
+           ((org-agenda-filter-preset '("-PhD")))
            )
+
+          ("c" "Cleanup" tags "-PhD-papers+TODO=\"DONE\"|-PhD-papers+TODO=\"CANCELLED\"")
           ))
 #+END_SRC
 
