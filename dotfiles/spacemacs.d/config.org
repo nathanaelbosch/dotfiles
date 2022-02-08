@@ -352,6 +352,8 @@ I love org so much, it deserves its own heading.
 *** Column view
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-agenda-overriding-columns-format "%CATEGORY(Category) %3PRIORITY  %42ITEM(Details) %TAGS(Tags) %7TODO(To Do) %5Effort(Time){:} %7CLOCKSUM(Clocked){:}")
+  (setq org-agenda-overriding-columns-format
+        "%CATEGORY(Category) %1PRIORITY %7TODO(TODO) %58ITEM(Details) %5Effort(Time){:} %5CLOCKSUM(Clocked){:}")
 #+END_SRC
 
 *** Priorities
