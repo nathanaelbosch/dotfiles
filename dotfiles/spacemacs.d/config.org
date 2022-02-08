@@ -76,6 +76,7 @@
     - [[#capture-template][Capture template]]
     - [[#capture-ref-from-browser][Capture Ref from Browser]]
     - [[#org-roam-bibtex][org-roam-bibtex]]
+    - [[#org-roam-dailies][org-roam dailies]]
   - [[#org-fragtog-to-make-latex-easier][~org-fragtog~ to make latex easier]]
 - [[#other-packages--languages--concepts][Other Packages / Languages / Concepts]]
   - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
@@ -1469,21 +1470,23 @@ Ignore org comments on export
 #+begin_src emacs-lisp
   (spacemacs/declare-prefix "aoR" "org-roam")
   (spacemacs/set-leader-keys
-  ;;   "aoRl" 'org-roam
-  ;;   "aoRt" 'org-roam-today
     "aoRc" 'org-roam-capture
     "aoRf" 'org-roam-node-find
-    ;; "aoRg" 'org-roam-show-graph
+    "aoRi" 'org-roam-node-insert
+    "aoRdD" 'org-roam-dailies-capture-today
+    "aoRdd" 'org-roam-dailies-goto-today
+    "aoRdt" 'org-roam-dailies-goto-tomorrow
+    "aoRdy" 'org-roam-dailies-goto-yesterday
     )
   (spacemacs/declare-prefix-for-mode 'org-mode "mr" "org-roam")
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
-  ;;   "rl" 'org-roam
-  ;;   "rt" 'org-roam-today
-  ;;   "rb" 'org-roam-switch-to-buffer
     "rc" 'org-roam-capture
     "rf" 'org-roam-node-find
     "ri" 'org-roam-node-insert
-    ;;   "rg" 'org-roam-show-graph
+    "rdD" 'org-roam-dailies-capture-today
+    "rdd" 'org-roam-dailies-goto-today
+    "rdt" 'org-roam-dailies-goto-tomorrow
+    "rdy" 'org-roam-dailies-goto-yesterday
     )
 #+end_src
 
@@ -1534,6 +1537,14 @@ Ignore org comments on export
           )
         )
         )
+#+end_src
+*** org-roam dailies
+Default capture template
+#+begin_src emacs-lisp
+  ;; (setq org-roam-dailies-capture-templates
+  ;;       (("d" "default" entry "* %?" :target
+  ;;         (file+head "%<%Y-%m-%d>.org"
+  ;;                    "#+title: %<%Y-%m-%d>\n#+category:%<%Y-%m-%d>"))))
 #+end_src
 ** ~org-fragtog~ to make latex easier
 #+begin_src emacs-lisp
