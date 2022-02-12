@@ -546,8 +546,9 @@ I love org so much, it deserves its own heading.
 
           ("a" "Standard View"
            ((agenda "" ((org-agenda-span 1)))
-            (tags-todo "CATEGORY=\"Inbox\"-CATEGORY=\"PhD\""
-                       ((org-agenda-overriding-header "To Refile")))
+            (tags "Inbox"
+                  ((org-agenda-overriding-header "To Refile")
+                   (org-agenda-files '("~/org/inbox.org"))))
             (tags-todo "-PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "All Tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
