@@ -478,7 +478,7 @@ I love org so much, it deserves its own heading.
 
           ;; Special types
           ("r" "To read (excluding papers)"
-           tags-todo "TODO=\"TOREAD\"-CATEGORY=\"papers\""
+           tags-todo "TODO=\"TOREAD\"-CATEGORY=\"papers\"-PhD"
            (;;(org-agenda-filter-preset '(""))
             (org-agenda-sorting-strategy '(priority-down tag-down))))
 
