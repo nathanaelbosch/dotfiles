@@ -60,6 +60,7 @@
   - [[#better-screenshots-with-org-download][Better screenshots with ~org-download~]]
   - [[#org-projectile][org-projectile]]
   - [[#google-calendar-integration-with-org-gcal][Google-Calendar Integration with ~org-gcal~]]
+    - [[#automatically-run-org-gcal-every-30-mins][Automatically run org-gcal every 30 mins]]
   - [[#export-org-to-latex][Export org to LaTeX]]
     - [[#latex-exports][LaTeX exports]]
     - [[#cdlatex-environments][cdlatex environments]]
@@ -1320,16 +1321,45 @@ Add project capture to capture menu
 
 #+BEGIN_SRC emacs-lisp
   ;; Google Calendar
-  (setq org-gcal-file-alist '(("nathanael.bosch@gmail.com" . "~/org/gcal/gcal.org")
+  (setq org-gcal-file-alist '(
+                              ("nathanael.bosch@gmail.com" . "~/org/gcal/gcal.org")
                               ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/org/gcal/uni.org")
-                              ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/org/gcal/urlaube.org")
-                              ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/org/gcal/tumonline.org")
+                              ;; ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/org/gcal/urlaube.org")
+                              ;; ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/org/gcal/tumonline.org")
                               ("9kv80prb7ojqt998nmm24149e0@group.calendar.google.com" . "~/org/gcal/geburtstage.org")
                               ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/org/gcal/phd.org")
                               ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/org/gcal/moml.org")
                               ))
   ;; (add-hook 'org-capture-after-finalize-hook 'org-gcal-fetch)
 #+END_SRC
+*** Automatically run org-gcal every 30 mins
+From https://github.com/kidd/org-gcal.el/issues/65
+#+begin_src emacs-lisp
+  (defun jj/internet-up-p (&optional host)
+    "Checks if the internet is up by pinging google."
+    (= 0 (call-process "ping" nil nil nil "-c" "1" "-W" "1"
+                       (if host host "www.google.com"))))
+
+  (defun jj/org-gcal-archive-erase-then-fetch ()
+    (interactive)
+    (when (jj/internet-up-p)
+      (dolist (i org-gcal-fetch-file-alist)
+        (with-current-buffer
+            (find-file-noselect (cdr i))
+          (when org-gcal-auto-archive
+            (org-gcal--archive-old-event))
+          (erase-buffer)
+          (org-gcal-fetch)))))
+
+  (defun jj/org-gcal-fetch-when-idle-full ()
+    (interactive)
+    ;; cancel this idle timer if it exists and hasn't run
+    (cancel-function-timers 'jj/org-gcal-archive-erase-then-fetch)
+    (run-with-idle-timer 21 nil 'jj/org-gcal-archive-erase-then-fetch))
+
+  ;; Run once in emacs-startup-hook as well
+  (run-with-timer (* 363 60) (* 360 60) 'jj/org-gcal-fetch-when-idle-full)
+#+end_src
 ** Export org to LaTeX
 For when I write org to not write LaTeX
 *** LaTeX exports
