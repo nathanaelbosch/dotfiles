@@ -392,7 +392,8 @@ I love org so much, it deserves its own heading.
           (sequence "TOREAD(r)" "|" "1PASS(1)" "2PASS(2)" "3PASS(3)")
           (sequence "TOWATCH(w)" "|")
           (sequence "TOLISTEN(l)" "|")
-          (sequence "REMINDER(R)" "|" "NOTE(n)" "REFERENCE(D!)")
+          (sequence "REMINDER(R)" "|")
+          (sequence "|" "NOTE(n)" "REFERENCE(D)")
           ))
   (setq org-todo-keyword-faces
         '(
