@@ -533,6 +533,7 @@ I love org so much, it deserves its own heading.
             (tags-todo "-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "All Tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-tags-todo-honor-ignore-options t)
                         (org-agenda-todo-ignore-deadlines 'all)
                         (org-agenda-todo-ignore-with-date 'all)
                         (org-agenda-sorting-strategy '(priority-down))
@@ -554,6 +555,7 @@ I love org so much, it deserves its own heading.
             (tags-todo "-PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "All Tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-tags-todo-honor-ignore-options t)
                         (org-agenda-todo-ignore-deadlines 'all)
                         (org-agenda-todo-ignore-with-date 'all)
                         (org-agenda-sorting-strategy '(priority-down))
