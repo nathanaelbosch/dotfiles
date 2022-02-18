@@ -509,64 +509,64 @@ I love org so much, it deserves its own heading.
                         (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
                         (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
 
-                        '(category-keep))))
-           (tags-todo "-CANCELLED+WAITING|HOLD/!"
-                      ((org-agenda-overriding-header (concat "Waiting and Postponed Tasks"
-                                                             (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                 ""
-                                                               " (including WAITING and SCHEDULED tasks)")))
-                       (org-agenda-skip-function 'bh/skip-non-tasks)
-                       (org-tags-match-list-sublevels nil)
-                       (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
-                       (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)))
-           (tags-todo "PhD-CATEGORY=\"papers\""
-                      ((org-agenda-todo-ignore-scheduled 'all)
-                       (org-agenda-overriding-header "TODOs")))
+                        '(category-keep)))
+            (tags-todo "-CANCELLED+WAITING|HOLD/!"
+                       ((org-agenda-overriding-header (concat "Waiting and Postponed Tasks"
+                                                              (if bh/hide-scheduled-and-waiting-next-tasks
+                                                                  ""
+                                                                " (including WAITING and SCHEDULED tasks)")))
+                        (org-agenda-skip-function 'bh/skip-non-tasks)
+                        (org-tags-match-list-sublevels nil)
+                        (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
+                        (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)))
+            (tags-todo "PhD-CATEGORY=\"papers\""
+                       ((org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-overriding-header "TODOs")))
+            )
+           ((org-agenda-filter-preset '("+PhD")))
            )
-          ((org-agenda-filter-preset '("+PhD")))
-          )
 
-        ("p" "PhD View"
-         ((agenda "" ((org-agenda-span 1)))
-          (tags-todo "CATEGORY=\"PhD-Inbox\""
-                     ((org-agenda-overriding-header "To Refile")))
-          (tags-todo "-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
-                     ((org-agenda-overriding-header "All Tasks")
-                      (org-agenda-todo-ignore-scheduled 'all)
-                      (org-agenda-todo-ignore-deadlines 'all)
-                      (org-agenda-todo-ignore-with-date 'all)
-                      (org-agenda-sorting-strategy '(priority-down))
-                      ))
-          )
-         ((org-agenda-filter-preset '("+PhD")))
-         )
-        ("P" "PhD Reading" tags-todo "PhD+TODO=\"TOREAD\""
-         ((org-agenda-todo-ignore-scheduled 'future)
-          (org-agenda-overriding-header "TOREAD (phd.org)"))
-         )
+          ("p" "PhD View"
+           ((agenda "" ((org-agenda-span 1)))
+            (tags-todo "CATEGORY=\"PhD-Inbox\""
+                       ((org-agenda-overriding-header "To Refile")))
+            (tags-todo "-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "All Tasks")
+                        (org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-todo-ignore-deadlines 'all)
+                        (org-agenda-todo-ignore-with-date 'all)
+                        (org-agenda-sorting-strategy '(priority-down))
+                        ))
+            )
+           ((org-agenda-filter-preset '("+PhD")))
+           )
+          ("P" "PhD Reading" tags-todo "PhD+TODO=\"TOREAD\""
+           ((org-agenda-todo-ignore-scheduled 'future)
+            (org-agenda-overriding-header "TOREAD (phd.org)"))
+           )
 
 
-        ("a" "Standard View"
-         ((agenda "" ((org-agenda-span 1)))
-          (tags "Inbox"
-                ((org-agenda-overriding-header "To Refile")
-                 (org-agenda-files '("~/org/inbox.org"))))
-          (tags-todo "-PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
-                     ((org-agenda-overriding-header "All Tasks")
-                      (org-agenda-todo-ignore-scheduled 'all)
-                      (org-agenda-todo-ignore-deadlines 'all)
-                      (org-agenda-todo-ignore-with-date 'all)
-                      (org-agenda-sorting-strategy '(priority-down))
-                      ))
-          )
-         ((org-agenda-filter-preset '("-PhD")))
-         )
+          ("a" "Standard View"
+           ((agenda "" ((org-agenda-span 1)))
+            (tags "Inbox"
+                  ((org-agenda-overriding-header "To Refile")
+                   (org-agenda-files '("~/org/inbox.org"))))
+            (tags-todo "-PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "All Tasks")
+                        (org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-todo-ignore-deadlines 'all)
+                        (org-agenda-todo-ignore-with-date 'all)
+                        (org-agenda-sorting-strategy '(priority-down))
+                        ))
+            )
+           ((org-agenda-filter-preset '("-PhD")))
+           )
 
-        ("c" "Cleanup" tags "-PhD-papers+TODO=\"DONE\"|-PhD-papers+TODO=\"CANCELLED\""
-         ((org-agenda-skip-function 'bh/skip-project-tasks)))
-        ("C" "PhD Cleanup" tags "PhD-papers+TODO=\"DONE\"|PhD-papers+TODO=\"CANCELLED\""
-         ((org-agenda-skip-function 'bh/skip-project-tasks)))
-        ))
+          ("c" "Cleanup" tags "-PhD-papers+TODO=\"DONE\"|-PhD-papers+TODO=\"CANCELLED\""
+           ((org-agenda-skip-function 'bh/skip-project-tasks)))
+          ("C" "PhD Cleanup" tags "PhD-papers+TODO=\"DONE\"|PhD-papers+TODO=\"CANCELLED\""
+           ((org-agenda-skip-function 'bh/skip-project-tasks)))
+          ))
 #+END_SRC
 
 *** General agenda settings
