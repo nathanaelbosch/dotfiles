@@ -564,6 +564,8 @@ I love org so much, it deserves its own heading.
            ((org-agenda-filter-preset '("-PhD" "-inactive" "-ignore")))
            )
 
+          ("A" "Agenda - Week view with all Tasks" agenda "" ((org-agenda-span 7)))
+
           ("c" "Cleanup" tags "-PhD-papers+TODO=\"DONE\"|-PhD-papers+TODO=\"CANCELLED\""
            ((org-agenda-skip-function 'bh/skip-project-tasks)))
           ("C" "PhD Cleanup" tags "PhD-papers+TODO=\"DONE\"|PhD-papers+TODO=\"CANCELLED\""
