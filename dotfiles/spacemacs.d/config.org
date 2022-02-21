@@ -552,7 +552,7 @@ I love org so much, it deserves its own heading.
             (tags "Inbox"
                   ((org-agenda-overriding-header "To Refile")
                    (org-agenda-files '("~/org/inbox.org"))))
-            (tags-todo "-PhD-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+            (tags-todo "-PhD-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "All Tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
                         (org-agenda-tags-todo-honor-ignore-options t)
@@ -561,7 +561,7 @@ I love org so much, it deserves its own heading.
                         (org-agenda-sorting-strategy '(priority-down))
                         ))
             )
-           ((org-agenda-filter-preset '("-PhD")))
+           ((org-agenda-filter-preset '("-PhD" "-inactive" "-ignore")))
            )
 
           ("c" "Cleanup" tags "-PhD-papers+TODO=\"DONE\"|-PhD-papers+TODO=\"CANCELLED\""
@@ -575,7 +575,7 @@ I love org so much, it deserves its own heading.
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-tags-todo-honor-ignore-options t)
   (setq org-agenda-filter-preset '("-inactive" "-ignore"))
-  (setq org-agenda-regexp-filter-preset '("-WAITING"))
+  ;; (setq org-agenda-regexp-filter-preset '("-WAITING"))
   (setq org-log-into-drawer t)
   (setq org-agenda-log-mode-items '(clock state))
 
