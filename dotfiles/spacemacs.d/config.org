@@ -1516,6 +1516,7 @@ Ignore org comments on export
     )
   (spacemacs/declare-prefix-for-mode 'org-mode "mr" "org-roam")
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "rr" 'org-roam-buffer-toggle
     "rc" 'org-roam-capture
     "rf" 'org-roam-node-find
     "ri" 'org-roam-node-insert
