@@ -23,4 +23,11 @@ echo "
 # Install the dotfiles (if the hostname exists in the config file)
 ################################################################################
 "
-./dotdrop.sh install
+echo -e "Please enter the profile to be used (leave empty to use hostname): "
+read profile
+if [ -z "$profile" ]; then
+    ./dotdrop.sh install
+else
+    ./dotdrop.sh install -p $profile
+fi
+
