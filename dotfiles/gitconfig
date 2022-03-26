@@ -3,6 +3,7 @@
 	name = Nathanael Bosch
 [core]
 	editor = vim
+	excludesfile = /home/user/.gitignore
 [github]
 	user = nathanaelbosch
 [gitlab "gitlab.mlcloud.uni-tuebingen.de/api/v4"]
