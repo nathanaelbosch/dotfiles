@@ -1,0 +1,5 @@
+(undo-tree-save-format-version . 1)
+"5abd836b7bcf958e6075dec9c56942c07734c0e9"
+[nil nil nil nil (25147 30530 218012 477000) 0 nil]
+([nil current ((nil fontified nil 811 . 816) (nil face (org-verbatim) 811 . 816) (nil font-lock-multiline t 811 . 816) (nil org-emphasis t 811 . 816) (#("%LAYER_NAME%" 0 12 (fontified nil face (org-verbatim) font-lock-multiline t org-emphasis t)) . -811) (823 . 828) (#("%LAYER_NAME%" 0 12 (fontified nil face org-link mouse-face highlight keymap (keymap (follow-link . mouse-face) (mouse-3 . org-find-file-at-mouse) (mouse-2 . org-open-at-mouse)) help-echo "LINK: img/%LAYER_NAME%.png" htmlize-link (:uri "img/%LAYER_NAME%.png") font-lock-multiline t)) . -344) (356 . 361) (#("%LAYER_NAME%" 0 12 (fontified nil font-lock-fontified t face org-document-title)) . -10) (t 25147 30528 171000 0) (22 . 27) (t 25147 30528 171000 0)) nil (25147 30530 218004 683000) 0 nil])
+nil

@@ -1998,12 +1998,12 @@ Use YASnippet in ~ledger-mode~
 #+end_src
 ** Julia
 #+begin_src emacs-lisp
-  (add-hook 'julia-mode-hook
-            (lambda ()
-              (set-fill-column 92)
-              ;; (auto-fill-mode t)
-              (spacemacs/toggle-fill-column-indicator-on)
-              ))
+  ;; (add-hook 'julia-mode-hook
+  ;;           (lambda ()
+  ;;             (set-fill-column 92)
+  ;;             ;; (auto-fill-mode t)
+  ;;             (spacemacs/toggle-fill-column-indicator-on)
+  ;;             ))
 #+end_src
 *** Julia block
 #+begin_src emacs-lisp
