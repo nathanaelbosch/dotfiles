@@ -59,7 +59,7 @@ This function should only modify configuration layer settings."
      ;; evil-commentary
      finance
      git
-     github
+     ;; github
      ;; google-calendar
      haskell
      helm
@@ -106,6 +106,7 @@ This function should only modify configuration layer settings."
              python-formatter 'black
              python-format-on-save t
              python-fill-column 88
+             python-auto-set-local-pyvenv-virtualenv nil
              )
      ranger
      rust
@@ -593,8 +594,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; (setq shell-file-name "fish")
   ;; (require 'exwm-systemtray)
   ;; (exwm-systemtray-enable)
-  (add-to-list 'load-path "/usr/share/emacs/site-lisp")
-  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+  ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp")
+  ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
   )
 
 (defun dotspacemacs/user-load ()
@@ -621,8 +622,6 @@ you should place your code here."
   (org-babel-load-file "~/.spacemacs.d/config.org")
 
   (find-file "~/org/inbox.org")
-
-  ;; (cd "~/")
 )
 
 

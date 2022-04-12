@@ -1500,7 +1500,7 @@ Ignore org comments on export
 #+end_src
 *** Autosync Mode is needed apparently
 #+begin_src emacs-lisp
-  (org-roam-db-autosync-mode)
+  ;; (org-roam-db-autosync-mode)
 #+end_src
 *** Start ~org-roam-mode~ on startup
 #+begin_src emacs-lisp
