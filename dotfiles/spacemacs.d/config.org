@@ -2050,3 +2050,10 @@ Faster than the default scp:
 #+begin_src emacs-lisp
   (setq tramp-default-method "ssh")
 #+end_src
+** Ligatures
+
+#+begin_src emacs-lisp
+  (fira-code-mode-set-font)
+  (add-hook 'prog-mode-hook 'fira-code-mode)
+  (add-hook 'org-mode-hook 'fira-code-mode)
+#+end_src

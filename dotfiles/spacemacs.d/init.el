@@ -168,6 +168,7 @@ This function should only modify configuration layer settings."
                                       (evil-magit :location (recipe
                                                              :fetcher github
                                                              :repo "emacs-evil/evil-magit"))
+                                      fira-code-mode
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -328,8 +329,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 12.
+   dotspacemacs-default-font '("Fira Code"
+                               :size 14.
                                :weight normal
                                :width normal)
 
