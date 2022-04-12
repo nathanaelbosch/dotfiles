@@ -134,6 +134,11 @@ customized in the original config file.
 #+BEGIN_SRC emacs-lisp
   (setq evil-want-fine-undo t)
 #+END_SRC
+
+Also turn on the global-undo-tree mode
+#+BEGIN_SRC emacs-lisp
+  (global-undo-tree-mode)
+#+END_SRC
 ** Better vertical splitting
 #+BEGIN_SRC emacs-lisp
   (setq split-height-threshold nil)
