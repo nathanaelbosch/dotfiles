@@ -5,7 +5,7 @@ echo "
 # Clone the dotfiles repo into ~/dotfiles
 ################################################################################
 "
-git clone --recursive https://github.com/nathbo/dotfiles.git ~/dotfiles
+git clone --recursive https://github.com/nathanaelbosch/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 
 echo "
