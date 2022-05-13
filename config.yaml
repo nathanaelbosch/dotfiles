@@ -163,17 +163,20 @@ profiles:
     - d_offlineimap
     - d_msmtp
     - f_org-protocol.desktop
+  i3:
+    dotfiles:
+    - d_i3
+    - d_i3status
+    - d_screenlayout
+    - d_sxhkd
   bree:
     include:
     - terminal
     - spacemacs_full
+    - i3
     dotfiles:
-    - d_i3
-    - d_i3status
     - d_polybar
     - d_rofi
-    - d_screenlayout
-    - d_sxhkd
     - f_compton.conf
     - f_latexmkrc
     - f_mpw
@@ -186,12 +189,9 @@ profiles:
     include:
     - terminal
     - spacemacs_full
+    - i3
     dotfiles:
     - d_bat
-    - d_i3
-    - d_i3status
-    - d_screenlayout
-    - d_sxhkd
     - d_zathura
     - d_ranger
     - f_startup.jl
@@ -208,11 +208,8 @@ profiles:
     include:
     - terminal
     - spacemacs_full
+    - i3
     dotfiles:
-    - d_i3
-    - d_i3status
-    - d_sxhkd
-    - f_latexmkrc
     - d_zathura
     - d_alacritty
     - f_startup.jl
