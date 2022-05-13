@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Espoo Restaurant entry
+# key: lunch
+# --
+Lunch Espoo Restaurant
+    Expenses:Food:Restaurant                              $0€
+    Assets:Comdirect:Konto

@@ -114,6 +114,7 @@
     - [[#python-language-server-configuration][python language server configuration]]
     - [[#use-fill-column][Use fill column]]
   - [[#bugfix-tramp][Bugfix TRAMP]]
+  - [[#ligatures][Ligatures]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -1500,7 +1501,7 @@ Ignore org comments on export
 #+end_src
 *** Autosync Mode is needed apparently
 #+begin_src emacs-lisp
-  ;; (org-roam-db-autosync-mode)
+  (org-roam-db-autosync-mode)
 #+end_src
 *** Start ~org-roam-mode~ on startup
 #+begin_src emacs-lisp
@@ -1970,7 +1971,7 @@ Aesthetic settings:
 ** YASnippet
 Add the yasnippet-snippets snippets to YASnippet.
 #+begin_src emacs-lisp
-  (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
+  ;; (add-to-list 'yas-snippet-dirs yasnippet-snippets-dir)
 #+end_src
 
 Use YASnippet in ~ledger-mode~
@@ -2054,6 +2055,7 @@ Faster than the default scp:
 
 #+begin_src emacs-lisp
   (fira-code-mode-set-font)
+  ;; (setq 'fira-code-mode-disabled-ligatures '("x"))
   (add-hook 'prog-mode-hook 'fira-code-mode)
   (add-hook 'org-mode-hook 'fira-code-mode)
 #+end_src

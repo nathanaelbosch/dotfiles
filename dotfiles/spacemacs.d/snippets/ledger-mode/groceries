@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Groceries entry
+# key: gro
+# --
+Groceries
+    Expenses:Food:Groceries                              $0€
+    Assets:Comdirect:Konto
