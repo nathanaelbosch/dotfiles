@@ -238,37 +238,5 @@ mode "$mode_gaps_outer" {
 ############################################################################
 # Personal bindings and startup
 ############################################################################
-# Lock screen
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# exec --no-startup-id xfce4-power-manager
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_mycolors
-# exec --no-startup-id xautolock -time 10 -locker blurlock
-# exec --no-startup-id xautolock -time 10 -locker i3-lock
-
-# Floating htop with Ctrl+shift+Escape
-# bindsym Ctrl+shift+Escape exec --no-startup-id urxvt -name htop_win -e htop
-# for_window [instance="htop_win"] floating enable sticky enable border none
-for_window [instance="htop_win"] floating enable sticky enable 
-
-# Floating terminal with F12, similar to guake
-exec --no-startup-id urxvt -name "my_guake"
-for_window [instance="^my_guake$"] floating enable sticky enable border none
-for_window [instance="^my_guake$"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
-# exec --no-startup-id emacs -nc -e '(setq-default frame-title-format \'"my_eguake"))'
-# for_window [class="Emacs"] floating enable
-for_window [class="Emacs" title="eguake"] floating enable sticky enable border none
-for_window [class="Emacs" title="eguake"] move scratchpad; [instance="^my_guake$"] scratchpad show; move scratchpad
-# bindsym F12 [instance="^my_guake$"] scratchpad show
-# bindsym $mod+F12 exec --no-startup-id urxvt -name my_guake
-
+for_window [instance="htop_win"] floating enable sticky enable
 for_window [class="Spotify"] move workspace $ws10
-for_window [class="Slack"] move workspace $ws9
-# for_window [instance="Spotify"] floating enable sticky enable border none
-# for_window [instance="Spotify"] move scratchpad; [instance="Spotify"] scratchpad show; move scratchpad
-
-# Mons to manage monitors
-# bindsym $mod+Shift+m exec mons -n right
-# exec --no-startup-id mons -a
