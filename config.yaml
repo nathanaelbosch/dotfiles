@@ -135,6 +135,10 @@ dotfiles:
     src: config/kitty
     dst: ~/.config/kitty
     link: nolink
+  f_startup.jl:
+    src: julia/config/startup.jl
+    dst: ~/.julia/config/startup.jl
+    link: nolink
 profiles:
   terminal:
     dotfiles:
@@ -177,6 +181,7 @@ profiles:
     - d_dunst
     - d_zathura
     - d_alacritty
+    - f_startup.jl
   murr:
     include:
     - terminal
@@ -189,6 +194,7 @@ profiles:
     - d_sxhkd
     - d_zathura
     - d_ranger
+    - f_startup.jl
   dev:
     include:
     - terminal
@@ -197,6 +203,7 @@ profiles:
     - d_kitty
     - d_zathura
     - f_latexmkrc
+    - f_startup.jl
   shire:
     include:
     - terminal
@@ -208,3 +215,4 @@ profiles:
     - f_latexmkrc
     - d_zathura
     - d_alacritty
+    - f_startup.jl
