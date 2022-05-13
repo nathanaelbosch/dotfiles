@@ -15,32 +15,12 @@ super + Return
   alacritty
 
 # program launcher
-# super + @space
-# 	dmenu_run
-# super + d
-#   rofi -show run
-# alt + Tab
-#   rofi -show window
 super + d
 	dmenu_run -sb "#5F819D" -nf "#c5c8c6" -sf "#c5c8c6"
 
 # Emacs hotkey
 super + e
   emacsclient -nc -a ''
-
-
-# Dropdown terminal
-# F12
-#   id=$(cat /tmp/scratchid);\
-#   bspc node $id --flag hidden;bspc node -f $id
-# F12
-#   tdrop -ma -w 50% -x 25% -y 25% -h 50% urxvt
-F12
-  i3-msg [title="eguake"] scratchpad show
-  # i3-msg [instance="^my_guake$"] scratchpad show
-super + F12
-  emacsclient -n -e '(yequake-toggle "eguake")'
-  # urxvt -name my_guake
 
 ctrl + shift + Escape
   alacritty --class htop_win -e htop
@@ -101,10 +81,11 @@ super + o
 ###################################################################
 # Pulse Audio controls
 {XF86AudioRaiseVolume, XF86AudioLowerVolume}
-  pactl set-sink-volume 0 {+5%, -5%}
+  pactl set-sink-volume @DEFAULT_SINK@ {+5%, -5%}
 XF86AudioMute
-  pactl set-sink-mute 0 toggle
-
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+  pactl set-source-mute 2 toggle
 
 ###################################################################
 # focus/swap
@@ -152,10 +133,6 @@ super + F2
   qutebrowser
 super + {_, shift +} F3
   {_,gksu} nautilus
-# super + {_, shift +} t
-#   {pkill compton, compton -b --config ~/.compton.conf}
-# super + shift + d
-#   killall dunst; exec notify-send 'restart dunst'
 super + ctrl + x
   xkill
 
@@ -167,9 +144,6 @@ super + shift + p
 super + ctrl + p
   /home/nath/bin/pstreamer.py
 
-# ctrl + shift + escape
-#   terminal -name htop_win -e htop
-
 super + shift + x
   slock
 
@@ -178,3 +152,12 @@ super + z
 
 super + ctrl + m
   pavucontrol
+
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+  xbacklight -{inc,dec} 5
+
+super + ctrl + b
+	killall blueman-applet && sleep 1 && blueman-applet
+
+super + ctrl + n
+	killall nm-applet && sleep 1 && nm-applet
