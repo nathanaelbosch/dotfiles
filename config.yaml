@@ -138,6 +138,10 @@ dotfiles:
   f_startup.jl:
     src: julia/config/startup.jl
     dst: ~/.julia/config/startup.jl
+  f_gitignore:
+    src: gitignore
+    dst: ~/.gitignore
+    link: nolink
 profiles:
   terminal:
     dotfiles:
@@ -203,6 +207,7 @@ profiles:
     - d_zathura
     - f_latexmkrc
     - f_startup.jl
+    - f_gitignore
   shire:
     include:
     - terminal

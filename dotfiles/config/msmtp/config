@@ -13,6 +13,22 @@ from           nathanael.bosch@gmail.com
 user           nathanael.bosch
 passwordeval   "authinfo.sh machine=gmail"
 
+# Uni-Tue
+account        unitue
+host           smtpserv.uni-tuebingen.de
+port           587
+from           nathanael.bosch@uni-tuebingen.de
+user           iiina01
+passwordeval   "authinfo.sh machine='unitue'"
+
+# MPI-IS
+account        mpiis
+host           mailhost.tuebingen.mpg.de
+port           587
+from           nathanael.bosch@tuebingen.mpg.de
+user           nathanael.bosch@tuebingen.mpg.de
+passwordeval   "authinfo.sh machine='mpi-is'"
+
 # Protonmail
 account        protonmail
 host           127.0.0.1
@@ -23,13 +39,6 @@ passwordeval   "authinfo.sh machine=protonmail"
 tls_starttls   on
 # tls_fingerprint obtained by: https://www.reddit.com/r/ProtonMail/comments/89c24n/my_protonmail_bridge_setup_over_a_systemd_daemon/
 
-# Uni-Tue
-account        unitue
-host           smtpserv.uni-tuebingen.de
-port           587
-from           nathanael.bosch@uni-tuebingen.de
-user           iiina01
-passwordeval   "authinfo.sh machine='unitue'"
 
 # Set a default account
-account default : gmail
+account default : protonmail
