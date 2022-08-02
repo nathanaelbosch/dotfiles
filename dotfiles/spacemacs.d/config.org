@@ -96,6 +96,7 @@
     - [[#add-uni-tuebingen-gitlab][Add uni-tuebingen gitlab]]
   - [[#latex][LaTeX]]
     - [[#reftex][RefTex]]
+    - [[#helm-bibtex-for-citations][Helm-bibtex for citations]]
     - [[#outline-minor-mode][Outline Minor Mode]]
     - [[#outline-magic][Outline-magic]]
     - [[#visual-fill-mode-instead-of-auto-fill][Visual fill mode instead of auto fill]]
@@ -1857,6 +1858,15 @@ Ask me about the TeX master file if unsure
 *** RefTex
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key-for-mode 'latex-mode "r r" 'reftex-cleveref-cref)
+  (evil-leader/set-key-for-mode 'latex-mode "r t" 'reftex-citet)
+  (evil-leader/set-key-for-mode 'latex-mode "r p" 'reftex-citep)
+#+END_SRC
+*** Helm-bibtex for citations
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key-for-mode 'latex-mode "B" 'helm-bibtex-with-local-bibliography)
+
+  ;; (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
+  ;; (helm-add-action-to-source "Insert citation" 'helm-bibtex-insert-citation helm-source-bibtex 0)
 #+END_SRC
 *** Outline Minor Mode
 #+BEGIN_SRC emacs-lisp
@@ -2004,12 +2014,8 @@ Use YASnippet in ~ledger-mode~
 #+end_src
 ** Julia
 #+begin_src emacs-lisp
-  ;; (add-hook 'julia-mode-hook
-  ;;           (lambda ()
-  ;;             (set-fill-column 92)
-  ;;             ;; (auto-fill-mode t)
-  ;;             (spacemacs/toggle-fill-column-indicator-on)
-  ;;             ))
+  (add-hook 'julia-mode-hook
+            (lambda () (set-fill-column 92) (spacemacs/toggle-fill-column-indicator-on)))
 #+end_src
 *** Julia block
 #+begin_src emacs-lisp

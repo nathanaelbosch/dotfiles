@@ -62,6 +62,9 @@ battery all {
         status_full = "☻"
         low_threshold = 15
         threshold_type = time
+        # path = "/sys/class/power_supply/ucsi-source-psy-USBC000:001/uevent"
+        # path = "/sys/class/power_supply/AC/uevent"
+        path = "/sys/class/power_supply/CMB%d/uevent"
 }
 
 tztime local {

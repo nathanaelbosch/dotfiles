@@ -69,6 +69,7 @@ This function should only modify configuration layer settings."
      julia
      (latex :variables
             ;; latex-enable-auto-fill nil
+            latex-backend 'company-auctex
             latex-build-command "LatexMk"
             latex-enable-auto-fill t
             latex-enable-magic t

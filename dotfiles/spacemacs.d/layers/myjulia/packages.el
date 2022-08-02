@@ -22,8 +22,7 @@
   '(
     julia-mode
     lsp-julia
-    julia-snail
-    vterm
+    (julia-snail :requires vterm)
     )
   )
 
@@ -56,7 +55,7 @@
      julia-snail-multimedia-enable t
      )
     ;; (define-key julia-snail-mode-map (kbd "<C-return>") 'julia-snail-send-line)
-    (define-key julia-snail-mode-map (kbd "<S-return>") 'julia-snail-send-dwim)
+    ;; (define-key julia-snail-mode-map (kbd "<S-return>") 'julia-snail-send-dwim)
     ;; (spacemacs/set-leader-keys-for-minor-mode 'julia-snail-mode
     ;;   "," 'julia-snail-send-dwim
     ;;   )

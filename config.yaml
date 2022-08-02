@@ -79,9 +79,9 @@ dotfiles:
   f_compton.conf:
     dst: ~/.compton.conf
     src: compton.conf
-  f_config.py:
-    dst: ~/.config/qutebrowser/config.py
-    src: config/qutebrowser/config.py
+  d_qutebrowser:
+    dst: ~/.config/qutebrowser
+    src: config/qutebrowser
   f_extend.bashrc:
     dst: ~/.extend.bashrc
     src: extend.bashrc
@@ -138,7 +138,6 @@ dotfiles:
   f_startup.jl:
     src: julia/config/startup.jl
     dst: ~/.julia/config/startup.jl
-    link: nolink
 profiles:
   terminal:
     dotfiles:
@@ -213,3 +212,4 @@ profiles:
     - d_zathura
     - d_alacritty
     - f_startup.jl
+    - d_qutebrowser
