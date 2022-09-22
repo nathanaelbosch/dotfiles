@@ -173,6 +173,11 @@ This function should only modify configuration layer settings."
                                                              :repo "emacs-evil/evil-magit"))
                                       fira-code-mode
                                       ;; minimap
+                                      (copilot :location (recipe
+                                                          :fetcher github
+                                                          :repo "zerolfx/copilot.el"
+                                                          :files ("*.el" "dist")
+                                                          ))
                                       )
 
    ;; A list of packages that cannot be updated.

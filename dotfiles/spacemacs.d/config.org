@@ -116,6 +116,7 @@
     - [[#use-fill-column][Use fill column]]
   - [[#bugfix-tramp][Bugfix TRAMP]]
   - [[#ligatures][Ligatures]]
+  - [[#github-copilot][Github copilot]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -140,6 +141,7 @@ customized in the original config file.
 Also turn on the global-undo-tree mode
 #+BEGIN_SRC emacs-lisp
   (global-undo-tree-mode)
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d./.cache")))
 #+END_SRC
 ** Better vertical splitting
 #+BEGIN_SRC emacs-lisp
@@ -1845,9 +1847,9 @@ Refine diffs
 
 *** Add uni-tuebingen gitlab
 #+begin_src emacs-lisp
-  (add-to-list 'forge-alist
-               '("gitlab.mlcloud.uni-tuebingen.de" "gitlab.mlcloud.uni-tuebingen.de/api/v4" "gitlab.mlcloud.uni-tuebingen.de" forge-gitlab-repository)
-               )
+  ;; (add-to-list 'forge-alist
+  ;;              '("gitlab.mlcloud.uni-tuebingen.de" "gitlab.mlcloud.uni-tuebingen.de/api/v4" "gitlab.mlcloud.uni-tuebingen.de" forge-gitlab-repository)
+  ;;              )
 #+end_src
 
 ** LaTeX
@@ -2064,4 +2066,21 @@ Faster than the default scp:
   ;; (setq 'fira-code-mode-disabled-ligatures '("x"))
   (add-hook 'prog-mode-hook 'fira-code-mode)
   (add-hook 'org-mode-hook 'fira-code-mode)
+#+end_src
+** Github copilot
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'company
+    ;; disable inline previews
+    (delq 'company-preview-if-just-one-frontend company-frontends))
+
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+
+  (add-hook 'prog-mode-hook 'copilot-mode)
+
+  (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+  (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+
+  (define-key evil-insert-state-map (kbd "M-n") 'copilot-next-completion)
 #+end_src
