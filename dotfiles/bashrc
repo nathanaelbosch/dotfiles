@@ -37,6 +37,16 @@ if [[ ! "$SSH_AUTH_SOCK" ]]; then
     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi
 
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in *:/home/nbosch/.julia/juliaup/bin:*);; *)
+    export PATH=/home/nbosch/.julia/juliaup/bin${PATH:+:${PATH}};;
+esac
+
+# <<< juliaup initialize <<<
+
 # FISH DEFAULT SHELL
 [[ $TERM == "tramp" ]] && PS1='$ ' && return
 [[ $TERM == "dumb" ]] && PS1='$ ' && return

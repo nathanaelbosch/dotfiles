@@ -11,3 +11,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PYTHONBREAKPOINT=ipdb.set_trace
 
 [[ -f ~/.extend.profile ]] && . ~/.extend.profile
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in *:/home/nbosch/.julia/juliaup/bin:*);; *)
+    export PATH=/home/nbosch/.julia/juliaup/bin${PATH:+:${PATH}};;
+esac
+
+# <<< juliaup initialize <<<
