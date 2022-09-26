@@ -71,7 +71,7 @@ This function should only modify configuration layer settings."
             ;; latex-enable-auto-fill nil
             latex-backend 'company-auctex
             latex-build-command "LatexMk"
-            latex-enable-auto-fill t
+            latex-enable-auto-fill nil
             latex-enable-magic t
             latex-enable-folding t)
      lsp

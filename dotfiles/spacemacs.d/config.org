@@ -1453,7 +1453,7 @@ Ignore org comments on export
   ;; remove comments from org document for use with export hook
   ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
   (defun delete-org-comments (backend)
-    (loop for comment in (reverse (org-element-map (org-element-parse-buffer)
+    (cl-loop for comment in (reverse (org-element-map (org-element-parse-buffer)
                                       'comment 'identity))
           do
           (setf (buffer-substring (org-element-property :begin comment)
@@ -1908,9 +1908,8 @@ Fake sections for better manipulation:
 #+END_SRC
 *** Visual fill mode instead of auto fill
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'latex-mode-hook 'visual-fill-column-mode)
-  (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
   (add-hook 'LaTeX-mode-hook 'visual-fill-column-mode)
+  ;; (add-hook 'LaTeX-mode-hook 'spacemacs/toggle-auto-fill-mode-off)
 #+END_SRC
 *** Beamer: Bold as bold, not as alert!
 #+begin_src emacs-lisp
@@ -2067,17 +2066,19 @@ Faster than the default scp:
   (add-hook 'prog-mode-hook 'fira-code-mode)
   (add-hook 'org-mode-hook 'fira-code-mode)
 #+end_src
+
 ** Github copilot
 
 #+begin_src emacs-lisp
-  (with-eval-after-load 'company
-    ;; disable inline previews
-    (delq 'company-preview-if-just-one-frontend company-frontends))
+  ;; (with-eval-after-load 'company
+  ;;   ;; disable inline previews
+  ;;   (delq 'company-preview-if-just-one-frontend company-frontends))
 
   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
 
   (add-hook 'prog-mode-hook 'copilot-mode)
+  (add-hook 'LaTeX-mode-hook 'copilot-mode)
 
   (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
   (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
