@@ -122,7 +122,7 @@ super + shift + {1-9,0}
   i3-msg move container to workspace $_WS_NAME;
 
 #navigate workspaces next / previous
-super + ctrl + {right, left}
+super + ctrl + {Right, Left}
   i3-msg workspace {next, prev}
 
 

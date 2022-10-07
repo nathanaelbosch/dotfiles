@@ -12,7 +12,7 @@ if [ -z "$OPTS" ]; then
 	  exit 0
 fi
 
-gpg2 -q -d "${AUTHINFO_FILE:-$HOME/.authinfo.gpg}" | awk $OPTS '
+gpg -q -d "${AUTHINFO_FILE:-$HOME/.authinfo.gpg}" | awk $OPTS '
 BEGIN { FS=" " } !$0 { next }
 { delete record; for (i = 1; i < NF; i += 2) record[$i] = $(i+1) }
 (!(login && ("login" in record)) || record["login"] ~ login) &&

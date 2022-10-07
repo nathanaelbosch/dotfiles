@@ -22,9 +22,6 @@ export JULIA_NUM_THREADS="auto"
 # Bash Completion
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-# Master Password App
-[[ -f ~/.mpw ]] && . ~/.mpw
-
 # pyenv
 export PATH="${PATH}:$HOME/.pyenv/bin"
 [[ -x "$(command -v pyenv)" ]] && eval "$(pyenv init -)"

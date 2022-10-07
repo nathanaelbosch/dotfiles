@@ -182,7 +182,7 @@ profiles:
     - d_rofi
     - f_compton.conf
     - f_latexmkrc
-    - f_mpw
+    # - f_mpw
     - f_yaourtrc
     - d_dunst
     - d_zathura
