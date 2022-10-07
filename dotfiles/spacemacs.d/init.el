@@ -77,7 +77,11 @@ This function should only modify configuration layer settings."
      lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (mu4e :variables
+           {%@@ if distro_like == "ubuntu debian" @@%}
+           mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e"
+           {%@@ else @@%}
            mu4e-installation-path "/usr/share/emacs/site-lisp"
+           {%@@ endif @@%}
            mu4e-use-maildirs-extension t
            mu4e-maildir "~/Mail"
            mu4e-enable-mode-line t
@@ -146,7 +150,7 @@ This function should only modify configuration layer settings."
                                       org-noter
                                       org-roam
                                       org-roam-bibtex
-                                      company-org-roam
+                                      ;; company-org-roam
                                       org-gcal
                                       org-sidebar
                                       org-pomodoro
