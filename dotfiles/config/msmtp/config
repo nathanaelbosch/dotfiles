@@ -37,7 +37,21 @@ from           nathanael.bosch@pm.me
 user           nathanael.bosch@pm.me
 passwordeval   "authinfo.sh machine=protonmail"
 tls_starttls   on
-# tls_fingerprint obtained by: https://www.reddit.com/r/ProtonMail/comments/89c24n/my_protonmail_bridge_setup_over_a_systemd_daemon/
+# tls_fingerprint obtained with:
+# openssl s_client -starttls smtp -connect 127.0.0.1:1025 < /dev/null 2>/dev/null | openssl x509 -fingerprint -noout -in /dev/stdin | cut -d'=' -f2
+# store in ~/dotfiles/.env as tls_fingerpint=<asdf>
+# see also https://dotdrop.readthedocs.io/en/latest/howto/sensitive-dotfiles/#using-environment-variables
+tls_fingerprint {{@@ env['tls_fingerprint'] @@}}
+
+# Protonmail2
+account        protonmail2
+host           127.0.0.1
+port           1025
+from           {{@@ env['pm2'] @@}}
+user           {{@@ env['pm2'] @@}}
+passwordeval   "authinfo.sh machine=protonmail"
+tls_starttls   on
+tls_fingerprint {{@@ env['tls_fingerprint'] @@}}
 
 
 # Set a default account

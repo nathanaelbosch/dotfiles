@@ -31,7 +31,8 @@ if [ "${DOTDROP_AUTOUPDATE-yes}" = yes ] ; then
 fi
 
 # check python executable
-pybin="python3"
+venv="$HOME/dotfiles/.venv"
+pybin="${venv}/bin/python3"
 hash ${pybin} 2>/dev/null || pybin="python"
 [[ "`${pybin} -V 2>&1`" =~ "Python 3" ]] || { echo "install Python 3" && exit 1; }
 

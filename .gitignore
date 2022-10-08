@@ -4,3 +4,4 @@
 /dotfiles/config/ranger/history
 /dotfiles/config/offlineimap/__pycache__/
 /dotfiles/config/offlineimap/custom.pyc
+/.env
