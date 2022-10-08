@@ -1,94 +1,11 @@
-!! Gruvbox color scheme
-! hard contrast: *background: #1d2021
-#define BG      #282828
-#define BG50    #80282828
-#define BG80    #cc282828
-! soft contrast: *background: #32302f
-#define FG #ebdbb2
-! Black + DarkGrey
-#define C0 #282828
-#define C8 #928374
-! DarkRed + Red
-#define C1 #cc241d
-#define C9 #fb4934
-! DarkGreen + Green
-#define C2 #98971a
-#define C10 #b8bb26
-! DarkYellow + Yellow
-#define C3 #d79921
-#define C11 #fabd2f
-! DarkBlue + Blue
-#define C4 #458588
-#define C12 #83a598
-! DarkMagenta + Magenta
-#define C5 #b16286
-#define C13 #d3869b
-! DarkCyan + Cyan
-#define C6 #689d6a
-#define C14 #8ec07c
-! LightGrey + White
-#define C7 #a89984
-#define C15 #ebdbb2
+#if __has_include(".extend.Xresources")
+#include ".extend.Xresources"
+#endif
 
-
-*background:                      BG
-*background50:                    BG50
-*background80:                    BG80
-*foreground:                      FG
-*fading:                          15
-*fadeColor:                       black
-*cursorColor:                     FG
-*pointerColorBackground:          #2B2C2B
-*pointerColorForeground:          FG
-
-*color0:                          C0
-*color8:                          C8
-*color1:                          C1
-*color9:                          C9
-*color2:                          C2
-*color10:                         C10
-*color3:                          C3
-*color11:                         C11
-*color4:                          C4
-*color12:                         C12
-*color5:                          C5
-*color13:                         C13
-*color6:                          C6
-*color14:                         C14
-*color7:                          C7
-*color15:                         C15
-
-! Xcursor.theme:
-Xcursor.size:                     0
-
-XTerm*background:                 BG
-XTerm*foreground:                 FG
-XTerm*reverseVideo:               on
-XTerm*faceName:                   Hack:size=10:antialias=true
-XTerm*selectToClipboard:          true
-XTerm*pointerColor: #16A085
-XTerm*faceSize: 11
-
-!! fonts
-URxvt.font:                       xft:Hack:style=Regular:size=10
-URxvt.boldFont:                   xft:Hack:style=Bold:size=10:weight=bold
-URxvt.italicFont:                 xft:Hack:style=Italic:size=10:slant=italic
-URxvt.depth:                      32
-URxvt.background:                 [80]BG
-URxvt*scrollBar:                  false
-URxvt*mouseWheelScrollPage:       false
-URxvt*cursorBlink:                true
-URxvt*background:                 BG
-URxvt*foreground:                 FG
-URxvt*saveLines:                  5000
-
-! other possible settings:
-Rxvt.perl-ext-common:              default,clipboard
-URxvt.perl-ext-common:             default,clipboard
-URxvt.iso14755 : false
-URxvt.keysym.Shift-Control-C:      perl:clipboard:copy
-URxvt.keysym.Shift-Control-V:      perl:clipboard:paste
-URxvt.keysym.Shift-Control-Alt-V:  perl:clipboard:paste_escaped
+! ^ The above lines are no comments!
+! Leave them as they are if a file ~/.extend.Xresources is being used on your system.
+! config can be added there or also here below.
+! For comments use "!"
 
 Xft.dpi: 96
 Xft.antialias: true
@@ -106,3 +23,4 @@ XTerm*pointerColor: #16A085
 !XTerm*faceName: Fixed
 XTerm*faceSize: 11
 URxvt*font:    xft:Hack Nerd Font:style=Regular:size=11
+
