@@ -2,6 +2,16 @@
 
 echo "
 ################################################################################
+# Pre-Setup: Consider stopping the script installing some packages
+# (e.g. fish, git, python, bat, vidir, alacritty, tmux, ...)
+################################################################################
+"
+echo -n "Press ENTER to continue"
+read _
+
+
+echo "
+################################################################################
 # Clone the dotfiles repo into ~/dotfiles
 ################################################################################
 "
