@@ -23,40 +23,38 @@ Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) for more detail
 
 
 ## List of relevant applications
-To get a minimal working environment, the following applications should be installed before installing the dotfiles:
+This is a solid start on ubuntu-based systems:
 ```bash
-sudo pacman -S git fish emacs vimbat lsd alacritty xcape
+sudo apt install fish git alacritty bat coreutils lsd gpg htop moreutils vim xcape xclip fonts-firacode fonts-font-awesome fonts-hack-ttf arandr keepassxc ledger mu4e nitrogen nodejs offlineimap pandoc redshift-gtk sxhkd syncthing
 ```
 
-Here's a longer list of applications:
+The longer list of applications:
 - **Terminal and System**:
     - fish (with [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) and the agnoster theme)
-    - git
-    - arandr
-    - xcape
-    - xclip
-    - tmux
-    - i3-gaps
-    - alacritty
-- Text Editors:
     - emacs ([spacemacs](https://www.spacemacs.org))
+    - alacritty
+    - git
     - vim
-- Browser:
-    - firefox
-- Documents:
-    - libreoffice
-    - zathura
-    - LaTeX (texlive-most; biber)
-- Media:
-    - vlc
-    - spotify (AUR)
-- Cloud Storage:
-    - syncthing
-    - megasync (from website)
-- Fonts:
-    - powerline-fonts-git (AUR)
-    - ttf-font-awesome (AUR)
-    - ttf-material-icons (AUR)
-- Other stuff:
-    - redshift
-    - pia VPN (as on website)
+    - xcape (to use CapsLock as Escape key via `xcape -e 'Super_L=Escape'`)
+    - tmux
+    - htop
+    - other tools: `xclip`, [bat](https://github.com/sharkdp/bat), [lsd](https://github.com/Peltoche/lsd)
+- **Desktop Environment**:
+    - i3 / [i3-gaps](https://github.com/Airblader/i3) / [i3-gnome](https://github.com/i3-gnome/i3-gnome)
+    - `sxhkd` to manage all hotkeys
+    - arandr & [mons](https://github.com/Ventto/mons) to manage screens
+    - nitrogen
+    - redshift (`redshift-gtk`) for the night
+- **Fonts**:
+    - FiraCode (`fonts-firacode`)
+    - Hack (`fonts-hack-ttf`)
+    - Font Awesome (`fonts-font-awesome**)
+- **Other Software**:
+    - **Browser**: firefox
+    - **Cloud Storage**: (syncthing)[https://syncthing.net/] & (megasync)[https://mega.io/desktop**
+    - **PDF reader**: zathura
+    - **Passwords**: keepassxc
+    - **Email Setup**: offlineimap+msmtp+(spac**emacs
+    - **Office**: LaTeX of course (`texlive-most` & `latexmk**)
+    - **Videos**: vlc
+    - **Music**: spotify
