@@ -1,1 +1,0 @@
-* Better dotfile workflow: Use dotdrop as a commit hook, and check if something changed? This way I could make better use of the templating

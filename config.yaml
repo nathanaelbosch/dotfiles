@@ -44,9 +44,6 @@ dotfiles:
   d_polybar:
     dst: ~/.config/polybar
     src: config/polybar
-  d_ranger:
-    dst: ~/.config/ranger
-    src: config/ranger
   d_rofi:
     dst: ~/.config/rofi
     src: config/rofi
@@ -82,12 +79,6 @@ dotfiles:
   d_qutebrowser:
     dst: ~/.config/qutebrowser
     src: config/qutebrowser
-  f_extend.bashrc:
-    dst: ~/.extend.bashrc
-    src: extend.bashrc
-  f_extend.xresources:
-    dst: ~/.extend.Xresources
-    src: extend.Xresources
   f_gitconfig:
     dst: ~/.gitconfig
     src: gitconfig
@@ -97,9 +88,6 @@ dotfiles:
   f_latexmkrc:
     dst: ~/.latexmkrc
     src: latexmkrc
-  f_mpw:
-    dst: ~/.mpw
-    src: mpw
   f_profile:
     dst: ~/.profile
     src: profile
@@ -131,17 +119,9 @@ dotfiles:
   d_alacritty:
     src: config/alacritty
     dst: ~/.config/alacritty
-  d_kitty:
-    src: config/kitty
-    dst: ~/.config/kitty
-    link: nolink
   f_startup.jl:
     src: julia/config/startup.jl
     dst: ~/.julia/config/startup.jl
-  f_gitignore:
-    src: gitignore
-    dst: ~/.gitignore
-    link: nolink
 profiles:
   terminal:
     dotfiles:
@@ -151,8 +131,6 @@ profiles:
     - f_aliases
     - f_bash_profile
     - f_bashrc
-    - f_extend.bashrc
-    - f_extend.xresources
     - f_gitconfig
     - f_profile
     - f_tmux.conf
@@ -182,7 +160,6 @@ profiles:
     - d_rofi
     - f_compton.conf
     - f_latexmkrc
-    # - f_mpw
     - f_yaourtrc
     - d_dunst
     - d_zathura
@@ -196,18 +173,15 @@ profiles:
     dotfiles:
     - d_bat
     - d_zathura
-    - d_ranger
     - f_startup.jl
   dev:
     include:
     - terminal
     - spacemacs_full
     dotfiles:
-    - d_kitty
     - d_zathura
     - f_latexmkrc
     - f_startup.jl
-    - f_gitignore
   shire:
     include:
     - terminal

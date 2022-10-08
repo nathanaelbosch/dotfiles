@@ -10,8 +10,6 @@ export PATH="$PATH:/home/nath/.local/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PYTHONBREAKPOINT=ipdb.set_trace
 
-[[ -f ~/.extend.profile ]] && . ~/.extend.profile
-
 # >>> juliaup initialize >>>
 
 # !! Contents within this block are managed by juliaup !!

@@ -7,20 +7,19 @@ export PATH="${PATH}:$HOME/bin"
 export PATH="${PATH}:$HOME/.local/bin"
 export PATH="$PATH:/home/nath/.local/bin"
 
+# General ENV variables
 export JULIA_NUM_THREADS="auto"
+export DOTREPO="~/dotfiles"
+export LEDGER_FILE="~/MEGA/finances.ledger"
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # Source the other relevant files
-[[ -f ~/.extend.bashrc ]] && . ~/.extend.bashrc
 [[ -f ~/.profile ]] && . ~/.profile
 
 # Aliases
 [[ -f ~/.aliases ]] && . ~/.aliases
-
-# Bash Completion
-[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 # pyenv
 export PATH="${PATH}:$HOME/.pyenv/bin"

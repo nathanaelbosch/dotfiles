@@ -1,7 +1,0 @@
-# Resize mode, similar to the one in i3
-{h, j, k, l}
-  i3-msg resize {shrink width, grow height, shrink height, grow width} 1 px or 1 ppt
-{left, down, up, right}
-  i3-msg resize {shrink width, grow height, shrink height, grow width} 5 px or 5 ppt
-Escape
-  pkill -f sxhkdrc_i3_modes_resize

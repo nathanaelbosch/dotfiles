@@ -22,5 +22,5 @@ P {dt_str} ZEC {get_price("zec")}€
 """
 print(db_str)
 
-with Path.home().joinpath("MEGA/prices.db").open("w") as f:
+with Path.home().joinpath("/tmp/prices.db").open("w") as f:
     f.write(db_str)
