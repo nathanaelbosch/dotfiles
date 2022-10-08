@@ -74,10 +74,12 @@ This function should only modify configuration layer settings."
             latex-enable-auto-fill nil
             latex-enable-magic t
             latex-enable-folding t)
-     lsp
+     ;; lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (mu4e :variables
-           {%@@ if distro_like == "ubuntu debian" @@%}
+           {%@@ if profile == "murr" @@%}
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e"
+           {%@@ elif distro_like == "ubuntu debian" @@%}
            mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e"
            {%@@ else @@%}
            mu4e-installation-path "/usr/share/emacs/site-lisp"

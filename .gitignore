@@ -2,3 +2,5 @@
 /dotfiles/spacemacs.d/.spacemacs.env
 /dotfiles/spacemacs.d/config.el
 /dotfiles/config/ranger/history
+/dotfiles/config/offlineimap/__pycache__/
+/dotfiles/config/offlineimap/custom.pyc

@@ -4,7 +4,7 @@
 alias cp="cp -i"                          # confirm before overwriting something
 alias df="df -h"                          # human-readable sizes
 alias free="free -h"                      # human-readable sizes
-{%@@ if distro_like == "ubuntu debian" @@%}
+{%@@ if distro_id == "pop" or distro_id == "ubuntu" @@%}
 alias cat="batcat"
 {%@@ else @@%}
 alias cat="bat"
