@@ -16,7 +16,7 @@ fi
 # /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 {%@@ if not profile == "murr" @@%}
 nm-applet &
-redshift -l 48.2488721:11.6532477 &
+redshift-gtk -l 48.2488721:11.6532477 &
 nitrogen --restore &
 {%@@ endif @@%}
 megasync &
