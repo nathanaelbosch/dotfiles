@@ -2,33 +2,44 @@
 I use [dotdrop](https://github.com/deadc0de6/dotdrop) to manage my dotfiles.
 
 ## Installation
+One-line install:
 ```bash
 sh -c "$(curl https://raw.githubusercontent.com/nathanaelbosch/dotfiles/master/install.sh)"
 ```
-Check out the [install script](install.sh) for more details.
+It will query which profile should be installed.
+For a minimal setup just use `terminal`; if nothing is specified it defaults to the hostname.
+For more details check out the [install script](install.sh).
 
-If the hostname does not match any of the profiles, you can also specify a profile that differs from the hostname to install it, such as
+### More manual setup
+To install the config for the current host, run
+```bash
+cd ~/dotfiles
+./dotdrop.sh install
+```
+Alternatvely, specify a profile manually:
 ```bash
 ./dotdrop.sh install -p terminal
 ```
-If you want to customize your installation, the best way is to edit the `config.yaml` file directly.
+For more customization, edit the `config.yaml` file directly.
 
-### More useful commands:
+Other useful commands:
 ```bash
 ./dotdrop.sh compare
 ./dotdrop.sh import
 ./dotdrop.sh update
 ```
-Check the [dotdrop github](https://github.com/deadc0de6/dotdrop) for more detailed explanations.
+Check the [dotdrop documentation](https://dotdrop.readthedocs.io/en/latest/) for more.
 
 
-## List of relevant applications
+## Software
 This is a solid start on ubuntu-based systems:
 ```bash
-sudo apt install fish git alacritty bat coreutils lsd gpg htop moreutils vim xcape xclip fonts-firacode fonts-font-awesome fonts-hack-ttf arandr keepassxc ledger mu4e nitrogen nodejs offlineimap pandoc redshift-gtk sxhkd syncthing
+sudo apt install fish git alacritty bat coreutils lsd gpg htop moreutils vim xcape xclip fonts-firacode fonts-font-awesome fonts-hack-ttf arandr keepassxc ledger mu4e nitrogen nodejs offlineimap pandoc redshift-gtk sxhkd syncthing snapd
+sudo snap install emacs --classic
+sudo snap install ferdium --edge
 ```
 
-The longer list of applications:
+### The longer list of applications:
 - **Terminal and System**:
     - fish (with [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) and the agnoster theme)
     - emacs ([spacemacs](https://www.spacemacs.org))
@@ -45,16 +56,18 @@ The longer list of applications:
     - arandr & [mons](https://github.com/Ventto/mons) to manage screens
     - nitrogen
     - redshift (`redshift-gtk`) for the night
+- **Theme:** [gruvbox](https://github.com/morhetz/gruvbox) everywhere
 - **Fonts**:
     - FiraCode (`fonts-firacode`)
     - Hack (`fonts-hack-ttf`)
-    - Font Awesome (`fonts-font-awesome**)
+    - Font Awesome (`fonts-font-awesome`)
 - **Other Software**:
     - **Browser**: firefox
-    - **Cloud Storage**: (syncthing)[https://syncthing.net/] & (megasync)[https://mega.io/desktop**
+    - **Cloud Storage**: [syncthing](https://syncthing.net/) & [megasync](https://mega.io/desktop)
     - **PDF reader**: zathura
     - **Passwords**: keepassxc
-    - **Email Setup**: offlineimap+msmtp+(spac**emacs
-    - **Office**: LaTeX of course (`texlive-most` & `latexmk**)
+    - **Email Setup**: offlineimap+msmtp+(spac)emacs
+    - **Writing**: LaTeX of course (`texlive-most` & `latexmk`)
+    - **Social Media / Messengers / Slack / ...**: [Ferdium](https://ferdium.org/)
     - **Videos**: vlc
     - **Music**: spotify
