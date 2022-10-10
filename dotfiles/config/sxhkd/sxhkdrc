@@ -4,7 +4,7 @@
 
 # Reload sxhkd config
 super + ctrl + r
-	killall sxhkd && sleep 1 && sxhkd -c /home/nath/.config/sxhkd/sxhkdrc
+	killall sxhkd && sleep 1 && sxhkd
 
 # terminal emulator
 super + Return
