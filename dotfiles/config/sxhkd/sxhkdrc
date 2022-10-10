@@ -30,7 +30,7 @@ super + shift + e
   i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'
 
 super + {u, y, n}
-  i3-msg border {none, pixel 3, normal}
+  i3-msg border {none, pixel 2, normal}
 
 {super + shift + q, alt + F4}
 	i3-msg kill
