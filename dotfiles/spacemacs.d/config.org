@@ -83,14 +83,7 @@
   - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
     - [[#contexts][Contexts]]
     - [[#send-emails][Send Emails]]
-      - [[#org][Org]]
-    - [[#html-mails-with-images][HTML Mails with images]]
     - [[#notifications-for-new-email][Notifications for new Email]]
-    - [[#pandoc-for-html][Pandoc for HTML]]
-    - [[#visual-line-mode-hook][Visual line mode hook]]
-    - [[#check-for-supposed-attachments-prior-to-sending-them][Check for supposed attachments prior to sending them]]
-    - [[#gnus-view][gnus view]]
-    - [[#link-to-message-not-headers][Link to message, not headers]]
   - [[#writeroom][Writeroom]]
   - [[#magit---the-best-git-interface][~magit~ - The best git interface]]
     - [[#add-uni-tuebingen-gitlab][Add uni-tuebingen gitlab]]
@@ -1662,129 +1655,20 @@ Default capture template
         message-sendmail-f-is-evil t
         message-sendmail-function 'message-sendmail-with-sendmail
         send-mail-function 'message-send-mail-with-sendmail
-        ;; sendmail-program "/home/jonas/bin/msmtpqueue/msmtp-enqueue.sh"
         sendmail-program "sendmail"
         message-kill-buffer-on-exit t     ; kill old messages when sent
         message-send-mail-function 'message-send-mail-with-sendmail
         message-forward-before-signature nil
         message-cite-reply-position 'above
+        org-mu4e-convert-to-html t
   )
-
-  ;; (defun msmtpsq-fail-sentinel (process event)
-  ;;   "Informs the user if the process has failed"
-  ;;   (cond ((eq (process-status process) 'exit)
-  ;;          (message "msmtpq-runqueue has succeeded")
-  ;;          (let ((proc-buf (process-buffer process)))
-  ;;            (when (buffer-name proc-buf)
-  ;;              (with-current-buffer proc-buf
-  ;;                (set-buffer-modified-p nil)
-  ;;                (kill-buffer proc-buf)))))
-  ;;         ((memq (process-status process) '(failed signal))
-  ;;          (lwarn '(msmtp) :error "msmtpq-runqueue has failed! For info see %s" (process-buffer process)))))
-
-  ;; (defun msmtpq-runqueue ()
-  ;;   "Runs the msmtp queue.
-
-  ;; Uses the msmtpq-runqueue.sh script provided by the msmtp
-  ;; package. In these scripts the queue directory can be set, see
-  ;; there for more information."
-  ;;   (interactive)
-  ;;   (let* ((buf-name "*msmtp-runqueue output*")
-  ;;          (buffer  (get-buffer-create buf-name)))
-  ;;     (with-current-buffer buffer
-  ;;       (erase-buffer)
-  ;;       (message "running msmtpqueue ...")
-  ;;       (let ((proc
-  ;;              (start-process
-  ;;               "msmtpq-run" buffer
-  ;;               "/home/jonas/bin/msmtpqueue/msmtp-runqueue.sh")))
-  ;;         (set-process-sentinel proc 'msmtpsq-fail-sentinel)))))
-
-  ;; ;; (define-key 'mu4e-main-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
-  ;; ;; (define-key 'mu4e-headers-mode-map (kbd "C-c C-r") 'msmtpq-runqueue)
-  ;; ;; (define-key 'mu4e-view-mode-map    (kbd "C-c C-r") 'msmtpq-runqueue)
-
-  ;; ;; Don't keep message buffer around
-  ;; (setq message-kill-buffer-on-exit t)
 #+END_SRC
-
-**** Org
-#+begin_src emacs-lisp
-  (setq org-mu4e-convert-to-html t)
-#+end_src
-
-*** HTML Mails with images
-
-#+begin_src emacs-lisp
-  ;; (setq
-  ;;  mu4e-html2text-command "w3m -T text/html"
-  ;;  mu4e-view-prefer-html t
-  ;;  )
-#+end_src
-
-#+begin_src emacs-lisp
-  ;; enable inline images
-  ;; (setq mu4e-view-show-images t)
-  ;; use imagemagick, if available
-  ;; (when (fboundp 'imagemagick-register-types)
-  ;;   (imagemagick-register-types))
-#+end_src
-
-Otherwise, open in a browser
-#+begin_src emacs-lisp
-  ;; (add-to-list 'mu4e-view-actions
-  ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
-#+end_src
 
 *** Notifications for new Email
 #+begin_src emacs-lisp
   (mu4e-alert-set-default-style 'libnotify)
 #+end_src
 
-*** Pandoc for HTML
-Seems not bad actually
-#+begin_src emacs-lisp
-  ;; (setq mu4e-html2text-command "iconv -c -t utf-8 | pandoc -f html -t plain")
-#+end_src
-
-*** Visual line mode hook
-#+begin_src emacs-lisp
-  ;; (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
-#+end_src
-
-*** Check for supposed attachments prior to sending them
-#+begin_src emacs-lisp
-  ;; (defvar my-message-attachment-regexp "\\(
-  ;;                                       [Ww]e send\\|
-  ;;                                       [Ii] send\\|
-  ;;                                       attach\\|
-  ;;                                       [aA]ngehängt\\|
-  ;;                                       [aA]nhang\\|
-  ;;                                       [sS]chicke\\|
-  ;;                                       angehaengt\\|
-  ;;                                       haenge\\|
-  ;;                                       hänge\\)")
-  ;; (defun my-message-check-attachment nil
-  ;;   "Check if there is an attachment in the message if I claim it."
-  ;;   (save-excursion
-  ;;     (message-goto-body)
-  ;;     (when (search-forward-regexp my-message-attachment-regexp nil t nil)
-  ;;       (message-goto-body)
-  ;;       (unless (or (search-forward "<#part" nil t nil)
-  ;;                   (message-y-or-n-p
-  ;;                    "No attachment. Send the message ?" nil nil))
-  ;;         (error "No message sent")))))
-  ;; (add-hook 'message-send-hook 'my-message-check-attachment)
-#+end_src
-
-*** gnus view
-#+begin_src emacs-lisp
-  ;; (setq mu4e-view-use-gnus t)
-#+end_src
-*** Link to message, not headers
-#+begin_src emacs-lisp
-  ;; (setq org-mu4e-link-query-in-headers-mode nil)
-#+end_src
 ** Writeroom                                                           :WIP:
 My goal here: Create a /beautiful/ writing environment!
 #+begin_src emacs-lisp
