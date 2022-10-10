@@ -12,6 +12,8 @@ export JULIA_NUM_THREADS="auto"
 export DOTREPO="~/dotfiles"
 export LEDGER_FILE="~/MEGA/finances.ledger"
 
+[[ -f ~/.cargo/env ]] && . ~/.cargo/env
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -37,8 +39,8 @@ fi
 
 # !! Contents within this block are managed by juliaup !!
 
-case ":$PATH:" in *:/home/nbosch/.julia/juliaup/bin:*);; *)
-    export PATH=/home/nbosch/.julia/juliaup/bin${PATH:+:${PATH}};;
+case ":$PATH:" in *:$HOME/.julia/juliaup/bin:*);; *)
+    export PATH=$HOME/.julia/juliaup/bin${PATH:+:${PATH}};;
 esac
 
 # <<< juliaup initialize <<<

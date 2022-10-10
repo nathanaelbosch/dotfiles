@@ -110,6 +110,7 @@
   - [[#bugfix-tramp][Bugfix TRAMP]]
   - [[#ligatures][Ligatures]]
   - [[#github-copilot][Github copilot]]
+  - [[#firefox-as-default-browser][Firefox as default browser]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -136,7 +137,7 @@ customized in the original config file.
 Also turn on the global-undo-tree mode
 #+BEGIN_SRC emacs-lisp
   (global-undo-tree-mode)
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d./.cache")))
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/.cache/undo-tree-history")))
 #+END_SRC
 ** Better vertical splitting
 #+BEGIN_SRC emacs-lisp
@@ -1970,4 +1971,8 @@ Faster than the default scp:
   (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
 
   (define-key evil-insert-state-map (kbd "M-n") 'copilot-next-completion)
+#+end_src
+** Firefox as default browser
+#+begin_src emacs-lisp
+  (setq browse-url-browser-function 'browse-url-firefox)
 #+end_src

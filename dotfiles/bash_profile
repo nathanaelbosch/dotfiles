@@ -3,16 +3,17 @@
 #
 
 export PATH="$PATH:/home/nath/.local/bin"
-export PATH="$HOME/.cargo/bin:$PATH"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+[[ -f ~/.cargo/env ]] && . ~/.cargo/env
 
 # >>> juliaup initialize >>>
 
 # !! Contents within this block are managed by juliaup !!
 
-case ":$PATH:" in *:/home/nbosch/.julia/juliaup/bin:*);; *)
-    export PATH=/home/nbosch/.julia/juliaup/bin${PATH:+:${PATH}};;
+case ":$PATH:" in *:$HOME/.julia/juliaup/bin:*);; *)
+    export PATH=$HOME/.julia/juliaup/bin${PATH:+:${PATH}};;
 esac
 
 # <<< juliaup initialize <<<

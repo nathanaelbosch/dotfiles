@@ -16,6 +16,8 @@ config:
   minversion: 0.30.0
 variables:
   i3gaps: false
+dynvariables:
+  sslcertificates: if [ -f /etc/ssl/certs/ca-bundle.crt ]; then echo "/etc/ssl/certs/ca-bundle.crt"; else echo "/etc/ssl/certs/ca-certificates.crt"; fi
 dotfiles:
   d_bat:
     dst: ~/.config/bat

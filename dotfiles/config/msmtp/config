@@ -2,7 +2,7 @@
 defaults
 auth           on
 tls            on
-tls_trust_file /etc/ssl/certs/ca-certificates.crt
+tls_trust_file {{@@ sslcertificates @@}}
 logfile        ~/.msmtp.log
 
 # Gmail
@@ -43,16 +43,19 @@ tls_starttls   on
 # see also https://dotdrop.readthedocs.io/en/latest/howto/sensitive-dotfiles/#using-environment-variables
 tls_fingerprint {{@@ env['tls_fingerprint'] @@}}
 
-# Protonmail2
-account        protonmail2
-host           127.0.0.1
-port           1025
-from           {{@@ env['pm2'] @@}}
-user           {{@@ env['pm2'] @@}}
-passwordeval   "authinfo.sh machine=protonmail"
-tls_starttls   on
-tls_fingerprint {{@@ env['tls_fingerprint'] @@}}
+account        pmcom : protonmail
+from           nathanael.bosch@protonmail.com
+user           nathanael.bosch@protonmail.com
 
+account        pmch : protonmail
+from           nathanael.bosch@protonmail.com
+user           nathanael.bosch@protonmail.com
 
+{%@@ for item in env['pmaccs'].split(",") @@%}
+account        {{@@ item @@}} : protonmail
+from           {{@@ item @@}}@pm.me
+user           {{@@ item @@}}@pm.me
+
+{%@@ endfor @@%}
 # Set a default account
 account default : protonmail
