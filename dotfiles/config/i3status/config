@@ -14,11 +14,11 @@ general {
         color_degraded = "#5f819d"
 }
 
-order += "cpu_usage"
+# order += "cpu_usage"
 # order += "load"
-order += "disk /"
+# order += "disk /"
 # order += "disk /home"
-order += "wireless _first_"
+# order += "wireless _first_"
 # order += "ethernet _first_"
 order += "battery all"
 # order += "load"
@@ -46,8 +46,8 @@ ethernet _first_ {
 }
 
 battery all {
-        # format = "%status %percentage %remaining %emptytime"
-        format = " %status %percentage"
+        format = "%status %percentage (%remaining remaining) "
+        # format = " %status %percentage "
         format_down = "No battery"
         last_full_capacity = true
         integer_battery_capacity = true

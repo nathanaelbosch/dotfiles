@@ -26,7 +26,7 @@ hide_edge_borders smart_no_gaps
 
 # Font for window titles and bar
 # is used in the bar {} block below.
-font xft:Hack 8
+font xft:FiraCode 8
 
 {%@@ if i3gaps @@%}
 # Set inner/outer gaps
