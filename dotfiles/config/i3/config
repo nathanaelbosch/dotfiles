@@ -14,11 +14,11 @@ set $mod Mod4
 floating_modifier $mod
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 3
+new_window pixel 2
 new_float normal
 
 # Hide borders
-hide_edge_borders none
+hide_edge_borders smart
 
 # Font for window titles and bar
 # is used in the bar {} block below.
@@ -78,7 +78,7 @@ for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [instance="htop_win"] floating enable sticky enable
 for_window [class="Spotify"] move workspace $ws10
 
-for_window [class="firefox"] border pixel 3
+for_window [class="firefox"] border pixel 2
 
 # switch to workspace with urgent window automatically
 # for_window [urgent=latest] focus
@@ -158,13 +158,15 @@ set_from_resource $color13    color13
 set_from_resource $color14    color14
 set_from_resource $color15    color15
 
+set_from_resource $primary color2
+
 # Theme colors
 # class                 border     backgr.    text           indic.       child_border
-client.focused          $color4    $color4    $foreground    $color15
-client.focused_inactive $color8    $color8    $color12       $color7
-client.unfocused        $color8    $color8    $foreground    $color15
+client.focused          $primary   $primary   $foreground    $color7
+client.focused_inactive $color0    $color0    $color12       $color0
+client.unfocused        $color0    $color0    $foreground    $color15
 client.urgent           $color9    $color9    $foreground    $foreground
-client.placeholder      $color8    $color8    $foreground    $color15
+client.placeholder      $color0    $color0    $foreground    $color15
 
 client.background       $background
 
@@ -190,10 +192,10 @@ bar {
         separator  $color8
 
         # border              background  text
-        focused_workspace   $foreground $color4     $foreground
-        active_workspace    $background $color4     $foreground
+        focused_workspace   $background $primary    $background
+        active_workspace    $background $primary    $background
         inactive_workspace  $background $background $color7
-        urgent_workspace    $color4     $color1     $foreground
+        urgent_workspace    $primary    $color1     $foreground
     }
 }
 # hide/unhide i3status bar
