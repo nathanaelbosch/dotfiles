@@ -75,6 +75,11 @@ for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Pavucontrol"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 
+for_window [instance="htop_win"] floating enable sticky enable
+for_window [class="Spotify"] move workspace $ws10
+
+for_window [class="firefox"] border pixel 3
+
 # switch to workspace with urgent window automatically
 # for_window [urgent=latest] focus
 
@@ -203,7 +208,7 @@ bindsym $mod+m bar mode toggle
 # set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 # set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 # bindsym $mod+Shift+g mode "$mode_gaps"
-# 
+#
 # mode "$mode_gaps" {
 #         bindsym o      mode "$mode_gaps_outer"
 #         bindsym i      mode "$mode_gaps_inner"
@@ -214,11 +219,11 @@ bindsym $mod+m bar mode toggle
 #         bindsym plus  gaps inner current plus 5
 #         bindsym minus gaps inner current minus 5
 #         bindsym 0     gaps inner current set 0
-# 
+#
 #         bindsym Shift+plus  gaps inner all plus 5
 #         bindsym Shift+minus gaps inner all minus 5
 #         bindsym Shift+0     gaps inner all set 0
-# 
+#
 #         bindsym Return mode "default"
 #         bindsym Escape mode "default"
 # }
@@ -226,17 +231,11 @@ bindsym $mod+m bar mode toggle
 #         bindsym plus  gaps outer current plus 5
 #         bindsym minus gaps outer current minus 5
 #         bindsym 0     gaps outer current set 0
-# 
+#
 #         bindsym Shift+plus  gaps outer all plus 5
 #         bindsym Shift+minus gaps outer all minus 5
 #         bindsym Shift+0     gaps outer all set 0
-# 
+#
 #         bindsym Return mode "default"
 #         bindsym Escape mode "default"
 # }
-
-############################################################################
-# Personal bindings and startup
-############################################################################
-for_window [instance="htop_win"] floating enable sticky enable
-for_window [class="Spotify"] move workspace $ws10
