@@ -71,6 +71,9 @@ super + {_, shift +} equal
 super + o
   i3-msg open
 
+super + g
+  i3-msg gaps inner all toggle 10
+
 
 ###################################################################
 # Sound

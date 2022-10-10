@@ -14,6 +14,8 @@ config:
   longkey: false
   link_on_import: nolink
   minversion: 0.30.0
+variables:
+  i3gaps: false
 dotfiles:
   d_bat:
     dst: ~/.config/bat
@@ -165,6 +167,8 @@ profiles:
     - d_zathura
     - d_alacritty
     - f_startup.jl
+    variables:
+      i3gaps: true
   murr:
     include:
     - terminal
