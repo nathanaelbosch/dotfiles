@@ -125,7 +125,9 @@ customized in the original config file.
 ** Hotkey to modify this config file.
 #+BEGIN_SRC emacs-lisp
   (spacemacs/set-leader-keys "feC"
-    (lambda() (interactive) (find-file "~/.spacemacs.d/config.org")))
+    (lambda() (interactive) (find-file "~/dotfiles/dotfiles/spacemacs.d/config.org")))
+  (spacemacs/set-leader-keys "fed"
+    (lambda() (interactive) (find-file "~/dotfiles/dotfiles/spacemacs.d/init.el")))
 #+END_SRC
 
 ** I like visual line mode
@@ -385,7 +387,7 @@ I love org so much, it deserves its own heading.
                              ("~/org/references.org" :level . 1)
                              ("~/org/phd.org" :maxlevel . 2)
                              ("~/MEGA/papers/notes.org" :level . 1)
-                             ("~/org/projects/odefilters.org" :level . 1)
+                             ("~/org/projects/probnumdiffeq.org" :level . 1)
                              (nil . (:maxlevel . 2))
                              ))
 #+END_SRC
