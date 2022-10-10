@@ -34,7 +34,7 @@ Check the [dotdrop documentation](https://dotdrop.readthedocs.io/en/latest/) for
 ## Software
 This is a solid start on ubuntu-based systems:
 ```bash
-sudo apt install fish git alacritty bat coreutils lsd gpg htop moreutils vim xcape xclip fonts-firacode fonts-font-awesome fonts-hack-ttf arandr keepassxc ledger mu4e nitrogen nodejs offlineimap pandoc redshift-gtk sxhkd syncthing snapd
+sudo apt install fish git alacritty bat coreutils lsd gpg htop moreutils vim xcape xclip fonts-firacode fonts-font-awesome fonts-hack-ttf arandr keepassxc ledger mu4e nitrogen nodejs offlineimap msmtp-mta pandoc redshift-gtk sxhkd syncthing snapd
 sudo snap install emacs --classic
 sudo snap install ferdium --edge
 ```
@@ -71,3 +71,6 @@ sudo snap install ferdium --edge
     - **Social Media / Messengers / Slack / ...**: [Ferdium](https://ferdium.org/)
     - **Videos**: vlc
     - **Music**: spotify
+
+## Misc stuff
+- To send email with mu4e+msmtp on ubuntu, disable app armor: `sudo aa-disable /etc/apparmor.d/usr.bin.msmtp`
