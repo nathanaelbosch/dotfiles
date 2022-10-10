@@ -186,8 +186,8 @@ bar {
 
     tray_output primary
 
-    bindsym button4 nop
-    bindsym button5 nop
+    # bindsym button4 nop
+    # bindsym button5 nop
     # strip_workspace_numbers yes
 
     colors {
