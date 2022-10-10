@@ -1599,7 +1599,7 @@ Default capture template
   (setq mu4e-contexts
         `(
           ,(make-mu4e-context
-            :name "gmail"
+            :name "g @gmail"
             :match-func (lambda (msg) (when msg
                                         (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
             :vars '(
@@ -1611,40 +1611,54 @@ Default capture template
                     (mu4e-drafts-folder . "/Gmail/[Google Mail].Drafts")
                     ))
           ,(make-mu4e-context
-            :name "protonmail"
-            :match-func (lambda (msg) (when msg
-                                        (string-prefix-p "/Protonmail" (mu4e-message-field msg :maildir))))
-            :vars '(
-                    (user-mail-address . "nathanael.bosch@pm.me")
-                    (user-full-name . "Nathanael Bosch")
-                    (mu4e-trash-folder . "/Protonmail/Trash")
-                    ;; (mu4e-refile-folder . "/UniTue/")
-                    (mu4e-sent-folder . "/Protonmail/Sent")
-                    (mu4e-drafts-folder . "/Protonmail/Drafts")
-                    ))
-          ,(make-mu4e-context
-            :name "uni-tue"
+            :name "u @uni-tue"
             :match-func (lambda (msg) (when msg
                                         (string-prefix-p "/UniTue" (mu4e-message-field msg :maildir))))
             :vars '(
                     (user-mail-address . "nathanael.bosch@uni-tuebingen.de")
                     (user-full-name . "Nathanael Bosch")
                     (mu4e-trash-folder . "/UniTue/Mail.trash")
-                    ;; (mu4e-refile-folder . "/UniTue/")
                     (mu4e-sent-folder . "/UniTue/Mail.sent")
                     (mu4e-drafts-folder . "/UniTue/Mail.drafts")
                     ))
           ,(make-mu4e-context
-            :name "mpi-is"
+            :name "m @mpi-is"
             :match-func (lambda (msg) (when msg
                                         (string-prefix-p "/MPI-IS" (mu4e-message-field msg :maildir))))
             :vars '(
                     (user-mail-address . "nathanael.bosch@tuebingen.mpg.de")
                     (user-full-name . "Nathanael Bosch")
                     (mu4e-trash-folder . "/MPI-IS/Trash")
-                    ;; (mu4e-refile-folder . "/MPI-IS/")
                     (mu4e-sent-folder . "/MPI-IS/Sent")
                     (mu4e-drafts-folder . "/MPI-IS/Drafts")
+                    ))
+          ,(make-mu4e-context
+            :name "p @pm.me"
+            :match-func (lambda (msg) (when msg
+              (and
+               (string-prefix-p "/Protonmail" (mu4e-message-field msg :maildir))
+               (not (mu4e-message-contact-field-matches msg '(:to :cc :from) "{{@@ env["pm2"] @@}}@pm.me"))
+               )))
+            :vars '(
+                    (user-mail-address . "nathanael.bosch@pm.me")
+                    (user-full-name . "Nathanael Bosch")
+                    (mu4e-trash-folder . "/Protonmail/Trash")
+                    (mu4e-sent-folder . "/Protonmail/Sent")
+                    (mu4e-drafts-folder . "/Protonmail/Drafts")
+                    ))
+          ,(make-mu4e-context
+            :name "s pm2"
+            :match-func (lambda (msg) (when msg
+              (and
+               (string-prefix-p "/Protonmail" (mu4e-message-field msg :maildir))
+               (mu4e-message-contact-field-matches msg '(:to :cc :from) "{{@@ env["pm2"] @@}}@pm.me")
+               )))
+            :vars '(
+                    (user-mail-address . "{{@@ env["pm2"] @@}}@pm.me")
+                    (user-full-name . "{{@@ env["pm2name"] @@}}")
+                    (mu4e-trash-folder . "/Protonmail/Trash")
+                    (mu4e-sent-folder . "/Protonmail/Sent")
+                    (mu4e-drafts-folder . "/Protonmail/Drafts")
                     ))
           ))
 #+END_SRC
