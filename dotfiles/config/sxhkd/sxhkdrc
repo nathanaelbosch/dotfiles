@@ -153,7 +153,7 @@ super + ctrl + m
   pavucontrol
 
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
-  xbacklight -{inc,dec} 1
+  xbacklight -{inc,dec} $(echo "$(xbacklight)/5+1" | bc -l)
 
 super + ctrl + b
 	killall blueman-applet && sleep 1 && blueman-applet
