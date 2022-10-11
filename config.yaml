@@ -16,6 +16,10 @@ config:
   minversion: 0.30.0
 variables:
   i3gaps: false
+  i3bordersize: 2
+  i3gapsize: 10
+  i3fontsize: 8
+  i3barposition: bottom
 dynvariables:
   sslcertificates: if [ -f /etc/ssl/certs/ca-bundle.crt ]; then echo "/etc/ssl/certs/ca-bundle.crt"; else echo "/etc/ssl/certs/ca-certificates.crt"; fi
 dotfiles:
@@ -171,6 +175,7 @@ profiles:
     - f_startup.jl
     variables:
       i3gaps: true
+      i3barposition: top
   murr:
     include:
     - terminal
@@ -180,6 +185,11 @@ profiles:
     - d_bat
     - d_zathura
     - f_startup.jl
+    variables:
+      i3gaps: true
+      i3bordersize: 8
+      i3gapsize: 32
+      i3fontsize: 12
   dev:
     include:
     - terminal
