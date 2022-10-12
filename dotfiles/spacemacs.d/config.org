@@ -31,6 +31,7 @@
     - [[#enforce-todo-dependencies][Enforce todo dependencies]]
     - [[#autosave-org-files][Autosave org files]]
     - [[#archive-tag-to-gray-out-things-i-do-not-need][Archive tag to gray out things I do not need]]
+    - [[#project-tag-do-not-inherit]["project" tag: Do not inherit]]
     - [[#start-org-with-some-useful-modes][Start org with some useful modes]]
     - [[#column-view][Column view]]
     - [[#priorities][Priorities]]
@@ -142,7 +143,7 @@ Also turn on the global-undo-tree mode
 ** Better vertical splitting
 #+BEGIN_SRC emacs-lisp
   (setq split-height-threshold nil)
-  (setq split-width-threshold 160)
+  (setq split-width-threshold 210)
 #+END_SRC
 ** Comment region/line with "C-S-c"
 #+BEGIN_SRC emacs-lisp
@@ -349,6 +350,11 @@ I love org so much, it deserves its own heading.
   (setq org-archive-tag "inactive")
 #+END_SRC
 
+*** "project" tag: Do not inherit
+#+BEGIN_SRC emacs-lisp
+  (setq org-tags-exclude-from-inheritance '("project"))
+#+END_SRC
+
 *** Start org with some useful modes
 #+BEGIN_SRC emacs-lisp
   (add-hook 'org-mode-hook 'org-indent-mode)
@@ -411,6 +417,7 @@ I love org so much, it deserves its own heading.
           ("INACTIVE" . (:foreground "#a89984" :weight bold))
           ("WAITING" . (:foreground "#83a598" :weight bold))
           ("STARTED" . (:foreground "#fe8019" :weight bold))
+          ("ONGOING" . (:foreground "#d79921" :weight bold))
           ("NOTE" . (:foreground "#458588" :weight bold))
           ("REFERENCE" . (:foreground "#458588" :weight bold))
           ("CANCELLED" . (:foreground "#928374" :weight bold))
@@ -534,9 +541,17 @@ I love org so much, it deserves its own heading.
           ("p" "PhD View"
            ((agenda "" ((org-agenda-span 1)))
             (tags-todo "CATEGORY=\"PhD-Inbox\""
-                       ((org-agenda-overriding-header "To Refile")))
-            (tags-todo "-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
-                       ((org-agenda-overriding-header "All Tasks")
+                       ((org-agenda-overriding-header "To refile")))
+            (tags-todo "project"
+                       ((org-agenda-overriding-header "Active projects")
+                        (org-agenda-dim-blocked-tasks nil)
+                        ))
+            (tags "project-TODO=\"STARTED\"-TODO=\"ONGOING\""
+                       ((org-agenda-overriding-header "Stack / project ideas")
+                        (org-agenda-dim-blocked-tasks nil)
+                        ))
+            (tags-todo "-project-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "All tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
                         (org-agenda-tags-todo-honor-ignore-options t)
                         (org-agenda-todo-ignore-deadlines 'all)
