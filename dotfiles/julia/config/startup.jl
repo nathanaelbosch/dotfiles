@@ -22,7 +22,8 @@ end
 
 function _setup()
     @eval using Pkg
-    Pkg.add(["Revise", "OhMyREPL", "BenchmarkTools", "TerminalLoggers", "Eyeball"])
-    Pkg.add(url="https://github.com/BioTurboNick/AbbreviatedStackTraces.jl")
+    # Pkg.add(["Revise", "OhMyREPL", "BenchmarkTools", "TerminalLoggers", "Eyeball"])
+    # Pkg.add(url="https://github.com/BioTurboNick/AbbreviatedStackTraces.jl")
+    Pkg.add(["Revise", "OhMyREPL", "BenchmarkTools", "TerminalLoggers", "Eyeball", "AbbreviatedStackTraces"])
     activate_default_packages()
 end
