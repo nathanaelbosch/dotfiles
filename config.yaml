@@ -187,9 +187,9 @@ profiles:
     - f_startup.jl
     variables:
       i3gaps: true
-      i3bordersize: 8
+      i3bordersize: 5
       i3gapsize: 32
-      i3fontsize: 12
+      i3fontsize: 10
   dev:
     include:
     - terminal
