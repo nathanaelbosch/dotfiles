@@ -174,9 +174,6 @@ This function should only modify configuration layer settings."
                                       wiki-summary
                                       langtool
                                       flycheck-grammarly
-                                      (evil-magit :location (recipe
-                                                             :fetcher github
-                                                             :repo "emacs-evil/evil-magit"))
                                       fira-code-mode
                                       ;; minimap
                                       (copilot :location (recipe

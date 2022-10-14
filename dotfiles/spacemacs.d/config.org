@@ -540,7 +540,7 @@ I love org so much, it deserves its own heading.
 
           ("p" "PhD View"
            ((agenda "" ((org-agenda-span 1)))
-            (tags-todo "CATEGORY=\"PhD-Inbox\""
+            (tags "CATEGORY=\"PhD-Inbox\"+LEVEL=2"
                        ((org-agenda-overriding-header "To refile")))
             (tags-todo "project"
                        ((org-agenda-overriding-header "Active projects")
