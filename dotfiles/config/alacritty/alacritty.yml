@@ -52,3 +52,5 @@ font:
 
 key_bindings:
   - { key: V,              mods: Control,           action: Paste            }
+  - { key: V,              mods: Alt,               action: Paste            }
+  - { key: C,              mods: Alt,               action: Copy             }

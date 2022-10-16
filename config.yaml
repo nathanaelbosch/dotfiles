@@ -198,6 +198,7 @@ profiles:
     - d_zathura
     - f_latexmkrc
     - f_startup.jl
+    - d_alacritty
   shire:
     include:
     - terminal
