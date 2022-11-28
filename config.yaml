@@ -4,6 +4,7 @@ actions:
     agnoster-install: fish -c 'omf install agnoster'
     bat-build-cache: bat cache --build
     spacemacs-install: git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    update-desktop-database: update-desktop-database ~/.local/share/applications/
 config:
   backup: true
   banner: true
@@ -124,6 +125,8 @@ dotfiles:
     src: local/share/applications/org-protocol.desktop
     dst: ~/.local/share/applications/org-protocol.desktop
     link: nolink
+    actions:
+      - update-desktop-database
   d_alacritty:
     src: config/alacritty
     dst: ~/.config/alacritty
@@ -209,3 +212,6 @@ profiles:
     - d_alacritty
     - f_startup.jl
     - d_qutebrowser
+  dev-new:
+    include:
+    - dev
