@@ -40,13 +40,13 @@ colors:
 
 font:
   normal:
-    family: FiraCode
+    family: FiraCode Nerd Font
     style: Regular
   bold:
-    family: FiraCode
+    family: FiraCode Nerd Font
     style: Bold
   italic:
-    family: FiraCode
+    family: FiraCode Nerd Font
     style: Italic
   size: 11
 
