@@ -160,6 +160,7 @@ This function should only modify configuration layer settings."
                                       org-fragtog
                                       ;; org-tempo
                                       ;; org-protocol
+                                      org-modern
                                       sphinx-doc
                                       ;; frame-mode
                                       ;; exwm-systemtray
@@ -182,6 +183,7 @@ This function should only modify configuration layer settings."
                                                           :files ("*.el" "dist")
                                                           ))
                                       atomic-chrome
+                                      zetteldesk
                                       )
 
    ;; A list of packages that cannot be updated.
