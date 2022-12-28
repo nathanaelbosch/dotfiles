@@ -13,10 +13,14 @@ fi
 {%@@ endif @@%}
 
 # sleep 5s && pa-applet &
+{%@@ if profile == "bree" @@%}
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+{%@@ else @@%}
 # /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+{%@@ endif @@%}
 {%@@ if not profile == "murr" @@%}
 nm-applet &
-redshift-gtk -l 48.2488721:11.6532477 &
+redshift-gtk -l 48.2488721:11.6532477 -t 6500:3500 &
 nitrogen --restore &
 {%@@ endif @@%}
 megasync &
