@@ -10,3 +10,5 @@
 	user = nbosch
 [init]
 	defaultBranch = main
+[credential]
+	helper = store
