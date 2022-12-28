@@ -181,6 +181,7 @@ This function should only modify configuration layer settings."
                                                           :repo "zerolfx/copilot.el"
                                                           :files ("*.el" "dist")
                                                           ))
+                                      atomic-chrome
                                       )
 
    ;; A list of packages that cannot be updated.
