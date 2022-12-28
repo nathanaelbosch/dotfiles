@@ -2,7 +2,7 @@
 # get started fast.
 
 [general]
-accounts = Gmail,Protonmail,UniTue
+accounts = Gmail,Protonmail,UniTue,MPI-IS
 pythonfile = ~/.config/offlineimap/custom.py
 
 [Account Gmail]
