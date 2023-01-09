@@ -112,6 +112,7 @@
   - [[#ligatures][Ligatures]]
   - [[#github-copilot][Github copilot]]
   - [[#firefox-as-default-browser][Firefox as default browser]]
+  - [[#start-atomic-chrome-server-to-use-emacs-for-writing-in-a-browser][Start atomic-chrome server to use emacs for writing in a browser]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -2004,4 +2005,8 @@ Faster than the default scp:
 ** Firefox as default browser
 #+begin_src emacs-lisp
   (setq browse-url-browser-function 'browse-url-firefox)
+#+end_src
+** Start atomic-chrome server to use emacs for writing in a browser
+#+begin_src emacs-lisp
+  (atomic-chrome-start-server)
 #+end_src
