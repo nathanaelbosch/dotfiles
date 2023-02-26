@@ -80,6 +80,7 @@
     - [[#org-roam-bibtex][org-roam-bibtex]]
     - [[#org-roam-dailies][org-roam dailies]]
   - [[#org-fragtog-to-make-latex-easier][~org-fragtog~ to make latex easier]]
+  - [[#rss-feeds][RSS Feeds]]
 - [[#other-packages--languages--concepts][Other Packages / Languages / Concepts]]
   - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
     - [[#contexts][Contexts]]
@@ -104,6 +105,7 @@
   - [[#julia][Julia]]
     - [[#julia-block][Julia block]]
     - [[#jupyte-julia-default-org-babel-settings][Jupyte julia default org babel settings]]
+    - [[#add-jmd-to-markdown-mode][Add .jmd to markdown-mode]]
   - [[#python][Python]]
     - [[#configure-flycheck][Configure flycheck]]
     - [[#python-language-server-configuration][python language server configuration]]
@@ -547,7 +549,7 @@ I love org so much, it deserves its own heading.
                        ((org-agenda-overriding-header "Active projects")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
-            (tags "project-TODO=\"STARTED\"-TODO=\"ONGOING\""
+            (tags "project+TODO=\"\""
                        ((org-agenda-overriding-header "Stack / project ideas")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
@@ -1608,6 +1610,18 @@ Default capture template
 #+begin_src emacs-lisp
   ;; (add-hook 'org-mode-hook 'org-fragtog-mode)
 #+end_src
+** RSS Feeds
+#+begin_src emacs-lisp
+  ;; (setq org-feed-alist
+  ;;       '(("Sam Altman"
+  ;;          "http://blog.samaltman.com/posts.atom"
+  ;;          "~/org/feeds.org" "Sam Altman")
+  ;;         ("Unterschichtblog"
+  ;;         "https://unterschichtblog.blogspot.com/feeds/posts/default?alt=rss"
+  ;;          "~/org/feeds.org" "Unterschichtblog")
+  ;;         )
+  ;;       )
+#+end_src
 * Other Packages / Languages / Concepts
 ** Manage my Email with ~mu4e~
 *** Contexts
@@ -1703,13 +1717,13 @@ Default capture template
 ** Writeroom                                                           :WIP:
 My goal here: Create a /beautiful/ writing environment!
 #+begin_src emacs-lisp
-  ;; (setq
-  ;;  ;; writeroom-maximize-window t
-  ;;  writeroom-fullscreen-effect nil
-  ;;  writeroom-extra-line-spacing 0.3
-  ;;  writeroom-width 88
-  ;;  writeroom-border-width 30
-  ;;  )
+  (setq
+   ;; writeroom-maximize-window t
+   ;; writeroom-fullscreen-effect nil
+   ;; writeroom-extra-line-spacing 0.3
+   writeroom-width 88
+   writeroom-border-width 30
+   )
 #+end_src
 
 No line numbers
@@ -1952,6 +1966,10 @@ Use YASnippet in ~ledger-mode~
                                                       (:kernel . "julia-1.6")
                                                       (:exports . "both")
                                                       (:results . "scalar")))
+#+end_src
+*** Add .jmd to markdown-mode
+#+begin_src emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.jmd\\'" . markdown-mode))
 #+end_src
 ** Python
 *** Configure flycheck
