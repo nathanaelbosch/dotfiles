@@ -562,7 +562,7 @@ I love org so much, it deserves its own heading.
                         (org-agenda-sorting-strategy '(priority-down))
                         ))
             )
-           ((org-agenda-filter-preset '("+PhD")))
+           ((org-agenda-filter-preset '("+PhD" "-inactive")))
            )
           ("P" "PhD Reading" tags-todo "PhD+TODO=\"TOREAD\""
            ((org-agenda-todo-ignore-scheduled 'future)
@@ -670,6 +670,8 @@ PhD-related captures:
          '(("p" "PhD")
            ("pt" "Task" entry (file+headline "~/org/phd.org" "Inbox")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
+           ("pT" "Task (Today)" entry (file+headline "~/org/phd.org" "Inbox")
+            "** TODO %?\nSCHEDULED: %t\n%U\n" :clock-in t :clock-resume t)
            ("pp" "probnum Task" entry (file+headline "~/org/phd.org" "probnum")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
            ("pn" "Note" entry (file+headline "~/org/phd.org" "Inbox")
@@ -1496,7 +1498,7 @@ Ignore org comments on export
 *** Code highlighting
 #+begin_src emacs-lisp
 ;; (require 'ox-latex)
-(add-to-list 'org-latex-packages-alist '("" "minted"))
+;; (add-to-list 'org-latex-packages-alist '("" "minted"))
 (setq org-latex-listings 'minted)
 
 ;; (setq org-latex-pdf-process
