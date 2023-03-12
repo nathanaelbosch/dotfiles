@@ -60,6 +60,7 @@ Plug 'morhetz/gruvbox'
 Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-speeddating'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 "colorscheme gruvbox
 
