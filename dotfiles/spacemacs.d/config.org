@@ -115,6 +115,7 @@
   - [[#github-copilot][Github copilot]]
   - [[#firefox-as-default-browser][Firefox as default browser]]
   - [[#start-atomic-chrome-server-to-use-emacs-for-writing-in-a-browser][Start atomic-chrome server to use emacs for writing in a browser]]
+  - [[#cuda][CUDA]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -2029,4 +2030,8 @@ Faster than the default scp:
 ** Start atomic-chrome server to use emacs for writing in a browser
 #+begin_src emacs-lisp
   (atomic-chrome-start-server)
+#+end_src
+** CUDA
+#+begin_src emacs-lisp
+  (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 #+end_src

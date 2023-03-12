@@ -49,6 +49,7 @@ This function should only modify configuration layer settings."
                       )
      better-defaults
      bibtex
+     c-c++
      colors
      command-log
      csv
