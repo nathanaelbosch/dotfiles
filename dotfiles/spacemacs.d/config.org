@@ -1147,6 +1147,13 @@ default task otherwise
     (org-with-point-at (org-id-find bh/break-task-id 'marker)
       (org-clock-in)))
 
+  (defvar bh/lesemittwoch-task-id "3013a796-8804-4ddd-841c-e127ad95be15")
+
+  (defun bh/clock-in-lesemittwoch ()
+    (interactive)
+    (org-with-point-at (org-id-find bh/lesemittwoch-task-id 'marker)
+      (org-clock-in)))
+
   (defun bh/clock-out-maybe ()
     (when (and bh/keep-clock-running
                (not org-clock-clocking-in)
@@ -1164,6 +1171,8 @@ default task otherwise
   (evil-leader/set-key "a o C S" 'bh/punch-out)
   (evil-leader/set-key-for-mode 'org-mode "C b" 'bh/clock-in-break)
   (evil-leader/set-key "a o C b" 'bh/clock-in-break)
+  (evil-leader/set-key-for-mode 'org-mode "C l" 'bh/clock-in-lesemittwoch)
+  (evil-leader/set-key "a o C l" 'bh/clock-in-lesemittwoch)
 #+end_src
 ** Literate programming with ~org-src~ and ~org-babel~
 Org-babel languages
