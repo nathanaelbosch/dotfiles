@@ -563,7 +563,7 @@ I love org so much, it deserves its own heading.
                         (org-agenda-sorting-strategy '(priority-down))
                         ))
             )
-           ((org-agenda-filter-preset '("+PhD" "-inactive")))
+           ((org-agenda-filter-preset '("+PhD")))
            )
           ("P" "PhD Reading" tags-todo "PhD+TODO=\"TOREAD\""
            ((org-agenda-todo-ignore-scheduled 'future)
@@ -600,7 +600,7 @@ I love org so much, it deserves its own heading.
 *** General agenda settings
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-tags-todo-honor-ignore-options t)
-  (setq org-agenda-filter-preset '("-inactive" "-ignore"))
+  (setq org-agenda-filter-preset '("-ignore"))
   ;; (setq org-agenda-regexp-filter-preset '("-WAITING"))
   (setq org-log-into-drawer t)
   (setq org-agenda-log-mode-items '(clock state))
