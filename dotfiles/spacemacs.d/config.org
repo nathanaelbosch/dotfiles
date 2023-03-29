@@ -544,17 +544,17 @@ I love org so much, it deserves its own heading.
 
           ("p" "PhD View"
            ((agenda "" ((org-agenda-span 1)))
-            (tags "CATEGORY=\"PhD-Inbox\"+LEVEL=2"
+            (tags "PhD+CATEGORY=\"PhD-Inbox\"+LEVEL=2"
                        ((org-agenda-overriding-header "To refile")))
-            (tags-todo "project"
+            (tags-todo "PhD+project"
                        ((org-agenda-overriding-header "Active projects")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
-            (tags "project+TODO=\"\""
+            (tags "Phd+project+TODO=\"\""
                        ((org-agenda-overriding-header "Stack / project ideas")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
-            (tags-todo "-project-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+            (tags-todo "PhD-project-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "All tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
                         (org-agenda-tags-todo-honor-ignore-options t)
@@ -563,7 +563,6 @@ I love org so much, it deserves its own heading.
                         (org-agenda-sorting-strategy '(priority-down))
                         ))
             )
-           ((org-agenda-filter-preset '("+PhD")))
            )
           ("P" "PhD Reading" tags-todo "PhD+TODO=\"TOREAD\""
            ((org-agenda-todo-ignore-scheduled 'future)
