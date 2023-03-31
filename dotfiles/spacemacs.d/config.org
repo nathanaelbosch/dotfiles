@@ -550,7 +550,7 @@ I love org so much, it deserves its own heading.
                        ((org-agenda-overriding-header "Active projects")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
-            (tags "Phd+project+TODO=\"\""
+            (tags "PhD+project+TODO=\"\""
                        ((org-agenda-overriding-header "Stack / project ideas")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
