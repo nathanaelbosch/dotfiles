@@ -9,8 +9,8 @@ function activate_default_packages()
     @eval ENV["JULIA_STACKTRACE_MINIMAL"] = true
     @eval using BenchmarkTools
     @eval using Logging: global_logger
-    @eval using TerminalLoggers
-    @eval global_logger(TerminalLogger())
+    # @eval using TerminalLoggers
+    # @eval global_logger(TerminalLogger())
     @eval using Eyeball
 end
 
