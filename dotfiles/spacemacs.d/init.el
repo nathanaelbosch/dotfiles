@@ -186,6 +186,7 @@ This function should only modify configuration layer settings."
                                       atomic-chrome
                                       zetteldesk
                                       zotxt
+                                      typst-mode
                                       )
 
    ;; A list of packages that cannot be updated.
