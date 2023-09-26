@@ -78,13 +78,7 @@ This function should only modify configuration layer settings."
      ;; lsp
      (markdown :variables markdown-live-preview-engine 'vmd)
      (mu4e :variables
-           {%@@ if profile == "murr" @@%}
-           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e"
-           {%@@ elif distro_like == "ubuntu debian" @@%}
            mu4e-installation-path "/snap/maildir-utils/current/share/emacs/site-lisp/mu4e"
-           {%@@ else @@%}
-           mu4e-installation-path "/usr/share/emacs/site-lisp/mu4e"
-           {%@@ endif @@%}
            mu4e-use-maildirs-extension nil
            mu4e-maildir "~/Mail"
            mu4e-enable-mode-line t
