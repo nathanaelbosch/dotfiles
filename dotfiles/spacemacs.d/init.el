@@ -181,6 +181,7 @@ This function should only modify configuration layer settings."
                                       zetteldesk
                                       zotxt
                                       typst-mode
+                                      org-roam-ui
                                       )
 
    ;; A list of packages that cannot be updated.
