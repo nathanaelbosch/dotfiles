@@ -2049,5 +2049,5 @@ Faster than the default scp:
 #+end_src
 ** CUDA
 #+begin_src emacs-lisp
-  (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
+  (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-or-c++-mode))
 #+end_src
