@@ -587,7 +587,8 @@ It should only modify the values of Spacemacs settings."
 
    ;; If nil the home buffer shows the full path of agenda items
    ;; and todos. If non nil only the file name is shown.
-   dotspacemacs-home-shorten-agenda-source nil))
+   dotspacemacs-home-shorten-agenda-source nil)
+)
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -595,7 +596,8 @@ This function defines the environment variables for your Emacs session. By
 default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
-  (spacemacs/load-spacemacs-env))
+  (spacemacs/load-spacemacs-env)
+)
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -610,7 +612,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; (exwm-systemtray-enable)
   ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp")
   ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-  )
+)
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
