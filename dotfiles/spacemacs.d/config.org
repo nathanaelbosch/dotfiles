@@ -1817,8 +1817,8 @@ Ask me about the TeX master file if unsure
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key-for-mode 'latex-mode "B" 'helm-bibtex-with-local-bibliography)
 
-  ;; (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
-  ;; (helm-add-action-to-source "Insert citation" 'helm-bibtex-insert-citation helm-source-bibtex 0)
+  (helm-delete-action-from-source "Insert BibTeX entry" helm-source-bibtex)
+  (helm-add-action-to-source "Insert BibTeX entry" 'helm-bibtex-insert-bibtex helm-source-bibtex 0)
 #+END_SRC
 *** Outline Minor Mode
 #+BEGIN_SRC emacs-lisp
