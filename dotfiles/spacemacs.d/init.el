@@ -700,5 +700,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(default ((t (:background nil))))
  '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
- '(minimap-active-region-background ((t (:extend t :background "dim gray")))))
+ '(minimap-active-region-background ((t (:extend t :background "dim gray"))))
+ '(org-scheduled-previously ((t (:foreground "#d79921")))))
 )
