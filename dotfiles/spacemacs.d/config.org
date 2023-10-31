@@ -1366,8 +1366,10 @@ Add project capture to capture menu
                               ;; ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/org/gcal/tumonline.org")
                               ("9kv80prb7ojqt998nmm24149e0@group.calendar.google.com" . "~/org/gcal/geburtstage.org")
                               ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/org/gcal/phd.org")
-                              ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/org/gcal/moml.org")
+                              ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/org/gcal/moml_general.org")
+                              ("qj2mhof2cs02ndrm99dbgfosng@group.calendar.google.com" . "~/org/gcal/moml_events.org")
                               ))
+  (setq plstore-cache-passphrase-for-symmetric-encryption t)
   ;; (add-hook 'org-capture-after-finalize-hook 'org-gcal-fetch)
 #+END_SRC
 *** Automatically run org-gcal every 30 mins
