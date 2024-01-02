@@ -180,7 +180,7 @@ This function should only modify configuration layer settings."
                                       atomic-chrome
                                       zetteldesk
                                       zotxt
-                                      typst-mode
+                                      ;; typst-mode
                                       org-roam-ui
                                       )
 
