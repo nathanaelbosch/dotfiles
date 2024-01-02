@@ -18,7 +18,6 @@ db_str = f"""
 P {dt_str} BTC {get_price("xbt")}€
 P {dt_str} ETH {get_price("eth")}€
 P {dt_str} XMR {get_price("xmr")}€
-P {dt_str} ZEC {get_price("zec")}€
 """
 print(db_str)
 
