@@ -306,7 +306,7 @@ I love org so much, it deserves its own heading.
 #+BEGIN_SRC emacs-lisp
   ;; Inline images
   (setq org-startup-with-inline-images t)
-  (setq org-image-actual-width 500)
+  (setq org-image-actual-width (list 500))
 #+END_SRC
 
 **** Pretty entities
@@ -1527,7 +1527,7 @@ Ignore org comments on export
 #+end_src
 *** No hyperref setup by default
 #+begin_src emacs-lisp
-  ;; (setq org-latex-with-hyperref nil)
+  (setq org-latex-with-hyperref nil)
 #+end_src
 ** /Zettelkasten/ with ~org-roam~
 #+begin_src emacs-lisp
