@@ -213,6 +213,6 @@ profiles:
     - d_alacritty
     - f_startup.jl
     - d_qutebrowser
-  dev-new:
+  archlinux:
     include:
     - dev
