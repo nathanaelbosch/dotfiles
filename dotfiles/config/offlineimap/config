@@ -19,6 +19,7 @@ remoteuser = nathanael.bosch@gmail.com
 sslcacertfile = {{@@ sslcertificates @@}}
 remotepasseval = get_password("gmail")
 folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail']
+copy_ignore_eval = lambda foldername: [18564] # this UID is not working with some offlineimap versions
 
 [Account UniTue]
 localrepository = UniTueLocal
