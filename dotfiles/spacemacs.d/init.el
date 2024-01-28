@@ -182,6 +182,7 @@ This function should only modify configuration layer settings."
                                       zotxt
                                       ;; typst-mode
                                       org-roam-ui
+                                      ivy-emoji
                                       )
 
    ;; A list of packages that cannot be updated.

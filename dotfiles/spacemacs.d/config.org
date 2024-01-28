@@ -35,6 +35,7 @@
     - [[#start-org-with-some-useful-modes][Start org with some useful modes]]
     - [[#column-view][Column view]]
     - [[#priorities][Priorities]]
+    - [[#insert-emojis][Insert emojis]]
   - [[#org-refile-targets][~org-refile~ targets]]
   - [[#keywords][keywords]]
   - [[#org-agenda][~org-agenda~]]
@@ -377,6 +378,11 @@ I love org so much, it deserves its own heading.
   (setq org-priority-lowest 68) ;; Add "D" for really unimportant stuff
   ;; (setq org-priority-highest 65) ;; Default
   (setq org-priority-default 67)
+#+end_src
+*** Insert emojis
+#+begin_src emacs-lisp
+  ;; (evil-leader/set-key-for-mode 'org-mode "i E" 'emoji-insert)
+  (evil-leader/set-key-for-mode 'org-mode "i E" 'ivy-emoji)
 #+end_src
 ** ~org-refile~ targets
 #+BEGIN_SRC emacs-lisp
