@@ -178,7 +178,7 @@ profiles:
     - f_startup.jl
     variables:
       i3gaps: true
-      i3gapsize: 0
+      i3gapsize: 10
       i3barposition: top
   murr:
     include:

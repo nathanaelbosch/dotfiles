@@ -144,7 +144,11 @@ super + ctrl + p
   /home/nath/bin/pstreamer.py
 
 super + shift + x
+{%@@ if profile == "bree" @@%}
+  sh ~/scripts/lock.sh
+{%@@ else @@%}
   slock
+{%@@ endif @@%}
 
 super + z
   morc_menu
@@ -153,7 +157,7 @@ super + ctrl + m
   pavucontrol
 
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
-  xbacklight -{inc,dec} $(echo "$(xbacklight)/5+1" | bc -l)
+  xbacklight -{inc,dec} $(echo "$(xbacklight -get)/10+1" | bc -l)
 
 super + ctrl + b
 	killall blueman-applet && sleep 1 && blueman-applet
