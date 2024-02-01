@@ -8,6 +8,7 @@ pythonfile = ~/.config/offlineimap/custom.py
 [Account Gmail]
 localrepository = GmailLocal
 remoterepository = GmailRemote
+ignorelabels = \Spam
 
 [Repository GmailLocal]
 type = Maildir
@@ -18,7 +19,7 @@ type = Gmail
 remoteuser = nathanael.bosch@gmail.com
 sslcacertfile = {{@@ sslcertificates @@}}
 remotepasseval = get_password("gmail")
-folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail']
+folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail', '[Google Mail]/Spam']
 copy_ignore_eval = lambda foldername: [18564] # this UID is not working with some offlineimap versions
 
 [Account UniTue]
