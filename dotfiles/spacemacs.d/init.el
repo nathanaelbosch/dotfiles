@@ -70,7 +70,8 @@ This function should only modify configuration layer settings."
      julia
      (latex :variables
             ;; latex-enable-auto-fill nil
-            latex-backend 'company-auctex
+            ;; latex-backend 'company-auctex
+            latex-backend 'lsp
             latex-build-command "LatexMk"
             latex-enable-auto-fill nil
             latex-enable-magic t
@@ -174,9 +175,8 @@ This function should only modify configuration layer settings."
                                       ;; minimap
                                       (copilot :location (recipe
                                                           :fetcher github
-                                                          :repo "zerolfx/copilot.el"
-                                                          :files ("*.el" "dist")
-                                                          ))
+                                                          :repo "copilot-emacs/copilot.el"
+                                                          :files ("*.el" "dist")))
                                       atomic-chrome
                                       zetteldesk
                                       zotxt
@@ -545,7 +545,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'

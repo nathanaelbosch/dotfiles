@@ -35,6 +35,7 @@
     - [[#start-org-with-some-useful-modes][Start org with some useful modes]]
     - [[#column-view][Column view]]
     - [[#priorities][Priorities]]
+    - [[#make-search-work-again][Make search work again]]
     - [[#insert-emojis][Insert emojis]]
   - [[#org-refile-targets][~org-refile~ targets]]
   - [[#keywords][keywords]]
@@ -56,14 +57,14 @@
     - [[#general-variables][General Variables]]
     - [[#custom-hotkeys][Custom Hotkeys]]
     - [[#org-ref-notes][~org-ref~ notes]]
-    - [[#use-cleveref-in-latex][Use ~cleveref~ in LaTeX]]
     - [[#org-noter-for-note-taking][~org-noter~ for note-taking]]
   - [[#manage-recipes-with-org-chef][Manage recipes with ~org-chef~]]
   - [[#better-screenshots-with-org-download][Better screenshots with ~org-download~]]
   - [[#org-projectile][org-projectile]]
   - [[#google-calendar-integration-with-org-gcal][Google-Calendar Integration with ~org-gcal~]]
     - [[#automatically-run-org-gcal-every-30-mins][Automatically run org-gcal every 30 mins]]
-  - [[#export-org-to-latex][Export org to LaTeX]]
+  - [[#org-latex-writing-workflow][Org latex writing workflow]]
+    - [[#use-cleveref-in-latex][Use ~cleveref~ in LaTeX]]
     - [[#latex-exports][LaTeX exports]]
     - [[#cdlatex-environments][cdlatex environments]]
     - [[#syntax-highlight][Syntax highlight]]
@@ -71,6 +72,7 @@
     - [[#booktabs-for-tables][~booktabs~ for tables]]
     - [[#code-highlighting][Code highlighting]]
     - [[#no-hyperref-setup-by-default][No hyperref setup by default]]
+    - [[#org-ref-hotkey][Org-ref hotkey]]
   - [[#zettelkasten-with-org-roam][/Zettelkasten/ with ~org-roam~]]
     - [[#set-directory][Set Directory]]
     - [[#autosync-mode-is-needed-apparently][Autosync Mode is needed apparently]]
@@ -378,6 +380,11 @@ I love org so much, it deserves its own heading.
   (setq org-priority-lowest 68) ;; Add "D" for really unimportant stuff
   ;; (setq org-priority-highest 65) ;; Default
   (setq org-priority-default 67)
+#+end_src
+*** Make search work again
+#+begin_src emacs-lisp
+  (setq org-fold-core-style 'overlays)
+  (evil-select-search-module 'evil-search-module 'evil-search)
 #+end_src
 *** Insert emojis
 #+begin_src emacs-lisp
@@ -1297,11 +1304,6 @@ Customized the structure of the default notes entry, to contain more information
   ")
 #+END_SRC
 
-*** Use ~cleveref~ in LaTeX
-#+begin_src emacs-lisp
-  (setq org-ref-default-ref-type "cref")
-  (setq org-latex-prefer-user-labels t)
-#+end_src
 *** ~org-noter~ for note-taking
 #+begin_src emacs-lisp
   (setq org-noter-property-doc-file "PDF")
@@ -1406,7 +1408,12 @@ From https://github.com/kidd/org-gcal.el/issues/65
   ;; Run once in emacs-startup-hook as well
   (run-with-timer (* 363 60) (* 360 60) 'jj/org-gcal-fetch-when-idle-full)
 #+end_src
-** Export org to LaTeX
+** Org latex writing workflow
+*** Use ~cleveref~ in LaTeX
+#+begin_src emacs-lisp
+  (setq org-ref-default-ref-type "cref")
+  (setq org-latex-prefer-user-labels t)
+#+end_src
 For when I write org to not write LaTeX
 *** LaTeX exports
 #+BEGIN_SRC emacs-lisp
@@ -1534,6 +1541,10 @@ Ignore org comments on export
 *** No hyperref setup by default
 #+begin_src emacs-lisp
   (setq org-latex-with-hyperref nil)
+#+end_src
+*** Org-ref hotkey
+#+begin_src emacs-lisp
+  (evil-leader/set-key-for-mode 'org-mode "i r" 'org-ref-insert-ref-link)
 #+end_src
 ** /Zettelkasten/ with ~org-roam~
 #+begin_src emacs-lisp
@@ -1803,6 +1814,11 @@ Refine diffs
   (setq magit-diff-refine-hunk "all")
 #+end_src
 
+Set MAGIT visibility to
+#+begin_src emacs-lisp
+  (setq forge-topic-list-limit '(15 . 0))
+#+end_src
+
 *** Add uni-tuebingen gitlab
 #+begin_src emacs-lisp
   ;; (add-to-list 'forge-alist
@@ -1825,8 +1841,8 @@ Ask me about the TeX master file if unsure
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key-for-mode 'latex-mode "B" 'helm-bibtex-with-local-bibliography)
 
-  (helm-delete-action-from-source "Insert BibTeX entry" helm-source-bibtex)
-  (helm-add-action-to-source "Insert BibTeX entry" 'helm-bibtex-insert-bibtex helm-source-bibtex 0)
+  ;; (helm-delete-action-from-source "Insert BibTeX entry" helm-source-bibtex)
+  ;; (helm-add-action-to-source "Insert BibTeX entry" 'helm-bibtex-insert-bibtex helm-source-bibtex 0)
 #+END_SRC
 *** Outline Minor Mode
 #+BEGIN_SRC emacs-lisp
@@ -2036,14 +2052,18 @@ Faster than the default scp:
   ;;   ;; disable inline previews
   ;;   (delq 'company-preview-if-just-one-frontend company-frontends))
 
-  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (with-eval-after-load 'copilot
+    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+    (define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+    )
 
   (add-hook 'prog-mode-hook 'copilot-mode)
   (add-hook 'LaTeX-mode-hook 'copilot-mode)
 
-  (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
-  (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+  ;; (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+  ;; (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
 
   (define-key evil-insert-state-map (kbd "M-n") 'copilot-next-completion)
 #+end_src
