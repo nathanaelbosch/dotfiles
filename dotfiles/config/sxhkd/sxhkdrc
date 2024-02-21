@@ -109,7 +109,7 @@ super + shift + {Left, Down, Up, Right}
 super + {_, shift+} b
   i3-msg "{workspace back_and_forth, move container to workspace back_and_forth; workspace back_and_forth}"
 super + {comma, period}
-  i3-msg move workspace to output {left, right}
+  i3-msg move workspace to output next
 
 super + {1-9,0}
   export _WS="ws{1-9,10}";\
