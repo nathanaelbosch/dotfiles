@@ -702,5 +702,8 @@ This function is called at the very end of Spacemacs initialization."
  '(default ((t (:background nil))))
  '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t)
  '(minimap-active-region-background ((t (:extend t :background "dim gray"))))
+ '(org-ref-cite-face ((t (:inherit org-link :foreground "#689d6a"))))
+ '(org-ref-label-face ((t (:inherit org-link :foreground "#a89984"))))
+ '(org-ref-ref-face ((t (:inherit org-link :foreground "#b16286"))))
  '(org-scheduled-previously ((t (:foreground "#d79921")))))
 )

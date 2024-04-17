@@ -1409,12 +1409,12 @@ From https://github.com/kidd/org-gcal.el/issues/65
   (run-with-timer (* 363 60) (* 360 60) 'jj/org-gcal-fetch-when-idle-full)
 #+end_src
 ** Org latex writing workflow
+For when I write org to not write LaTeX
 *** Use ~cleveref~ in LaTeX
 #+begin_src emacs-lisp
   (setq org-ref-default-ref-type "cref")
   (setq org-latex-prefer-user-labels t)
 #+end_src
-For when I write org to not write LaTeX
 *** LaTeX exports
 #+BEGIN_SRC emacs-lisp
   ;; (setq org-latex-pdf-process (list "latexmk -pdf %f"))
