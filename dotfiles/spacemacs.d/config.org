@@ -90,6 +90,7 @@
     - [[#send-emails][Send Emails]]
     - [[#notifications-for-new-email][Notifications for new Email]]
     - [[#custom-key-for-update-index][Custom key for update index]]
+    - [[#custom-date-format][Custom date format]]
   - [[#writeroom][Writeroom]]
   - [[#magit---the-best-git-interface][~magit~ - The best git interface]]
     - [[#add-uni-tuebingen-gitlab][Add uni-tuebingen gitlab]]
@@ -1757,6 +1758,11 @@ Default capture template
 #+begin_src emacs-lisp
   (with-eval-after-load 'mu4e
     (define-key mu4e-main-mode-map (kbd "u") 'mu4e-update-index))
+#+end_src
+
+*** Custom date format
+#+begin_src emacs-lisp
+    (setq mu4e-headers-date-format "%d/%m/%Y")
 #+end_src
 
 ** Writeroom                                                           :WIP:
