@@ -5,7 +5,7 @@ function activate_default_packages()
     @eval using Revise
     @eval using OhMyREPL
     @eval colorscheme!("GruvboxDark")
-    @eval using AbbreviatedStackTraces
+    # @eval using AbbreviatedStackTraces
     # @eval ENV["JULIA_STACKTRACE_MINIMAL"] = true
     @eval using BenchmarkTools
     # @eval using Logging: global_logger
@@ -29,7 +29,7 @@ function _setup()
         "BenchmarkTools",
         # "TerminalLoggers",
         # "Eyeball",
-        # "AbbreviatedStackTraces"
+        "AbbreviatedStackTraces",
         "TestEnv",
     ])
     activate_default_packages()
