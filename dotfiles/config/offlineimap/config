@@ -36,6 +36,7 @@ remotehost = mailserv.uni-tuebingen.de
 remoteuser = iiina01
 sslcacertfile = {{@@ sslcertificates @@}}
 remotepasseval = get_password("unitue")
+folderfilter = lambda foldername: 'Shared' not in foldername
 
 [Account MPI-IS]
 localrepository = MPI-IS-Local
