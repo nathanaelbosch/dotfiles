@@ -107,7 +107,7 @@ This function should only modify configuration layer settings."
              python-backend 'lsp
              python-lsp-server 'pyright
              python-test-runner 'pytest
-             python-formatter 'black
+             python-formatter 'ruff
              python-format-on-save t
              python-fill-column 88
              python-auto-set-local-pyvenv-virtualenv nil
