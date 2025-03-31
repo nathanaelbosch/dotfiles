@@ -9,6 +9,8 @@ pythonfile = ~/.config/offlineimap/custom.py
 localrepository = GmailLocal
 remoterepository = GmailRemote
 ignorelabels = \Spam
+# autorefresh = 1
+# quick = 10
 
 [Repository GmailLocal]
 type = Maildir
@@ -21,10 +23,14 @@ sslcacertfile = {{@@ sslcertificates @@}}
 remotepasseval = get_password("gmail")
 folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail', '[Google Mail]/Spam']
 copy_ignore_eval = lambda foldername: [18564] # this UID is not working with some offlineimap versions
+# keepalive = 90
+# holdconnectionopen = yes
 
 [Account UniTue]
 localrepository = UniTueLocal
 remoterepository = UniTueRemote
+# autorefresh = 1
+# quick = 10
 
 [Repository UniTueLocal]
 type = Maildir
@@ -37,10 +43,14 @@ remoteuser = iiina01
 sslcacertfile = {{@@ sslcertificates @@}}
 remotepasseval = get_password("unitue")
 folderfilter = lambda foldername: 'Shared' not in foldername
+# keepalive = 90
+# holdconnectionopen = yes
 
 [Account MPI-IS]
 localrepository = MPI-IS-Local
 remoterepository = MPI-IS-Remote
+# autorefresh = 1
+# quick = 10
 
 [Repository MPI-IS-Local]
 type = Maildir
@@ -52,10 +62,14 @@ remotehost = mailhost.tuebingen.mpg.de
 remoteuser = nathanael.bosch@tuebingen.mpg.de
 sslcacertfile = {{@@ sslcertificates @@}}
 remotepasseval = get_password("mpi-is")
+# keepalive = 90
+# holdconnectionopen = yes
 
 [Account Protonmail]
 localrepository = Protonmail-Local
 remoterepository = Protonmail-Remote
+# autorefresh = 1
+# quick = 10
 
 [Repository Protonmail-Local]
 type = Maildir
@@ -68,3 +82,5 @@ remoteport = 1143
 remoteuser = nathanael.bosch@pm.me
 ssl = no
 remotepasseval = get_password("protonmail")
+# keepalive = 90
+# holdconnectionopen = yes
