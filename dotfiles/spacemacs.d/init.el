@@ -85,6 +85,7 @@ This function should only modify configuration layer settings."
            mu4e-enable-mode-line t
            mu4e-get-mail-command "offlineimap"
            ;; mu4e-update-interval 180
+           ;; mu4e-update-interval (* 1 60) ;; fetch mail with offlineimap every 1 minutes
            mu4e-org-contacts-file "~/org/contacts.org"
            mu4e-view-show-addresses t
            mu4e-view-show-images t
