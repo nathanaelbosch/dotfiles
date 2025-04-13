@@ -654,36 +654,40 @@ I love org so much, it deserves its own heading.
           ("N" "Note with Clipboard" entry (file "~/org/inbox.org")
            "* NOTE %?\n%U\n%c\n" :empty-lines 1)
           ("j" "Daily journal" entry (file+olp+datetree "~/org/journal.org")
-           "* %^{Titel}
+           "* %?
   _Zum Vortag:_
-  %^{Free-form Reflektion des Vortags}
 
-  _Top-3 Energy Thieves:_
-  1. %^{Top-3 Energy Thief}
-  2. %^{Top-3 Energy Thief}
-  3. %^{Top-3 Energy Thief}
 
-  _Top-3 Energy Givers:_
-  1. %^{Top-3 Energy Giver}
-  2. %^{Top-3 Energy Giver}
-  3. %^{Top-3 Energy Giver}
+  _Dafür bin ich dankbar:_
+
 
   _Darauf bin ich stolz:_
-  %^{Darauf bin ich stolz}
+
 
   _Top-3 learnings from yesterday:_
-  1. %^{Top-3 Learning}
-  2. %^{Top-3 Learning}
-  3. %^{Top-3 Learning}
+  1.
+  2.
+  3.
+
+  _Top-3 Energy Givers:_
+  1.
+  2.
+  3.
+
+  _Top-3 Energy Thieves:_
+  1.
+  2.
+  3.
 
   _Top-3 todos for today:_
-  1. %^{Top-3 To-Do}
-  2. %^{Top-3 To-Do}
-  3. %^{Top-3 To-Do}
+  1.
+  2.
+  3.
 
   _Darauf bin ich heute neugierig:_
-  %^{Darauf bin ich heute neugierig}
-  ")
+
+  "
+           :clock-in t :clock-resume t)
           ("J" "Journal" entry (file+olp+datetree "~/org/journal.org")
            "* %?\n\nEntered on %U\n  %i" :clock-in t :clock-resume t)
           ("z" "Zettelkasten" entry (file "~/org/zettelkasten/inbox.org")
