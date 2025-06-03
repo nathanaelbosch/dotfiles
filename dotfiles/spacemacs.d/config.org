@@ -405,6 +405,7 @@ I love org so much, it deserves its own heading.
                              ("~/org/todo.org" :maxlevel . 2)
                              ("~/org/references.org" :level . 1)
                              ("~/org/phd.org" :maxlevel . 2)
+                             ("~/org/research.org" :maxlevel . 2)
                              ("~/MEGA/papers/notes.org" :level . 1)
                              ("~/org/projects/probnumdiffeq.org" :level . 1)
                              (nil . (:maxlevel . 2))
@@ -579,9 +580,31 @@ I love org so much, it deserves its own heading.
                         ))
             )
            )
-          ("P" "PhD Reading" tags-todo "PhD+TODO=\"TOREAD\""
+          ("r" "Research View"
+           ((agenda "" ((org-agenda-span 1)))
+            (tags "Research+CATEGORY=\"Research-Inbox\"+LEVEL=2"
+                       ((org-agenda-overriding-header "To refile")))
+            (tags-todo "Research+project"
+                       ((org-agenda-overriding-header "Active projects")
+                        (org-agenda-dim-blocked-tasks nil)
+                        ))
+            (tags "Research+project+TODO=\"\""
+                       ((org-agenda-overriding-header "Stack / project ideas")
+                        (org-agenda-dim-blocked-tasks nil)
+                        ))
+            (tags-todo "Research-project-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+                       ((org-agenda-overriding-header "All tasks")
+                        (org-agenda-todo-ignore-scheduled 'all)
+                        (org-agenda-tags-todo-honor-ignore-options t)
+                        (org-agenda-todo-ignore-deadlines 'all)
+                        (org-agenda-todo-ignore-with-date 'all)
+                        (org-agenda-sorting-strategy '(priority-down))
+                        ))
+            )
+           )
+          ("R" "Research Reading" tags-todo "Research+TODO=\"TOREAD\""
            ((org-agenda-todo-ignore-scheduled 'future)
-            (org-agenda-overriding-header "TOREAD (phd.org)"))
+            (org-agenda-overriding-header "TOREAD (research.org)"))
            )
 
 
@@ -590,7 +613,7 @@ I love org so much, it deserves its own heading.
             (tags "Inbox"
                   ((org-agenda-overriding-header "To Refile")
                    (org-agenda-files '("~/org/inbox.org"))))
-            (tags-todo "-PhD-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+            (tags-todo "-Research-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "All Tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
                         (org-agenda-tags-todo-honor-ignore-options t)
@@ -718,7 +741,7 @@ PhD-related captures:
         (append
          org-capture-templates
          '(("p" "PhD")
-           ("pt" "Task" entry (file+headline "~/org/phd.org" "Inbox")
+           ("pt" "Task" entry (file+headline "~/org/research.org" "Inbox")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
            ("pT" "Task (Today)" entry (file+headline "~/org/phd.org" "Inbox")
             "** TODO %?\nSCHEDULED: %t\n%U\n" :clock-in t :clock-resume t)
@@ -732,6 +755,22 @@ PhD-related captures:
             "* Daily Sketch\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
             :immediate-finish t :clock-in t :clock-resume t)
            ("pe" "Email" entry (file+headline "~/org/phd.org" "Inbox")
+            "* TODO Email: %a (%:fromname) \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n"
+            :clock-in t :clock-resume t)
+           )
+         ))
+
+  (setq org-capture-templates
+        (append
+         org-capture-templates
+         '(("r" "Research")
+           ("rt" "Task" entry (file+headline "~/org/research.org" "Inbox")
+            "** TODO %?\n%U" :clock-in t :clock-resume t)
+           ("rT" "Task (Today)" entry (file+headline "~/org/research.org" "Inbox")
+            "** TODO %?\nSCHEDULED: %t\n%U\n" :clock-in t :clock-resume t)
+           ("rn" "Note" entry (file+headline "~/org/research.org" "Inbox")
+            "** NOTE %?\n%U" :clock-in t :clock-resume t)
+           ("re" "Email" entry (file+headline "~/org/research.org" "Inbox")
             "* TODO Email: %a (%:fromname) \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n"
             :clock-in t :clock-resume t)
            )
