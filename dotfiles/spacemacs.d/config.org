@@ -687,10 +687,8 @@ I love org so much, it deserves its own heading.
   _Darauf bin ich stolz:_
 
 
-  _Top-3 learnings from yesterday:_
-  1.
-  2.
-  3.
+  _Das habe ich gelernt:_
+
 
   _Top-3 Energy Givers:_
   1.
