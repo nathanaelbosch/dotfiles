@@ -56,13 +56,8 @@
   - [[#my-paper-reading-workflow][My paper reading workflow]]
     - [[#general-variables][General Variables]]
     - [[#custom-hotkeys][Custom Hotkeys]]
-    - [[#org-ref-notes][~org-ref~ notes]]
-    - [[#org-noter-for-note-taking][~org-noter~ for note-taking]]
-  - [[#manage-recipes-with-org-chef][Manage recipes with ~org-chef~]]
   - [[#better-screenshots-with-org-download][Better screenshots with ~org-download~]]
   - [[#org-projectile][org-projectile]]
-  - [[#google-calendar-integration-with-org-gcal][Google-Calendar Integration with ~org-gcal~]]
-    - [[#automatically-run-org-gcal-every-30-mins][Automatically run org-gcal every 30 mins]]
   - [[#org-latex-writing-workflow][Org latex writing workflow]]
     - [[#use-cleveref-in-latex][Use ~cleveref~ in LaTeX]]
     - [[#latex-exports][LaTeX exports]]
@@ -82,7 +77,6 @@
     - [[#capture-ref-from-browser][Capture Ref from Browser]]
     - [[#org-roam-bibtex][org-roam-bibtex]]
     - [[#org-roam-dailies][org-roam dailies]]
-  - [[#org-fragtog-to-make-latex-easier][~org-fragtog~ to make latex easier]]
   - [[#rss-feeds][RSS Feeds]]
 - [[#other-packages--languages--concepts][Other Packages / Languages / Concepts]]
   - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
@@ -103,7 +97,6 @@
     - [[#beamer-bold-as-bold-not-as-alert][Beamer: Bold as bold, not as alert!]]
   - [[#exwm---the-emacs-x-window-manager][~exwm~ - The Emacs X Window Manager]]
   - [[#drop-down-emacs-with-yequake][Drop-down emacs with ~Yequake~]]
-  - [[#ein-to-open-jupyter-notebooks-in-emacs][~ein~ to open jupyter notebooks in emacs]]
   - [[#yasnippet][YASnippet]]
   - [[#budget-money-with-ledger-cli][Budget money with ~ledger-cli~]]
   - [[#grammar-checking-with-languagetool][Grammar checking with LanguageTool]]
@@ -144,11 +137,6 @@ customized in the original config file.
   (setq evil-want-fine-undo t)
 #+END_SRC
 
-Also turn on the global-undo-tree mode
-#+BEGIN_SRC emacs-lisp
-  (global-undo-tree-mode)
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/.cache/undo-tree-history")))
-#+END_SRC
 ** Better vertical splitting
 #+BEGIN_SRC emacs-lisp
   (setq split-height-threshold nil)
@@ -1272,7 +1260,6 @@ Org-babel languages
      (gnuplot . t)
      (shell . t)
      ;; (jupyter . t)
-     (ein . t)
      (julia . t)
      (ledger . t)
      ))
@@ -1357,49 +1344,6 @@ To access interleave mode and helm-bibtex
   ;; (evil-leader/set-key-for-mode 'org-mode "B" 'helm-bibtex)
   (evil-leader/set-key-for-mode 'bibtex-mode "B" 'helm-bibtex)
 #+END_SRC
-*** ~org-ref~ notes
-Customized the structure of the default notes entry, to contain more information
-(such as pdf), use TOREAD instead of TODO, and automatically enable interleave mode.
-#+BEGIN_SRC emacs-lisp
-  (setq org-ref-note-title-format "** TOREAD %t
-  :PROPERTIES:
-  :Custom_ID: %k
-  :AUTHOR: %9a
-  :JOURNAL: %j
-  :YEAR: %y
-  :VOLUME: %v
-  :PAGES: %p
-  :DOI: %D
-  :URL: %U
-  :BIBTEX_LABEL: %k
-  :PDF: %F
-  :END:
-  PDF: file:%F
-  ")
-#+END_SRC
-
-*** ~org-noter~ for note-taking
-#+begin_src emacs-lisp
-  (setq org-noter-property-doc-file "PDF")
-  (setq org-noter-auto-save-last-location t)
-#+end_src
-** Manage recipes with ~org-chef~
-#+BEGIN_SRC emacs-lisp
-  (use-package org-chef :ensure t)
-#+END_SRC
-
-Capture template
-#+begin_src emacs-lisp
-  (setq org-capture-templates
-        (append
-         org-capture-templates
-         '(("c" "Cookbook" entry (file "~/org/cookbook.org")
-            "%(org-chef-get-recipe-from-url)"
-            :empty-lines 1)
-           )
-         ))
-#+end_src
-
 ** Better screenshots with ~org-download~
 #+BEGIN_SRC emacs-lisp
   ;; Not optimal, but otherwise it creates wayy too many folders
@@ -1424,64 +1368,6 @@ Add project capture to capture menu
   ;;              (org-projectile-project-todo-entry
   ;;               :capture-character "p"))
 #+END_SRC
-** Google-Calendar Integration with ~org-gcal~
-#+BEGIN_SRC emacs-lisp
-  ;; Function to read lines of a file and output a list
-  (defun read-lines (filePath)
-    "Return a list of lines of a file at filePath."
-    (with-temp-buffer
-      (insert-file-contents filePath)
-      (split-string (buffer-string) "\n" t)))
-  ;; ;; Read lines from gcal.auth and store them in the variable
-  (setq auth-lines (read-lines "~/org/gcal.auth"))
-  ;; ;; Google Calendar
-  (setq org-gcal-client-id (car auth-lines)
-        org-gcal-client-secret (car (cdr auth-lines)))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  ;; Google Calendar
-  (setq org-gcal-file-alist '(
-                              ("nathanael.bosch@gmail.com" . "~/org/gcal/gcal.org")
-                              ("43ntc9b5o132nim5q8pnin4hm8@group.calendar.google.com" . "~/org/gcal/uni.org")
-                              ;; ("67bvrtshu9ufjh2bk4c3vul8vc@group.calendar.google.com" . "~/org/gcal/urlaube.org")
-                              ;; ("5g7i1tndcav3oulm0c9ktb0v1bblscmr@import.calendar.google.com" . "~/org/gcal/tumonline.org")
-                              ("9kv80prb7ojqt998nmm24149e0@group.calendar.google.com" . "~/org/gcal/geburtstage.org")
-                              ("jt7jgitpk0sflvc0kvem9dvti8@group.calendar.google.com" . "~/org/gcal/phd.org")
-                              ("2rvv79tm56hosm214aldkp881c@group.calendar.google.com" . "~/org/gcal/moml_general.org")
-                              ("qj2mhof2cs02ndrm99dbgfosng@group.calendar.google.com" . "~/org/gcal/moml_events.org")
-                              ))
-  (setq plstore-cache-passphrase-for-symmetric-encryption t)
-  ;; (add-hook 'org-capture-after-finalize-hook 'org-gcal-fetch)
-#+END_SRC
-*** Automatically run org-gcal every 30 mins
-From https://github.com/kidd/org-gcal.el/issues/65
-#+begin_src emacs-lisp
-  (defun jj/internet-up-p (&optional host)
-    "Checks if the internet is up by pinging google."
-    (= 0 (call-process "ping" nil nil nil "-c" "1" "-W" "1"
-                       (if host host "www.google.com"))))
-
-  (defun jj/org-gcal-archive-erase-then-fetch ()
-    (interactive)
-    (when (jj/internet-up-p)
-      (dolist (i org-gcal-fetch-file-alist)
-        (with-current-buffer
-            (find-file-noselect (cdr i))
-          (when org-gcal-auto-archive
-            (org-gcal--archive-old-event))
-          (erase-buffer)
-          (org-gcal-fetch)))))
-
-  (defun jj/org-gcal-fetch-when-idle-full ()
-    (interactive)
-    ;; cancel this idle timer if it exists and hasn't run
-    (cancel-function-timers 'jj/org-gcal-archive-erase-then-fetch)
-    (run-with-idle-timer 21 nil 'jj/org-gcal-archive-erase-then-fetch))
-
-  ;; Run once in emacs-startup-hook as well
-  (run-with-timer (* 363 60) (* 360 60) 'jj/org-gcal-fetch-when-idle-full)
-#+end_src
 ** Org latex writing workflow
 For when I write org to not write LaTeX
 *** Use ~cleveref~ in LaTeX
@@ -1717,10 +1603,6 @@ Default capture template
   ;;       (("d" "default" entry "* %?" :target
   ;;         (file+head "%<%Y-%m-%d>.org"
   ;;                    "#+title: %<%Y-%m-%d>\n#+category:%<%Y-%m-%d>"))))
-#+end_src
-** ~org-fragtog~ to make latex easier
-#+begin_src emacs-lisp
-  ;; (add-hook 'org-mode-hook 'org-fragtog-mode)
 #+end_src
 ** RSS Feeds
 #+begin_src emacs-lisp
@@ -2028,16 +1910,6 @@ Autostart programs
           ))
 #+end_src
 
-** ~ein~ to open jupyter notebooks in emacs
-Aesthetic settings:
-#+begin_src emacs-lisp
-  ;; Inline images
-  (setq ein:output-area-inlined-images t)
-
-  ;; Nicer Markdown
-  ;; (setq poly-ein-mode t)
-  (setq ein:markdown-header-scaling t)
-#+end_src
 ** YASnippet
 Add the yasnippet-snippets snippets to YASnippet.
 #+begin_src emacs-lisp
