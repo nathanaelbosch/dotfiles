@@ -8,3 +8,5 @@ set recolor-darkcolor "#fdf4c1"
 set recolor-lightcolor "#282828"
 
 set guioptions none
+
+set selection-clipboard clipboard
