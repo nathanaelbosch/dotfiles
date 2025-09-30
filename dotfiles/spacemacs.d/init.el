@@ -132,6 +132,7 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      syntax-checking
      themes-megapack
+     toml
      treemacs
      ;; (wakatime :variables
      ;;           wakatime-api-key "fb284fd5-bc08-43bc-94d9-9220271186f9"

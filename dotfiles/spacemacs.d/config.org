@@ -568,30 +568,31 @@ I love org so much, it deserves its own heading.
                         ))
             )
            )
-          ("r" "Research View"
-           ((agenda "" ((org-agenda-span 1)))
-            (tags "Research+CATEGORY=\"Research-Inbox\"+LEVEL=2"
-                       ((org-agenda-overriding-header "To refile")))
-            (tags-todo "Research+project"
-                       ((org-agenda-overriding-header "Active projects")
-                        (org-agenda-dim-blocked-tasks nil)
-                        ))
-            (tags "Research+project+TODO=\"\""
-                       ((org-agenda-overriding-header "Stack / project ideas")
-                        (org-agenda-dim-blocked-tasks nil)
-                        ))
-            (tags-todo "Research-project-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
-                       ((org-agenda-overriding-header "All tasks")
-                        (org-agenda-todo-ignore-scheduled 'all)
-                        (org-agenda-tags-todo-honor-ignore-options t)
-                        (org-agenda-todo-ignore-deadlines 'all)
-                        (org-agenda-todo-ignore-with-date 'all)
-                        (org-agenda-sorting-strategy '(priority-down))
-                        ))
-            )
-           )
+          ;; ("r" "Research View"
+          ;;  ((agenda "" ((org-agenda-span 1)))
+          ;;   (tags "Research+CATEGORY=\"Research-Inbox\"+LEVEL=2"
+          ;;              ((org-agenda-overriding-header "To refile")))
+          ;;   (tags-todo "Research+project"
+          ;;              ((org-agenda-overriding-header "Active projects")
+          ;;               (org-agenda-dim-blocked-tasks nil)
+          ;;               ))
+          ;;   (tags "Research+project+TODO=\"\""
+          ;;              ((org-agenda-overriding-header "Stack / project ideas")
+          ;;               (org-agenda-dim-blocked-tasks nil)
+          ;;               ))
+          ;;   (tags-todo "Research-project-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+          ;;              ((org-agenda-overriding-header "All tasks")
+          ;;               (org-agenda-todo-ignore-scheduled 'all)
+          ;;               (org-agenda-tags-todo-honor-ignore-options t)
+          ;;               (org-agenda-todo-ignore-deadlines 'all)
+          ;;               (org-agenda-todo-ignore-with-date 'all)
+          ;;               (org-agenda-sorting-strategy '(priority-down))
+          ;;               ))
+          ;;   )
+          ;;  )
           ("R" "Research Reading" tags-todo "Research+TODO=\"TOREAD\""
            ((org-agenda-todo-ignore-scheduled 'future)
+            (org-agenda-sorting-strategy '(priority-down tag-down))
             (org-agenda-overriding-header "TOREAD (research.org)"))
            )
 
@@ -1614,6 +1615,10 @@ Default capture template
   ;;         "https://unterschichtblog.blogspot.com/feeds/posts/default?alt=rss"
   ;;          "~/org/feeds.org" "Unterschichtblog")
   ;;         )
+  ;;         ("Aella"
+  ;;         "https://aella.substack.com/feed"
+  ;;          "~/org/feeds.org" "Aella")
+  ;;         )
   ;;       )
 #+end_src
 * Other Packages / Languages / Concepts
@@ -1957,8 +1962,8 @@ Use YASnippet in ~ledger-mode~
 #+end_src
 ** Julia
 #+begin_src emacs-lisp
-  (add-hook 'julia-mode-hook
-            (lambda () (set-fill-column 92) (spacemacs/toggle-fill-column-indicator-on)))
+  ;; (add-hook 'julia-mode-hook
+  ;;           (lambda () (set-fill-column 92) (spacemacs/toggle-fill-column-indicator-on)))
 #+end_src
 *** Julia block
 #+begin_src emacs-lisp
@@ -2007,10 +2012,10 @@ Faster than the default scp:
 ** Ligatures
 
 #+begin_src emacs-lisp
-  (fira-code-mode-set-font)
+  ;; (fira-code-mode-set-font)
   ;; (setq 'fira-code-mode-disabled-ligatures '("x"))
-  (add-hook 'prog-mode-hook 'fira-code-mode)
-  (add-hook 'org-mode-hook 'fira-code-mode)
+  ;; (add-hook 'prog-mode-hook 'fira-code-mode)
+  ;; (add-hook 'org-mode-hook 'fira-code-mode)
 #+end_src
 
 ** Github copilot
