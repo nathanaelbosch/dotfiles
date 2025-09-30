@@ -46,6 +46,36 @@ folderfilter = lambda foldername: 'Shared' not in foldername
 # keepalive = 90
 # holdconnectionopen = yes
 
+[Account EPFL]
+localrepository = EPFLLocal
+remoterepository = EPFLRemote
+# autorefresh = 1
+# quick = 10
+
+[Repository EPFLLocal]
+type = Maildir
+localfolders = ~/Mail/EPFL
+
+[Repository EPFLRemote]
+type = IMAP
+ssl = yes
+sslcacertfile = {{@@ sslcertificates @@}}
+remotepasseval = get_password("EPFL")
+remoteuser = nathanael.bosch@epfl.ch
+remotehost = outlook.office365.com
+remoteport = 993
+auth_mechanisms = XOAUTH2
+oauth2_request_url = https://login.microsoftonline.com/common/oauth2/v2.0/token
+oauth2_access_token_eval = get_access_token()
+oauth2_tenant_id = 5f4af3ad-8646-414b-83d8-ef95a0f39e42
+oauth2_client_id = 08162f7c-0fd2-4200-a84a-f25a4db0b584
+oauth2_client_secret = TxRBilcHdC6WGBee]fs?QR:SJ8nI[g82
+realdelete = no
+# folderfilter = lambda folder: folder in ['Sent','INBOX','Archive']
+# folderfilter = lambda foldername: 'Shared' not in foldername
+# keepalive = 90
+# holdconnectionopen = yes
+
 [Account MPI-IS]
 localrepository = MPI-IS-Local
 remoterepository = MPI-IS-Remote

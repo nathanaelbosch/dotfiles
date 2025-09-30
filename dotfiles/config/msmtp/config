@@ -21,6 +21,17 @@ from           nathanael.bosch@uni-tuebingen.de
 user           iiina01
 passwordeval   "authinfo.sh machine='unitue'"
 
+# EPFL
+account        epfl
+host           smtp.office365.com
+port           587
+auth           xoauth2
+tls            on
+tls_starttls   on
+from           nathanael.bosch@epfl.ch
+user           nathanael.bosch@epfl.ch
+passwordeval   "cd /home/user/.config/offlineimap/M365-IMAP/; ./.venv/bin/python3 refresh_token.py"
+
 # MPI-IS
 account        mpiis
 host           mailhost.tuebingen.mpg.de
