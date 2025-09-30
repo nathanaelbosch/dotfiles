@@ -34,7 +34,9 @@ fi
 venv="$HOME/dotfiles/.venv"
 pybin="${venv}/bin/python3"
 hash ${pybin} 2>/dev/null || pybin="python"
-[[ "`${pybin} -V 2>&1`" =~ "Python 3" ]] || { echo "install Python 3" && exit 1; }
+echo ${pybin}
+echo <(${pybin} -V)
+[[ "`${pybin} -V 2>&1`" =~ "Python 3"* ]] || { echo "install Python 3" && exit 1; }
 
 # launch dotdrop
 PYTHONPATH=dotdrop:${PYTHONPATH} ${pybin} -m dotdrop.dotdrop "${args[@]}"

@@ -50,6 +50,10 @@ dotfiles:
   d_offlineimap:
     dst: ~/.config/offlineimap
     src: config/offlineimap
+    cmpignore:
+      - '*/.venv'
+      - '*/.git'
+      - '*/__pycache__'
   d_polybar:
     dst: ~/.config/polybar
     src: config/polybar
@@ -214,5 +218,8 @@ profiles:
     - f_startup.jl
     - d_qutebrowser
   archlinux:
+    include:
+    - dev
+  arch:
     include:
     - dev
