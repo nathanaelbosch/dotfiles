@@ -1208,14 +1208,14 @@ default task otherwise
             (when bh/keep-clock-running
               (bh/clock-in-default-task)))))))
 
-  (defvar bh/organization-task-id "9e214582-66a4-4929-a067-1869c2ea16ef")
+  (defvar bh/organization-task-id "7ba25ac9-bd88-49a0-b9d2-59f9d4ccadf5")
 
   (defun bh/clock-in-organization-task-as-default ()
     (interactive)
     (org-with-point-at (org-id-find bh/organization-task-id 'marker)
       (org-clock-in '(16))))
 
-  (defvar bh/break-task-id "c6e6d526-bd09-4a7a-9522-b90eae4d36ae")
+  (defvar bh/break-task-id "390880c4-2101-48c3-ac36-c511a12b8ccd")
 
   (defun bh/clock-in-break ()
     (interactive)

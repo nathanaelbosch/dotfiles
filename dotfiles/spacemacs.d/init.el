@@ -572,9 +572,9 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-persistent-server nil
 
    ;; List of search tool executable names. Spacemacs uses the first installed
-   ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
-   ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   ;; tool of the list. Supported tools are `rg', `ag', `ack' and `grep'.
+   ;; (default '("rg" "ag" "ack" "grep"))
+   dotspacemacs-search-tools '("rg" "ag" "ack" "grep")
 
    ;; The backend used for undo/redo functionality. Possible values are
    ;; `undo-fu', `undo-redo' and `undo-tree' see also `evil-undo-system'.
@@ -809,7 +809,7 @@ This function is called at the very end of Spacemacs initialization."
                           phoenix-dark-pink-theme pip-requirements pipenv pippel
                           planet-theme poetry popwin prettier-js
                           professional-theme pug-mode purple-haze-theme py-isort
-                          pydoc pyenv-mode pylookup pytest quickrun
+                          pydoc pyenv-mode pylookup pytest python-pytest quickrun
                           railscasts-theme rainbow-delimiters rainbow-identifiers
                           rainbow-mode ranger rebecca-theme restart-emacs
                           reverse-theme ron-mode ruff-format rustic sass-mode
