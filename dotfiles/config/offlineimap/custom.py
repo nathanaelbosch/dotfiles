@@ -1,3 +1,4 @@
+import os
 from subprocess import check_output
 
 
@@ -6,6 +7,9 @@ def get_password(account):
 
 
 def get_access_token():
+    os.popen(
+        "cd /home/user/.config/offlineimap/M365-IMAP/; .venv/bin/python3 refresh_token.py"
+    )
     token_file = open(
         "/home/user/.config/offlineimap/M365-IMAP/imap_smtp_access_token", "r"
     )
@@ -15,8 +19,8 @@ def get_access_token():
 
 
 def get_refresh_token():
-    refresh_token = os.popen(
-        "cd /home/user/.config/offlineimap/M365-IMAP/; python3 refresh_token.py"
+    os.popen(
+        "cd /home/user/.config/offlineimap/M365-IMAP/; .venv/bin/python3 refresh_token.py"
     )
     token_file = open(
         "/home/user/.config/offlineimap/M365-IMAP/imap_smtp_refresh_token", "r"
