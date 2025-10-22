@@ -1677,7 +1677,7 @@ Default capture template
             :match-func (lambda (msg) (when msg
               (and
                (string-prefix-p "/Protonmail" (mu4e-message-field msg :maildir))
-               (not (mu4e-message-contact-field-matches msg '(:to :cc :from) "{{@@ env["pm2"] @@}}@pm.me"))
+               (not (mu4e-message-contact-field-matches msg '(:to :cc :from) "{{@@ env["pm2"] @@}}"))
                )))
             :vars '(
                     (user-mail-address . "nathanael.bosch@pm.me")
@@ -1691,10 +1691,10 @@ Default capture template
             :match-func (lambda (msg) (when msg
               (and
                (string-prefix-p "/Protonmail" (mu4e-message-field msg :maildir))
-               (mu4e-message-contact-field-matches msg '(:to :cc :from) "{{@@ env["pm2"] @@}}@pm.me")
+               (mu4e-message-contact-field-matches msg '(:to :cc :from) "{{@@ env["pm2"] @@}}")
                )))
             :vars '(
-                    (user-mail-address . "{{@@ env["pm2"] @@}}@pm.me")
+                    (user-mail-address . "{{@@ env["pm2"] @@}}")
                     (user-full-name . "{{@@ env["pm2name"] @@}}")
                     (mu4e-trash-folder . "/Protonmail/Trash")
                     (mu4e-sent-folder . "/Protonmail/Sent")
