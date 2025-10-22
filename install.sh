@@ -12,8 +12,8 @@ echo "
 # Clone the dotfiles repo into ~/dotfiles
 ################################################################################
 "
-git clone --recursive https://github.com/nathanaelbosch/dotfiles.git ~/dotfiles || exit 1
-cd ~/dotfiles || exit 1
+git clone --recursive https://github.com/nathanaelbosch/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 echo "
 ################################################################################
 # Install the dotdrop requirements into a new venv
