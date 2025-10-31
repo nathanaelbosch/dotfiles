@@ -140,8 +140,6 @@ super + ctrl + x
   i3-scrot {_, -w, -s}
 super + shift + p
   i3-scrot -s
-super + ctrl + p
-  /home/nath/bin/pstreamer.py
 
 super + shift + x
 {%@@ if profile == "bree" @@%}
