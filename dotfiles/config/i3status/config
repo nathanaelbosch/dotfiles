@@ -14,61 +14,89 @@ general {
         color_degraded = "#5f819d"
 }
 
-# order += "cpu_usage"
+order += "cpu_usage"
 # order += "load"
-# order += "disk /"
-# order += "disk /home"
-# order += "wireless _first_"
-# order += "ethernet _first_"
+order += "memory"
+order += "disk /"
+order += "disk /home"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "ipv6"
 order += "battery all"
-# order += "load"
+order += "volume master"
 order += "tztime local"
-# order += "ipv6"
 
 cpu_usage {
-        format = " cpu  %usage "
+        # format = " cpu  %usage "
+        format = " CPU:  %usage "
 }
 
 load {
-        format = " load %1min "
+        # format = " load %1min "
+        format = " Load: %1min "
         # max_threshold = 0.3
+}
+
+memory {
+        format = " Memory: %used / %total "
 }
 
 disk "/" {
         # format = " hdd %avail "
-        format = " ⛁ %avail "
+        # format = " ⛁ %avail "
+        format = " Disk: %used / %total "
+        low_threshold = 10
+}
+
+wireless _first_ {
+        format_up = " WLAN: %ip (%quality at %essid, %bitrate / %frequency) "
+        format_down = " No WLAN "
 }
 
 ethernet _first_ {
 # if you use %speed, i3status requires root privileges
-        format_up = " lan: %ip %speed "
-        format_down = " no lan "
+        # format_up = " lan: %ip %speed "
+        format_up = " LAN: %ip %speed "
+        format_down = " No LAN "
+}
+
+ipv6 {
+        format_up = " IPv6: %ip (%iface) "
+        format_down = " No IPv6 "
 }
 
 battery all {
-        format = "%status %percentage (%remaining remaining) "
-        # format = " %status %percentage "
+        # format = "%status %percentage (%remaining remaining) "
+        format = " Battery:: %percentage (%status%remaining remaining) "
         format_down = "No battery"
         last_full_capacity = true
         integer_battery_capacity = true
         # status_chr = ""
-        status_chr = "⚡"
+        # status_chr = "⚡"
+        status_chr = "charging; "
         # status_bat = "bat"
         # status_bat = "☉"
-        status_bat = ""
+        # status_bat = ""
+        status_bat = ""
         # status_unk = "?"
         status_unk = ""
-        # status_full = ""
-        status_full = "☻"
+        # status_full = "☻"
+        status_full = ""
         low_threshold = 15
         threshold_type = time
         # path = "/sys/class/power_supply/ucsi-source-psy-USBC000:001/uevent"
         # path = "/sys/class/power_supply/AC/uevent"
-        path = "/sys/class/power_supply/CMB%d/uevent"
+        # path = "/sys/class/power_supply/CMB%d/uevent"
+        # path = "/sys/class/power_supply/BAT0/uevent"
 }
 
 tztime local {
         # format = "%Y-%m-%d %H:%M:%S"
         # format = " %d.%m. %H:%M "
         format = " %d.%m.%Y %H:%M "
+}
+
+volume master {
+       format = " Volume: %volume"
+       format_muted = " Volume: muted (%volume)"
 }
