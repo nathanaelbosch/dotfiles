@@ -8,24 +8,19 @@ if [ -f $HOME/.Xresources ]; then
 fi
 
 ~/scripts/keyboard_setup.sh &
-{%@@ if profile == "murr" @@%}
-~/.screenlayout/uni_layout.sh &
-{%@@ endif @@%}
 
 # sleep 5s && pa-applet &
-{%@@ if profile == "bree" @@%}
+{%@@ if profile in ["bree", "archlinux"] @@%}
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 {%@@ else @@%}
-# /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 {%@@ endif @@%}
-{%@@ if not profile == "murr" @@%}
 nm-applet &
-redshift-gtk -l 48.2488721:11.6532477 -t 6500:3500 &
+redshift-gtk -l 48.2488721:11.6532477 -t 6500:3000 &
 nitrogen --restore &
-{%@@ endif @@%}
 megasync &
 protonmail-bridge &
-syncthing &
+syncthing --no-browser &
 
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
