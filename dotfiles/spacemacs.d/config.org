@@ -102,7 +102,7 @@
   - [[#grammar-checking-with-languagetool][Grammar checking with LanguageTool]]
   - [[#julia][Julia]]
     - [[#julia-block][Julia block]]
-    - [[#jupyte-julia-default-org-babel-settings][Jupyte julia default org babel settings]]
+    - [[#jupyter-julia-default-org-babel-settings][Jupyter julia default org babel settings]]
     - [[#add-jmd-to-markdown-mode][Add .jmd to markdown-mode]]
   - [[#python][Python]]
     - [[#configure-flycheck][Configure flycheck]]
@@ -1975,7 +1975,7 @@ Use YASnippet in ~ledger-mode~
   ;; Type <jj then tab key to create jupyter-julia src block
   (add-to-list 'org-structure-template-alist '("jj" . "src jupyter-julia"))
 #+end_src
-*** Jupyte julia default org babel settings
+*** Jupyter julia default org babel settings
 #+begin_src emacs-lisp
   (setq org-babel-default-header-args:jupyter-julia '((:async . "yes")
                                                       (:session . "jl")
