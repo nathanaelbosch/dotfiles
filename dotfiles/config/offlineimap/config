@@ -21,10 +21,12 @@ type = Gmail
 remoteuser = nathanael.bosch@gmail.com
 sslcacertfile = {{@@ sslcertificates @@}}
 remotepasseval = get_password("gmail")
-folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail', '[Google Mail]/Spam']
-copy_ignore_eval = lambda foldername: [18564] # this UID is not working with some offlineimap versions
+folderfilter = lambda foldername: foldername not in ['[Google Mail]/All Mail', '[Google Mail]/All mail', '[Google Mail]/Important', '[Google Mail]/Spam']
+copy_ignore_eval = lambda foldername: [18564,27656] # this UID is not working with some offlineimap versions
 # keepalive = 90
 # holdconnectionopen = yes
+maxconnections = 3
+pipeline = 100
 
 [Account UniTue]
 localrepository = UniTueLocal
@@ -75,6 +77,7 @@ realdelete = no
 # folderfilter = lambda foldername: 'Shared' not in foldername
 # keepalive = 90
 # holdconnectionopen = yes
+folderfilter = lambda foldername: 'Calendar' not in foldername and 'Junk' not in foldername
 
 [Account MPI-IS]
 localrepository = MPI-IS-Local
