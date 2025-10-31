@@ -119,6 +119,10 @@ dotfiles:
   f_xresources:
     dst: ~/.Xresources
     src: Xresources
+  f_extend.xresources:
+    src: extend.Xresources
+    dst: ~/.extend.Xresources
+    link: nolink
   f_yaourtrc:
     dst: ~/.yaourtrc
     src: yaourtrc
@@ -153,6 +157,7 @@ profiles:
     - f_xinitrc
     - f_xprofile
     - f_xresources
+    - f_extend.xresources
   spacemacs_full:
     dotfiles:
     - d_spacemacs.d
