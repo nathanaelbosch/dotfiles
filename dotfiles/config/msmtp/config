@@ -30,7 +30,7 @@ tls            on
 tls_starttls   on
 from           nathanael.bosch@epfl.ch
 user           nathanael.bosch@epfl.ch
-passwordeval   "cd /home/user/.config/offlineimap/M365-IMAP/; ./.venv/bin/python3 refresh_token.py"
+passwordeval   "cd {{@@ env['HOME'] @@}}/.config/offlineimap/M365-IMAP/; .venv/bin/python3 refresh_token.py"
 
 # MPI-IS
 account        mpiis

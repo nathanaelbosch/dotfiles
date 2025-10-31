@@ -2,7 +2,7 @@
 # ~/.bash_profile
 #
 
-export PATH="$PATH:/home/nath/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
