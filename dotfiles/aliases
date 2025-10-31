@@ -21,9 +21,6 @@ alias evil="emacsclient -nc -a ''"
 alias vil="emacsclient -t"
 
 # Pacman
-alias fixit="sudo rm -f /var/lib/pacman/db.lck"
-alias inst="sudo pacman -S"
-alias uninst="sudo pacman -Rsu"
 alias mirrors="sudo pacman-mirrors -g"
 
 # Config
@@ -50,7 +47,6 @@ alias xclip="xclip -selection c"
 alias xopen="xdg-open"
 alias nfetch="neofetch --w3m"
 alias feh="feh --scale-down --start-at"
-alias pokerstars="wine .wine/drive_c/Program\ Files\ \(x86\)/PokerStars.EU/PokerStarsUpdate.exe"
 
 # Python things
 alias ipylab="ipython --pylab"
@@ -60,9 +56,8 @@ alias xpython='xvfb-run --auto-servernum -s "-screen 0 1400x900x24" python'
 # Julia things
 alias jnb="julia --project=. -e 'using IJulia; notebook(dir=\".\")'"
 alias j="julia --project=."
-alias pluto="julia --project=@Pluto -e 'using Pluto; Pluto.run()'"
+alias pluto="echo 'julia --project=@Pluto -e \'using Pluto; Pluto.run()\'' && julia --project=@Pluto -e 'using Pluto; Pluto.run()'"
 
 # Misc
 alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"
-alias lazyvf="vf activate lazy"
 alias papers="ranger ~/MEGA/papers/lib/"
