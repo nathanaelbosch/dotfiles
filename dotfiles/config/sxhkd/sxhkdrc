@@ -80,9 +80,11 @@ super + g
 ###################################################################
 # Pulse Audio controls
 {XF86AudioRaiseVolume, XF86AudioLowerVolume}
-  pactl set-sink-volume @DEFAULT_SINK@ {+5%, -5%}
+  pamixer {-i 5, -d 5} --set-limit 100
+  # pactl set-sink-volume @DEFAULT_SINK@ {+5%, -5%}
 XF86AudioMute
-  pactl set-sink-mute @DEFAULT_SINK@ toggle
+  pamixer -t
+  # pactl set-sink-mute @DEFAULT_SINK@ toggle
 XF86AudioMicMute
   pactl set-source-mute 2 toggle
 
@@ -132,6 +134,8 @@ super + F2
   qutebrowser
 super + {_, shift +} F3
   {_,gksu} nautilus
+  # alacritty -e ranger
+  # {_,gksu} thunar
 super + ctrl + x
   xkill
 
@@ -141,21 +145,32 @@ super + ctrl + x
 super + shift + p
   i3-scrot -s
 
-super + shift + x
 {%@@ if profile == "bree" @@%}
+super + shift + x
   sh ~/scripts/lock.sh
+{%@@ elif profile == "archlinux" @@%}
+super + shift + z
+  slock
 {%@@ else @@%}
+super + shift + x
   slock
 {%@@ endif @@%}
 
+{%@@ if profile == "archlinux" @@%}
+# super + z
+#   morc_menu
+{%@@ else @@%}
 super + z
   morc_menu
+{%@@ endif @@%}
 
 super + ctrl + m
   pavucontrol
 
 {XF86MonBrightnessUp,XF86MonBrightnessDown}
-  xbacklight -{inc,dec} $(echo "$(xbacklight -get)/10+1" | bc -l)
+  brightnessctl set {+5%,4%-}
+  # $(echo "$(brightnessctl get)/$(brightnessctl max)/10+1" | bc -l)
+  # xbacklight -{inc,dec} $(echo "$(xbacklight -get)/10+1" | bc -l)
 
 super + ctrl + b
 	killall blueman-applet && sleep 1 && blueman-applet

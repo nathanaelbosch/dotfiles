@@ -225,6 +225,11 @@ profiles:
   archlinux:
     include:
     - dev
+    - i3
+    variables:
+      i3gaps: true
+      i3barposition: top
   arch:
     include:
     - dev
+    - i3

@@ -14,8 +14,8 @@ set $mod Mod4
 floating_modifier $mod
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel {{@@ i3bordersize @@}}
-new_float normal
+default_border pixel {{@@ i3bordersize @@}}
+default_floating_border normal
 
 # Hide borders
 {%@@ if not i3gaps @@%}
@@ -33,7 +33,7 @@ font xft:FiraCode {{@@ i3fontsize @@}}
 gaps inner {{@@ i3gapsize @@}}
 gaps outer 0
 
-# Smart gaps (gaps used if only more than one container on the workspace)
+# Smart gaps
 smart_gaps on
 
 # Smart borders
@@ -76,15 +76,17 @@ set $ws10 10
 ###############################################################################
 ## Settings for specifc applications
 ###############################################################################
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Pavucontrol"] floating enable
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
+# for_window [title="alsamixer"] floating enable border pixel 1
+# for_window [class="Nitrogen"] floating enable sticky enable border normal
+# for_window [class="Pavucontrol"] floating enable
+# for_window [class="(?i)System-config-printer.py"] floating enable border normal
 
-for_window [instance="htop_win"] floating enable sticky enable
-for_window [class="Spotify"] move workspace $ws10
+# for_window [instance="htop_win"] floating enable sticky enable
+# for_window [class="Spotify"] move workspace $ws10
 
-for_window [class="firefox"] border pixel {{@@ i3bordersize @@}}
+# for_window [class="firefox"] border pixel {{@@ i3bordersize @@}}
+for_window [class="Vivaldi-stable"] border pixel 2
+for_window [class="zoom"] border pixel 2
 
 # switch to workspace with urgent window automatically
 # for_window [urgent=latest] focus
@@ -97,11 +99,11 @@ for_window [class="firefox"] border pixel {{@@ i3bordersize @@}}
 bindsym $mod+minus mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id xsecurelock, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend && xsecurelock, mode "default"
+    bindsym l exec --no-startup-id slock, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym u exec --no-startup-id dm-tool switch-to-greeter, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym h exec --no-startup-id xsecurelock && systemctl hibernate, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
