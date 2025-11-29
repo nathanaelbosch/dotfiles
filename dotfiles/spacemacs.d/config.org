@@ -86,6 +86,7 @@
     - [[#custom-key-for-update-index][Custom key for update index]]
     - [[#custom-date-format][Custom date format]]
   - [[#writeroom][Writeroom]]
+  - [[#make-windows-more-narrow-and-centered-for-more-aesthetics][Make windows more narrow and centered for more aesthetics]]
   - [[#magit---the-best-git-interface][~magit~ - The best git interface]]
     - [[#add-uni-tuebingen-gitlab][Add uni-tuebingen gitlab]]
   - [[#latex][LaTeX]]
@@ -114,6 +115,7 @@
   - [[#firefox-as-default-browser][Firefox as default browser]]
   - [[#start-atomic-chrome-server-to-use-emacs-for-writing-in-a-browser][Start atomic-chrome server to use emacs for writing in a browser]]
   - [[#cuda][CUDA]]
+  - [[#typst][typst]]
 
 * General Emacs settings
 Config also in [[file:init.el]]. All the layers are there, also all things that are
@@ -395,7 +397,7 @@ I love org so much, it deserves its own heading.
                              ("~/org/phd.org" :maxlevel . 2)
                              ("~/org/research.org" :maxlevel . 2)
                              ("~/MEGA/papers/notes.org" :level . 1)
-                             ("~/org/projects/probnumdiffeq.org" :level . 1)
+                             ;; ("~/org/projects/probnumdiffeq.org" :level . 1)
                              (nil . (:maxlevel . 2))
                              ))
 #+END_SRC
@@ -408,7 +410,7 @@ I love org so much, it deserves its own heading.
 ** Todo keywords
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(N)" "STARTED(s!)" "WAITING(W@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
+        '((sequence "TODO(t)" "NEXT(N)" "STARTED(s!)" "ONGOING(o)" "WAITING(W@/!)" "|" "INACTIVE(i)" "CANCELLED(c@)" "DONE(d!)")
           (sequence "TOREAD(r)" "|" "1PASS(1)" "2PASS(2)" "3PASS(3)")
           (sequence "TOWATCH(w)" "|")
           (sequence "TOLISTEN(l)" "|")
@@ -546,19 +548,19 @@ I love org so much, it deserves its own heading.
            ((org-agenda-filter-preset '("+PhD")))
            )
 
-          ("p" "PhD View"
+          ("p" "Research View"
            ((agenda "" ((org-agenda-span 1)))
-            (tags "PhD+CATEGORY=\"PhD-Inbox\"+LEVEL=2"
+            (tags "Research+CATEGORY=\"Inbox\"+LEVEL=2"
                        ((org-agenda-overriding-header "To refile")))
-            (tags-todo "PhD+project"
+            (tags-todo "Research+project"
                        ((org-agenda-overriding-header "Active projects")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
-            (tags "PhD+project+TODO=\"\""
+            (tags "Research+project+TODO=\"\""
                        ((org-agenda-overriding-header "Stack / project ideas")
                         (org-agenda-dim-blocked-tasks nil)
                         ))
-            (tags-todo "PhD-project-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
+            (tags-todo "Research-project-inactive-REFILE-CANCELLED-WAITING-CATEGORY=\"papers\"-CATEGORY=\"Inbox\""
                        ((org-agenda-overriding-header "All tasks")
                         (org-agenda-todo-ignore-scheduled 'all)
                         (org-agenda-tags-todo-honor-ignore-options t)
@@ -611,7 +613,7 @@ I love org so much, it deserves its own heading.
                         (org-agenda-sorting-strategy '(priority-down))
                         ))
             )
-           ((org-agenda-filter-preset '("-PhD" "-inactive" "-ignore")))
+           ((org-agenda-filter-preset '("-PhD" "-Research" "-inactive" "-ignore")))
            )
 
           ("A" "Agenda - Week view with all Tasks" agenda "" ((org-agenda-span 7)))
@@ -730,18 +732,16 @@ PhD-related captures:
          '(("p" "PhD")
            ("pt" "Task" entry (file+headline "~/org/research.org" "Inbox")
             "** TODO %?\n%U" :clock-in t :clock-resume t)
-           ("pT" "Task (Today)" entry (file+headline "~/org/phd.org" "Inbox")
+           ("pT" "Task (Today)" entry (file+headline "~/org/research.org" "Inbox")
             "** TODO %?\nSCHEDULED: %t\n%U\n" :clock-in t :clock-resume t)
-           ("pp" "probnum Task" entry (file+headline "~/org/phd.org" "probnum")
-            "** TODO %?\n%U" :clock-in t :clock-resume t)
-           ("pn" "Note" entry (file+headline "~/org/phd.org" "Inbox")
+           ("pn" "Note" entry (file+headline "~/org/research.org" "Inbox")
             "** NOTE %?\n%U" :clock-in t :clock-resume t)
-           ("pj" "Journal" entry (file+olp+datetree "~/org/phd_journal.org")
+           ("pj" "Journal" entry (file+olp+datetree "~/org/research_journal.org")
             "* %?\n\nEntered on %U\n%i" :clock-in t :clock-resume t)
-           ("pd" "Daily Sketch" entry (file+olp+datetree "~/org/phd_journal.org")
+           ("pd" "Daily Sketch" entry (file+olp+datetree "~/org/research_journal.org")
             "* Daily Sketch\n*Did:* %^{Did}\n*Struggle:* %^{Struggle}\n*Today:* %^{Today}"
             :immediate-finish t :clock-in t :clock-resume t)
-           ("pe" "Email" entry (file+headline "~/org/phd.org" "Inbox")
+           ("pe" "Email" entry (file+headline "~/org/research.org" "Inbox")
             "* TODO Email: %a (%:fromname) \n:PROPERTIES:\n:CREATED: %U\n:EMAIL-SOURCE: %l\n:END:\n%U\n"
             :clock-in t :clock-resume t)
            )
@@ -1229,6 +1229,13 @@ default task otherwise
     (org-with-point-at (org-id-find bh/lesemittwoch-task-id 'marker)
       (org-clock-in)))
 
+  (defvar bh/mail-task-id "d717e2d0-53ec-4301-ae25-c8669cf855ce")
+
+  (defun bh/clock-in-mail ()
+    (interactive)
+    (org-with-point-at (org-id-find bh/mail-task-id 'marker)
+      (org-clock-in)))
+
   (defun bh/clock-out-maybe ()
     (when (and bh/keep-clock-running
                (not org-clock-clocking-in)
@@ -1248,6 +1255,8 @@ default task otherwise
   (evil-leader/set-key "a o C b" 'bh/clock-in-break)
   (evil-leader/set-key-for-mode 'org-mode "C l" 'bh/clock-in-lesemittwoch)
   (evil-leader/set-key "a o C l" 'bh/clock-in-lesemittwoch)
+  (evil-leader/set-key-for-mode 'org-mode "C m" 'bh/clock-in-mail)
+  (evil-leader/set-key "a o C m" 'bh/clock-in-mail)
 #+end_src
 ** Literate programming with ~org-src~ and ~org-babel~
 Org-babel languages
@@ -1721,7 +1730,7 @@ Default capture template
 
 *** Notifications for new Email
 #+begin_src emacs-lisp
-  (mu4e-alert-set-default-style 'libnotify)
+  ;; (mu4e-alert-set-default-style 'libnotify)
 #+end_src
 
 *** Custom key for update index
@@ -1780,6 +1789,12 @@ Enable some nice white Theme
   ;; (add-to-list 'writeroom-global-effects 'my/writeroom-theme-fn)
 #+end_src
 
+** Make windows more narrow and centered for more aesthetics           :WIP:
+#+begin_src emacs-lisp
+  (setq visual-fill-column-center-text t)
+  (setq visual-fill-column-width 88)
+  (add-hook 'org-mode-hook 'visual-fill-column-mode)
+#+end_src
 ** ~magit~ - The best git interface
 Start in Evil mode
 #+BEGIN_SRC emacs-lisp
@@ -2051,4 +2066,21 @@ Faster than the default scp:
 ** CUDA
 #+begin_src emacs-lisp
   (add-to-list 'auto-mode-alist '("\\.cu\\'" . c-or-c++-mode))
+#+end_src
+** typst
+What I did:
+- Install tree-sitter
+- Run `treesit-install-language-grammar`
+- Enter `typst` and point it to the grammar source url:
+  https://github.com/uben0/tree-sitter-typst
+
+I also have this, but not sure if it
+#+begin_src emacs-lisp
+  (with-eval-after-load 'eglot
+    (with-eval-after-load 'typst-ts-mode
+      (add-to-list 'eglot-server-programs
+                   `((typst-ts-mode) .
+                     ,(eglot-alternatives `(,typst-ts-lsp-download-path
+                                            "tinymist"
+                                            "typst-lsp"))))))
 #+end_src

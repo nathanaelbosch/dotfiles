@@ -170,6 +170,8 @@ This function should only modify configuration layer settings."
                                       ;; For org-roam
                                       zetteldesk
                                       org-roam-ui
+                                      tree-sitter
+                                      typst-ts-mode
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -822,16 +824,16 @@ This function is called at the very end of Spacemacs initialization."
                           sublime-themes sunny-day-theme symbol-overlay symon
                           tagedit tango-2-theme tango-plus-theme tangotango-theme
                           tao-theme term-cursor terminal-here toc-org toml-mode
-                          toxi-theme treemacs-evil treemacs-icons-dired
-                          treemacs-magit treemacs-persp treemacs-projectile
-                          twilight-anti-bright-theme twilight-bright-theme
-                          twilight-theme ujelly-theme underwater-theme undo-fu
-                          undo-fu-session unfill vi-tilde-fringe vmd-mode
-                          volatile-highlights vundo w3m web-beautify web-mode
-                          wgrep white-sand-theme wiki-summary winum writeroom-mode
-                          ws-butler xkcd yaml-mode yasnippet-snippets yequake
-                          zen-and-art-theme zenburn-theme zetteldesk zonokai-emacs
-                          zotxt))
+                          toxi-theme tree-sitter tree-sitter-langs treemacs-evil
+                          treemacs-icons-dired treemacs-magit treemacs-persp
+                          treemacs-projectile twilight-anti-bright-theme
+                          twilight-bright-theme twilight-theme ujelly-theme
+                          underwater-theme undo-fu undo-fu-session unfill
+                          vi-tilde-fringe vmd-mode volatile-highlights vundo w3m
+                          web-beautify web-mode wgrep white-sand-theme
+                          wiki-summary winum writeroom-mode ws-butler xkcd
+                          yaml-mode yasnippet-snippets yequake zen-and-art-theme
+                          zenburn-theme zetteldesk zonokai-emacs zotxt))
    '(pdf-view-midnight-colors '("#282828" . "#f9f5d7") t)
    '(safe-local-variable-values
      '((org-download-image-dir . "./Pictures/") (javascript-backend . tide)
