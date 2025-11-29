@@ -56,7 +56,7 @@ alias xpython='xvfb-run --auto-servernum -s "-screen 0 1400x900x24" python'
 # Julia things
 alias jnb="julia --project=. -e 'using IJulia; notebook(dir=\".\")'"
 alias j="julia --project=."
-alias pluto="echo 'julia --project=@Pluto -e \'using Pluto; Pluto.run()\'' && julia --project=@Pluto -e 'using Pluto; Pluto.run()'"
+alias pluto="echo 'julia --project=@Pluto -e \'using Pkg; Pkg.add(\"Pluto\"); Pkg.update(); using Pluto; Pluto.run()\'' && julia --project=@Pluto -e 'using Pkg; Pkg.add(\"Pluto\"); Pkg.update(); using Pluto; Pluto.run()'"
 
 # Misc
 alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"

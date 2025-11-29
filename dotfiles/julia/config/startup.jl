@@ -1,3 +1,5 @@
+using Pkg
+
 ENV["EDITOR"] = "vim"
 # ENV["PYTHON"] = "python"
 
@@ -22,7 +24,6 @@ catch err
 end
 
 function _setup()
-    @eval using Pkg
     Pkg.add([
         "Revise",
         "OhMyREPL",
@@ -33,4 +34,19 @@ function _setup()
         "TestEnv",
     ])
     activate_default_packages()
+end
+
+function _update()
+    # Update a set of environments:
+    # global, @Pluto,
+    Pkg.update()
+    envs = [
+        "@Pluto",
+        "@JuliaFormatter",
+    ]
+    for env in envs
+        Pkg.activate(env)
+        Pkg.update()
+    end
+    Pkg.activate() # back to global
 end
