@@ -91,6 +91,9 @@ for_window [class="zoom"] border pixel 2
 # switch to workspace with urgent window automatically
 # for_window [urgent=latest] focus
 
+for_window [class="firefox"] floating disable
+for_window [title="Picture in picture"] floating disable
+
 
 ###############################################################################
 ## Shutdown mode
