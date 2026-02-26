@@ -5,6 +5,7 @@ actions:
     bat-build-cache: bat cache --build
     spacemacs-install: git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
     update-desktop-database: update-desktop-database ~/.local/share/applications/
+    tmux-plugin-install: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 config:
   backup: true
   banner: true
@@ -107,6 +108,8 @@ dotfiles:
   f_tmux.conf:
     dst: ~/.tmux.conf
     src: tmux.conf
+    actions:
+    - tmux-plugin-install
   f_vimrc:
     dst: ~/.vimrc
     src: vimrc
