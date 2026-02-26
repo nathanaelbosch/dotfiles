@@ -6,6 +6,7 @@ export PATH="${PATH}:$HOME/scripts"
 export PATH="${PATH}:$HOME/bin"
 export PATH="${PATH}:$HOME/.local/bin"
 export PATH="${PATH}:$HOME/.cargo/bin"
+export PATH="${PATH}:$HOME/.local/share/claude-sandbox"
 
 # General ENV variables
 export JULIA_NUM_THREADS="auto"

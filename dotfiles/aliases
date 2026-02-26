@@ -61,3 +61,5 @@ alias pluto="echo 'julia --project=@Pluto -e \'using Pkg; Pkg.add(\"Pluto\"); Pk
 # Misc
 alias lenny="echo -n \"( ͡° ͜ʖ ͡°)\" | xclip"
 alias papers="ranger ~/MEGA/papers/lib/"
+
+alias cs="claude-sandbox"
