@@ -394,7 +394,7 @@ I love org so much, it deserves its own heading.
                              ("~/org/inbox.org" :level . 0)
                              ("~/org/todo.org" :maxlevel . 2)
                              ("~/org/references.org" :level . 1)
-                             ("~/org/phd.org" :maxlevel . 2)
+                             ;; ("~/org/phd.org" :maxlevel . 2)
                              ("~/org/research.org" :maxlevel . 2)
                              ("~/MEGA/papers/notes.org" :level . 1)
                              ;; ("~/org/projects/probnumdiffeq.org" :level . 1)
@@ -1468,17 +1468,17 @@ Make TODOs red in the latex export
 
 Ignore org comments on export
 #+BEGIN_SRC emacs-lisp
-  ;; remove comments from org document for use with export hook
-  ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
-  (defun delete-org-comments (backend)
-    (cl-loop for comment in (reverse (org-element-map (org-element-parse-buffer)
-                                      'comment 'identity))
-          do
-          (setf (buffer-substring (org-element-property :begin comment)
-                                  (org-element-property :end comment))
-                "")))
-  ;; add to export hook
-  (add-hook 'org-export-before-processing-hook 'delete-org-comments)
+  ;; ;; remove comments from org document for use with export hook
+  ;; ;; https://emacs.stackexchange.com/questions/22574/orgmode-export-how-to-prevent-a-new-line-for-comment-lines
+  ;; (defun delete-org-comments (backend)
+  ;;   (cl-loop for comment in (reverse (org-element-map (org-element-parse-buffer)
+  ;;                                     'comment 'identity))
+  ;;         do
+  ;;         (setf (buffer-substring (org-element-property :begin comment)
+  ;;                                 (org-element-property :end comment))
+  ;;               "")))
+  ;; ;; add to export hook
+  ;; (add-hook 'org-export-before-processing-hook 'delete-org-comments)
 #+END_SRC
 *** cdlatex environments
 #+BEGIN_SRC emacs-lisp
@@ -1564,7 +1564,7 @@ Ignore org comments on export
         '(
           ("d" "default" plain
            "%?"
-           :if-new (file+head "%<%Y-%m-%d>-${slug}.org"
+           :if-new (file+head "main/%<%Y-%m-%d>-${slug}.org"
                               "#+title: ${title}\n- tags :: \n")
            :unnarrowed t)
           )
@@ -1580,7 +1580,7 @@ Ignore org comments on export
         (append
          org-roam-capture-ref-templates
          '(("x" "browserref" plain "%?" :if-new
-            (file+head "refs/%<%Y-%m-%d>-${slug}.org"
+            (file+head "webrefs/%<%Y-%m-%d>-${slug}.org"
                        "#+TITLE: ${title}\n- tags :: \n\n")
             :unnarrowed t))
          ))
@@ -1599,7 +1599,7 @@ Ignore org comments on export
         '(
           ("r" "bibliography reference" plain "%?"
            :if-new
-           (file+head "refs/%<%Y-%m-%d>-${slug}.org"
+           (file+head "bib/%<%Y-%m-%d>-${slug}.org"
                       "#+title: ${title}\n- source :: ${ref}\n- tags ::")
            :unnarrowed t)
           )
@@ -1607,7 +1607,12 @@ Ignore org comments on export
         )
 #+end_src
 *** org-roam dailies
-Default capture template
+Directory:
+#+begin_src emacs-lisp
+ (setq org-roam-dailies-directory "daily/")
+#+end_src
+
+Default capture template:
 #+begin_src emacs-lisp
   ;; (setq org-roam-dailies-capture-templates
   ;;       (("d" "default" entry "* %?" :target
@@ -1794,6 +1799,7 @@ Enable some nice white Theme
   (setq visual-fill-column-center-text t)
   (setq visual-fill-column-width 88)
   (add-hook 'org-mode-hook 'visual-fill-column-mode)
+  (add-hook 'typst-ts-mode-hook 'visual-fill-column-mode)
 #+end_src
 ** ~magit~ - The best git interface
 Start in Evil mode
@@ -2027,10 +2033,10 @@ Faster than the default scp:
 ** Ligatures
 
 #+begin_src emacs-lisp
-  ;; (fira-code-mode-set-font)
+  (fira-code-mode-set-font)
   ;; (setq 'fira-code-mode-disabled-ligatures '("x"))
-  ;; (add-hook 'prog-mode-hook 'fira-code-mode)
-  ;; (add-hook 'org-mode-hook 'fira-code-mode)
+  (add-hook 'prog-mode-hook 'fira-code-mode)
+  (add-hook 'org-mode-hook 'fira-code-mode)
 #+end_src
 
 ** Github copilot
