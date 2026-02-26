@@ -25,5 +25,5 @@ if command -v xss-lock >/dev/null; then
     xss-lock -- slock &
 fi
 
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+# SSH key management with 1-hour timeout
+eval $(keychain --eval --quiet)
