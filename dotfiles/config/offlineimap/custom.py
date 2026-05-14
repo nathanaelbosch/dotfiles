@@ -3,7 +3,10 @@ from subprocess import check_output
 
 
 def get_password(account):
-    return check_output("authinfo.sh machine=" + account, shell=True).strip(b"\n")
+    return check_output(
+        "{{@@ env['HOME'] @@}}/scripts/authinfo.sh machine=" + account,
+        shell=True,
+    ).strip(b"\n")
 
 
 def get_access_token():
@@ -11,7 +14,8 @@ def get_access_token():
         "cd {{@@ env['HOME'] @@}}/.config/offlineimap/M365-IMAP/; .venv/bin/python3 refresh_token.py"
     )
     token_file = open(
-        "{{@@ env['HOME'] @@}}/.config/offlineimap/M365-IMAP/imap_smtp_access_token", "r"
+        "{{@@ env['HOME'] @@}}/.config/offlineimap/M365-IMAP/imap_smtp_access_token",
+        "r",
     )
     data = token_file.read()
     token_file.close()
@@ -23,7 +27,8 @@ def get_refresh_token():
         "cd {{@@ env['HOME'] @@}}/.config/offlineimap/M365-IMAP/; .venv/bin/python3 refresh_token.py"
     )
     token_file = open(
-        "{{@@ env['HOME'] @@}}/.config/offlineimap/M365-IMAP/imap_smtp_refresh_token", "r"
+        "{{@@ env['HOME'] @@}}/.config/offlineimap/M365-IMAP/imap_smtp_refresh_token",
+        "r",
     )
     data = token_file.read()
     token_file.close
