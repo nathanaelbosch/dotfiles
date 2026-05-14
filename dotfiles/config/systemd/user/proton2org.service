@@ -1,0 +1,7 @@
+[Unit]
+Description=Sync Proton work calendar to org file
+OnFailure=proton2org-failure.service
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/uv run %h/scripts/proton2org.py "{{@@ env["protonworkcalurl"] @@}}" -o %h/org/cal/work.org --timezone "Europe/Berlin" --category "(work)" --filetags "Research"

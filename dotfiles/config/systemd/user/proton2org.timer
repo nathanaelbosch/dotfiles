@@ -1,0 +1,9 @@
+[Unit]
+Description=Hourly Proton work calendar sync
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
