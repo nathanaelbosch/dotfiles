@@ -16,7 +16,7 @@ fi
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 {%@@ endif @@%}
 nm-applet &
-redshift-gtk -l 48.2488721:11.6532477 -t 6500:3000 &
+redshift-gtk -l 48.521153:9.049988 -t 6500:2500 &
 nitrogen --restore &
 megasync &
 protonmail-bridge &

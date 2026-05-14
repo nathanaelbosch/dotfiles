@@ -9,10 +9,17 @@ alias cat="batcat"
 {%@@ else @@%}
 alias cat="bat"
 {%@@ endif @@%}
+{%@@ if exists_in_path('lsd') @@%}
 alias l='lsd --group-dirs first --date=+"%d.%m.%Y %H:%M" -F'
 alias ls='l'
+{%@@ else @@%}
+alias l='ls'
+{%@@ endif @@%}
 alias ll='l -lh'
 alias la='l -la'
+{%@@ if exists_in_path('trashy') @@%}
+alias rm='trashy put'
+{%@@ endif @@%}
 
 alias crontab='crontab -i'
 
