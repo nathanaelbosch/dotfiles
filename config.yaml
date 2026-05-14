@@ -155,6 +155,16 @@ dotfiles:
   f_startup.jl:
     src: julia/config/startup.jl
     dst: ~/.julia/config/startup.jl
+  d_systemd_user:
+    src: config/systemd/user
+    dst: ~/.config/systemd/user
+    link: nolink
+    upignore:
+      - "*/default.target.wants/*"
+      - "*/timers.target.wants/*"
+    cmpignore:
+      - "*/default.target.wants/*"
+      - "*/timers.target.wants/*"
 profiles:
   terminal:
     dotfiles:
@@ -243,6 +253,8 @@ profiles:
     variables:
       i3gaps: true
       i3barposition: top
+    dotfiles:
+    - d_systemd_user
   arch:
     include:
     - dev
