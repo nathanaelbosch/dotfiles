@@ -1,0 +1,15 @@
+[Unit]
+Description=Element Web Dev Server
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/src/improving-element/element-web
+ExecStart=/usr/bin/yarn start
+Restart=on-failure
+RestartSec=30
+KillMode=mixed
+TimeoutStopSec=10
+
+[Install]
+WantedBy=default.target
