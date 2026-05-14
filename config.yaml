@@ -1,11 +1,15 @@
 actions:
   post:
-    omf-install: NONINTERACTIVE=1 fish -c "$(curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install)"
+    omf-install: NONINTERACTIVE=1 fish -c "$(curl
+      https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install)"
     agnoster-install: fish -c 'omf install agnoster'
     bat-build-cache: bat cache --build
-    spacemacs-install: git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-    update-desktop-database: update-desktop-database ~/.local/share/applications/
-    tmux-plugin-install: git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    spacemacs-install: git clone https://github.com/syl20bnr/spacemacs
+      ~/.emacs.d
+    update-desktop-database: update-desktop-database
+      ~/.local/share/applications/
+    tmux-plugin-install: git clone https://github.com/tmux-plugins/tpm
+      ~/.tmux/plugins/tpm
 config:
   backup: true
   banner: true
@@ -23,7 +27,9 @@ variables:
   i3fontsize: 8
   i3barposition: bottom
 dynvariables:
-  sslcertificates: if [ -f /etc/ssl/certs/ca-bundle.crt ]; then echo "/etc/ssl/certs/ca-bundle.crt"; else echo "/etc/ssl/certs/ca-certificates.crt"; fi
+  sslcertificates: if [ -f /etc/ssl/certs/ca-bundle.crt ]; then echo
+    "/etc/ssl/certs/ca-bundle.crt"; else echo
+    "/etc/ssl/certs/ca-certificates.crt"; fi
 dotfiles:
   d_bat:
     dst: ~/.config/bat
@@ -55,6 +61,8 @@ dotfiles:
       - '*/.venv'
       - '*/.git'
       - '*/__pycache__'
+      - "*/imap_smtp_access_token"
+      - "*/imap_smtp_refresh_token"
   d_polybar:
     dst: ~/.config/polybar
     src: config/polybar
@@ -72,6 +80,9 @@ dotfiles:
     src: spacemacs.d
     actions:
     - spacemacs-install
+    cmpignore:
+      - "*/config.el"
+      - "*/.spacemacs.env"
   d_sxhkd:
     dst: ~/.config/sxhkd
     src: config/sxhkd
