@@ -153,11 +153,7 @@ This function should only modify configuration layer settings."
                                       yasnippet-snippets
                                       org-roam
                                       org-roam-bibtex
-                                      ;; org-gcal ;; org-interface to google calendar
-                                      ;; org-clock-csv ;; export clock data to csv
-                                      ;; org-fragtog ;; nicely visually show latex in org-mode
-                                      ;; org-protocol ;; not needed anymore I think as it works anyways?
-                                      ;; org-modern ;; a modern style for org buffers - not sure if I still love this but to be revisited!
+                                      org-hide-drawers
                                       cdlatex ;; Faster insertion of environments in latex
                                       fira-code-mode
                                       ;; minimap
@@ -175,6 +171,8 @@ This function should only modify configuration layer settings."
                                       (yequake :location (recipe
                                                           :fetcher github
                                                           :repo "alphapapa/yequake"))
+                                      agent-shell
+                                      dirvish
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -335,14 +333,14 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.7)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Fira Code"
+   dotspacemacs-default-font '("FiraCode Nerd Font"
                                :size 14.
                                :weight normal
                                :width normal)
@@ -437,6 +435,14 @@ It should only modify the values of Spacemacs settings."
    ;; displayed in the current window. (default nil)
    dotspacemacs-switch-to-buffer-prefers-purpose nil
 
+   ;; Make consecutive tab key presses after commands such as
+   ;; `spacemacs/alternate-buffer' (SPC TAB) cycle through previous
+   ;; buffers/windows/etc. Please see the option's docstring for more information.
+   ;; Set the option to t in order to enable cycling for all current and
+   ;; future cycling commands. Alternatively, choose a subset of the currently
+   ;; supported commands: '(alternate-buffer alternate-window). (default nil)
+   dotspacemacs-enable-cycling nil
+
    ;; Whether side windows (such as those created by treemacs or neotree)
    ;; are kept or minimized by `spacemacs/toggle-maximize-window' (SPC w m).
    ;; (default t)
@@ -509,7 +515,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Show the scroll bar while scrolling. The auto hide time can be configured
    ;; by setting this variable to a number. (default t)
-   dotspacemacs-scroll-bar-while-scrolling t
+   dotspacemacs-scroll-bar-while-scrolling nil
 
    ;; Control line numbers activation.
    ;; If set to `t', `relative' or `visual' then line numbers are enabled in all
@@ -582,11 +588,10 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-search-tools '("rg" "ag" "ack" "grep")
 
    ;; The backend used for undo/redo functionality. Possible values are
-   ;; `undo-fu', `undo-redo' and `undo-tree' see also `evil-undo-system'.
+   ;; `undo-redo', `undo-fu' and `undo-tree' see also `evil-undo-system'.
    ;; Note that saved undo history does not get transferred when changing
-   ;; your undo system. The default is currently `undo-fu' as `undo-tree'
-   ;; is not maintained anymore and `undo-redo' is very basic."
-   dotspacemacs-undo-system 'undo-fu
+   ;; your undo system from or to undo-tree. (default `undo-redo')
+   dotspacemacs-undo-system 'undo-redo
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -677,13 +682,6 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  ;; No more warnings in the init, but might actually lead to problems
-  ;; (setq explicit-shell-file-name "/bin/fish")
-  ;; (setq shell-file-name "fish")
-  ;; (require 'exwm-systemtray)
-  ;; (exwm-systemtray-enable)
-  ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp")
-  ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
   )
 
 (defun dotspacemacs/user-load ()
@@ -707,7 +705,9 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; Most important part of this config file: Load the ACTUAL config!
+  (setq debug-on-error t)
   (org-babel-load-file "~/.spacemacs.d/config.org")
+  (setq debug-on-error nil)
 
   (find-file "~/org/inbox.org")
   )
@@ -738,14 +738,15 @@ This function is called at the very end of Spacemacs initialization."
    '(markdown-header-scaling t)
    '(minimap-window-location 'right)
    '(package-selected-packages
-     '(ac-php-core ace-jump-helm-line ace-link afternoon-theme aggressive-indent
-                   alect-themes all-the-icons ample-theme ample-zen-theme
-                   anti-zenburn-theme apropospriate-theme atomic-chrome attrap
-                   auctex-latexmk auto-compile auto-highlight-symbol
-                   auto-yasnippet badwolf-theme birds-of-paradise-plus-theme
-                   browse-at-remote bubbleberry-theme bui busybee-theme cdlatex
-                   centered-cursor-mode cherry-blossom-theme chocolate-theme
-                   clean-aindent-mode clues-theme cmm-mode code-cells code-review
+     '(ac-php-core ace-jump-helm-line ace-link acp afternoon-theme agent-shell
+                   aggressive-indent alect-themes all-the-icons ample-theme
+                   ample-zen-theme anti-zenburn-theme apropospriate-theme
+                   atomic-chrome attrap auctex-latexmk auto-compile
+                   auto-highlight-symbol auto-yasnippet badwolf-theme
+                   birds-of-paradise-plus-theme browse-at-remote bubbleberry-theme
+                   bui busybee-theme cdlatex centered-cursor-mode
+                   cherry-blossom-theme chocolate-theme clean-aindent-mode
+                   clues-theme cmm-mode code-cells code-review
                    color-identifiers-mode color-theme-sanityinc-solarized
                    color-theme-sanityinc-tomorrow column-enforce-mode
                    command-log-mode company-auctex company-c-headers company-cabal
@@ -754,13 +755,13 @@ This function is called at the very end of Spacemacs initialization."
                    cpp-auto-include csv-mode cyberpunk-theme cython-mode
                    dakrone-theme dante dap-mode darkmine-theme darkokai-theme
                    darktooth-theme define-word deft devdocs diff-hl diminish
-                   dired-quick-sort disable-mouse disaster disk-usage django-theme
-                   doom-themes dotenv-mode dracula-theme drag-stuff drupal-mode
-                   dumb-jump eat edit-indirect ef-themes elfeed elfeed-goodies
-                   elfeed-org elisp-def elisp-demos elisp-slime-nav emmet-mode emr
-                   esh-help eshell-prompt-extras eshell-z espresso-theme
-                   eval-sexp-fu evil-anzu evil-args evil-cleverparens
-                   evil-collection evil-easymotion evil-escape
+                   dired-quick-sort dirvish disable-mouse disaster disk-usage
+                   django-theme doom-themes dotenv-mode dracula-theme drag-stuff
+                   drupal-mode dumb-jump eat edit-indirect ef-themes elfeed
+                   elfeed-goodies elfeed-org elisp-def elisp-demos elisp-slime-nav
+                   ement emmet-mode emr esh-help eshell-prompt-extras eshell-z
+                   espresso-theme eval-sexp-fu evil-anzu evil-args
+                   evil-cleverparens evil-collection evil-easymotion evil-escape
                    evil-evilified-state evil-exchange evil-goggles
                    evil-indent-plus evil-ledger evil-lion evil-lisp-state
                    evil-matchit evil-nerd-commenter evil-numbers evil-org
@@ -783,10 +784,10 @@ This function is called at the very end of Spacemacs initialization."
                    helm-xref hemisu-theme heroku-theme hide-comnt
                    highlight-indentation highlight-numbers highlight-parentheses
                    hl-todo hledger-mode hlint-refactor holy-mode hungry-delete
-                   hybrid-mode impatient-mode indent-guide info+ inkpot-theme
-                   insert-shebang inspector ir-black-theme ivy-emoji jazz-theme
-                   jbeans-theme js-doc js2-refactor json-mode json-navigator
-                   json-reformat julia-repl jupyter kaolin-themes keycast langtool
+                   impatient-mode indent-guide info+ inkpot-theme insert-shebang
+                   inspector ir-black-theme ivy-emoji jazz-theme jbeans-theme
+                   js-doc js2-refactor json-mode json-navigator json-reformat
+                   julia-repl jupyter kaolin-themes keycast langtool
                    light-soap-theme link-hint live-py-mode livid-mode lorem-ipsum
                    lsp-docker lsp-haskell lsp-julia lsp-latex lsp-origami
                    lsp-pyright lsp-treemacs lsp-ui lush-theme macrostep
@@ -857,5 +858,13 @@ This function is called at the very end of Spacemacs initialization."
    '(org-ref-cite-face ((t (:inherit org-link :foreground "#689d6a"))))
    '(org-ref-label-face ((t (:inherit org-link :foreground "#a89984"))))
    '(org-ref-ref-face ((t (:inherit org-link :foreground "#b16286"))))
-   '(org-scheduled-previously ((t (:foreground "#d79921")))))
+   '(org-scheduled-previously ((t (:foreground "#d79921"))))
+   '(term-color-black ((t (:foreground "#282828" :background "#928374"))))
+   '(term-color-blue ((t (:foreground "#458588" :background "#83a598"))))
+   '(term-color-cyan ((t (:foreground "#689d6a" :background "#8ec07c"))))
+   '(term-color-green ((t (:foreground "#98971a" :background "#b8bb26"))))
+   '(term-color-magenta ((t (:foreground "#b16286" :background "#d3869b"))))
+   '(term-color-red ((t (:foreground "#cc241d" :background "#fb4934"))))
+   '(term-color-white ((t (:foreground "#a89984" :background "#ebdbb2"))))
+   '(term-color-yellow ((t (:foreground "#d79921" :background "#fabd2f")))))
   )
