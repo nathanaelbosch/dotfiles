@@ -1,0 +1,9 @@
+[Unit]
+Description=offlineimap sync (oneshot)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/offlineimap -o -u basic
+TimeoutStartSec=3min
+TimeoutStopSec=10s
+KillMode=mixed

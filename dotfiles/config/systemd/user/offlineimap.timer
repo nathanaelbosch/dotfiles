@@ -1,0 +1,12 @@
+[Unit]
+Description=Run offlineimap every 5 minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+AccuracySec=10s
+Persistent=true
+Unit=offlineimap.service
+
+[Install]
+WantedBy=timers.target
