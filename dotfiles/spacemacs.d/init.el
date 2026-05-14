@@ -172,6 +172,9 @@ This function should only modify configuration layer settings."
                                       org-roam-ui
                                       tree-sitter
                                       typst-ts-mode
+                                      (yequake :location (recipe
+                                                          :fetcher github
+                                                          :repo "alphapapa/yequake"))
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -794,39 +797,39 @@ This function is called at the very end of Spacemacs initialization."
                    noctilux-theme nodejs-repl nov npm-mode obsidian-theme
                    occidental-theme oldlace-theme omtose-phellack-themes
                    open-junk-file org-board org-chef org-cliplink org-clock-csv
-                   org-contrib org-download org-fragtog org-gcal org-mime
-                   org-modern org-noter org-pomodoro org-present org-projectile
-                   org-re-reveal org-ref org-rich-yank org-roam-bibtex org-roam-ui
-                   org-sidebar org-superstar organic-green-theme orgit-forge
-                   outline-magic overseer ox-epub ox-hugo page-break-lines
-                   pandoc-mode paradox password-generator pcre2el pdf-view-restore
-                   pet phoenix-dark-mono-theme phoenix-dark-pink-theme
-                   php-auto-yasnippets php-extras php-mode php-runtime phpactor
-                   phpunit pip-requirements pipenv pippel planet-theme poetry
-                   popwin prettier-js professional-theme pug-mode
-                   purple-haze-theme py-isort pydoc pyenv-mode pylookup pytest
-                   python-pytest quickrun railscasts-theme rainbow-delimiters
-                   rainbow-identifiers rainbow-mode ranger rebecca-theme
-                   restart-emacs reverse-theme ron-mode ruff-format rustic
-                   sass-mode scss-mode seti-theme shell-pop shfmt slim-mode
-                   smeargle smyx-theme soft-charcoal-theme soft-morning-theme
-                   soft-stone-theme solarized-theme soothe-theme space-doc
-                   spacegray-theme spaceline spacemacs-purpose-popwin
-                   spacemacs-whitespace-cleanup sphinx-doc string-edit-at-point
-                   subatomic-theme subatomic256-theme sublime-themes
-                   sunny-day-theme symbol-overlay symon tagedit tango-2-theme
-                   tango-plus-theme tangotango-theme tao-theme term-cursor
-                   terminal-here toc-org toml-mode toxi-theme tree-sitter
-                   tree-sitter-langs treemacs-evil treemacs-icons-dired
-                   treemacs-magit treemacs-persp treemacs-projectile
-                   twilight-anti-bright-theme twilight-bright-theme twilight-theme
-                   ujelly-theme underwater-theme undo-fu undo-fu-session unfill
-                   vi-tilde-fringe vmd-mode volatile-highlights vundo w3m
-                   web-beautify web-mode wgrep white-sand-theme wiki-summary winum
-                   writeroom-mode ws-butler xcscope xkcd yaml-mode
-                   yasnippet-snippets yequake zen-and-art-theme zenburn-theme
-                   zetteldesk zonokai-emacs zotxt))
-   '(pdf-view-midnight-colors '("#282828" . "#f9f5d7") t)
+                   org-contrib org-download org-fragtog org-gcal org-hide-drawers
+                   org-mime org-modern org-noter org-pomodoro org-present
+                   org-projectile org-re-reveal org-ref org-rich-yank
+                   org-roam-bibtex org-roam-ui org-sidebar org-superstar
+                   organic-green-theme orgit-forge outline-magic overseer ox-epub
+                   ox-hugo page-break-lines pandoc-mode paradox password-generator
+                   pcre2el pdf-view-restore pet phoenix-dark-mono-theme
+                   phoenix-dark-pink-theme php-auto-yasnippets php-extras php-mode
+                   php-runtime phpactor phpunit pip-requirements pipenv pippel
+                   planet-theme poetry popwin prettier-js professional-theme
+                   pug-mode purple-haze-theme py-isort pydoc pyenv-mode pylookup
+                   pytest python-pytest quickrun railscasts-theme
+                   rainbow-delimiters rainbow-identifiers rainbow-mode ranger
+                   rebecca-theme restart-emacs reverse-theme ron-mode ruff-format
+                   rustic sass-mode scss-mode seti-theme shell-maker shell-pop
+                   shfmt slim-mode smeargle smyx-theme soft-charcoal-theme
+                   soft-morning-theme soft-stone-theme solarized-theme
+                   soothe-theme space-doc spacegray-theme spaceline
+                   spacemacs-purpose-popwin spacemacs-whitespace-cleanup
+                   sphinx-doc string-edit-at-point subatomic-theme
+                   subatomic256-theme sublime-themes sunny-day-theme
+                   symbol-overlay symon tagedit tango-2-theme tango-plus-theme
+                   tangotango-theme tao-theme term-cursor terminal-here toc-org
+                   toml-mode toxi-theme tree-sitter tree-sitter-langs
+                   treemacs-evil treemacs-icons-dired treemacs-magit
+                   treemacs-persp treemacs-projectile twilight-anti-bright-theme
+                   twilight-bright-theme twilight-theme ujelly-theme
+                   underwater-theme undo-fu undo-fu-session unfill vi-tilde-fringe
+                   vmd-mode volatile-highlights vundo w3m web-beautify web-mode
+                   wgrep white-sand-theme wiki-summary winum writeroom-mode
+                   ws-butler xcscope xkcd yaml-mode yasnippet-snippets yequake
+                   zen-and-art-theme zenburn-theme zetteldesk zonokai-emacs zotxt))
+   '(pdf-view-midnight-colors '("#282828" . "#f9f5d7"))
    '(safe-local-variable-values
      '((org-download-image-dir . "./Pictures/") (javascript-backend . tide)
        (javascript-backend . tern) (javascript-backend . lsp)))

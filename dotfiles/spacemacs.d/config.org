@@ -78,6 +78,7 @@
     - [[#org-roam-bibtex][org-roam-bibtex]]
     - [[#org-roam-dailies][org-roam dailies]]
   - [[#rss-feeds][RSS Feeds]]
+  - [[#drop-down-org-roam-dailies-via-yequake][Drop-down org-roam-dailies via ~yequake~]]
 - [[#other-packages--languages--concepts][Other Packages / Languages / Concepts]]
   - [[#manage-my-email-with-mu4e][Manage my Email with ~mu4e~]]
     - [[#contexts][Contexts]]
@@ -97,7 +98,6 @@
     - [[#visual-fill-mode-instead-of-auto-fill][Visual fill mode instead of auto fill]]
     - [[#beamer-bold-as-bold-not-as-alert][Beamer: Bold as bold, not as alert!]]
   - [[#exwm---the-emacs-x-window-manager][~exwm~ - The Emacs X Window Manager]]
-  - [[#drop-down-emacs-with-yequake][Drop-down emacs with ~Yequake~]]
   - [[#yasnippet][YASnippet]]
   - [[#budget-money-with-ledger-cli][Budget money with ~ledger-cli~]]
   - [[#grammar-checking-with-languagetool][Grammar checking with LanguageTool]]
@@ -1634,6 +1634,41 @@ Default capture template:
   ;;          "~/org/feeds.org" "Aella")
   ;;         )
   ;;       )
+** Drop-down org-roam-dailies via [[https://github.com/alphapapa/yequake][~yequake~]]
+#+begin_src emacs-lisp
+  (setq yequake-frames
+        '(("my_yequake_emacs_frame" .
+           ((width . 0.75)
+            (height . 0.5)
+            (alpha . 0.95)
+            (buffer-fns . (
+                           ;; "~/org/todo.org"
+                           ;; split-window-horizontally
+                           ;; "*scratch*"
+                           org-roam-dailies-goto-today
+                           ))
+            (frame-parameters . ((undecorated . nil)))))
+          ))
+#+end_src
+
+This should be paired with the following i3 config
+#+begin_src
+  for_window [title="my_yequake_emacs_frame"] floating enable, resize set 900 600, move position center, move scratchpad
+  bindsym F12 exec --no-startup-id ~/scripts/yequake.sh
+#+end_src
+
+and the following callable .sh script
+#+begin_src sh
+  #!/bin/bash
+
+  if ! xdotool search --name my_yequake_emacs_frame &>/dev/null; then
+      emacsclient -n -e '(yequake-toggle "my_yequake_emacs_frame")'
+      sleep 0.3
+  fi
+
+  i3-msg '[title="my_yequake_emacs_frame"] scratchpad show'
+
+#+end_src
 #+end_src
 * Other Packages / Languages / Concepts
 ** Manage my Email with ~mu4e~
@@ -1924,27 +1959,6 @@ Autostart programs
   ;; (call-process-shell-command "(sleep 10s && redshift-gtk -l 48.2488721:11.6532477) &" nil 0)
   ;; (call-process-shell-command "(sleep 10s && spotify) &" nil 0)
   ;; (call-process-shell-command "(sleep 10s && ~/scripts/keyboard_setup.sh) &" nil 0)
-#+end_src
-
-** Drop-down emacs with ~Yequake~
-#+begin_src emacs-lisp
-  (setq yequake-frames
-        '(("TODOs & scratch" .
-           ((width . 0.75)
-            (height . 0.5)
-            (alpha . 0.95)
-            (buffer-fns . ("~/org/todo.org"
-                           split-window-horizontally
-                           "*scratch*"))
-            (frame-parameters . ((undecorated . t)))))
-          ("eguake" .
-           ((width . 853)
-            (height . 480)
-            (top . 0.5)
-            ;; (alpha . 0.95)
-            (buffer-fns . (eshell))
-            (frame-parameters . ((undecorated . t)))))
-          ))
 #+end_src
 
 ** YASnippet

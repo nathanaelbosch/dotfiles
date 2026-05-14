@@ -256,4 +256,6 @@ mode "$mode_gaps_outer" {
 
 
 for_window [instance="floating_notes"] floating enable, resize set 800 400, move scratchpad
-bindsym F12 exec --no-startup-id ~/scripts/toggle-notepad.sh
+# bindsym F12 exec --no-startup-id ~/scripts/toggle-notepad.sh
+for_window [title="my_yequake_emacs_frame"] floating enable, resize set 900 600, move position center, move scratchpad
+bindsym F12 exec --no-startup-id ~/scripts/yequake.sh
