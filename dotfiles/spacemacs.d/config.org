@@ -41,6 +41,7 @@
   - [[#keywords][keywords]]
   - [[#org-agenda][~org-agenda~]]
     - [[#agenda-files][Agenda files]]
+    - [[#inbox-view-blocks][Inbox-view blocks]]
     - [[#agenda-views][Agenda views]]
     - [[#general-agenda-settings][General agenda settings]]
   - [[#org-capture-templates][~org-capture~ Templates]]
@@ -463,6 +464,28 @@ I love org so much, it deserves its own heading.
 
     (with-eval-after-load 'org (setq org-default-notes-file '"~/org/todo.org"))
 #+END_SRC
+*** Inbox-view blocks
+mu4e:
+#+begin_src emacs-lisp
+  (load "~/.spacemacs.d/mu4e-agenda-block.el")
+#+end_src
+
+whatsapp:
+#+begin_src emacs-lisp
+  (load "~/.spacemacs.d/whatsapp-agenda-block.el")
+#+end_src
+
+Signal:
+#+begin_src emacs-lisp
+  (load "~/.spacemacs.d/signal-agenda-block.el")
+#+end_src
+
+#+begin_src emacs-lisp
+  (setq my/inbox-name-width 30)
+  (setq my/inbox-preview-width 60)
+  (setq my/inbox-date-format "%d/%m/%Y")
+  (setq my/inbox-date-width 5)
+#+end_src
 
 *** Agenda views
 #+BEGIN_SRC emacs-lisp
@@ -622,6 +645,22 @@ I love org so much, it deserves its own heading.
            ((org-agenda-skip-function 'bh/skip-project-tasks)))
           ("C" "PhD Cleanup" tags "PhD-papers+TODO=\"DONE\"|PhD-papers+TODO=\"CANCELLED\""
            ((org-agenda-skip-function 'bh/skip-project-tasks)))
+
+          ("i" "Inboxes"
+           (
+            (my/org-agenda-mu4e-unread ""
+             ((org-agenda-overriding-header "Unread emails")))
+            (my/org-agenda-whatsapp-unread ""
+             ((org-agenda-overriding-header "Unread WhatsApp")))
+            (my/org-agenda-signal-unread ""
+             ((org-agenda-overriding-header "Unread Signal")))
+            (tags "Inbox"
+                  ((org-agenda-overriding-header "inbox.org")
+                   (org-agenda-files '("~/org/inbox.org"))))
+            )
+           ((org-agenda-filter-preset '("-Research" "-inactive" "-ignore")))
+           )
+
           ))
 #+END_SRC
 

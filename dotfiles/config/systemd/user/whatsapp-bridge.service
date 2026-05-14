@@ -1,0 +1,13 @@
+[Unit]
+Description=WhatsApp Bridge (whatsmeow)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/src/whatsapp-mcp/whatsapp-bridge
+ExecStart=%h/src/whatsapp-mcp/whatsapp-bridge/whatsapp-bridge
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target
